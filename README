@@ -102,7 +102,7 @@ Directory layout
       source
         Contains documentation automatically generated from the documented
         source code. Overview documentation is also included there.
-        l4re-source.pdf: PDF file of the generated code
+        l4re-doc-full.pdf and l4re-doc-base.pdf: PDF file of the generated code
         html: HTML version of the documentation. Can be viewed in any recent
               web browser.
    - obj

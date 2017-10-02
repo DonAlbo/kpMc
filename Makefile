@@ -33,9 +33,6 @@ setup:
 	  echo Boot-images for MIPS targets will be placed into obj/l4/mips32/images.;    \
 	  echo Check obj/l4/.../conf/Makeconf.boot for path configuration during image builds.; \
 	  echo ;                                                                        \
-	  echo NOTE: You should add the bin directory to your path:;                    \
-	  echo    export PATH=$$(pwd)/bin:\$$PATH;                                      \
-	  echo ;                                                                        \
 	fi
 
 build_all:

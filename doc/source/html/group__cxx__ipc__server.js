@@ -36,7 +36,8 @@ var group__cxx__ipc__server =
       [ "reply_n_wait", "classL4_1_1Server.html#a4333dc750dee494087ee92ab058718a1", null ]
     ] ],
     [ "Server_object", "classL4_1_1Server__object.html", [
-      [ "dispatch", "classL4_1_1Server__object.html#a505f2d9c6fc2794613243764095b0cbe", null ]
+      [ "dispatch", "classL4_1_1Server__object.html#a505f2d9c6fc2794613243764095b0cbe", null ],
+      [ "dispatch", "classL4_1_1Server__object.html#a0908b0084f251057024850611e6a8763", null ]
     ] ],
     [ "Server_object_t", "structL4_1_1Server__object__t.html", [
       [ "Interface", "structL4_1_1Server__object__t.html#a5248a0aa7fc0d96f51b65bb0eed7334c", null ],

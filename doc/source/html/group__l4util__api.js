@@ -10,7 +10,6 @@ var group__l4util__api =
     [ "Internal functions", "group__l4util__internal.html", "group__l4util__internal" ],
     [ "Kernel Interface Page API", "group__l4util__kip__api.html", "group__l4util__kip__api" ],
     [ "Low-Level Thread Functions", "group__l4util__thread.html", null ],
-    [ "Machine Restarting Function", "group__l4util__reboot.html", "group__l4util__reboot" ],
     [ "Random number support", "group__l4util__random.html", "group__l4util__random" ],
     [ "Timestamp Counter", "group__l4util__tsc.html", "group__l4util__tsc" ],
     [ "rand.h", "rand_8h.html", null ],

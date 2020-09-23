@@ -1,13 +1,12 @@
 
 package L4::ModList;
 use Exporter;
+use warnings;
 use vars qw(@ISA @EXPORT);
 @ISA    = qw(Exporter);
 @EXPORT = qw(get_module_entry search_file get_entries);
 
 my @internal_searchpaths;
-
-my $arglen = 200;
 
 sub get_command_and_cmdline
 {
@@ -19,14 +18,11 @@ sub get_command_and_cmdline
   my $full = $file;
   $full = $opts{fname} if exists $opts{fname};
   $full .= " $args" if defined $args;
-  $full =~ s/"/\\"/g;
 
-  if (length($full) > $arglen) {
-    print "$.: \"$full\" too long...\n";
-    exit 1;
-  }
+  my $full_quoted = $full;
+  $full_quoted =~ s/"/\\"/g;
 
-  ($file, $full);
+  ($file, $full, $full_quoted);
 }
 
 sub error($)
@@ -66,6 +62,12 @@ sub handle_line
 
   $r =~ s/\s+$//;
 
+  if (exists $opts{arch})
+    {
+      my @a = split /\|+/, $opts{arch};
+      return unless grep /^$ENV{ARCH}$/, @a;
+    }
+
   if (exists $opts{perl})
     {
       my @m = eval $r;
@@ -80,47 +82,7 @@ sub handle_line
       return @m;
     }
 
-  if (exists $opts{arch})
-    {
-      my @a = split /\|+/, $opts{arch};
-      return ( $r ) if grep /^$ENV{ARCH}$/, @a;
-      return ();
-    }
-
   return ( glob $r ) if exists $opts{glob};
-
-
-  # Deprecated start -- remove in 2016
-  if ($r =~ /^((perl|glob|shell):\s+)/)
-    {
-      substr $r, 0, length($1), "";
-
-      print STDERR "ATTENTION:\n".
-                   "  Using deprecated syntax '$2:' on line $.\n".
-                   "  Use option syntax now: <command>[$2] $r\n";
-
-      if ($2 eq 'perl')
-        {
-          my @m = eval $r;
-          die "perl: ".$@ if $@;
-          return @m;
-        }
-      elsif ($2 eq 'shell')
-        {
-          my @m = split /\n/, `$r`;
-          error "$mod_file:$.: Shell command failed\n" if $?;
-          return @m;
-        }
-      elsif ($2 eq 'glob')
-        {
-          return ( glob $r );
-        }
-      else
-        {
-          die "should not happen";
-        }
-    }
-  # Deprecated end
 
   return ( $r );
 }
@@ -240,26 +202,13 @@ sub get_module_entry($$)
   my @mods;
   my %groups;
 
-  if ($entry_to_pick eq 'auto-build-entry') {
-    # Automatic build entry is being built.
-    # This image is useless but it always builds.
-
-    $mods[0] = { command => 'Makefile', cmdline => 'Makefile', type => 'bin'};
-    $mods[1] = { command => 'Makefile', cmdline => 'Makefile', type => 'bin'};
-    $mods[2] = { command => 'Makefile', cmdline => 'Makefile', type => 'bin'};
-
-    return (
-      bootstrap => { command => 'bootstrap',
-                     cmdline => 'bootstrap' },
-      mods    => [ @mods ],
-      modaddr => 0x200000,
-    );
-  }
-
   # preseed first 3 modules
-  $mods[0] = { command => 'fiasco',   cmdline => 'fiasco',   type => 'bin'};
-  $mods[1] = { command => 'sigma0',   cmdline => 'sigma0',   type => 'bin'};
-  $mods[2] = { command => 'roottask', cmdline => 'moe',      type => 'bin'};
+  $mods[0] = { command => 'fiasco',   cmdline => 'fiasco',
+               cmdline_quoted => 'fiasco', type => 'bin'};
+  $mods[1] = { command => 'sigma0',   cmdline => 'sigma0',
+               cmdline_quoted => 'sigma0', type => 'bin'};
+  $mods[2] = { command => 'roottask', cmdline => 'moe',
+               cmdline_quoted => 'moe',    type => 'bin'};
 
   my $process_mode = undef;
   my $found_entry = 0;
@@ -268,6 +217,7 @@ sub get_module_entry($$)
   my $modaddr_global;
   my $bootstrap_command = "bootstrap";
   my $bootstrap_cmdline = "bootstrap";
+  my $bootstrap_cmdline_quoted = "bootstrap";
   my $linux_initrd;
   my $is_mode_linux;
 
@@ -318,24 +268,31 @@ sub get_module_entry($$)
         $current_group_name = (split /\s+/, handle_line_first($remaining, %opts))[0];
         next;
       } elsif ($type eq 'default-bootstrap') {
-        my ($file, $full) = get_command_and_cmdline(handle_line_first($remaining, %opts), %opts);
-        $bootstrap_command = $file;
-        $bootstrap_cmdline = $full;
+        my ($file, $full, $full_quoted) = get_command_and_cmdline(handle_line_first($remaining, %opts), %opts);
+        $bootstrap_command        = $file;
+        $bootstrap_cmdline        = $full;
+        $bootstrap_cmdline_quoted = $full_quoted;
         next;
       } elsif ($type eq 'default-kernel') {
-        my ($file, $full) = get_command_and_cmdline(handle_line_first($remaining, %opts), %opts);
-        $mods[0]{command}  = $file;
-        $mods[0]{cmdline}  = $full;
+        my ($file, $full, $full_quoted) = get_command_and_cmdline(handle_line_first($remaining, %opts), %opts);
+        $mods[0]{command}         = $file;
+        $mods[0]{cmdline}         = $full;
+        $mods[0]{cmdline_quoted}  = $full_quoted;
+        $mods[0]{opts}            = { %opts };
         next;
       } elsif ($type eq 'default-sigma0') {
-        my ($file, $full) = get_command_and_cmdline(handle_line_first($remaining, %opts), %opts);
-        $mods[1]{command}  = $file;
-        $mods[1]{cmdline}  = $full;
+        my ($file, $full, $full_quoted) = get_command_and_cmdline(handle_line_first($remaining, %opts), %opts);
+        $mods[1]{command}         = $file;
+        $mods[1]{cmdline}         = $full;
+        $mods[1]{cmdline_quoted}  = $full_quoted;
+        $mods[1]{opts}            = { %opts };
         next;
       } elsif ($type eq 'default-roottask') {
-        my ($file, $full) = get_command_and_cmdline(handle_line_first($remaining, %opts), %opts);
-        $mods[2]{command}  = $file;
-        $mods[2]{cmdline}  = $full;
+        my ($file, $full, $full_quoted) = get_command_and_cmdline(handle_line_first($remaining, %opts), %opts);
+        $mods[2]{command}         = $file;
+        $mods[2]{cmdline}         = $full;
+        $mods[2]{cmdline_quoted}  = $full_quoted;
+        $mods[2]{opts}            = { %opts };
         next;
       }
 
@@ -364,8 +321,11 @@ sub get_module_entry($$)
         @params = @m;
         $type = 'bin';
       } elsif ($type eq 'moe') {
-        $mods[2]{command}  = 'moe';
-        $mods[2]{cmdline}  = "moe rom/$params[0]";
+        my $bn = (reverse split(/\/+/, $params[0]))[0];
+        $mods[2]{command}        = 'moe';
+        $mods[2]{cmdline}        = "moe rom/$bn";
+        $mods[2]{cmdline_quoted} = "moe rom/$bn";
+        $mods[2]{opts}           = { %opts };
         $type = 'bin';
         @m = ($params[0]);
       }
@@ -374,29 +334,38 @@ sub get_module_entry($$)
       if ($process_mode eq 'entry') {
         foreach my $m (@params) {
 
-          my ($file, $full) = get_command_and_cmdline($m, %opts);
+          my ($file, $full, $full_quoted) = get_command_and_cmdline($m, %opts);
 
           # special cases
           if ($type eq 'bootstrap') {
-            $bootstrap_command = $file;
-            $bootstrap_cmdline = $full;
+            $bootstrap_command        = $file;
+            $bootstrap_cmdline        = $full;
+            $bootstrap_cmdline_quoted = $full_quoted;
           } elsif ($type =~ /(rmgr|roottask)/i) {
-            $mods[2]{command}  = $file;
-            $mods[2]{cmdline}  = $full;
+            $mods[2]{command}         = $file;
+            $mods[2]{cmdline}         = $full;
+            $mods[2]{cmdline_quoted}  = $full_quoted;
+            $mods[2]{opts}            = { %opts };
           } elsif ($type eq 'kernel') {
-            $mods[0]{command}  = $file;
-            $mods[0]{cmdline}  = $full;
+            $mods[0]{command}         = $file;
+            $mods[0]{cmdline}         = $full;
+            $mods[0]{cmdline_quoted}  = $full_quoted;
+            $mods[0]{opts}            = { %opts };
           } elsif ($type eq 'sigma0') {
-            $mods[1]{command}  = $file;
-            $mods[1]{cmdline}  = $full;
+            $mods[1]{command}         = $file;
+            $mods[1]{cmdline}         = $full;
+            $mods[1]{cmdline_quoted}  = $full_quoted;
+            $mods[1]{opts}            = { %opts };
           } elsif ($type eq 'initrd') {
             $linux_initrd      = $file;
             $is_mode_linux     = 1;
           } else {
             push @mods, {
-                          type    => $type,
-                          command => $file,
-                          cmdline => $full,
+                          type           => $type,
+                          command        => $file,
+                          cmdline        => $full,
+                          cmdline_quoted => $full_quoted,
+                          opts           => { %opts },
                         };
           }
         }
@@ -424,8 +393,9 @@ sub get_module_entry($$)
              # environment, for convenience we use $mods[0] because that
              # are the contents of 'kernel xxx' which sounds more
              # reasonable
-             bootstrap => { command => $mods[0]{command},
-                            cmdline => $mods[0]{cmdline}},
+             bootstrap => { command        => $mods[0]{command},
+                            cmdline        => $mods[0]{cmdline},
+                            cmdline_quoted => $mods[0]{cmdline_quoted}},
              type      => 'Linux',
              files     => [ @files ],
            );
@@ -452,8 +422,10 @@ sub get_module_entry($$)
   push @files, $_->{command} foreach @mods;
 
   return (
-           bootstrap => { command => $bootstrap_command,
-                          cmdline => $bootstrap_cmdline },
+           bootstrap => { command        => $bootstrap_command,
+                          cmdline        => $bootstrap_cmdline,
+                          cmdline_quoted => $bootstrap_cmdline_quoted,
+                        },
            mods    => [ @mods ],
            modaddr => $modaddr_title || $modaddr_global,
            type    => 'MB',
@@ -496,6 +468,73 @@ sub get_entries($)
   return @entry_list;
 }
 
+sub handle_remote_file
+{
+  my $file = shift;
+  my $fetch_file = shift;
+  my $output_dir = $ENV{OUTPUT_DIR} || $ENV{TMPDIR} || '/tmp';
+
+  if ($file =~ /^s(sh|cp):\/\/([^\/]+)\/(.+)/)
+    {
+      my $rhost = $2;
+      my $rpath = $3;
+
+      (my $lfile = $file) =~ s,[\s/:~],_,g;
+      $lfile = "$output_dir/$lfile";
+
+      if ($fetch_file)
+        {
+          print STDERR "Retrieving $file...\n";
+          system("rsync -azS $rhost:$rpath $lfile 1>&2");
+          die "rsync failed" if $?;
+        }
+
+      return $lfile;
+    }
+
+  if ($file =~ /^(https?:\/\/.+)/)
+    {
+      my $url = $1;
+
+      (my $lpath = $url) =~ s,[\s/:~],_,g;
+      $lpath = "$output_dir/$lpath";
+
+      if ($fetch_file)
+        {
+          print STDERR "Retrieving ($$, $ARGV[0]) $file...\n";
+
+          # So we do not know the on-disk filename of the URL we're downloading
+          # and since we want to use -N and as -N and -O don't play together,
+          # we're doing the following:
+
+          mkdir $lpath || die "Cannot create directory '$lpath'";
+          system("wget -Nq -P $lpath $url");
+          die "wget failed" if $?;
+        }
+
+      my $lfile = "__unknown_yet__";
+      if (opendir(my $dh, $lpath))
+        {
+          my @entries = readdir $dh;
+          die "Too many/few files in $lpath" if @entries != 3;
+          foreach (@entries)
+            {
+              $lfile = $_ if $_ ne '.' and $_ ne '..';
+            }
+          closedir $dh;
+        }
+
+      return "$lpath/$lfile";
+    }
+
+  if ($file =~ /^((ssh\+)?git:\/\/.+)/)
+    {
+      # git archive --format=tar --remote=$1 HEAD path | tar -xO
+    }
+
+  return undef;
+}
+
 # Search for a file by using a path list (single string, split with colons
 # or spaces, see the split)
 # return undef if it could not be found, the complete path otherwise
@@ -506,8 +545,11 @@ sub search_file($$)
 
   return $file if $file =~ /^\// && -e $file && ! -d "$file";
 
+  my $r = handle_remote_file($file, 0);
+  return $r if $r;
+
   foreach my $p (split(/[:\s]+/, $paths), @internal_searchpaths) {
-    return "$p/$file" if -e "$p/$file" and ! -d "$p/$file";
+    return "$p/$file" if $p ne '' and -e "$p/$file" and ! -d "$p/$file";
   }
 
   undef;
@@ -522,24 +564,38 @@ sub search_file_or_die($$)
   $f;
 }
 
-sub get_or_copy_file_uncompressed_or_die($$$$)
+sub fetch_remote_file
 {
-  my $command   = shift;
-  my $paths     = shift;
-  my $targetdir = shift;
-  my $copy      = shift;
+  handle_remote_file(shift, 1);
+}
+
+sub is_gzipped_file
+{
+  my $file = shift;
+
+  open(my $f, $file) || error "Cannot open '$file': $!\n";
+  my $buf;
+  read $f, $buf, 2;
+  close $f;
+
+  return length($buf) >= 2 && unpack("n", $buf) == 0x1f8b;
+}
+
+sub get_or_copy_file_uncompressed_or_die($$$$$)
+{
+  my ($command, $paths, $targetdir, $targetfilename, $copy) = @_;
 
   my $fp = L4::ModList::search_file_or_die($command, $paths);
 
-  open(F, $fp) || error "Cannot open '$fp': $!\n";
-  my $buf;
-  read F, $buf, 2;
-  close F;
+  my $tf;
+  if ($targetfilename) {
+    $tf = $targetdir.'/'.$targetfilename;
+  } else {
+    (my $f = $fp) =~ s|.*/||;
+    $tf = $targetdir.'/'.$f;
+  }
 
-  (my $tf = $fp) =~ s|.*/||;
-  $tf = $targetdir.'/'.$tf;
-
-  if (length($buf) >= 2 && unpack("n", $buf) == 0x1f8b) {
+  if (is_gzipped_file($fp)) {
     print STDERR "'$fp' is a zipped file, uncompressing to '$tf'\n";
     system("zcat $fp >$tf");
     $fp = $tf;
@@ -558,12 +614,14 @@ sub get_or_copy_file_uncompressed_or_die($$$$)
 
 sub get_file_uncompressed_or_die($$$)
 {
-  return get_or_copy_file_uncompressed_or_die(shift, shift, shift, 0);
+  return get_or_copy_file_uncompressed_or_die(shift, shift, shift, undef, 0);
 }
 
-sub copy_file_uncompressed_or_die($$$)
+sub copy_file_uncompressed_or_die($$$$)
 {
-  return get_or_copy_file_uncompressed_or_die(shift, shift, shift, 1);
+  my ($command, $searchpaths, $targetdir, $targetfilename) = @_;
+  return get_or_copy_file_uncompressed_or_die($command, $searchpaths,
+                                              $targetdir, $targetfilename, 1);
 }
 
 

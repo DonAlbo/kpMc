@@ -47,7 +47,8 @@ typedef struct l4_sched_cpu_set_t
    * Combination of granularity and offset.
    *
    * The granularity defines how many CPUs each bit in map describes. And the
-   * offset is the numer of the first CPU described by the first bit in the bitmap.
+   * offset is the number of the first CPU described by the first bit in the
+   * bitmap.
    * \pre offset must be a multiple of 2^granularity.
    *
    * | MSB              |                 LSB |
@@ -261,7 +262,7 @@ l4_scheduler_run_thread_u(l4_cap_idx_t scheduler, l4_cap_idx_t thread,
   m->mr[3] = sp->prio;
   m->mr[4] = sp->quantum;
   m->mr[5] = l4_map_obj_control(0, 0);
-  m->mr[6] = l4_obj_fpage(thread, 0, L4_FPAGE_RWX).raw;
+  m->mr[6] = l4_obj_fpage(thread, 0, L4_CAP_FPAGE_RWS).raw;
 
   return l4_ipc_call(scheduler, utcb, l4_msgtag(L4_PROTO_SCHEDULER, 5, 1, 0), L4_IPC_NEVER);
 }

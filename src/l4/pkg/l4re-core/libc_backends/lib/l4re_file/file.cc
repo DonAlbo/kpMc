@@ -14,7 +14,6 @@
 # define __USE_ATFILE 1
 #endif
 
-#include <l4/util/atomic.h>
 #include <l4/re/log>
 #include <l4/re/env>
 
@@ -72,7 +71,7 @@ static void copy_stat64_to_stat(struct stat *buf, struct stat64 *sb64)
   buf->st_ctime = sb64->st_ctime;
 }
 
-int fstat(int fd, struct stat *buf) L4_NOTHROW
+int fstat(int fd, struct stat *buf) noexcept(noexcept(fstat(fd, buf)))
 {
   struct stat64 sb64;
   int r = fstat64(fd, &sb64);
@@ -179,7 +178,8 @@ int open64(const char *name, int flags, ...)
   return __internal_open(name, flags, mode);
 }
 
-extern "C" int ioctl(int fd, unsigned long request, ...) L4_NOTHROW
+extern "C" int ioctl(int fd, unsigned long request, ...)
+noexcept(noexcept(ioctl(fd, request)))
 {
   va_list v;
   va_start(v, request);
@@ -191,10 +191,23 @@ extern "C" int ioctl(int fd, unsigned long request, ...) L4_NOTHROW
   POST();
 }
 
+#if !(defined(__USE_LARGEFILE64) && !defined(__LP64__))
+// Duplicate here as uclibc only defines fcntl64
+// with __USE_LARGEFILE64 && !__LP64__
+extern "C" int fcntl64 (int __fd, int __cmd, ...);
+#endif
+
 extern "C" int fcntl64(int fd, int cmd, ...)
 {
   Ops *o = L4Re::Vfs::vfs_ops;
   Ref_ptr<File> f = o->get_file(fd);
+
+  if (!f)
+    {
+      errno = EBADF;
+      return -1;
+    }
+
   switch (cmd)
     {
     case F_DUPFD:
@@ -249,12 +262,14 @@ extern "C" int fcntl(int fd, int cmd, ...)
 }
 
 
-off_t lseek(int fd, off_t offset, int whence) L4_NOTHROW
+off_t lseek(int fd, off_t offset, int whence)
+noexcept(noexcept(lseek(fd, offset, whence)))
 {
   return lseek64(fd, offset, whence);
 }
 
-int ftruncate(int fd, off_t length) L4_NOTHROW
+int ftruncate(int fd, off_t length)
+noexcept(noexcept(ftruncate(fd, length)))
 {
   return ftruncate64(fd, length);
 }
@@ -270,8 +285,15 @@ int lockf(int fd, int cmd, off_t len)
 
 
 
-extern "C" int dup2(int oldfd, int newfd) L4_NOTHROW
+extern "C" int dup2(int oldfd, int newfd)
+noexcept(noexcept(dup2(oldfd, newfd)))
 {
+  if (newfd < 0)
+    {
+      errno = EBADF;
+      return -1;
+    }
+
   Ops *o = L4Re::Vfs::vfs_ops;
   Ref_ptr<File> oldf = o->get_file(oldfd);
   if (!oldf)
@@ -290,7 +312,8 @@ extern "C" int dup2(int oldfd, int newfd) L4_NOTHROW
   return newfd;
 }
 
-extern "C" int dup(int oldfd) L4_NOTHROW
+extern "C" int dup(int oldfd)
+noexcept(noexcept(dup(oldfd)))
 {
   Ops *o = L4Re::Vfs::vfs_ops;
   Ref_ptr<File> f = o->get_file(oldfd);
@@ -306,7 +329,8 @@ extern "C" int dup(int oldfd) L4_NOTHROW
 }
 
 
-int stat(const char *path, struct stat *buf) L4_NOTHROW
+int stat(const char *path, struct stat *buf)
+noexcept(noexcept(stat(path, buf)))
 {
   struct stat64 sb64;
   int r = stat64(path, &sb64);
@@ -317,7 +341,8 @@ int stat(const char *path, struct stat *buf) L4_NOTHROW
   return r;
 }
 
-int lstat(const char *path, struct stat *buf) L4_NOTHROW
+int lstat(const char *path, struct stat *buf)
+noexcept(noexcept(lstat(path, buf)))
 {
   struct stat64 sb64;
   int r = lstat64(path, &sb64);
@@ -329,7 +354,8 @@ int lstat(const char *path, struct stat *buf) L4_NOTHROW
   return r;
 }
 
-int close(int fd) L4_NOTHROW
+int close(int fd)
+noexcept(noexcept(close(fd)))
 {
   Ops *o = L4Re::Vfs::vfs_ops;
   Ref_ptr<File> f = o->free_fd(fd);
@@ -343,7 +369,8 @@ int close(int fd) L4_NOTHROW
   return 0;
 }
 
-int access(const char *path, int mode) L4_NOTHROW
+int access(const char *path, int mode)
+noexcept(noexcept(access(path, mode)))
 { return faccessat(AT_FDCWD, path, mode, 0); }
 
 extern "C" ssize_t __getdents64(int fd, char *buf, size_t nbytes);
@@ -374,7 +401,7 @@ L4_STRONG_ALIAS(__getdents64,__getdents)
 
 
 #define L4B_REDIRECT(ret, func, ptlist, plist) \
-  extern "C" ret func ptlist L4_NOTHROW                                    \
+  extern "C" ret func ptlist noexcept(noexcept(func plist))     \
   {                                                             \
     cxx::Ref_ptr<L4Re::Vfs::File> file;                   \
     int res = __internal_resolve(AT_FDCWD, _a1, 0, 0, &file);   \
@@ -400,7 +427,7 @@ L4B_REDIRECT_2(int,       lstat64,     const char *, struct stat64 *)
 #undef L4B_REDIRECT
 
 #define L4B_REDIRECT(ret, func, ptlist, plist) \
-  extern "C" ret func ptlist L4_NOTHROW                         \
+  extern "C" ret func ptlist noexcept(noexcept(func plist))     \
   {                                                             \
     cxx::Ref_ptr<L4Re::Vfs::File> dir;                          \
     _a1 = __internal_resolvedir(AT_FDCWD, _a1, 0, 0, &dir);     \
@@ -414,7 +441,7 @@ L4B_REDIRECT_1(int, rmdir,   const char *)
 #undef L4B_REDIRECT
 
 #define L4B_REDIRECT(ret, func, ptlist, plist) \
-  extern "C" ret func ptlist L4_NOTHROW                         \
+  extern "C" ret func ptlist noexcept(noexcept(func plist))     \
   {                                                             \
     cxx::Ref_ptr<L4Re::Vfs::File> dir1;                         \
     cxx::Ref_ptr<L4Re::Vfs::File> dir2;                         \
@@ -430,7 +457,7 @@ L4B_REDIRECT_2(int, symlink, const char *, const char *)
 #undef L4B_REDIRECT
 
 #define L4B_REDIRECT(ret, func, ptlist, plist) \
-  extern "C" ret func ptlist L4_NOTHROW                         \
+  extern "C" ret func ptlist noexcept(noexcept(func plist))     \
   {                                                             \
     cxx::Ref_ptr<L4Re::Vfs::File> file;                         \
     int res = __internal_resolve(AT_FDCWD, _a1, 0, 0, &file);   \
@@ -445,7 +472,7 @@ L4B_REDIRECT_2(int, truncate64, const char *, off64_t)
 #undef L4B_REDIRECT
 
 #define L4B_REDIRECT(ret, func, ptlist, plist) \
-  extern "C" ret func ptlist L4_NOTHROW                         \
+  extern "C" ret func ptlist noexcept(noexcept(func plist))     \
   {                                                             \
     cxx::Ref_ptr<L4Re::Vfs::File> dir;                          \
     _a2 = __internal_resolvedir(_a1, _a2, 0, 0, &dir);          \
@@ -460,6 +487,9 @@ L4B_REDIRECT_2(int, truncate64, const char *, off64_t)
 
 //L4B_REDIRECT_3(int, unlinkat,  int, const char *, int)
 L4B_REDIRECT_4(int,       faccessat,   int, const char *, int, int)
+L4B_REDIRECT_4(int, fchmodat, int, const char *, mode_t, int)
+L4B_REDIRECT_4(int, utimensat, int, const char *,
+                               const struct timespec *, int)
 
 
 // ------------------------------------------------------
@@ -491,7 +521,7 @@ int select(int nfds, fd_set *readfds, fd_set *writefds,
 #undef L4B_REDIRECT
 
 #define L4B_REDIRECT(ret, func, ptlist, plist) \
-  ret func ptlist L4_NOTHROW \
+  ret func ptlist noexcept(noexcept(func plist)) \
   {               \
     L4Re::Vfs::Ops *o = L4Re::Vfs::vfs_ops; \
     cxx::Ref_ptr<L4Re::Vfs::File> f = o->get_file(_a1); \
@@ -529,7 +559,7 @@ static void free_cwd()
     free(_current_working_dir);
 }
 
-extern "C" int chdir(const char *path) L4_NOTHROW
+extern "C" int chdir(const char *path) noexcept(noexcept(chdir(path)))
 {
   Ref_ptr<File> f;
   int res = __internal_resolve(AT_FDCWD, path, 0, 0, &f);
@@ -537,21 +567,32 @@ extern "C" int chdir(const char *path) L4_NOTHROW
 
   if (*path == '/')
     {
+      char *new_cwd = strdup(path);
+      if (!new_cwd)
+        {
+          errno = ENOMEM;
+          return -1;
+        }
       free_cwd();
-      _current_working_dir = strdup(path);
+      _current_working_dir = new_cwd;
     }
   else
     {
       unsigned len_cwd = strlen(_current_working_dir);
       unsigned len_path = strlen(path);
-      char *tmp = (char *)malloc(len_cwd + len_path + 2);
-      memcpy(tmp, _current_working_dir, len_cwd);
-      if (tmp[len_cwd - 1] != '/')
-        tmp[len_cwd++] = '/';
-      memcpy(tmp + len_cwd, path, len_path + 1);
+      char *new_cwd = (char *)malloc(len_cwd + len_path + 2);
+      if (!new_cwd)
+        {
+          errno = ENOMEM;
+          return -1;
+        }
+      memcpy(new_cwd, _current_working_dir, len_cwd);
+      if (new_cwd[len_cwd - 1] != '/')
+        new_cwd[len_cwd++] = '/';
+      memcpy(new_cwd + len_cwd, path, len_path + 1);
 
       free_cwd();
-      _current_working_dir = tmp;
+      _current_working_dir = new_cwd;
     }
 
   // would need to check whether 'f' is a directory
@@ -560,7 +601,7 @@ extern "C" int chdir(const char *path) L4_NOTHROW
   return 0;
 }
 
-extern "C" int fchdir(int fd) L4_NOTHROW
+extern "C" int fchdir(int fd) noexcept(noexcept(fchdir(fd)))
 {
   L4Re::Vfs::Ops *o = L4Re::Vfs::vfs_ops;
   cxx::Ref_ptr<L4Re::Vfs::File> f = o->get_file(fd);
@@ -572,7 +613,7 @@ extern "C" int fchdir(int fd) L4_NOTHROW
 
   // would need to check whether 'f' is a directory
   o->set_cwd(f);
-  return -1;
+  return 0;
 }
 
 extern "C"
@@ -605,12 +646,26 @@ ssize_t pwrite(int fd, const void *buf, size_t count, off_t offset)
   return pwrite64(fd, buf, count, offset);
 }
 
-extern "C" char *getcwd(char *buf, size_t size) L4_NOTHROW
+extern "C" char *getcwd(char *buf, size_t size)
+noexcept(noexcept(getcwd(buf, size)))
 {
   unsigned len_cwd = strlen(_current_working_dir) + 1;
 
+  /* Posix mandates returning EINVAL if a buffer is supplied without a size */
+  if (buf != 0 && size == 0)
+    {
+      errno = EINVAL;
+      return 0;
+    }
+
   if (buf == 0 && size == 0)
     size = len_cwd;
+
+  if (len_cwd > size)
+    {
+      errno = ERANGE;
+      return 0;
+    }
 
   if (buf == 0)
     buf = (char *)malloc(size);
@@ -621,48 +676,47 @@ extern "C" char *getcwd(char *buf, size_t size) L4_NOTHROW
       return 0;
     }
 
-  if (len_cwd > size)
-    {
-      errno = ERANGE;
-      return 0;
-    }
-
   memcpy(buf, _current_working_dir, len_cwd);
   return buf;
 }
 
-extern "C" int chroot(const char *) L4_NOTHROW
+extern "C" int chroot(const char *p)
+noexcept(noexcept(chroot(p)))
+{
+  errno = EIO;
+  return -1;
+}
+
+extern "C" int mkfifo(const char *p, mode_t m)
+noexcept(noexcept(mkfifo(p, m)))
+{
+  /* mkfifo on Linux returns EPERM on unsupported file systems */
+  errno = EPERM;
+  return -1;
+}
+
+extern "C" int mknod(const char *p, mode_t m, dev_t d)
+noexcept(noexcept(mknod(p, m, d)))
 {
   errno = EINVAL;
   return -1;
 }
 
-extern "C" int mkfifo(const char *, mode_t) L4_NOTHROW
+int chown(const char *, uid_t, gid_t)
 {
   errno = EINVAL;
   return -1;
 }
 
-extern "C" int mknod(const char *, mode_t, dev_t) L4_NOTHROW
-{
-  errno = EINVAL;
-  return -1;
-}
-
-int chown(const char *, __uid_t, __gid_t)
-{
-  errno = EINVAL;
-  return -1;
-}
-
-int fchown(int, __uid_t, __gid_t)
+int fchown(int, uid_t, gid_t)
 {
   errno = EINVAL;
   return -1;
 }
 
 
-extern "C" int lchown(const char *, uid_t, gid_t) L4_NOTHROW
+extern "C" int lchown(const char *p, uid_t u, gid_t g)
+noexcept(noexcept(lchown(p, u, g)))
 {
   errno = EINVAL;
   return -1;

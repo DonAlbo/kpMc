@@ -1,6 +1,5 @@
 var dir_b080fbfc44463f036af256b25228453b =
 [
-    [ "alloc.h", "util_2alloc_8h.html", null ],
     [ "assert.h", "util_2assert_8h.html", null ],
     [ "atomic.h", "l4_2util_2atomic_8h.html", "l4_2util_2atomic_8h" ],
     [ "backtrace.h", "backtrace_8h.html", "backtrace_8h" ],
@@ -18,10 +17,7 @@ var dir_b080fbfc44463f036af256b25228453b =
     [ "mb_info.h", "mb__info_8h.html", "mb__info_8h" ],
     [ "parse_cmd.h", "parse__cmd_8h.html", "parse__cmd_8h" ],
     [ "rand.h", "rand_8h.html", "rand_8h" ],
-    [ "reboot.h", "reboot_8h.html", "reboot_8h" ],
-    [ "sll.h", "sll_8h.html", null ],
     [ "splitlog2.h", "splitlog2_8h.html", "splitlog2_8h" ],
-    [ "stack.h", "stack_8h.html", "stack_8h" ],
     [ "thread.h", "l4_2util_2thread_8h.html", "l4_2util_2thread_8h" ],
     [ "util.h", "l4_2util_2util_8h_source.html", null ]
 ];

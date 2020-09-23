@@ -14,12 +14,15 @@
 #include <l4/cxx/exceptions>
 #include <l4/cxx/minmax>
 
+#include <l4/sys/cache.h>
+
 #include <cstring>
 #include <climits>
 
-Moe::Dataspace_anon::Dataspace_anon(long _size, bool w,
-                                    unsigned char page_shift)
-: Moe::Dataspace_cont(0, 0, w, page_shift)
+Moe::Dataspace_anon::Dataspace_anon(long _size, Flags w,
+                                    unsigned char page_shift,
+                                    Single_page_alloc_base::Config cfg)
+: Moe::Dataspace_cont(0, 0, w, page_shift, cfg)
 {
   Quota_guard g;
   Single_page_unique_ptr m;
@@ -51,7 +54,8 @@ Moe::Dataspace_anon::Dataspace_anon(long _size, bool w,
 
       unsigned long r_size = _size;
       void *_m = Single_page_alloc_base::_alloc_max(page_size(), &r_size,
-                                                    page_size(), page_size());
+                                                    page_size(), page_size(),
+                                                    cfg);
 
       if (!_m)
         L4Re::chksys(-L4_ENOMEM);
@@ -64,12 +68,16 @@ Moe::Dataspace_anon::Dataspace_anon(long _size, bool w,
     {
       unsigned long r_size = (_size + page_size() - 1) & ~(page_size() -1);
       g = Quota_guard(qalloc()->quota(), r_size);
-      void *_m = Single_page_alloc_base::_alloc(r_size, page_size());
+      void *_m = Single_page_alloc_base::_alloc(r_size, page_size(), cfg);
 
       m = Single_page_unique_ptr(_m, r_size);
     }
 
   memset(m.get(), 0, m.size());
+  // No need for I cache coherence, as we just zero fill and assume that
+  // this is no executable code
+  l4_cache_clean_data((l4_addr_t)m.get(), (l4_addr_t)m.get() + m.size());
+
   start(m.release());
   size(_size);
   g.release();

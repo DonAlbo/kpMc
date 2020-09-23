@@ -17,7 +17,6 @@
  * the GNU General Public License.
  */
 
-#include "ds_util.h"
 #include "ro_file.h"
 
 #include <sys/ioctl.h>
@@ -31,7 +30,7 @@ Ro_file::~Ro_file() throw()
   if (_addr)
     L4Re::Env::env()->rm()->detach(l4_addr_t(_addr), 0);
 
-  release_ds(_ds);
+  L4Re::virt_cap_alloc->release(_ds);
 }
 
 int
@@ -72,7 +71,7 @@ Ro_file::preadv(const struct iovec *vec, int cnt, off64_t offset) throw()
     {
       void const *file = (void*)L4_PAGESIZE;
       long err = L4Re::Env::env()->rm()->attach(&file, _size,
-                                                Rm::Search_addr | Rm::Read_only,
+                                                Rm::F::Search_addr | Rm::F::R,
                                                 _ds, 0);
 
       if (err < 0)

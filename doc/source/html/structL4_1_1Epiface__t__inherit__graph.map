@@ -1,0 +1,6 @@
+<map id="L4::Epiface_t&lt; Derived, IFACE, BASE, bool &gt;" name="L4::Epiface_t&lt; Derived, IFACE, BASE, bool &gt;">
+<area shape="rect" id="node4" href="$structL4_1_1Epiface__t.html" title="{L4::Epiface_t\&lt; Block\l_dev\&lt; Ds_data \&gt;, L4virtio\l::Device \&gt;\n||+ dispatch()\l}" alt="" coords="5,500,188,607"/>
+<area shape="rect" id="node5" href="$structL4_1_1Epiface__t.html" title="{L4::Epiface_t\&lt; Null\l_handler, L4::Kobject \&gt;\n||+ dispatch()\l}" alt="" coords="213,507,378,599"/>
+<area shape="rect" id="node2" href="$structL4_1_1Epiface__t0.html" title="{L4::Epiface_t0\&lt; IFACE,\l BASE \&gt;\n||+ get_buffer_demand()\l+ obj_cap()\l}" alt="" coords="112,175,279,281"/>
+<area shape="rect" id="node3" href="$structL4_1_1Epiface__t0.html" title="Epiface mixin for generic Kobject&#45;based interfaces. " alt="" coords="112,5,279,112"/>
+</map>

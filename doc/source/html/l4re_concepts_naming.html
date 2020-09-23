@@ -86,13 +86,13 @@ $(document).ready(function(){initNavTree('l4re_concepts_naming.html','');});
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><p>The <a class="el" href="namespaceL4Re.html" title="L4Re C++ Interfaces. ">L4Re</a> system is a capability based system which uses and offers capabilities to implement fine-grained access control.</p>
-<p>Generally, owning a capability means to be allowed to communicate with the object the capability points to. All user-visible kernel objects, such as tasks, threads, and IRQs, can be accessed only through a capability. Please refer to the <a class="el" href="group__l4__kernel__object__api.html">Kernel Objects</a> documentation for details. Capabilities are stored in per-task capability tables (the object space) and are referenced by capability selectors or object flex pages. In a simplified view, a capability selector is a natural number indexing into the capability table of the current task.</p>
-<p>As a matter of fact, a system designed solely based on capabilities, uses so-called 'local names', because each task can only access those objects made available to this task. Other objects are not visible to and accessible by the task.</p>
+<p>Generally, owning a capability means to be allowed to communicate with the object the capability points to. All user-visible kernel objects, such as tasks, threads, and IRQs, can only be accessed through a capability. Please refer to the <a class="el" href="group__l4__kernel__object__api.html">Kernel Objects</a> documentation for details. Capabilities are stored in per-task capability tables (the object space) and are referenced by capability selectors or object flex pages. In a simplified view, a capability selector is a natural number indexing into the capability table of the current task.</p>
+<p>As a matter of fact, a system designed solely based on capabilities uses so-called 'local names' because each task can only access those objects made available to this task. Other objects are not visible to and accessible by the task.</p>
 <div class="image">
 <img src="l4-caps-basic.png" alt="l4-caps-basic.png"/>
 <div class="caption">
 Capabilities and Local Naming in L4</div></div>
-<p>So how does an application get access to a service? In general all applications are started with an initial set of objects available. This set of objects is predetermined by the creator of a new application process and granted directly to into the new task before starting the first application thread. The application can then use these initial objects to request access to further objects or to transfer capabilities to own objects to other applications. A central <a class="el" href="namespaceL4Re.html" title="L4Re C++ Interfaces. ">L4Re</a> object for exchanging capabilities at runtime is the name-space object, implementing a store of named capabilities.</p>
+<p>So how does an application get access to a service? In general all applications are started with an initial set of available objects. This set of objects is predetermined by the creator of a new application process and granted directly to the new task before starting the first application thread. The application can then use these initial objects to request access to further objects or to transfer capabilities to its own objects to other applications. A central <a class="el" href="namespaceL4Re.html" title="L4Re C++ Interfaces. ">L4Re</a> object for exchanging capabilities at runtime is the name-space object, implementing a store of named capabilities.</p>
 <p>From a security perspective, the set of initial capabilities (access rights to objects) completely define the execution environment of an application. Mandatory security policies can be defined by well known properties of the initial objects and carefully handled access rights to them. </p>
 </div></div><!-- contents -->
 </div><!-- doc-content -->
@@ -101,7 +101,7 @@ Capabilities and Local Naming in L4</div></div>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="l4re_concepts.html">Programming for L4Re</a></li>
-    <li class="footer">Generated on Sun Sep 24 2017 23:15:11 for L4Re - L4 Runtime Environment by
+    <li class="footer">Generated on Tue Aug 11 2020 13:28:15 for L4Re - L4 Runtime Environment by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.13 </li>
   </ul>

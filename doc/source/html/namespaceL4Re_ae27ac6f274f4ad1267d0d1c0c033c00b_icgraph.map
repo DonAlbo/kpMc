@@ -1,0 +1,18 @@
+<map id="L4Re::throw_error" name="L4Re::throw_error">
+<area shape="rect" id="node2" href="$namespaceL4Re.html#a64b057254a760643ba67a9ed452fede8" title="Check for valid capability or raise C++ exception. " alt="" coords="189,123,296,150"/>
+<area shape="rect" id="node8" href="$namespaceL4Re.html#a3f17984019f06676a7e3eecb41bbb0bb" title="Generate C++ exception on error. " alt="" coords="190,349,295,375"/>
+<area shape="rect" id="node3" href="$classL4virtio_1_1Svr_1_1Dev__config.html#a663b81f49e6ce03f9b7e136d6646bf89" title="Create a L4&#45;Virtio config data space. " alt="" coords="370,5,515,47"/>
+<area shape="rect" id="node6" href="$classL4virtio_1_1Svr_1_1Device__t.html#a460f5dc2b32e33a616eb822ffd2f88f0" title="Check for a value in the cmd register and handle a write. " alt="" coords="363,71,523,127"/>
+<area shape="rect" id="node7" href="$classL4virtio_1_1Svr_1_1Block__dev__base.html#aa0d0377a069419b77e4ff9c6ae08b092" title="reset callback, called for doing a device reset " alt="" coords="375,152,510,193"/>
+<area shape="rect" id="node4" href="$classL4virtio_1_1Svr_1_1Dev__config.html#af87ff434ac162e5843c92ff76f21d24b" title="Return the offset into the config dataspace where the device configuration starts. " alt="" coords="589,5,721,47"/>
+<area shape="rect" id="node5" href="$classL4virtio_1_1Svr_1_1Device__t.html#a3fa20bf911056f0d03c8274982b1e167" title="Get the memory region list used for this device. " alt="" coords="769,5,948,47"/>
+<area shape="rect" id="node9" href="$classL4virtio_1_1Svr_1_1Driver__mem__list__t.html#a6749bd65e419d7f814dd4c27e0567f28" title="Add a new region to the list. " alt="" coords="361,218,524,274"/>
+<area shape="rect" id="node10" href="$namespaceL4Re.html#ae21329b88c6ffc4917048e8d9564ea99" title="Test a message tag for IPC errors. " alt="" coords="391,298,494,325"/>
+<area shape="rect" id="node11" href="$namespaceL4Re.html#ad17a205e6270588606dd85399b0f9b6c" title="Generate C++ exception on error. " alt="" coords="390,349,495,375"/>
+<area shape="rect" id="node12" href="$classL4virtio_1_1Svr_1_1Device__t.html#ae602028544a9b03a349af6522035dcac" title="callback to gather the device notification IRQ (old&#45;style) " alt="" coords="363,399,522,455"/>
+<area shape="rect" id="node13" href="$classL4virtio_1_1Svr_1_1Driver__mem__region__t.html#abdad88a18e5428fb2276148ceccf0434" title="Make a local memory region for the given driver values. " alt="" coords="350,479,535,535"/>
+<area shape="rect" id="node14" href="$classL4virtio_1_1Svr_1_1Device__t.html#a66d09e200e34ccad61e5843d2b5bb0a0" title="Callback for registering an notification IRQ (multi IRQ). " alt="" coords="360,559,525,615"/>
+<area shape="rect" id="node15" href="$classL4virtio_1_1Svr_1_1Device__t.html#a8047b37ac63d6b5f84bcb1886a06f1b2" title="callback for registering a single guest IRQ for all queues (old&#45;style) " alt="" coords="360,639,525,695"/>
+<area shape="rect" id="node16" href="$classL4virtio_1_1Svr_1_1Driver__mem__list__t.html#a36efa2f3d99ee6e3e7d07e1dec0343d8" title="Remove the given region from the list. " alt="" coords="361,719,524,775"/>
+<area shape="rect" id="node17" href="$classL4virtio_1_1Svr_1_1Device__t.html#ab906b4cc61026fd815a8056f07bef10e" title="Enable/disable the specified queue. " alt="" coords="344,800,541,841"/>
+</map>

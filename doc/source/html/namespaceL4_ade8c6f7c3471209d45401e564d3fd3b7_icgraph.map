@@ -1,0 +1,9 @@
+<map id="L4::cap_cast" name="L4::cap_cast">
+<area shape="rect" id="node2" href="$classL4Re_1_1Cap__alloc.html#aa975f8a4ead1812cd5dc6651f7a796a3" title="Allocate a capability. " alt="" coords="158,5,318,32"/>
+<area shape="rect" id="node3" href="$classL4Re_1_1Util_1_1Counting__cap__alloc.html#a7620032a3a03d07e70b95f92776e82c2" title="Allocate a new capability slot. " alt="" coords="166,57,310,98"/>
+<area shape="rect" id="node4" href="$classL4_1_1Server__object.html#a0908b0084f251057024850611e6a8763" title="The abstract handler for client requests to the object. " alt="" coords="169,122,307,163"/>
+<area shape="rect" id="node5" href="$structL4_1_1Epiface__t0.html#ae2828f65ae82aa8583b81f6935c594c9" title="Get the (typed) capability to this object. " alt="" coords="155,187,321,229"/>
+<area shape="rect" id="node6" href="$structL4_1_1Irqep__t.html#ae85f0bf482d9ad400c55e8d8a8c9451a" title="Get the (typed) capability to this object. " alt="" coords="157,253,319,294"/>
+<area shape="rect" id="node7" href="$classL4_1_1Ipc__svr_1_1Server__iface.html#ac44e716be4e47dab6b68cc91801fc7b8" title="Get given receive buffer as typed capability. " alt="" coords="169,318,307,359"/>
+<area shape="rect" id="node8" href="$classL4virtio_1_1Svr_1_1Block__dev__base.html#aa0d0377a069419b77e4ff9c6ae08b092" title="reset callback, called for doing a device reset " alt="" coords="171,383,305,425"/>
+</map>

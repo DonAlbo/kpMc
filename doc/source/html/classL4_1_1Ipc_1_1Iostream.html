@@ -95,23 +95,16 @@ $(document).ready(function(){initNavTree('classL4_1_1Ipc_1_1Iostream.html','');}
 <div id="dynsection-0-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-0-content" class="dyncontent" style="display:none;">
-<div class="center"><img src="classL4_1_1Ipc_1_1Iostream__inherit__graph.png" border="0" usemap="#L4_1_1Ipc_1_1Iostream_inherit__map" alt="Inheritance graph"/></div>
-<map name="L4_1_1Ipc_1_1Iostream_inherit__map" id="L4_1_1Ipc_1_1Iostream_inherit__map">
-<area shape="rect" id="node2" href="classL4_1_1Ipc_1_1Istream.html" title="Input stream for IPC unmarshalling. " alt="" coords="5,5,125,537"/>
-<area shape="rect" id="node3" href="classL4_1_1Ipc_1_1Ostream.html" title="Output stream for IPC marshalling. " alt="" coords="150,64,295,479"/>
-</map>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classL4_1_1Ipc_1_1Iostream__inherit__graph.svg" width="302" height="962"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 <div id="dynsection-1" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-1-trigger" src="closed.png" alt="+"/> Collaboration diagram for L4::Ipc::Iostream:</div>
 <div id="dynsection-1-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-1-content" class="dyncontent" style="display:none;">
-<div class="center"><img src="classL4_1_1Ipc_1_1Iostream__coll__graph.png" border="0" usemap="#L4_1_1Ipc_1_1Iostream_coll__map" alt="Collaboration graph"/></div>
-<map name="L4_1_1Ipc_1_1Iostream_coll__map" id="L4_1_1Ipc_1_1Iostream_coll__map">
-<area shape="rect" id="node2" href="classL4_1_1Ipc_1_1Istream.html" title="Input stream for IPC unmarshalling. " alt="" coords="5,307,125,824"/>
-<area shape="rect" id="node3" href="structl4__msgtag__t.html" title="Message tag data structure. " alt="" coords="78,5,231,244"/>
-<area shape="rect" id="node4" href="classL4_1_1Ipc_1_1Ostream.html" title="Output stream for IPC marshalling. " alt="" coords="150,365,295,765"/>
-</map>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classL4_1_1Ipc_1_1Iostream__coll__graph.svg" width="302" height="1250"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
@@ -124,7 +117,7 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a1015a0966b9faef7e344530b1eb6e13a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr><td colspan="2"><div class="groupHeader">IPC operations.</div></td></tr>
 <tr class="memitem:a18ac55dddefc29f84d47935dbc86b7ca"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structl4__msgtag__t.html">l4_msgtag_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classL4_1_1Ipc_1_1Iostream.html#a18ac55dddefc29f84d47935dbc86b7ca">call</a> (<a class="el" href="group__l4__cap__api.html#ga1445e923ce73029130d569d6e69a4dd8">l4_cap_idx_t</a> dst, <a class="el" href="unionl4__timeout__t.html">l4_timeout_t</a> timeout, long proto=0)</td></tr>
-<tr class="memdesc:a18ac55dddefc29f84d47935dbc86b7ca"><td class="mdescLeft">&#160;</td><td class="mdescRight">Do an IPC call using the message in the output stream and receiving to the input stream.  <a href="#a18ac55dddefc29f84d47935dbc86b7ca">More...</a><br /></td></tr>
+<tr class="memdesc:a18ac55dddefc29f84d47935dbc86b7ca"><td class="mdescLeft">&#160;</td><td class="mdescRight">Do an IPC call using the message in the output stream and receive the reply in the input stream.  <a href="#a18ac55dddefc29f84d47935dbc86b7ca">More...</a><br /></td></tr>
 <tr class="separator:a18ac55dddefc29f84d47935dbc86b7ca"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a762435575c26bdf352a9f953de7679d2"><td class="memItemLeft" align="right" valign="top"><a id="a762435575c26bdf352a9f953de7679d2"></a>
 <a class="el" href="structl4__msgtag__t.html">l4_msgtag_t</a>&#160;</td><td class="memItemRight" valign="bottom"><b>call</b> (<a class="el" href="group__l4__cap__api.html#ga1445e923ce73029130d569d6e69a4dd8">l4_cap_idx_t</a> dst, long proto=0)</td></tr>
@@ -240,10 +233,10 @@ template&lt;typename T &gt; </td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Input/Output stream for IPC [un]marshalling. </p>
-<p>The <a class="el" href="classL4_1_1Ipc_1_1Iostream.html" title="Input/Output stream for IPC [un]marshalling. ">Ipc::Iostream</a> is part of the AW Env IPC framework as well as <a class="el" href="classL4_1_1Ipc_1_1Istream.html" title="Input stream for IPC unmarshalling. ">Ipc::Istream</a> and <a class="el" href="classL4_1_1Ipc_1_1Ostream.html" title="Output stream for IPC marshalling. ">Ipc::Ostream</a>. In particular an <a class="el" href="classL4_1_1Ipc_1_1Iostream.html" title="Input/Output stream for IPC [un]marshalling. ">Ipc::Iostream</a> is a combination of an <a class="el" href="classL4_1_1Ipc_1_1Istream.html" title="Input stream for IPC unmarshalling. ">Ipc::Istream</a> and an <a class="el" href="classL4_1_1Ipc_1_1Ostream.html" title="Output stream for IPC marshalling. ">Ipc::Ostream</a>. It can use either a single message buffer for receiving and sending messages or a pair of a receive and a send buffer. The stream also supports combined IPC operations such as <a class="el" href="classL4_1_1Ipc_1_1Iostream.html#a18ac55dddefc29f84d47935dbc86b7ca" title="Do an IPC call using the message in the output stream and receiving to the input stream. ">call()</a> and <a class="el" href="classL4_1_1Ipc_1_1Iostream.html#a44dbb5e5db14aa3d85cf07becfdb759f" title="Do an IPC reply and wait. ">reply_and_wait()</a>, which can be used to implement RPC functionality. </p>
+<p>The <a class="el" href="classL4_1_1Ipc_1_1Iostream.html" title="Input/Output stream for IPC [un]marshalling. ">Ipc::Iostream</a> is part of the AW Env IPC framework as well as <a class="el" href="classL4_1_1Ipc_1_1Istream.html" title="Input stream for IPC unmarshalling. ">Ipc::Istream</a> and <a class="el" href="classL4_1_1Ipc_1_1Ostream.html" title="Output stream for IPC marshalling. ">Ipc::Ostream</a>. In particular an <a class="el" href="classL4_1_1Ipc_1_1Iostream.html" title="Input/Output stream for IPC [un]marshalling. ">Ipc::Iostream</a> is a combination of an <a class="el" href="classL4_1_1Ipc_1_1Istream.html" title="Input stream for IPC unmarshalling. ">Ipc::Istream</a> and an <a class="el" href="classL4_1_1Ipc_1_1Ostream.html" title="Output stream for IPC marshalling. ">Ipc::Ostream</a>. It can use either a single message buffer for receiving and sending messages or a pair of a receive and a send buffer. The stream also supports combined IPC operations such as <a class="el" href="classL4_1_1Ipc_1_1Iostream.html#a18ac55dddefc29f84d47935dbc86b7ca" title="Do an IPC call using the message in the output stream and receive the reply in the input stream...">call()</a> and <a class="el" href="classL4_1_1Ipc_1_1Iostream.html#a44dbb5e5db14aa3d85cf07becfdb759f" title="Do an IPC reply and wait. ">reply_and_wait()</a>, which can be used to implement RPC functionality. </p>
 <dl><dt><b>Examples: </b></dt><dd><a class="el" href="examples_2libs_2l4re_2c_09_09_2shared_ds_2ds_srv_8cc-example.html#_a3">examples/libs/l4re/c++/shared_ds/ds_srv.cc</a>, <a class="el" href="examples_2libs_2l4re_2streammap_2client_8cc-example.html#_a1">examples/libs/l4re/streammap/client.cc</a>, and <a class="el" href="examples_2libs_2l4re_2streammap_2server_8cc-example.html#_a3">examples/libs/l4re/streammap/server.cc</a>.</dd>
 </dl>
-<p class="definition">Definition at line <a class="el" href="ipc__stream_source.html#l00791">791</a> of file <a class="el" href="ipc__stream_source.html">ipc_stream</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ipc__stream_source.html#l00802">802</a> of file <a class="el" href="ipc__stream_source.html">ipc_stream</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a7b81e97c60209a67575b0c765b38e789"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a7b81e97c60209a67575b0c765b38e789">&#9670;&nbsp;</a></span>Iostream()</h2>
@@ -278,19 +271,16 @@ template&lt;typename T &gt; </td></tr>
 </dl>
 <p>The created IO stream uses the same message buffer for sending and receiving IPC messages. </p>
 
-<p class="definition">Definition at line <a class="el" href="ipc__stream_source.html#l00803">803</a> of file <a class="el" href="ipc__stream_source.html">ipc_stream</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ipc__stream_source.html#l00814">814</a> of file <a class="el" href="ipc__stream_source.html">ipc_stream</a>.</p>
 
-<p class="reference">References <a class="el" href="ipc__stream_source.html#l00508">L4::Ipc::Istream::tag()</a>, and <a class="el" href="ipc__stream_source.html#l00584">L4::Ipc::Istream::utcb()</a>.</p>
+<p class="reference">References <a class="el" href="ipc__stream_source.html#l00518">L4::Ipc::Istream::tag()</a>, and <a class="el" href="ipc__stream_source.html#l00594">L4::Ipc::Istream::utcb()</a>.</p>
 <div id="dynsection-2" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-2-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
 <div id="dynsection-2-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-2-content" class="dyncontent" style="display:none;">
-<div class="center"><img src="classL4_1_1Ipc_1_1Iostream_a7b81e97c60209a67575b0c765b38e789_cgraph.png" border="0" usemap="#classL4_1_1Ipc_1_1Iostream_a7b81e97c60209a67575b0c765b38e789_cgraph" alt=""/></div>
-<map name="classL4_1_1Ipc_1_1Iostream_a7b81e97c60209a67575b0c765b38e789_cgraph" id="classL4_1_1Ipc_1_1Iostream_a7b81e97c60209a67575b0c765b38e789_cgraph">
-<area shape="rect" id="node2" href="classL4_1_1Ipc_1_1Istream.html#a685d93c237cbf66ff368e17639109411" title="Get the message tag of a received IPC. " alt="" coords="186,5,329,32"/>
-<area shape="rect" id="node3" href="classL4_1_1Ipc_1_1Istream.html#aa6f2c967797012e55e21e1a7598b7b02" title="Return utcb pointer. " alt="" coords="184,56,331,83"/>
-</map>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classL4_1_1Ipc_1_1Iostream_a7b81e97c60209a67575b0c765b38e789_cgraph.svg" width="336" height="88"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 
 </div>
@@ -336,34 +326,30 @@ template&lt;typename T &gt; </td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Do an IPC call using the message in the output stream and receiving to the input stream. </p>
+<p>Do an IPC call using the message in the output stream and receive the reply in the input stream. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">dst</td><td>The destination <a class="el" href="namespaceL4.html" title="L4 low-level kernel interface. ">L4</a> UID (thread) to call. </td></tr>
+    <tr><td class="paramname">dst</td><td>The destination to call. </td></tr>
     <tr><td class="paramname">timeout</td><td>The IPC timeout for the call. </td></tr>
     <tr><td class="paramname">proto</td><td>The protocol value to use in the message tag.</td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>The result dope of the IPC operation.</dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>The result tag of the IPC operation.</dd></dl>
 <p>This is a combined IPC operation consisting of a send and a receive to/from the given destination <code>dst</code>.</p>
 <p>A call is usually used by clients for RPCs to a server. </p>
 <dl><dt><b>Examples: </b></dt><dd><a class="el" href="examples_2libs_2l4re_2streammap_2client_8cc-example.html#a10">examples/libs/l4re/streammap/client.cc</a>.</dd>
 </dl>
-<p class="definition">Definition at line <a class="el" href="ipc__stream_source.html#l00962">962</a> of file <a class="el" href="ipc__stream_source.html">ipc_stream</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ipc__stream_source.html#l00973">973</a> of file <a class="el" href="ipc__stream_source.html">ipc_stream</a>.</p>
 
-<p class="reference">References <a class="el" href="l4_2sys_2ipc_8h_source.html#l00445">l4_ipc_call()</a>, <a class="el" href="____timeout_8h_source.html#l00080">L4_IPC_NEVER</a>, and <a class="el" href="ipc__stream_source.html#l00508">L4::Ipc::Istream::tag()</a>.</p>
+<p class="reference">References <a class="el" href="l4_2sys_2ipc_8h_source.html#l00448">l4_ipc_call()</a>, <a class="el" href="____timeout_8h_source.html#l00082">L4_IPC_NEVER</a>, and <a class="el" href="ipc__stream_source.html#l00518">L4::Ipc::Istream::tag()</a>.</p>
 <div id="dynsection-3" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-3-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
 <div id="dynsection-3-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-3-content" class="dyncontent" style="display:none;">
-<div class="center"><img src="classL4_1_1Ipc_1_1Iostream_a18ac55dddefc29f84d47935dbc86b7ca_cgraph.png" border="0" usemap="#classL4_1_1Ipc_1_1Iostream_a18ac55dddefc29f84d47935dbc86b7ca_cgraph" alt=""/></div>
-<map name="classL4_1_1Ipc_1_1Iostream_a18ac55dddefc29f84d47935dbc86b7ca_cgraph" id="classL4_1_1Ipc_1_1Iostream_a18ac55dddefc29f84d47935dbc86b7ca_cgraph">
-<area shape="rect" id="node2" href="group__l4__ipc__api.html#gab96d1669dcd54657237ee27b7f6862c6" title="Object call (usual invocation). " alt="" coords="231,5,319,32"/>
-<area shape="rect" id="node4" href="classL4_1_1Ipc_1_1Istream.html#a685d93c237cbf66ff368e17639109411" title="Get the message tag of a received IPC. " alt="" coords="204,56,347,83"/>
-<area shape="rect" id="node3" href="group__l4__ipc__api.html#ga0e7e5b18d784b1d3439ea6e5b4bea4e2" title="Generic L4 object invocation. " alt="" coords="395,5,453,32"/>
-</map>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classL4_1_1Ipc_1_1Iostream_a18ac55dddefc29f84d47935dbc86b7ca_cgraph.svg" width="459" height="88"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 
 </div>
@@ -411,13 +397,13 @@ template&lt;typename T &gt; </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>the result dope of the IPC operation.</dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>The result tag of the IPC operation.</dd></dl>
 <p>This is a combined IPC operation consisting of a send operation and an open wait for any message.</p>
 <p>A reply and wait is usually used by servers that reply to a client and wait for the next request by any other client. </p>
 
-<p class="definition">Definition at line <a class="el" href="ipc__stream_source.html#l00876">876</a> of file <a class="el" href="ipc__stream_source.html">ipc_stream</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ipc__stream_source.html#l00887">887</a> of file <a class="el" href="ipc__stream_source.html">ipc_stream</a>.</p>
 
-<p class="reference">References <a class="el" href="____timeout_8h_source.html#l00082">L4_IPC_SEND_TIMEOUT_0</a>.</p>
+<p class="reference">References <a class="el" href="____timeout_8h_source.html#l00084">L4_IPC_SEND_TIMEOUT_0</a>.</p>
 
 </div>
 </div>
@@ -471,26 +457,20 @@ template&lt;typename T &gt; </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>the result dope of the IPC operation.</dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>The result tag of the IPC operation.</dd></dl>
 <p>This is a combined IPC operation consisting of a send operation and an open wait for any message.</p>
 <p>A reply and wait is usually used by servers that reply to a client and wait for the next request by any other client. </p>
 
-<p class="definition">Definition at line <a class="el" href="ipc__stream_source.html#l00977">977</a> of file <a class="el" href="ipc__stream_source.html">ipc_stream</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ipc__stream_source.html#l00988">988</a> of file <a class="el" href="ipc__stream_source.html">ipc_stream</a>.</p>
 
-<p class="reference">References <a class="el" href="l4_2sys_2consts_8h_source.html#l00141">L4_INVALID_CAP</a>, <a class="el" href="l4_2sys_2ipc_8h_source.html#l00453">l4_ipc_reply_and_wait()</a>, <a class="el" href="l4_2sys_2ipc_8h_source.html#l00470">l4_ipc_send()</a>, <a class="el" href="l4_2sys_2ipc_8h_source.html#l00461">l4_ipc_send_and_wait()</a>, <a class="el" href="l4_2sys_2consts_8h_source.html#l00089">L4_SYSF_REPLY</a>, and <a class="el" href="ipc__stream_source.html#l00508">L4::Ipc::Istream::tag()</a>.</p>
+<p class="reference">References <a class="el" href="l4_2sys_2consts_8h_source.html#l00141">L4_INVALID_CAP</a>, <a class="el" href="l4_2sys_2ipc_8h_source.html#l00456">l4_ipc_reply_and_wait()</a>, <a class="el" href="l4_2sys_2ipc_8h_source.html#l00473">l4_ipc_send()</a>, <a class="el" href="l4_2sys_2ipc_8h_source.html#l00464">l4_ipc_send_and_wait()</a>, <a class="el" href="l4_2sys_2consts_8h_source.html#l00089">L4_SYSF_REPLY</a>, and <a class="el" href="ipc__stream_source.html#l00518">L4::Ipc::Istream::tag()</a>.</p>
 <div id="dynsection-4" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-4-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
 <div id="dynsection-4-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-4-content" class="dyncontent" style="display:none;">
-<div class="center"><img src="classL4_1_1Ipc_1_1Iostream_a38428e61e86208016e9653937da01f6d_cgraph.png" border="0" usemap="#classL4_1_1Ipc_1_1Iostream_a38428e61e86208016e9653937da01f6d_cgraph" alt=""/></div>
-<map name="classL4_1_1Ipc_1_1Iostream_a38428e61e86208016e9653937da01f6d_cgraph" id="classL4_1_1Ipc_1_1Iostream_a38428e61e86208016e9653937da01f6d_cgraph">
-<area shape="rect" id="node2" href="group__l4__ipc__api.html#ga1bd93bc08f402cc149bf62cba3ba9905" title="Reply and wait operation (uses the reply capability). " alt="" coords="184,5,347,32"/>
-<area shape="rect" id="node4" href="group__l4__ipc__api.html#ga7de45eb59ce852466362ea85da00299e" title="Send a message to an object (do not wait for a reply). " alt="" coords="216,56,315,83"/>
-<area shape="rect" id="node5" href="group__l4__ipc__api.html#ga72ee1f322b3f633fb885905ce213e2b5" title="Send a message and do an open wait. " alt="" coords="184,107,347,133"/>
-<area shape="rect" id="node6" href="classL4_1_1Ipc_1_1Istream.html#a685d93c237cbf66ff368e17639109411" title="Get the message tag of a received IPC. " alt="" coords="194,157,337,184"/>
-<area shape="rect" id="node3" href="group__l4__ipc__api.html#ga0e7e5b18d784b1d3439ea6e5b4bea4e2" title="Generic L4 object invocation. " alt="" coords="395,56,453,83"/>
-</map>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classL4_1_1Ipc_1_1Iostream_a38428e61e86208016e9653937da01f6d_cgraph.svg" width="459" height="190"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 
 </div>
@@ -521,21 +501,16 @@ template&lt;typename T &gt; </td></tr>
 <p>Reset the stream to its initial state. </p>
 <p>Input as well as the output stream are reset. </p>
 
-<p class="definition">Definition at line <a class="el" href="ipc__stream_source.html#l00817">817</a> of file <a class="el" href="ipc__stream_source.html">ipc_stream</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ipc__stream_source.html#l00828">828</a> of file <a class="el" href="ipc__stream_source.html">ipc_stream</a>.</p>
 
-<p class="reference">References <a class="el" href="ipc__stream_source.html#l00403">L4::Ipc::Istream::get()</a>, <a class="el" href="ipc__stream_source.html#l00660">L4::Ipc::Ostream::put()</a>, <a class="el" href="ipc__stream_source.html#l00369">L4::Ipc::Istream::reset()</a>, and <a class="el" href="ipc__stream_source.html#l00638">L4::Ipc::Ostream::reset()</a>.</p>
+<p class="reference">References <a class="el" href="ipc__stream_source.html#l00407">L4::Ipc::Istream::get()</a>, <a class="el" href="ipc__stream_source.html#l00671">L4::Ipc::Ostream::put()</a>, <a class="el" href="ipc__stream_source.html#l00371">L4::Ipc::Istream::reset()</a>, and <a class="el" href="ipc__stream_source.html#l00649">L4::Ipc::Ostream::reset()</a>.</p>
 <div id="dynsection-5" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-5-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
 <div id="dynsection-5-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-5-content" class="dyncontent" style="display:none;">
-<div class="center"><img src="classL4_1_1Ipc_1_1Iostream_a1015a0966b9faef7e344530b1eb6e13a_cgraph.png" border="0" usemap="#classL4_1_1Ipc_1_1Iostream_a1015a0966b9faef7e344530b1eb6e13a_cgraph" alt=""/></div>
-<map name="classL4_1_1Ipc_1_1Iostream_a1015a0966b9faef7e344530b1eb6e13a_cgraph" id="classL4_1_1Ipc_1_1Iostream_a1015a0966b9faef7e344530b1eb6e13a_cgraph">
-<area shape="rect" id="node2" href="classL4_1_1Ipc_1_1Istream.html#af4d28aa64235c822f624891154109a0c" title="Copy out an array of type T with size elements. " alt="" coords="193,5,336,32"/>
-<area shape="rect" id="node3" href="classL4_1_1Ipc_1_1Ostream.html#a0bb12677e48b2b08456b30a928aed8e7" title="Put an array with size elements of type T into the stream. " alt="" coords="191,56,339,83"/>
-<area shape="rect" id="node4" href="classL4_1_1Ipc_1_1Istream.html#a5f859ec603799261a88885307ae062ed" title="Reset the stream to empty, and ready for receive()/wait(). " alt="" coords="187,107,342,133"/>
-<area shape="rect" id="node5" href="classL4_1_1Ipc_1_1Ostream.html#afaf2794226d026e500ead0757069ea7c" title="Reset the stream to empty, same state as a newly created stream. " alt="" coords="184,157,345,184"/>
-</map>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classL4_1_1Ipc_1_1Iostream_a1015a0966b9faef7e344530b1eb6e13a_cgraph.svg" width="351" height="190"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 
 </div>
@@ -550,7 +525,7 @@ template&lt;typename T &gt; </td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="namespaceL4.html">L4</a></li><li class="navelem"><a class="el" href="namespaceL4_1_1Ipc.html">Ipc</a></li><li class="navelem"><a class="el" href="classL4_1_1Ipc_1_1Iostream.html">Iostream</a></li>
-    <li class="footer">Generated on Sun Sep 24 2017 23:15:13 for L4Re - L4 Runtime Environment by
+    <li class="footer">Generated on Tue Aug 11 2020 13:28:16 for L4Re - L4 Runtime Environment by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.13 </li>
   </ul>

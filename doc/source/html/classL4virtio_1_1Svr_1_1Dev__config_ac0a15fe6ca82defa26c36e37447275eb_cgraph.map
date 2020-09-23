@@ -1,0 +1,11 @@
+<map id="L4virtio::Svr::Dev_config::Dev_config" name="L4virtio::Svr::Dev_config::Dev_config">
+<area shape="rect" id="node2" href="$group__l4virtio__transport.html#gaa9e2b594dd8763023221b2a4d2455dab" title="Clear the given feature bit in a feature map. " alt="" coords="199,81,353,108"/>
+<area shape="rect" id="node3" href="$group__l4virtio__transport.html#gae37bcd45875b27b302320e6b9580191d" title="Check if the given bit in a feature map is set. " alt="" coords="205,132,347,159"/>
+<area shape="rect" id="node10" href="$group__l4virtio__transport.html#gabbe70d7b16bf836b95729f581c047cad" title="Set the given feature bit in a feature map. " alt="" coords="205,183,347,209"/>
+<area shape="rect" id="node4" href="$group__l4virtio__transport.html#ga0cf50f73a4c4be6798e198610d2107db" title="Write the VIRTIO status register. " alt="" coords="440,5,575,32"/>
+<area shape="rect" id="node5" href="$group__l4virtio__transport.html#ga96afc130bc89a48b91b2c9a7e924fd7d" title="Trigger queue configuration of the given queue. " alt="" coords="430,56,585,83"/>
+<area shape="rect" id="node6" href="$group__l4virtio__transport.html#gac7b1a00cc07164eb51e0fa1599ee2c90" title="Register a shared data space with VIRTIO host. " alt="" coords="436,107,579,133"/>
+<area shape="rect" id="node7" href="$group__l4virtio__transport.html#gafdba18bb3d539806564ba833de081d4c" title="Register client to the L4&#45;VIRTIO device. " alt="" coords="429,157,586,184"/>
+<area shape="rect" id="node8" href="$group__l4virtio__transport.html#ga9f7c8688033893f787027125f6422ad8" title="Get the dataspace with the L4virtio configuration page. " alt="" coords="417,208,598,235"/>
+<area shape="rect" id="node9" href="$group__l4virtio__transport.html#ga1e34a8e5216ae325a51f11a68f3dc760" title="Get the notification interrupt corresponding to the given index. " alt="" coords="401,259,613,285"/>
+</map>

@@ -99,16 +99,8 @@ $(document).ready(function(){initNavTree('group__l4__ipc__api.html','');});
 <div id="dynsection-0-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-0-content" class="dyncontent" style="display:none;">
-<center><table><tr><td><img src="group__l4__ipc__api.png" border="0" alt="" usemap="#group____l4____ipc____api"/>
-<map name="group____l4____ipc____api" id="group____l4____ipc____api">
-<area shape="rect" id="node1" href="group__l4__ipc__rt__api.html" title="Realtime API" alt="" coords="325,5,428,32"/>
-<area shape="rect" id="node2" href="group__l4__utcb__api.html" title="L4 Virtual Registers (UTCB). " alt="" coords="312,57,441,98"/>
-<area shape="rect" id="node3" href="group__l4__ipc__err__api.html" title="Error handling for L4 object invocation. " alt="" coords="319,123,434,149"/>
-<area shape="rect" id="node4" href="group__l4__timeout__api.html" title="All kinds of timeouts and time related functions. " alt="" coords="337,173,416,200"/>
-<area shape="rect" id="node5" href="group__l4__msgitem__api.html" title="Message item related functions. " alt="" coords="317,224,436,251"/>
-<area shape="rect" id="node6" href="group__l4__api.html" title="Interfaces for all kinds of base functionality. " alt="" coords="5,148,85,175"/>
-<area shape="rect" id="node8" href="group__l4__msgtag__api.html" title="API related to the message tag data type. " alt="" coords="322,275,431,301"/>
-</map>
+<center><table><tr><td><div class="center"><iframe scrolling="no" frameborder="0" src="group__l4__ipc__api.svg" width="447" height="307"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </td></tr></table></center>
 </div>
 <table class="memberdecls">
@@ -189,7 +181,7 @@ Functions</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <p>API for <a class="el" href="namespaceL4.html" title="L4 low-level kernel interface. ">L4</a> object invocation. </p>
-<dl class="section user"><dt>Include File</dt><dd><div class="fragment"><div class="line"><span class="preprocessor">#include &lt;l4/sys/ipc.h&gt;</span> </div></div><!-- fragment --></dd></dl>
+<dl class="section user"><dt>Include File^^ #include &lt;l4/sys/ipc.h&gt; </dt><dd></dd></dl>
 <p>General abstractions for <a class="el" href="namespaceL4.html" title="L4 low-level kernel interface. ">L4</a> object invocation. The basic principle is that all objects are denoted by a capability that is accessed via a capability selector (see <a class="el" href="group__l4__cap__api.html">Capabilities </a>).</p>
 <p>This set of functions is common to all kinds of objects provided by the <a class="el" href="namespaceL4.html" title="L4 low-level kernel interface. ">L4</a> micro kernel. The concrete semantics of an invocation depends on the object that shall be invoked.</p>
 <p>Objects may be invoked in various ways, the most common way is to use a <em>call</em> operation (<a class="el" href="group__l4__ipc__api.html#gab96d1669dcd54657237ee27b7f6862c6" title="Object call (usual invocation). ">l4_ipc_call()</a>). However, there are a lot more flavours available that have a semantics depending on the object.</p>
@@ -214,7 +206,7 @@ Functions</h2></td></tr>
 <p>Using this value as flags in the capability selector for an invocation indicates a call (send and wait for a reply). </p>
 </td></tr>
 <tr><td class="fieldname"><a id="ggaecfdf101783a02772b67b94793f3a915a5b352c0582c47836abceacaa0ecb8f2e"></a>L4_SYSF_SEND&#160;</td><td class="fielddoc"><p>Send-phase flag. </p>
-<p>Setting this flag in a capability selector induces a send phase, this means a message is send to the object denoted by the capability. For receive phase see <a class="el" href="group__l4__ipc__api.html#ggaecfdf101783a02772b67b94793f3a915ad2c6caeec90ece83786de0596f06af70" title="Receive-phase flag. ">L4_SYSF_RECV</a>. </p>
+<p>Setting this flag in a capability selector induces a send phase, this means a message is sent to the object denoted by the capability. For receive phase see <a class="el" href="group__l4__ipc__api.html#ggaecfdf101783a02772b67b94793f3a915ad2c6caeec90ece83786de0596f06af70" title="Receive-phase flag. ">L4_SYSF_RECV</a>. </p>
 </td></tr>
 <tr><td class="fieldname"><a id="ggaecfdf101783a02772b67b94793f3a915ad2c6caeec90ece83786de0596f06af70"></a>L4_SYSF_RECV&#160;</td><td class="fielddoc"><p>Receive-phase flag. </p>
 <p>Setting this flag in a capability selector induces a receive phase, this means the invoking thread waits for a message from the object denoted by the capability. For a send phase see <a class="el" href="group__l4__ipc__api.html#ggaecfdf101783a02772b67b94793f3a915a5b352c0582c47836abceacaa0ecb8f2e" title="Send-phase flag. ">L4_SYSF_SEND</a>. </p>
@@ -325,38 +317,14 @@ Functions</h2></td></tr>
 
 <p class="definition">Definition at line <a class="el" href="arm_2l4f_2l4_2sys_2ipc_8h_source.html#l00034">34</a> of file <a class="el" href="arm_2l4f_2l4_2sys_2ipc_8h_source.html">ipc.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="l4_2sys_2ipc_8h_source.html#l00445">l4_ipc_call()</a>, <a class="el" href="l4_2sys_2ipc_8h_source.html#l00487">l4_ipc_receive()</a>, <a class="el" href="l4_2sys_2ipc_8h_source.html#l00453">l4_ipc_reply_and_wait()</a>, <a class="el" href="l4_2sys_2ipc_8h_source.html#l00470">l4_ipc_send()</a>, <a class="el" href="l4_2sys_2ipc_8h_source.html#l00461">l4_ipc_send_and_wait()</a>, and <a class="el" href="l4_2sys_2ipc_8h_source.html#l00478">l4_ipc_wait()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="l4_2sys_2ipc_8h_source.html#l00448">l4_ipc_call()</a>, <a class="el" href="l4_2sys_2ipc_8h_source.html#l00490">l4_ipc_receive()</a>, <a class="el" href="l4_2sys_2ipc_8h_source.html#l00456">l4_ipc_reply_and_wait()</a>, <a class="el" href="l4_2sys_2ipc_8h_source.html#l00473">l4_ipc_send()</a>, <a class="el" href="l4_2sys_2ipc_8h_source.html#l00464">l4_ipc_send_and_wait()</a>, and <a class="el" href="l4_2sys_2ipc_8h_source.html#l00481">l4_ipc_wait()</a>.</p>
 <div id="dynsection-1" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-1-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
 <div id="dynsection-1-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-1-content" class="dyncontent" style="display:none;">
-<div class="center"><img src="group__l4__ipc__api_ga0e7e5b18d784b1d3439ea6e5b4bea4e2_icgraph.png" border="0" usemap="#group__l4__ipc__api_ga0e7e5b18d784b1d3439ea6e5b4bea4e2_icgraph" alt=""/></div>
-<map name="group__l4__ipc__api_ga0e7e5b18d784b1d3439ea6e5b4bea4e2_icgraph" id="group__l4__ipc__api_ga0e7e5b18d784b1d3439ea6e5b4bea4e2_icgraph">
-<area shape="rect" id="node2" href="group__l4__ipc__api.html#gab96d1669dcd54657237ee27b7f6862c6" title="Object call (usual invocation). " alt="" coords="149,85,237,112"/>
-<area shape="rect" id="node7" href="group__l4__ipc__api.html#ga3a8617092651c67f9ef1670b53fce66c" title="Wait for a message from a specific source. " alt="" coords="137,249,250,276"/>
-<area shape="rect" id="node12" href="group__l4__ipc__api.html#ga1bd93bc08f402cc149bf62cba3ba9905" title="Reply and wait operation (uses the reply capability). " alt="" coords="112,376,275,403"/>
-<area shape="rect" id="node15" href="group__l4__ipc__api.html#ga7de45eb59ce852466362ea85da00299e" title="Send a message to an object (do not wait for a reply). " alt="" coords="144,477,243,504"/>
-<area shape="rect" id="node21" href="group__l4__ipc__api.html#ga72ee1f322b3f633fb885905ce213e2b5" title="Send a message and do an open wait. " alt="" coords="112,427,275,453"/>
-<area shape="rect" id="node22" href="group__l4__ipc__api.html#gade81ef7ed9cb9e08bec716e640eabe04" title="Wait for an incoming message from any possible sender. " alt="" coords="147,325,239,352"/>
-<area shape="rect" id="node3" href="x86_2l4f_2l4_2util_2port__io_8h.html#a38a37fdbed4dd2dca75ce192d506a2d4" title="Map a range of I/O ports. " alt="" coords="346,5,475,32"/>
-<area shape="rect" id="node4" href="classL4_1_1Ipc_1_1Iostream.html#a18ac55dddefc29f84d47935dbc86b7ca" title="Do an IPC call using the message in the output stream and receiving to the input stream. " alt="" coords="335,56,486,83"/>
-<area shape="rect" id="node5" href="classL4_1_1Thread.html#a61ecf8a06d2b4996ebb67180b1d5d35c" title="Apply sender modifiction rules. " alt="" coords="342,107,479,149"/>
-<area shape="rect" id="node6" href="classL4Re_1_1Util_1_1Object__registry.html#aeeea59583ffddfef4e7c1c3e6eed41b6" title="Remove a server object from the handler list. " alt="" coords="569,107,741,149"/>
-<area shape="rect" id="node8" href="classL4_1_1Ipc_1_1Istream.html#aeefe739d106daa026a1d94ade34f1d97" title="Wait for an incoming message from any sender. " alt="" coords="337,275,484,301"/>
-<area shape="rect" id="node9" href="group__l4__ipc__api.html#gac3b4a3b13e77b799dc154c57a04cdd9b" title="Sleep for an amount of time. " alt="" coords="360,224,461,251"/>
-<area shape="rect" id="node11" href="group__l4__thread__api.html#ga5e47131f486f920826b5f72dad82bafe" title="Yield current time slice. " alt="" coords="351,173,470,200"/>
-<area shape="rect" id="node10" href="group__l4util__api.html#ga3a74b4dee439a339ed5a6368845cad37" title="Go sleep and never wake up. " alt="" coords="591,224,719,251"/>
-<area shape="rect" id="node13" href="classL4_1_1Ipc_1_1Iostream.html#a38428e61e86208016e9653937da01f6d" title="Do an IPC reply and wait. " alt="" coords="345,427,476,469"/>
-<area shape="rect" id="node14" href="classL4_1_1Server.html#a4333dc750dee494087ee92ab058718a1" title="Internal implementation for reply and wait. " alt="" coords="325,376,497,403"/>
-<area shape="rect" id="node16" href="classL4_1_1Ipc_1_1Ostream.html#a0ac15ba65285ed66a3b2ae7f9dc612d1" title="Send the message via IPC to the given receiver. " alt="" coords="331,493,491,520"/>
-<area shape="rect" id="node17" href="group__l4__irq__api.html#ga180cfaf342ce9ff484a6aa7c276e1597" title="Trigger. " alt="" coords="350,544,471,571"/>
-<area shape="rect" id="node18" href="group__l4__irq__api.html#gab24e0fc21a207fd566ece1e6fafbac48" title="Trigger an IRQ. " alt="" coords="601,519,708,545"/>
-<area shape="rect" id="node19" href="structL4_1_1Triggerable.html#adf91901c4e2bd784c687e102a8469c45" title="Trigger. " alt="" coords="573,569,736,596"/>
-<area shape="rect" id="node20" href="structL4_1_1Semaphore.html#aa13181d7e43470c833a76f430b0c547c" title="Semaphore up operation (wrapper for trigger()). " alt="" coords="811,569,949,596"/>
-<area shape="rect" id="node23" href="group__api__libvcpu.html#gaa1e7797e4ed8b7dabd40c9849f5c362c" title="Disable a vCPU for event delivery and return previous state. " alt="" coords="323,325,499,352"/>
-<area shape="rect" id="node24" href="classL4vcpu_1_1Vcpu.html#a05a251f7ecc0852035f2db1cd8b23188" title="Disable the vCPU for event delivery and return previous state. " alt="" coords="547,325,763,352"/>
-</map>
+<div class="center"><iframe scrolling="no" frameborder="0" src="group__l4__ipc__api_ga0e7e5b18d784b1d3439ea6e5b4bea4e2_icgraph.svg" width="955" height="602"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 
 </div>
@@ -421,33 +389,26 @@ Functions</h2></td></tr>
 <p>A message is sent to the object and the invoker waits for a reply from the object. Messages from other sources are not accepted. </p><dl class="section note"><dt>Note</dt><dd>The send-to-receive transition needs no time, the object can reply with a send timeout of zero. </dd></dl>
 <dl><dt><b>Examples: </b></dt><dd><a class="el" href="examples_2sys_2aliens_2main_8c-example.html#a12">examples/sys/aliens/main.c</a>, <a class="el" href="examples_2sys_2ipc_2ipc_example_8c-example.html#a3">examples/sys/ipc/ipc_example.c</a>, and <a class="el" href="examples_2sys_2singlestep_2main_8c-example.html#a37">examples/sys/singlestep/main.c</a>.</dd>
 </dl>
-<p class="definition">Definition at line <a class="el" href="l4_2sys_2ipc_8h_source.html#l00445">445</a> of file <a class="el" href="l4_2sys_2ipc_8h_source.html">ipc.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="l4_2sys_2ipc_8h_source.html#l00448">448</a> of file <a class="el" href="l4_2sys_2ipc_8h_source.html">ipc.h</a>.</p>
 
 <p class="reference">References <a class="el" href="arm_2l4f_2l4_2sys_2ipc_8h_source.html#l00034">l4_ipc()</a>, and <a class="el" href="l4_2sys_2consts_8h_source.html#l00097">L4_SYSF_CALL</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="ipc__stream_source.html#l00962">L4::Ipc::Iostream::call()</a>, <a class="el" href="x86_2l4f_2l4_2util_2port__io_8h_source.html#l00056">l4util_ioport_map()</a>, and <a class="el" href="sys_2thread_source.html#l00373">L4::Thread::modify_senders()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="ipc__stream_source.html#l00973">L4::Ipc::Iostream::call()</a>, <a class="el" href="x86_2l4f_2l4_2util_2port__io_8h_source.html#l00056">l4util_ioport_map()</a>, and <a class="el" href="sys_2thread_source.html#l00390">L4::Thread::modify_senders()</a>.</p>
 <div id="dynsection-2" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-2-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
 <div id="dynsection-2-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-2-content" class="dyncontent" style="display:none;">
-<div class="center"><img src="group__l4__ipc__api_gab96d1669dcd54657237ee27b7f6862c6_cgraph.png" border="0" usemap="#group__l4__ipc__api_gab96d1669dcd54657237ee27b7f6862c6_cgraph" alt=""/></div>
-<map name="group__l4__ipc__api_gab96d1669dcd54657237ee27b7f6862c6_cgraph" id="group__l4__ipc__api_gab96d1669dcd54657237ee27b7f6862c6_cgraph">
-<area shape="rect" id="node2" href="group__l4__ipc__api.html#ga0e7e5b18d784b1d3439ea6e5b4bea4e2" title="Generic L4 object invocation. " alt="" coords="141,5,200,32"/>
-</map>
+<div class="center"><iframe scrolling="no" frameborder="0" src="group__l4__ipc__api_gab96d1669dcd54657237ee27b7f6862c6_cgraph.svg" width="206" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 <div id="dynsection-3" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-3-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
 <div id="dynsection-3-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-3-content" class="dyncontent" style="display:none;">
-<div class="center"><img src="group__l4__ipc__api_gab96d1669dcd54657237ee27b7f6862c6_icgraph.png" border="0" usemap="#group__l4__ipc__api_gab96d1669dcd54657237ee27b7f6862c6_icgraph" alt=""/></div>
-<map name="group__l4__ipc__api_gab96d1669dcd54657237ee27b7f6862c6_icgraph" id="group__l4__ipc__api_gab96d1669dcd54657237ee27b7f6862c6_icgraph">
-<area shape="rect" id="node2" href="classL4_1_1Ipc_1_1Iostream.html#a18ac55dddefc29f84d47935dbc86b7ca" title="Do an IPC call using the message in the output stream and receiving to the input stream. " alt="" coords="141,5,292,32"/>
-<area shape="rect" id="node3" href="x86_2l4f_2l4_2util_2port__io_8h.html#a38a37fdbed4dd2dca75ce192d506a2d4" title="Map a range of I/O ports. " alt="" coords="152,56,281,83"/>
-<area shape="rect" id="node4" href="classL4_1_1Thread.html#a61ecf8a06d2b4996ebb67180b1d5d35c" title="Apply sender modifiction rules. " alt="" coords="148,107,285,149"/>
-<area shape="rect" id="node5" href="classL4Re_1_1Util_1_1Object__registry.html#aeeea59583ffddfef4e7c1c3e6eed41b6" title="Remove a server object from the handler list. " alt="" coords="340,107,512,149"/>
-</map>
+<div class="center"><iframe scrolling="no" frameborder="0" src="group__l4__ipc__api_gab96d1669dcd54657237ee27b7f6862c6_icgraph.svg" width="518" height="155"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 
 </div>
@@ -506,33 +467,26 @@ Functions</h2></td></tr>
 <dl class="section note"><dt>Note</dt><dd>This operation is usually used to receive messages from a specific IRQ or thread. However, it is not common to use this operation for normal applications. </dd></dl>
 <dl><dt><b>Examples: </b></dt><dd><a class="el" href="examples_2sys_2aliens_2main_8c-example.html#a37">examples/sys/aliens/main.c</a>, <a class="el" href="examples_2sys_2singlestep_2main_8c-example.html#a21">examples/sys/singlestep/main.c</a>, <a class="el" href="examples_2sys_2start-with-exc_2main_8c-example.html#a20">examples/sys/start-with-exc/main.c</a>, and <a class="el" href="examples_2sys_2utcb-ipc_2main_8c-example.html#a10">examples/sys/utcb-ipc/main.c</a>.</dd>
 </dl>
-<p class="definition">Definition at line <a class="el" href="l4_2sys_2ipc_8h_source.html#l00487">487</a> of file <a class="el" href="l4_2sys_2ipc_8h_source.html">ipc.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="l4_2sys_2ipc_8h_source.html#l00490">490</a> of file <a class="el" href="l4_2sys_2ipc_8h_source.html">ipc.h</a>.</p>
 
-<p class="reference">References <a class="el" href="arm_2l4f_2l4_2sys_2ipc_8h_source.html#l00034">l4_ipc()</a>, <a class="el" href="l4_2sys_2consts_8h_source.html#l00069">L4_SYSF_RECV</a>, and <a class="el" href="l4_2sys_2types_8h_source.html#l00160">l4_msgtag_t::raw</a>.</p>
+<p class="reference">References <a class="el" href="arm_2l4f_2l4_2sys_2ipc_8h_source.html#l00034">l4_ipc()</a>, <a class="el" href="l4_2sys_2consts_8h_source.html#l00069">L4_SYSF_RECV</a>, and <a class="el" href="l4_2sys_2types_8h_source.html#l00161">l4_msgtag_t::raw</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="l4_2sys_2ipc_8h_source.html#l00496">l4_ipc_sleep()</a>, <a class="el" href="l4_2sys_2thread_8h_source.html#l00778">l4_thread_yield()</a>, and <a class="el" href="ipc__stream_source.html#l01009">L4::Ipc::Istream::wait()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="l4_2sys_2ipc_8h_source.html#l00499">l4_ipc_sleep()</a>, <a class="el" href="l4_2sys_2thread_8h_source.html#l00787">l4_thread_yield()</a>, and <a class="el" href="ipc__stream_source.html#l01020">L4::Ipc::Istream::wait()</a>.</p>
 <div id="dynsection-4" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-4-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
 <div id="dynsection-4-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-4-content" class="dyncontent" style="display:none;">
-<div class="center"><img src="group__l4__ipc__api_ga3a8617092651c67f9ef1670b53fce66c_cgraph.png" border="0" usemap="#group__l4__ipc__api_ga3a8617092651c67f9ef1670b53fce66c_cgraph" alt=""/></div>
-<map name="group__l4__ipc__api_ga3a8617092651c67f9ef1670b53fce66c_cgraph" id="group__l4__ipc__api_ga3a8617092651c67f9ef1670b53fce66c_cgraph">
-<area shape="rect" id="node2" href="group__l4__ipc__api.html#ga0e7e5b18d784b1d3439ea6e5b4bea4e2" title="Generic L4 object invocation. " alt="" coords="167,5,225,32"/>
-</map>
+<div class="center"><iframe scrolling="no" frameborder="0" src="group__l4__ipc__api_ga3a8617092651c67f9ef1670b53fce66c_cgraph.svg" width="231" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 <div id="dynsection-5" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-5-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
 <div id="dynsection-5-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-5-content" class="dyncontent" style="display:none;">
-<div class="center"><img src="group__l4__ipc__api_ga3a8617092651c67f9ef1670b53fce66c_icgraph.png" border="0" usemap="#group__l4__ipc__api_ga3a8617092651c67f9ef1670b53fce66c_icgraph" alt=""/></div>
-<map name="group__l4__ipc__api_ga3a8617092651c67f9ef1670b53fce66c_icgraph" id="group__l4__ipc__api_ga3a8617092651c67f9ef1670b53fce66c_icgraph">
-<area shape="rect" id="node2" href="group__l4__ipc__api.html#gac3b4a3b13e77b799dc154c57a04cdd9b" title="Sleep for an amount of time. " alt="" coords="189,5,291,32"/>
-<area shape="rect" id="node4" href="group__l4__thread__api.html#ga5e47131f486f920826b5f72dad82bafe" title="Yield current time slice. " alt="" coords="181,56,299,83"/>
-<area shape="rect" id="node5" href="classL4_1_1Ipc_1_1Istream.html#aeefe739d106daa026a1d94ade34f1d97" title="Wait for an incoming message from any sender. " alt="" coords="167,107,313,133"/>
-<area shape="rect" id="node3" href="group__l4util__api.html#ga3a74b4dee439a339ed5a6368845cad37" title="Go sleep and never wake up. " alt="" coords="361,5,489,32"/>
-</map>
+<div class="center"><iframe scrolling="no" frameborder="0" src="group__l4__ipc__api_ga3a8617092651c67f9ef1670b53fce66c_icgraph.svg" width="495" height="139"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 
 </div>
@@ -586,8 +540,8 @@ Functions</h2></td></tr>
 <p>Reply and wait operation (uses the <em>reply</em> capability). </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir"></td><td class="paramname">tag</td><td>Describes the message to be sent as reply. </td></tr>
     <tr><td class="paramdir"></td><td class="paramname">utcb</td><td>UTCB of the caller. </td></tr>
+    <tr><td class="paramdir"></td><td class="paramname">tag</td><td>Describes the message to be sent as reply. </td></tr>
     <tr><td class="paramdir">[out]</td><td class="paramname">label</td><td>Label assigned to the source object of the received message. </td></tr>
     <tr><td class="paramdir"></td><td class="paramname">timeout</td><td>Timeout pair (see <a class="el" href="unionl4__timeout__t.html" title="Timeout pair. ">l4_timeout_t</a>).</td></tr>
   </table>
@@ -597,31 +551,26 @@ Functions</h2></td></tr>
 <p>A message is sent to the previous caller using the implicit reply capability. Afterwards the invoking thread waits for a message from any source. </p><dl class="section note"><dt>Note</dt><dd>This is the standard server operation: it sends a reply to the actual client and waits for the next incoming request, which may come from any other client. </dd></dl>
 <dl><dt><b>Examples: </b></dt><dd><a class="el" href="examples_2sys_2ipc_2ipc_example_8c-example.html#a9">examples/sys/ipc/ipc_example.c</a>.</dd>
 </dl>
-<p class="definition">Definition at line <a class="el" href="l4_2sys_2ipc_8h_source.html#l00453">453</a> of file <a class="el" href="l4_2sys_2ipc_8h_source.html">ipc.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="l4_2sys_2ipc_8h_source.html#l00456">456</a> of file <a class="el" href="l4_2sys_2ipc_8h_source.html">ipc.h</a>.</p>
 
 <p class="reference">References <a class="el" href="l4_2sys_2consts_8h_source.html#l00141">L4_INVALID_CAP</a>, <a class="el" href="arm_2l4f_2l4_2sys_2ipc_8h_source.html#l00034">l4_ipc()</a>, and <a class="el" href="l4_2sys_2consts_8h_source.html#l00121">L4_SYSF_REPLY_AND_WAIT</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="ipc__stream_source.html#l00977">L4::Ipc::Iostream::reply_and_wait()</a>, and <a class="el" href="ipc__server__loop_source.html#l00336">L4::Server&lt; LOOP_HOOKS &gt;::reply_n_wait()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="ipc__stream_source.html#l00988">L4::Ipc::Iostream::reply_and_wait()</a>, and <a class="el" href="ipc__server__loop_source.html#l00344">L4::Server&lt; LOOP_HOOKS &gt;::reply_n_wait()</a>.</p>
 <div id="dynsection-6" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-6-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
 <div id="dynsection-6-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-6-content" class="dyncontent" style="display:none;">
-<div class="center"><img src="group__l4__ipc__api_ga1bd93bc08f402cc149bf62cba3ba9905_cgraph.png" border="0" usemap="#group__l4__ipc__api_ga1bd93bc08f402cc149bf62cba3ba9905_cgraph" alt=""/></div>
-<map name="group__l4__ipc__api_ga1bd93bc08f402cc149bf62cba3ba9905_cgraph" id="group__l4__ipc__api_ga1bd93bc08f402cc149bf62cba3ba9905_cgraph">
-<area shape="rect" id="node2" href="group__l4__ipc__api.html#ga0e7e5b18d784b1d3439ea6e5b4bea4e2" title="Generic L4 object invocation. " alt="" coords="216,5,275,32"/>
-</map>
+<div class="center"><iframe scrolling="no" frameborder="0" src="group__l4__ipc__api_ga1bd93bc08f402cc149bf62cba3ba9905_cgraph.svg" width="280" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 <div id="dynsection-7" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-7-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
 <div id="dynsection-7-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-7-content" class="dyncontent" style="display:none;">
-<div class="center"><img src="group__l4__ipc__api_ga1bd93bc08f402cc149bf62cba3ba9905_icgraph.png" border="0" usemap="#group__l4__ipc__api_ga1bd93bc08f402cc149bf62cba3ba9905_icgraph" alt=""/></div>
-<map name="group__l4__ipc__api_ga1bd93bc08f402cc149bf62cba3ba9905_icgraph" id="group__l4__ipc__api_ga1bd93bc08f402cc149bf62cba3ba9905_icgraph">
-<area shape="rect" id="node2" href="classL4_1_1Ipc_1_1Iostream.html#a38428e61e86208016e9653937da01f6d" title="Do an IPC reply and wait. " alt="" coords="237,5,367,47"/>
-<area shape="rect" id="node3" href="classL4_1_1Server.html#a4333dc750dee494087ee92ab058718a1" title="Internal implementation for reply and wait. " alt="" coords="216,71,388,98"/>
-</map>
+<div class="center"><iframe scrolling="no" frameborder="0" src="group__l4__ipc__api_ga1bd93bc08f402cc149bf62cba3ba9905_icgraph.svg" width="394" height="104"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 
 </div>
@@ -687,36 +636,26 @@ Functions</h2></td></tr>
 <dl class="section attention"><dt>Attention</dt><dd>This is a special-purpose message transfer, objects usually support only invocation via <a class="el" href="group__l4__ipc__api.html#gab96d1669dcd54657237ee27b7f6862c6" title="Object call (usual invocation). ">l4_ipc_call()</a>. </dd></dl>
 <dl><dt><b>Examples: </b></dt><dd><a class="el" href="examples_2sys_2start-with-exc_2main_8c-example.html#a39">examples/sys/start-with-exc/main.c</a>, and <a class="el" href="examples_2sys_2utcb-ipc_2main_8c-example.html#a8">examples/sys/utcb-ipc/main.c</a>.</dd>
 </dl>
-<p class="definition">Definition at line <a class="el" href="l4_2sys_2ipc_8h_source.html#l00470">470</a> of file <a class="el" href="l4_2sys_2ipc_8h_source.html">ipc.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="l4_2sys_2ipc_8h_source.html#l00473">473</a> of file <a class="el" href="l4_2sys_2ipc_8h_source.html">ipc.h</a>.</p>
 
 <p class="reference">References <a class="el" href="arm_2l4f_2l4_2sys_2ipc_8h_source.html#l00034">l4_ipc()</a>, and <a class="el" href="l4_2sys_2consts_8h_source.html#l00058">L4_SYSF_SEND</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="l4_2sys_2irq_8h_source.html#l00297">l4_irq_trigger_u()</a>, <a class="el" href="ipc__stream_source.html#l00977">L4::Ipc::Iostream::reply_and_wait()</a>, <a class="el" href="ipc__server__loop_source.html#l00336">L4::Server&lt; LOOP_HOOKS &gt;::reply_n_wait()</a>, and <a class="el" href="ipc__stream_source.html#l00955">L4::Ipc::Ostream::send()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="l4_2sys_2irq_8h_source.html#l00300">l4_irq_trigger_u()</a>, <a class="el" href="ipc__stream_source.html#l00988">L4::Ipc::Iostream::reply_and_wait()</a>, <a class="el" href="ipc__server__loop_source.html#l00344">L4::Server&lt; LOOP_HOOKS &gt;::reply_n_wait()</a>, and <a class="el" href="ipc__stream_source.html#l00966">L4::Ipc::Ostream::send()</a>.</p>
 <div id="dynsection-8" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-8-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
 <div id="dynsection-8-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-8-content" class="dyncontent" style="display:none;">
-<div class="center"><img src="group__l4__ipc__api_ga7de45eb59ce852466362ea85da00299e_cgraph.png" border="0" usemap="#group__l4__ipc__api_ga7de45eb59ce852466362ea85da00299e_cgraph" alt=""/></div>
-<map name="group__l4__ipc__api_ga7de45eb59ce852466362ea85da00299e_cgraph" id="group__l4__ipc__api_ga7de45eb59ce852466362ea85da00299e_cgraph">
-<area shape="rect" id="node2" href="group__l4__ipc__api.html#ga0e7e5b18d784b1d3439ea6e5b4bea4e2" title="Generic L4 object invocation. " alt="" coords="152,5,211,32"/>
-</map>
+<div class="center"><iframe scrolling="no" frameborder="0" src="group__l4__ipc__api_ga7de45eb59ce852466362ea85da00299e_cgraph.svg" width="216" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 <div id="dynsection-9" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-9-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
 <div id="dynsection-9-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-9-content" class="dyncontent" style="display:none;">
-<div class="center"><img src="group__l4__ipc__api_ga7de45eb59ce852466362ea85da00299e_icgraph.png" border="0" usemap="#group__l4__ipc__api_ga7de45eb59ce852466362ea85da00299e_icgraph" alt=""/></div>
-<map name="group__l4__ipc__api_ga7de45eb59ce852466362ea85da00299e_icgraph" id="group__l4__ipc__api_ga7de45eb59ce852466362ea85da00299e_icgraph">
-<area shape="rect" id="node2" href="group__l4__irq__api.html#ga180cfaf342ce9ff484a6aa7c276e1597" title="Trigger. " alt="" coords="177,31,299,57"/>
-<area shape="rect" id="node6" href="classL4_1_1Ipc_1_1Iostream.html#a38428e61e86208016e9653937da01f6d" title="Do an IPC reply and wait. " alt="" coords="173,82,303,123"/>
-<area shape="rect" id="node7" href="classL4_1_1Server.html#a4333dc750dee494087ee92ab058718a1" title="Internal implementation for reply and wait. " alt="" coords="152,148,324,175"/>
-<area shape="rect" id="node8" href="classL4_1_1Ipc_1_1Ostream.html#a0ac15ba65285ed66a3b2ae7f9dc612d1" title="Send the message via IPC to the given receiver. " alt="" coords="158,199,318,225"/>
-<area shape="rect" id="node3" href="group__l4__irq__api.html#gab24e0fc21a207fd566ece1e6fafbac48" title="Trigger an IRQ. " alt="" coords="400,5,507,32"/>
-<area shape="rect" id="node4" href="structL4_1_1Triggerable.html#adf91901c4e2bd784c687e102a8469c45" title="Trigger. " alt="" coords="372,56,535,83"/>
-<area shape="rect" id="node5" href="structL4_1_1Semaphore.html#aa13181d7e43470c833a76f430b0c547c" title="Semaphore up operation (wrapper for trigger()). " alt="" coords="583,56,721,83"/>
-</map>
+<div class="center"><iframe scrolling="no" frameborder="0" src="group__l4__ipc__api_ga7de45eb59ce852466362ea85da00299e_icgraph.svg" width="727" height="231"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 
 </div>
@@ -788,30 +727,26 @@ Functions</h2></td></tr>
 <p>A message is sent to the destination object and the invoking thread waits for a reply from any source.</p>
 <dl class="section note"><dt>Note</dt><dd>This is a special-purpose operation and shall not be used in general applications. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="l4_2sys_2ipc_8h_source.html#l00461">461</a> of file <a class="el" href="l4_2sys_2ipc_8h_source.html">ipc.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="l4_2sys_2ipc_8h_source.html#l00464">464</a> of file <a class="el" href="l4_2sys_2ipc_8h_source.html">ipc.h</a>.</p>
 
 <p class="reference">References <a class="el" href="arm_2l4f_2l4_2sys_2ipc_8h_source.html#l00034">l4_ipc()</a>, and <a class="el" href="l4_2sys_2consts_8h_source.html#l00113">L4_SYSF_SEND_AND_WAIT</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="ipc__stream_source.html#l00977">L4::Ipc::Iostream::reply_and_wait()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="ipc__stream_source.html#l00988">L4::Ipc::Iostream::reply_and_wait()</a>.</p>
 <div id="dynsection-10" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-10-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
 <div id="dynsection-10-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-10-content" class="dyncontent" style="display:none;">
-<div class="center"><img src="group__l4__ipc__api_ga72ee1f322b3f633fb885905ce213e2b5_cgraph.png" border="0" usemap="#group__l4__ipc__api_ga72ee1f322b3f633fb885905ce213e2b5_cgraph" alt=""/></div>
-<map name="group__l4__ipc__api_ga72ee1f322b3f633fb885905ce213e2b5_cgraph" id="group__l4__ipc__api_ga72ee1f322b3f633fb885905ce213e2b5_cgraph">
-<area shape="rect" id="node2" href="group__l4__ipc__api.html#ga0e7e5b18d784b1d3439ea6e5b4bea4e2" title="Generic L4 object invocation. " alt="" coords="216,5,275,32"/>
-</map>
+<div class="center"><iframe scrolling="no" frameborder="0" src="group__l4__ipc__api_ga72ee1f322b3f633fb885905ce213e2b5_cgraph.svg" width="280" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 <div id="dynsection-11" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-11-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
 <div id="dynsection-11-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-11-content" class="dyncontent" style="display:none;">
-<div class="center"><img src="group__l4__ipc__api_ga72ee1f322b3f633fb885905ce213e2b5_icgraph.png" border="0" usemap="#group__l4__ipc__api_ga72ee1f322b3f633fb885905ce213e2b5_icgraph" alt=""/></div>
-<map name="group__l4__ipc__api_ga72ee1f322b3f633fb885905ce213e2b5_icgraph" id="group__l4__ipc__api_ga72ee1f322b3f633fb885905ce213e2b5_icgraph">
-<area shape="rect" id="node2" href="classL4_1_1Ipc_1_1Iostream.html#a38428e61e86208016e9653937da01f6d" title="Do an IPC reply and wait. " alt="" coords="216,5,347,47"/>
-</map>
+<div class="center"><iframe scrolling="no" frameborder="0" src="group__l4__ipc__api_ga72ee1f322b3f633fb885905ce213e2b5_icgraph.svg" width="352" height="52"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 
 </div>
@@ -854,9 +789,9 @@ Functions</h2></td></tr>
 </dd></dl>
 <p>The invoking thread waits until the timeout is expired or the wait was aborted by another thread by <a class="el" href="group__l4__thread__api.html#ga1ea29499c679caeae810516d16f4347c" title="Exchange basic thread registers. ">l4_thread_ex_regs()</a>. </p>
 
-<p class="definition">Definition at line <a class="el" href="l4_2sys_2ipc_8h_source.html#l00496">496</a> of file <a class="el" href="l4_2sys_2ipc_8h_source.html">ipc.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="l4_2sys_2ipc_8h_source.html#l00499">499</a> of file <a class="el" href="l4_2sys_2ipc_8h_source.html">ipc.h</a>.</p>
 
-<p class="reference">References <a class="el" href="l4_2sys_2consts_8h_source.html#l00141">L4_INVALID_CAP</a>, and <a class="el" href="l4_2sys_2ipc_8h_source.html#l00487">l4_ipc_receive()</a>.</p>
+<p class="reference">References <a class="el" href="l4_2sys_2consts_8h_source.html#l00141">L4_INVALID_CAP</a>, and <a class="el" href="l4_2sys_2ipc_8h_source.html#l00490">l4_ipc_receive()</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="amd64_2l4_2util_2util_8h_source.html#l00050">l4_sleep_forever()</a>.</p>
 <div id="dynsection-12" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
@@ -864,21 +799,16 @@ Functions</h2></td></tr>
 <div id="dynsection-12-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-12-content" class="dyncontent" style="display:none;">
-<div class="center"><img src="group__l4__ipc__api_gac3b4a3b13e77b799dc154c57a04cdd9b_cgraph.png" border="0" usemap="#group__l4__ipc__api_gac3b4a3b13e77b799dc154c57a04cdd9b_cgraph" alt=""/></div>
-<map name="group__l4__ipc__api_gac3b4a3b13e77b799dc154c57a04cdd9b_cgraph" id="group__l4__ipc__api_gac3b4a3b13e77b799dc154c57a04cdd9b_cgraph">
-<area shape="rect" id="node2" href="group__l4__ipc__api.html#ga3a8617092651c67f9ef1670b53fce66c" title="Wait for a message from a specific source. " alt="" coords="155,5,268,32"/>
-<area shape="rect" id="node3" href="group__l4__ipc__api.html#ga0e7e5b18d784b1d3439ea6e5b4bea4e2" title="Generic L4 object invocation. " alt="" coords="316,5,375,32"/>
-</map>
+<div class="center"><iframe scrolling="no" frameborder="0" src="group__l4__ipc__api_gac3b4a3b13e77b799dc154c57a04cdd9b_cgraph.svg" width="380" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 <div id="dynsection-13" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-13-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
 <div id="dynsection-13-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-13-content" class="dyncontent" style="display:none;">
-<div class="center"><img src="group__l4__ipc__api_gac3b4a3b13e77b799dc154c57a04cdd9b_icgraph.png" border="0" usemap="#group__l4__ipc__api_gac3b4a3b13e77b799dc154c57a04cdd9b_icgraph" alt=""/></div>
-<map name="group__l4__ipc__api_gac3b4a3b13e77b799dc154c57a04cdd9b_icgraph" id="group__l4__ipc__api_gac3b4a3b13e77b799dc154c57a04cdd9b_icgraph">
-<area shape="rect" id="node2" href="group__l4util__api.html#ga3a74b4dee439a339ed5a6368845cad37" title="Go sleep and never wake up. " alt="" coords="155,5,283,32"/>
-</map>
+<div class="center"><iframe scrolling="no" frameborder="0" src="group__l4__ipc__api_gac3b4a3b13e77b799dc154c57a04cdd9b_icgraph.svg" width="288" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 
 </div>
@@ -926,19 +856,9 @@ Functions</h2></td></tr>
 <p>Wait for an incoming message from any possible sender. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">utcb</td><td>UTCB of the caller. </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="retval"><dt>Return values</dt><dd>
-  <table class="retval">
-    <tr><td class="paramname">label</td><td>Label assigned to the source object (IPC gate or IRQ). </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">timeout</td><td>Timeout pair (see <a class="el" href="unionl4__timeout__t.html" title="Timeout pair. ">l4_timeout_t</a>, only the receive part is used).</td></tr>
+    <tr><td class="paramdir"></td><td class="paramname">utcb</td><td>UTCB of the caller. </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">label</td><td>Label assigned to the source object (IPC gate or IRQ). </td></tr>
+    <tr><td class="paramdir"></td><td class="paramname">timeout</td><td>Timeout pair (see <a class="el" href="unionl4__timeout__t.html" title="Timeout pair. ">l4_timeout_t</a>, only the receive part is used).</td></tr>
   </table>
   </dd>
 </dl>
@@ -947,33 +867,26 @@ Functions</h2></td></tr>
 <p>The usual usage of this function is to call that function when entering a server loop in a user-level server that implements user-level objects, see also <a class="el" href="group__l4__ipc__api.html#ga1bd93bc08f402cc149bf62cba3ba9905" title="Reply and wait operation (uses the reply capability). ">l4_ipc_reply_and_wait()</a>. </p>
 <dl><dt><b>Examples: </b></dt><dd><a class="el" href="examples_2sys_2ipc_2ipc_example_8c-example.html#a8">examples/sys/ipc/ipc_example.c</a>.</dd>
 </dl>
-<p class="definition">Definition at line <a class="el" href="l4_2sys_2ipc_8h_source.html#l00478">478</a> of file <a class="el" href="l4_2sys_2ipc_8h_source.html">ipc.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="l4_2sys_2ipc_8h_source.html#l00481">481</a> of file <a class="el" href="l4_2sys_2ipc_8h_source.html">ipc.h</a>.</p>
 
-<p class="reference">References <a class="el" href="l4_2sys_2consts_8h_source.html#l00141">L4_INVALID_CAP</a>, <a class="el" href="arm_2l4f_2l4_2sys_2ipc_8h_source.html#l00034">l4_ipc()</a>, <a class="el" href="l4_2sys_2consts_8h_source.html#l00105">L4_SYSF_WAIT</a>, and <a class="el" href="l4_2sys_2types_8h_source.html#l00160">l4_msgtag_t::raw</a>.</p>
+<p class="reference">References <a class="el" href="l4_2sys_2consts_8h_source.html#l00141">L4_INVALID_CAP</a>, <a class="el" href="arm_2l4f_2l4_2sys_2ipc_8h_source.html#l00034">l4_ipc()</a>, <a class="el" href="l4_2sys_2consts_8h_source.html#l00105">L4_SYSF_WAIT</a>, and <a class="el" href="l4_2sys_2types_8h_source.html#l00161">l4_msgtag_t::raw</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="vcpu_2vcpu_8h_source.html#l00216">l4vcpu_irq_disable_save()</a>, <a class="el" href="ipc__server__loop_source.html#l00336">L4::Server&lt; LOOP_HOOKS &gt;::reply_n_wait()</a>, and <a class="el" href="ipc__stream_source.html#l01009">L4::Ipc::Istream::wait()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="vcpu_2vcpu_8h_source.html#l00216">l4vcpu_irq_disable_save()</a>, <a class="el" href="ipc__server__loop_source.html#l00344">L4::Server&lt; LOOP_HOOKS &gt;::reply_n_wait()</a>, and <a class="el" href="ipc__stream_source.html#l01020">L4::Ipc::Istream::wait()</a>.</p>
 <div id="dynsection-14" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-14-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
 <div id="dynsection-14-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-14-content" class="dyncontent" style="display:none;">
-<div class="center"><img src="group__l4__ipc__api_gade81ef7ed9cb9e08bec716e640eabe04_cgraph.png" border="0" usemap="#group__l4__ipc__api_gade81ef7ed9cb9e08bec716e640eabe04_cgraph" alt=""/></div>
-<map name="group__l4__ipc__api_gade81ef7ed9cb9e08bec716e640eabe04_cgraph" id="group__l4__ipc__api_gade81ef7ed9cb9e08bec716e640eabe04_cgraph">
-<area shape="rect" id="node2" href="group__l4__ipc__api.html#ga0e7e5b18d784b1d3439ea6e5b4bea4e2" title="Generic L4 object invocation. " alt="" coords="145,5,204,32"/>
-</map>
+<div class="center"><iframe scrolling="no" frameborder="0" src="group__l4__ipc__api_gade81ef7ed9cb9e08bec716e640eabe04_cgraph.svg" width="210" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 <div id="dynsection-15" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-15-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
 <div id="dynsection-15-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-15-content" class="dyncontent" style="display:none;">
-<div class="center"><img src="group__l4__ipc__api_gade81ef7ed9cb9e08bec716e640eabe04_icgraph.png" border="0" usemap="#group__l4__ipc__api_gade81ef7ed9cb9e08bec716e640eabe04_icgraph" alt=""/></div>
-<map name="group__l4__ipc__api_gade81ef7ed9cb9e08bec716e640eabe04_icgraph" id="group__l4__ipc__api_gade81ef7ed9cb9e08bec716e640eabe04_icgraph">
-<area shape="rect" id="node2" href="group__api__libvcpu.html#gaa1e7797e4ed8b7dabd40c9849f5c362c" title="Disable a vCPU for event delivery and return previous state. " alt="" coords="145,5,321,32"/>
-<area shape="rect" id="node4" href="classL4_1_1Server.html#a4333dc750dee494087ee92ab058718a1" title="Internal implementation for reply and wait. " alt="" coords="147,56,319,83"/>
-<area shape="rect" id="node5" href="classL4_1_1Ipc_1_1Istream.html#aeefe739d106daa026a1d94ade34f1d97" title="Wait for an incoming message from any sender. " alt="" coords="160,107,307,133"/>
-<area shape="rect" id="node3" href="classL4vcpu_1_1Vcpu.html#a05a251f7ecc0852035f2db1cd8b23188" title="Disable the vCPU for event delivery and return previous state. " alt="" coords="369,5,585,32"/>
-</map>
+<div class="center"><iframe scrolling="no" frameborder="0" src="group__l4__ipc__api_gade81ef7ed9cb9e08bec716e640eabe04_icgraph.svg" width="591" height="139"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 
 </div>
@@ -1035,7 +948,7 @@ Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>0 on success, negative error code otherwise </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="l4_2sys_2ipc_8h_source.html#l00556">556</a> of file <a class="el" href="l4_2sys_2ipc_8h_source.html">ipc.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="l4_2sys_2ipc_8h_source.html#l00559">559</a> of file <a class="el" href="l4_2sys_2ipc_8h_source.html">ipc.h</a>.</p>
 
 </div>
 </div>
@@ -1045,7 +958,7 @@ Functions</h2></td></tr>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated on Sun Sep 24 2017 23:15:12 for L4Re - L4 Runtime Environment by
+    <li class="footer">Generated on Tue Aug 11 2020 13:28:15 for L4Re - L4 Runtime Environment by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.13 </li>
   </ul>

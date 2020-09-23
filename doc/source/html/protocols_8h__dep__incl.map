@@ -1,0 +1,51 @@
+<map id="l4/re/protocols.h" name="l4/re/protocols.h">
+<area shape="rect" id="node2" href="$rm.html" title="Region mapper interface. " alt="" coords="1707,162,1777,189"/>
+<area shape="rect" id="node21" href="$dataspace.html" title="Dataspace interface. " alt="" coords="2458,80,2578,107"/>
+<area shape="rect" id="node40" href="$dma__space.html" title="l4/re/dma_space" alt="" coords="3440,162,3567,189"/>
+<area shape="rect" id="node44" href="$parent.html" title="Parent interface. " alt="" coords="1696,80,1791,107"/>
+<area shape="rect" id="node45" href="$namespace.html" title="Namespace interface. " alt="" coords="241,251,368,278"/>
+<area shape="rect" id="node48" href="$debug.html" title="Debug interface. " alt="" coords="2780,80,2872,107"/>
+<area shape="rect" id="node49" href="$inhibitor_source.html" title="l4/re/inhibitor" alt="" coords="2653,80,2756,107"/>
+<area shape="rect" id="node50" href="$mmio__space_source.html" title="l4/re/mmio_space" alt="" coords="2897,80,3030,107"/>
+<area shape="rect" id="node3" href="$env.html" title="Environment interface. " alt="" coords="1191,251,1269,278"/>
+<area shape="rect" id="node5" href="$server_2l4virtio_source.html" title="l4/l4virtio/server\l/l4virtio" alt="" coords="3179,333,3302,375"/>
+<area shape="rect" id="node11" href="$vfs__impl_8h_source.html" title="l4/l4re_vfs/impl/vfs\l_impl.h" alt="" coords="2235,423,2374,464"/>
+<area shape="rect" id="node12" href="$util_2event.html" title="l4/re/util/event" alt="" coords="1571,341,1681,367"/>
+<area shape="rect" id="node17" href="$rm__impl_8h.html" title="Region map client stub implementation. " alt="" coords="1677,251,1820,278"/>
+<area shape="rect" id="node18" href="$event__buffer_source.html" title="l4/re/util/event_buffer" alt="" coords="1844,251,1997,278"/>
+<area shape="rect" id="node19" href="$region__mapping.html" title="Region handling. " alt="" coords="1476,251,1653,278"/>
+<area shape="rect" id="node20" href="$region__mapping__svr__2_source.html" title="l4/re/util/region_mapping\l_svr_2" alt="" coords="1705,333,1883,375"/>
+<area shape="rect" id="node4" href="$vcpu_source.html" title="l4/vcpu/vcpu" alt="" coords="1013,341,1111,367"/>
+<area shape="rect" id="node7" href="$env__ns_source.html" title="l4/re/util/env_ns" alt="" coords="444,341,565,367"/>
+<area shape="rect" id="node9" href="$ro__file__impl_8h_source.html" title="l4/l4re_vfs/impl/ro\l_file_impl.h" alt="" coords="741,423,874,464"/>
+<area shape="rect" id="node10" href="$vcon__stream__impl_8h_source.html" title="l4/l4re_vfs/impl/vcon\l_stream_impl.h" alt="" coords="1471,423,1621,464"/>
+<area shape="rect" id="node13" href="$icu__svr_source.html" title="l4/re/util/icu_svr" alt="" coords="1376,341,1495,367"/>
+<area shape="rect" id="node15" href="$kumem__alloc.html" title="Kumem allocator helper. " alt="" coords="641,341,797,367"/>
+<area shape="rect" id="node16" href="$object__registry_source.html" title="l4/re/util/object_registry" alt="" coords="821,341,988,367"/>
+<area shape="rect" id="node6" href="$virtio-block_source.html" title="l4/l4virtio/server\l/virtio&#45;block" alt="" coords="3179,423,3302,464"/>
+<area shape="rect" id="node8" href="$ns__fs__impl_8h_source.html" title="l4/l4re_vfs/impl/ns\l_fs_impl.h" alt="" coords="437,423,572,464"/>
+<area shape="rect" id="node14" href="$event__svr_source.html" title="l4/re/util/event_svr" alt="" coords="1931,430,2068,457"/>
+<area shape="rect" id="node22" href="$l4virtio_source.html" title="l4/l4virtio/l4virtio" alt="" coords="3242,162,3365,189"/>
+<area shape="rect" id="node23" href="$vfs_8h_source.html" title="l4/l4re_vfs/vfs.h" alt="" coords="2394,162,2514,189"/>
+<area shape="rect" id="node30" href="$goos_source.html" title="l4/re/video/goos" alt="" coords="2653,162,2775,189"/>
+<area shape="rect" id="node33" href="$goos__svr_source.html" title="l4/re/util/video/goos_svr" alt="" coords="2958,251,3129,278"/>
+<area shape="rect" id="node35" href="$event_source.html" title="l4/re/event" alt="" coords="2539,162,2628,189"/>
+<area shape="rect" id="node36" href="$vbus_source.html" title="l4/vbus/vbus" alt="" coords="3455,251,3552,278"/>
+<area shape="rect" id="node41" href="$dataspace__impl_8h.html" title="Dataspace client stub implementation. " alt="" coords="1853,155,2002,196"/>
+<area shape="rect" id="node42" href="$mem__alloc__impl_8h.html" title="Memory allocator client stub implementation. " alt="" coords="2027,155,2177,196"/>
+<area shape="rect" id="node43" href="$dataspace__svr_source.html" title="l4/re/util/dataspace_svr" alt="" coords="2202,162,2370,189"/>
+<area shape="rect" id="node24" href="$backend_source.html" title="l4/l4re_vfs/backend" alt="" coords="2022,251,2166,278"/>
+<area shape="rect" id="node28" href="$fd__store_8h_source.html" title="l4/l4re_vfs/impl/fd\l_store.h" alt="" coords="2292,244,2424,285"/>
+<area shape="rect" id="node25" href="$ns__fs_8h_source.html" title="l4/l4re_vfs/impl/ns_fs.h" alt="" coords="1186,341,1351,367"/>
+<area shape="rect" id="node26" href="$ro__file_8h_source.html" title="l4/l4re_vfs/impl/ro\l_file.h" alt="" coords="1907,333,2041,375"/>
+<area shape="rect" id="node27" href="$vcon__stream_8h_source.html" title="l4/l4re_vfs/impl/vcon\l_stream.h" alt="" coords="2065,333,2216,375"/>
+<area shape="rect" id="node29" href="$fd__store__impl_8h_source.html" title="l4/l4re_vfs/impl/fd\l_store_impl.h" alt="" coords="2393,333,2525,375"/>
+<area shape="rect" id="node31" href="$console_source.html" title="l4/re/console" alt="" coords="2500,251,2603,278"/>
+<area shape="rect" id="node32" href="$goos__fb_source.html" title="l4/re/util/video/goos_fb" alt="" coords="2627,251,2790,278"/>
+<area shape="rect" id="node34" href="$view_source.html" title="l4/re/video/view" alt="" coords="2814,251,2934,278"/>
+<area shape="rect" id="node37" href="$vbus__generic_source.html" title="l4/vbus/vbus_generic" alt="" coords="3326,341,3478,367"/>
+<area shape="rect" id="node38" href="$vbus__gpio_source.html" title="l4/vbus/vbus_gpio" alt="" coords="3503,341,3635,367"/>
+<area shape="rect" id="node39" href="$vbus__pci_source.html" title="l4/vbus/vbus_pci" alt="" coords="3659,341,3782,367"/>
+<area shape="rect" id="node46" href="$namespace__impl_8h.html" title="Namespace client stub implementation. " alt="" coords="5,333,161,375"/>
+<area shape="rect" id="node47" href="$name__space__svr_source.html" title="l4/re/util/name_space_svr" alt="" coords="185,341,368,367"/>
+</map>

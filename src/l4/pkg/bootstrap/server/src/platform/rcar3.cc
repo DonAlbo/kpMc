@@ -31,6 +31,10 @@ class Platform_arm_rcar3 : public Platform_base,
     kuart.base_baud    = 14745600;
     kuart.baud         = 115200;
     kuart.irqno        = 196;
+    kuart.access_type  = L4_kernel_options::Uart_type_mmio;
+    kuart_flags       |=   L4_kernel_options::F_uart_base
+                         | L4_kernel_options::F_uart_baud
+                         | L4_kernel_options::F_uart_irq;
     static L4::Uart_sh _uart;
     static L4::Io_register_block_mmio r(kuart.base_address);
     _uart.startup(&r);
@@ -41,8 +45,41 @@ class Platform_arm_rcar3 : public Platform_base,
 
   void setup_memory_map()
   {
-    mem_manager->ram->add(Region(0x048000000, 0x07fffffff, ".ram", Region::Ram));
+    // product register for R-Car Gen3
+    l4_uint32_t prr = *(l4_uint32_t*)0xFFF00044;
+    l4_uint32_t ufamily = (prr & 0xff00) >> 8;
+    const char *sfamily = NULL;
+    mem_manager->ram->add(Region(RAM_BASE,    0x07fffffff, ".ram", Region::Ram));
     mem_manager->ram->add(Region(0x600000000, 0x63fffffff, ".ram", Region::Ram));
+    switch (ufamily)
+      {
+      case 0x4f: sfamily = "r8a7795"; break;
+      case 0x52: sfamily = "r8a7796"; break;
+      }
+    if (sfamily)
+      {
+        char rev[16];
+        if ((prr & 0x7fff) == 0x5210)
+          snprintf(rev, sizeof(rev), "ES1.1");
+        else
+          snprintf(rev, sizeof(rev), "ES%u.%u",
+                   ((prr >> 4) & 0x0f) + 1, prr & 0xf);
+
+        if (ufamily == 0x4f)
+          {
+            mem_manager->ram->add(Region(0x500000000, 0x53fffffff, ".ram", Region::Ram));
+            mem_manager->ram->add(Region(0x700000000, 0x73fffffff, ".ram", Region::Ram));
+          }
+
+        printf("  Found R-Car Gen3 %s %s\n", sfamily, rev);
+      }
+    else
+      printf("Configured for R-Car Gen3 but found unknown product (prr=0x%08x)\n", prr);
+  }
+
+  void reboot()
+  {
+    reboot_psci();
   }
 };
 }

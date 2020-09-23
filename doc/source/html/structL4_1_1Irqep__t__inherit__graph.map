@@ -1,0 +1,5 @@
+<map id="L4::Irqep_t&lt; Derived, BASE, bool &gt;" name="L4::Irqep_t&lt; Derived, BASE, bool &gt;">
+<area shape="rect" id="node4" href="$structL4_1_1Irqep__t.html" title="{L4::Irqep_t\&lt; Irq_object \&gt;\n||+ dispatch()\l+ obj_cap()\l}" alt="" coords="5,500,180,592"/>
+<area shape="rect" id="node2" href="$structL4_1_1Epiface__t0.html" title="{L4::Epiface_t0\&lt; void,\l BASE \&gt;\n||+ get_buffer_demand()\l+ obj_cap()\l}" alt="" coords="9,175,176,281"/>
+<area shape="rect" id="node3" href="$structL4_1_1Epiface__t0.html" title="Epiface mixin for generic Kobject&#45;based interfaces. " alt="" coords="9,5,176,112"/>
+</map>

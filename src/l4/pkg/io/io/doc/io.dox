@@ -52,9 +52,9 @@
  * configuration may be split across several configuration files passed
  * to Io through the command line.
  *
- * To allow clients access to a available devices, a virtual system bus needs
+ * To allow clients access to available devices, a virtual system bus needs
  * to be created that lists the devices and their resources that should be
- * available to that client. The names of the busses correspond to the
+ * available to that client. The names of the buses correspond to the
  * capabilities given to Io in its launch configuration.
  *
  * A very simple configuration for Io could look like this:
@@ -98,9 +98,9 @@
  * - `rr` is the hexadecimal representation of the revision byte
  * - `xxxx:xx:xx.x` is the bus address in PCI nomenclature
  *
- * As a special extension io supports replacing the ID string with a
+ * As a special extension Io supports replacing the ID string with a
  * human-readable common PCI class name. The following table gives an overview
- * of the names known to io and their respective PCI class and subclass.
+ * of the names known to Io and their respective PCI class and subclass.
  *
  * Common Name          | Description                        | PCI ID string
  * ---------------------|------------------------------------|--------------
@@ -155,7 +155,7 @@
  * com_modem            | Modem                              | CC_0703
  * com_gpib             | GPIB controller                    | CC_0704
  * com_smart_card       | Smart card controller              | CC_0705
- * - | -
+ * - | - | -
  * serial_bus           | Serial bus controller              | CC_0c
  * firewire             | FireWire (IEEE 1394)               | CC_0c00
  * access_bus           | ACCESS bus                         | CC_0c01
@@ -178,4 +178,27 @@
  * concatenate multiple ID strings using `&`. An example where a specific
  * device from a specific vendor at a fixed bus address is matched would use
  * the string `PCI/VEN_vvvv&DEV_dddd&ADR_xxxx:xx:xx.x`.
+ *
+ * ### Isolation of PCIe devices ###
+ *
+ * PCIe encodes device communication with a network-like protocol with
+ * destination headers and packet fragmentation allowing a devices to talk
+ * directly to other devices. This potentially works against security
+ * boundaries for a system. E.g. two network cards could exchange packets and
+ * thereby leak information from one security domain to the other without
+ * involvement of the OS.
+ *
+ * PCIe introduced an optional capability named PCI Access Control Services
+ * (PCI/ACS) to control communication between PCIe devices.
+ *
+ * With PCI/ACS it is possible to restrict inter-device communication between
+ * PCIe devices.
+ *
+ * PCI/ACS is optional and for Intel chipsets, it is usually only implemented
+ * on high-end PCI platform controller hubs (PCHs), and is missing on low-end
+ * and mobile PCHs. On some Intel-PCHs there exist facilities that allow for
+ * similar isolation.
+ *
+ * If IO encounters a supported PCH, it will enable those facilities in order
+ * to enforce device isolation.
  */

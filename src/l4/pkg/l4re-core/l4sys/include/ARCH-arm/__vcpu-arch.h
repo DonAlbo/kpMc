@@ -19,6 +19,7 @@
 #pragma once
 
 #include <l4/sys/types.h>
+#include <l4/sys/__vcpu-arm.h>
 
 enum
 {
@@ -28,7 +29,7 @@ enum
    * This ID must match the version field in the l4_vcpu_state_t structure
    * after enabling vCPU mode or extended vCPU mode for a thread.
    */
-  L4_VCPU_STATE_VERSION = 0x33
+  L4_VCPU_STATE_VERSION = 0x35
 };
 
 /**
@@ -66,3 +67,40 @@ typedef struct l4_vcpu_ipc_regs_t
   l4_umword_t label;
   l4_umword_t _d2[8];
 } l4_vcpu_ipc_regs_t;
+
+/**
+ * IDs for extended vCPU state fields.
+ *
+ * Bits 14..15: are the field size:
+ *  * 0 = 32bit field
+ *  * 1 = register width field
+ *  * 2 = 64bit field
+ */
+enum L4_vcpu_e_field_ids
+{
+  L4_VCPU_E_HCR        = 0x4000,
+  L4_VCPU_E_TTBR0      = 0x8008,
+  L4_VCPU_E_TTBR1      = 0x8010,
+  L4_VCPU_E_TTBCR      = 0x0018,
+  L4_VCPU_E_SCTLR      = 0x001c,
+  L4_VCPU_E_DACR       = 0x0020,
+  L4_VCPU_E_FCSEIDR    = 0x0024,
+  L4_VCPU_E_CONTEXTIDR = 0x0028,
+
+  L4_VCPU_E_CNTKCTL    = 0x002c,
+  L4_VCPU_E_CNTVOFF    = 0x8060,
+  L4_VCPU_E_CNTVCVAL   = 0x8068,
+  L4_VCPU_E_CNTVCTL    = 0x0074,
+
+  L4_VCPU_E_VMPIDR     = 0x0078,
+  L4_VCPU_E_VPIDR      = 0x007c,
+
+  L4_VCPU_E_GIC_HCR    = 0x0080,
+  L4_VCPU_E_GIC_VTR    = 0x0084,
+  L4_VCPU_E_GIC_VMCR   = 0x0088,
+  L4_VCPU_E_GIC_MISR   = 0x008c,
+  L4_VCPU_E_GIC_EISR   = 0x0090,
+  L4_VCPU_E_GIC_ELSR   = 0x0094,
+  L4_VCPU_E_GIC_V2_LR0 = 0x0098,
+  L4_VCPU_E_GIC_V3_LR0 = 0x8098,
+};

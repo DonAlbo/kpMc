@@ -1,0 +1,13 @@
+<map id="L4Re::Rm::attach" name="L4Re::Rm::attach">
+<area shape="rect" id="node2" href="$classL4_1_1Ipc_1_1Cap.html#a14e40e3bf1f995e44c619b0016e7bb0b" title="Return the L4::Cap&lt;T&gt; of this Cap. " alt="" coords="201,5,325,32"/>
+<area shape="rect" id="node3" href="$classL4Re_1_1Rm.html#af4ad2b5650cb44bff10c217220def4c9" title="Detach a region from the address space. " alt="" coords="197,56,329,83"/>
+<area shape="rect" id="node4" href="$classL4_1_1Cap__base.html#ab4937bb12579c752564f7250760d0bda" title="Test whether the capability is a valid capability index (i.e., not L4_INVALID_CAP). " alt="" coords="182,107,343,133"/>
+<area shape="rect" id="node5" href="$group__l4__fpage__api.html#ga48705696780cda4e2f04dbdb54946f75" title="Create a memory flex page. " alt="" coords="224,157,301,184"/>
+<area shape="rect" id="node6" href="$group__l4__memory__api.html#ga96e3b2d8e69308aecbb11d1d24f61662" title="Round address up to the next page. " alt="" coords="204,208,321,235"/>
+<area shape="rect" id="node9" href="$classL4Re_1_1Dataspace.html#a7caf317574ca8fa0f43bcd333f7bb860" title="Map a part of a dataspace into a local memory area. " alt="" coords="181,259,344,301"/>
+<area shape="rect" id="node12" href="$classL4_1_1Task.html#a4b9294cc5d6338a36958df578f092a25" title="Revoke rights from the task. " alt="" coords="201,325,324,352"/>
+<area shape="rect" id="node7" href="$group__l4__memory__api.html#gae876a4c6e0f21b2ecbf17863dc7d11e4" title="Round value up to the next alignment with bits size. " alt="" coords="398,208,509,235"/>
+<area shape="rect" id="node8" href="$group__l4__memory__api.html#ga2be30f4e5dde3c85d115d2a9c77f6215" title="Determine how many machine words (l4_umword_t) are required to store a buffer of &#39;size&#39; bytes..." alt="" coords="563,208,713,235"/>
+<area shape="rect" id="node10" href="$namespaceL4.html#a92c0d3febc3cd6b35aa072d1bf2d9d11" title="Round a value up so the given number of lsb is zero. " alt="" coords="392,263,515,289"/>
+<area shape="rect" id="node11" href="$namespaceL4.html#a9e6e01651b5cc9d14d8436c6d5d46536" title="Round a value down so the given number of lsb is zero. " alt="" coords="579,288,697,315"/>
+</map>

@@ -94,10 +94,8 @@ $(document).ready(function(){initNavTree('group__l4virtio__block.html','');});
 <div id="dynsection-0-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-0-content" class="dyncontent" style="display:none;">
-<center><table><tr><td><img src="group__l4virtio__block.png" border="0" alt="" usemap="#group____l4virtio____block"/>
-<map name="group____l4virtio____block" id="group____l4virtio____block">
-<area shape="rect" id="node2" href="group__l4virtio.html" title="L4 VIRTIO Interface" alt="" coords="5,5,155,32"/>
-</map>
+<center><table><tr><td><div class="center"><iframe scrolling="no" frameborder="0" src="group__l4virtio__block.svg" width="383" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </td></tr></table></center>
 </div>
 <table class="memberdecls">
@@ -105,6 +103,9 @@ $(document).ready(function(){initNavTree('group__l4virtio__block.html','');});
 Data Structures</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structl4virtio__block__header__t.html">l4virtio_block_header_t</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Header structure of a request for a block device.  <a href="structl4virtio__block__header__t.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structl4virtio__block__discard__t.html">l4virtio_block_discard_t</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Structure used for the write zeroes and discard commands.  <a href="structl4virtio__block__discard__t.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structl4virtio__block__config__t.html">l4virtio_block_config_t</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Device configuration for block devices.  <a href="structl4virtio__block__config__t.html#details">More...</a><br /></td></tr>
@@ -116,6 +117,10 @@ Typedefs</h2></td></tr>
 typedef struct <a class="el" href="structl4virtio__block__header__t.html">l4virtio_block_header_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__l4virtio__block.html#ga8106cff903810d3089af6d2ba0f12643">l4virtio_block_header_t</a></td></tr>
 <tr class="memdesc:ga8106cff903810d3089af6d2ba0f12643"><td class="mdescLeft">&#160;</td><td class="mdescRight">Header structure of a request for a block device. <br /></td></tr>
 <tr class="separator:ga8106cff903810d3089af6d2ba0f12643"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga962d83522b4520df0abc6986aa573dc8"><td class="memItemLeft" align="right" valign="top"><a id="ga962d83522b4520df0abc6986aa573dc8"></a>
+typedef struct <a class="el" href="structl4virtio__block__discard__t.html">l4virtio_block_discard_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__l4virtio__block.html#ga962d83522b4520df0abc6986aa573dc8">l4virtio_block_discard_t</a></td></tr>
+<tr class="memdesc:ga962d83522b4520df0abc6986aa573dc8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Structure used for the write zeroes and discard commands. <br /></td></tr>
+<tr class="separator:ga962d83522b4520df0abc6986aa573dc8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga9a6e964daafe87f90a43785e1caea5c1"><td class="memItemLeft" align="right" valign="top"><a id="ga9a6e964daafe87f90a43785e1caea5c1"></a>
 typedef struct <a class="el" href="structl4virtio__block__config__t.html">l4virtio_block_config_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__l4virtio__block.html#ga9a6e964daafe87f90a43785e1caea5c1">l4virtio_block_config_t</a></td></tr>
 <tr class="memdesc:ga9a6e964daafe87f90a43785e1caea5c1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Device configuration for block devices. <br /></td></tr>
@@ -123,10 +128,15 @@ typedef struct <a class="el" href="structl4virtio__block__config__t.html">l4virt
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="enum-members"></a>
 Enumerations</h2></td></tr>
-<tr class="memitem:ga9ef2000d81e91613a9f39ef12a0ec52d"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__l4virtio__block.html#ga9ef2000d81e91613a9f39ef12a0ec52d">L4virtio_block_operations</a> { <a class="el" href="group__l4virtio__block.html#gga9ef2000d81e91613a9f39ef12a0ec52daa0a6fc1b7956ec00ba3128faf185c680">L4VIRTIO_BLOCK_T_IN</a> = 0, 
+<tr class="memitem:ga9ef2000d81e91613a9f39ef12a0ec52d"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__l4virtio__block.html#ga9ef2000d81e91613a9f39ef12a0ec52d">L4virtio_block_operations</a> { <br />
+&#160;&#160;<a class="el" href="group__l4virtio__block.html#gga9ef2000d81e91613a9f39ef12a0ec52daa0a6fc1b7956ec00ba3128faf185c680">L4VIRTIO_BLOCK_T_IN</a> = 0, 
 <a class="el" href="group__l4virtio__block.html#gga9ef2000d81e91613a9f39ef12a0ec52daa85ec590b2a7f0c5c27f9b2dbe6d1863">L4VIRTIO_BLOCK_T_OUT</a> = 1, 
 <a class="el" href="group__l4virtio__block.html#gga9ef2000d81e91613a9f39ef12a0ec52da5aa7f985f0af737980e39fc98f6574a0">L4VIRTIO_BLOCK_T_FLUSH</a> = 4, 
-<a class="el" href="group__l4virtio__block.html#gga9ef2000d81e91613a9f39ef12a0ec52da24408f89b892da0cf1f448064cf3e20e">L4VIRTIO_BLOCK_T_GET_ID</a> = 8
+<a class="el" href="group__l4virtio__block.html#gga9ef2000d81e91613a9f39ef12a0ec52da24408f89b892da0cf1f448064cf3e20e">L4VIRTIO_BLOCK_T_GET_ID</a> = 8, 
+<br />
+&#160;&#160;<a class="el" href="group__l4virtio__block.html#gga9ef2000d81e91613a9f39ef12a0ec52da06358452282b6237efb751b56ffcda59">L4VIRTIO_BLOCK_T_DISCARD</a> = 11, 
+<a class="el" href="group__l4virtio__block.html#gga9ef2000d81e91613a9f39ef12a0ec52dac893404d90eed7cd41929bc710249c49">L4VIRTIO_BLOCK_T_WRITE_ZEROES</a> = 13
+<br />
  }<tr class="memdesc:ga9ef2000d81e91613a9f39ef12a0ec52d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Kinds of operation over a block device.  <a href="group__l4virtio__block.html#ga9ef2000d81e91613a9f39ef12a0ec52d">More...</a><br /></td></tr>
 </td></tr>
 <tr class="separator:ga9ef2000d81e91613a9f39ef12a0ec52d"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -161,6 +171,10 @@ Enumerations</h2></td></tr>
 </td></tr>
 <tr><td class="fieldname"><a id="gga9ef2000d81e91613a9f39ef12a0ec52da24408f89b892da0cf1f448064cf3e20e"></a>L4VIRTIO_BLOCK_T_GET_ID&#160;</td><td class="fielddoc"><p>Get device ID. </p>
 </td></tr>
+<tr><td class="fieldname"><a id="gga9ef2000d81e91613a9f39ef12a0ec52da06358452282b6237efb751b56ffcda59"></a>L4VIRTIO_BLOCK_T_DISCARD&#160;</td><td class="fielddoc"><p>Discard a range of sectors. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga9ef2000d81e91613a9f39ef12a0ec52dac893404d90eed7cd41929bc710249c49"></a>L4VIRTIO_BLOCK_T_WRITE_ZEROES&#160;</td><td class="fielddoc"><p>Write zeroes to a range of sectors. </p>
+</td></tr>
 </table>
 
 <p class="definition">Definition at line <a class="el" href="virtio__block_8h_source.html#l00031">31</a> of file <a class="el" href="virtio__block_8h_source.html">virtio_block.h</a>.</p>
@@ -189,7 +203,7 @@ Enumerations</h2></td></tr>
 </td></tr>
 </table>
 
-<p class="definition">Definition at line <a class="el" href="virtio__block_8h_source.html#l00042">42</a> of file <a class="el" href="virtio__block_8h_source.html">virtio_block.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="virtio__block_8h_source.html#l00044">44</a> of file <a class="el" href="virtio__block_8h_source.html">virtio_block.h</a>.</p>
 
 </div>
 </div>
@@ -199,7 +213,7 @@ Enumerations</h2></td></tr>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated on Sun Sep 24 2017 23:15:11 for L4Re - L4 Runtime Environment by
+    <li class="footer">Generated on Tue Aug 11 2020 13:28:15 for L4Re - L4 Runtime Environment by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.13 </li>
   </ul>

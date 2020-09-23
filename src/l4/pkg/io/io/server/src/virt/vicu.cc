@@ -62,6 +62,33 @@ Sw_icu::get_msi_pin(unsigned msin)
   return p;
 }
 
+Io_irq_pin::Msi_src *
+Sw_icu::_find_msi_src(l4vbus_device_handle_t device)
+{
+  Device *dev = get_root()->get_dev_by_id(device);
+  if (!dev)
+    return nullptr;
+
+  Msi_src_feature *msi = dev->find_feature<Msi_src_feature>();
+  if (!msi)
+    {
+      d_printf(DBG_ALL, "%s: device has no MSI support\n", __func__);
+      return nullptr;
+    }
+
+  return msi->msi_src();
+}
+
+Io_irq_pin::Msi_src *
+Sw_icu::_find_msi_src(Device::Msi_src_info si)
+{
+  if (!si.svt())
+    return nullptr;
+
+  return get_root()->find_msi_src(si);
+}
+
+
 int
 Sw_icu::op_msi_info(L4::Icu::Rights, l4_umword_t irqnum, l4_uint64_t source,
                     l4_icu_msi_info_t &info)
@@ -74,25 +101,26 @@ Sw_icu::op_msi_info(L4::Icu::Rights, l4_umword_t irqnum, l4_uint64_t source,
   if (!msi)
     return -L4_EINVAL;
 
-  d_printf(DBG_ALL, "%s: irqnum=%lx: source=0x%05x\n",
-           __func__, irqnum, (unsigned)source);
+  Io_irq_pin::Msi_src *src;
 
-  Device::Msi_src_info si = source;
-
-  if (!si.svt())
+  // interpret source as the device handle and use that to lookup the device
+  if (source & L4vbus::Icu::Src_dev_handle)
+    src = _find_msi_src((l4vbus_device_handle_t)(source & ~L4vbus::Icu::Src_dev_handle));
+  else
     {
-      d_printf(DBG_WARN,
-               "warning: MSI %lx (bus: %s) without source ID will be blocked\n",
-               irqnum & ~L4::Icu::F_msi, get_root()->name());
-      return -L4_ERANGE;
+      Device::Msi_src_info si = source;
+
+      d_printf(DBG_ALL, "%s: irqnum=%lx: source=0x%05x\n",
+               __func__, irqnum, (unsigned)source);
+
+      src = _find_msi_src(si);
     }
 
-  Io_irq_pin::Msi_src *src = get_root()->find_msi_src(si);
   if (!src)
     {
       d_printf(DBG_WARN,
-               "warning: MSI source 0x%05x not found on bus %s\n",
-               si.v, get_root()->name());
+               "warning: MSI source for 0x%llx not found on bus %s\n",
+               source, get_root()->name());
       return -L4_ENODEV;
     }
 
@@ -170,8 +198,19 @@ Sw_icu::set_mode(unsigned irqn, l4_umword_t mode)
 int
 Sw_icu::unmask_irq(unsigned irqn)
 {
-  Irq_set::Iterator i = _irqs.find(irqn);
-  if (i == _irqs.end())
+  Irq_set *interrupts;
+
+  if (irqn & L4::Icu::F_msi)
+    {
+      interrupts = &_msis;
+      irqn &= ~L4::Icu::F_msi;
+    }
+  else
+    interrupts = &_irqs;
+
+  Irq_set::Iterator i = interrupts->find(irqn);
+
+  if (i == interrupts->end())
     return -L4_ENOENT;
 
   if (!i->unmask_via_icu())
@@ -262,9 +301,7 @@ Sw_icu::Sw_irq_pin::trigger() const
 unsigned
 Sw_icu::Sw_irq_pin::l4_type() const
 {
-  unsigned m = type();
-  unsigned r = (m & S_irq_type_mask) / Resource::Irq_type_base;
-  return r;
+  return (type() & S_irq_type_mask) / Resource::Irq_type_base;
 }
 
 int
@@ -292,7 +329,10 @@ Sw_icu::Sw_irq_pin::allocate_master_irq()
   assert (_master->shared());
   Ref_cap<L4::Irq_mux>::Cap lirq = chkcap(L4Re::Util::cap_alloc.alloc<L4::Irq_mux>(),
       "allocating IRQ capability");
-  // printf("IRQ mode = %x -> %x\n", type(), l4_type());
+
+  if (0)
+    printf("IRQ mode = %x -> %x\n", type(), l4_type());
+
   chksys(L4Re::Env::env()->factory()->create(lirq.get()), "allocating IRQ");
   chksys(_master->bind(lirq, l4_type()), "binding IRQ");
   _master->set_chained(true);
@@ -399,7 +439,7 @@ Sw_icu::Sw_irq_pin::_unbind(bool deleted)
     }
 
   _irq = L4::Cap<L4::Irq>::Invalid;
-  _state = 0;
+  _state &= S_user_mask;
   return err;
 }
 

@@ -1,0 +1,6 @@
+<map id="L4::Ipc::make_cap_full" name="L4::Ipc::make_cap_full">
+<area shape="rect" id="node2" href="$classL4_1_1Ipc_1_1Cap.html#a14e40e3bf1f995e44c619b0016e7bb0b" title="Return the L4::Cap&lt;T&gt; of this Cap. " alt="" coords="231,5,355,32"/>
+<area shape="rect" id="node3" href="$classL4_1_1Ipc_1_1Cap.html#a5a42b8700c56c318ebe9ff6612db27f1" title="Return the send flexpage for this Cap (see l4_fpage_t) " alt="" coords="224,56,361,83"/>
+<area shape="rect" id="node4" href="$classL4_1_1Cap__base.html#ab4937bb12579c752564f7250760d0bda" title="Test whether the capability is a valid capability index (i.e., not L4_INVALID_CAP). " alt="" coords="212,107,373,133"/>
+<area shape="rect" id="node5" href="$classL4_1_1Ipc_1_1Cap.html#aa2f10622d16d27414f1cc69fb67853d8" title="Return true if this Cap is valid. " alt="" coords="219,157,367,184"/>
+</map>

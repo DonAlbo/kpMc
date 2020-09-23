@@ -11,6 +11,7 @@ var searchData=
   ['l4_5frpc_5fnf',['L4_RPC_NF',['../ipc__iface.html#ada755c1db9f58471fc483ccfbed1f518',1,'ipc_iface']]],
   ['l4_5frpc_5fnf_5fop',['L4_RPC_NF_OP',['../ipc__iface.html#aaf74b7e287f17aa9629ac694bbe6bc39',1,'ipc_iface']]],
   ['l4_5frpc_5fop',['L4_RPC_OP',['../ipc__iface.html#a0264d26151de8ed0903379a035c223bb',1,'ipc_iface']]],
+  ['l4_5ftypes_5fflags_5fops_5fdef',['L4_TYPES_FLAGS_OPS_DEF',['../types.html#a1954940a1f059369e28521cfe8e90a03',1,'types']]],
   ['l4util_5fmb_5faout_5fsyms',['L4UTIL_MB_AOUT_SYMS',['../mb__info_8h.html#a86c4363bd29bc93b54348914774bf629',1,'mb_info.h']]],
   ['l4util_5fmb_5fapm_5ftable',['L4UTIL_MB_APM_TABLE',['../mb__info_8h.html#a963bd5a05f4751c6304d2508ec637a15',1,'mb_info.h']]],
   ['l4util_5fmb_5fboot_5floader_5fname',['L4UTIL_MB_BOOT_LOADER_NAME',['../mb__info_8h.html#a7a8a9008a53d61c2138832721eb49bf1',1,'mb_info.h']]],

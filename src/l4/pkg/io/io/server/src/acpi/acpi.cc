@@ -20,6 +20,7 @@
 #include "main.h"
 #include "phys_space.h"
 #include "hw_root_bus.h"
+#include "resource_provider.h"
 #include <map>
 #include <l4/re/error_helper>
 #include <l4/sys/iommu>
@@ -35,6 +36,8 @@ extern "C" {
 #include <l4/cxx/list>
 #include <l4/sys/platform_control>
 #include <l4/re/env>
+#include <l4/re/util/unique_cap>
+#include <l4/re/util/cap_alloc>
 
 #define _COMPONENT		ACPI_BUS_COMPONENT
 ACPI_MODULE_NAME("l4main");
@@ -343,7 +346,7 @@ static int acpi_enter_sleep(int sleepstate = 3 /* s3 */)
 
   status = AcpiHwEnableAllWakeupGpes();
   if (ACPI_FAILURE(status))
-    d_printf(DBG_WARN, "waring: cannot enable all wakeup GPEs\n");
+    d_printf(DBG_WARN, "warning: cannot enable all wakeup GPEs\n");
 
   d_printf(DBG_DEBUG2, "call platform control object for suspend\n");
   int err = 0;
@@ -408,7 +411,7 @@ static void acpi_get_name(ACPI_HANDLE handle, char name[5])
 
   status = AcpiGetObjectInfo(handle, info.ref());
   if (ACPI_FAILURE(status))
-    strncpy(name, "NONE", 4);
+    strncpy(name, "NONE", 5);
   else
     {
       l4_uint32_t nv = info->Name;
@@ -417,8 +420,8 @@ static void acpi_get_name(ACPI_HANDLE handle, char name[5])
           name[i] = nv & 0xff;
           nv >>= 8;
         }
+      name[4] = 0;
     }
-  name[4] = 0;
 }
 
 /**
@@ -453,7 +456,7 @@ acpi_trace_notifications(ACPI_HANDLE handle, UINT32 event, void *)
 
 struct Acpi_pm : Hw::Root_bus::Pm
 {
-  int suspend()
+  int suspend() override
   {
     int res;
     if ((res = acpi_enter_sleep()) < 0)
@@ -462,7 +465,7 @@ struct Acpi_pm : Hw::Root_bus::Pm
     return res;
   }
 
-  int shutdown()
+  int shutdown() override
   {
     int res;
     if ((res = acpi_enter_sleep(5)) < 0)
@@ -471,7 +474,7 @@ struct Acpi_pm : Hw::Root_bus::Pm
     return res;
   }
 
-  int reboot()
+  int reboot() override
   {
     ACPI_STATUS status = AcpiReset();
 
@@ -617,8 +620,7 @@ public:
   {
     assert (!_kern_dma_space);
 
-    L4Re::Util::Auto_cap<L4::Task>::Cap dma;
-    dma = L4Re::chkcap(L4Re::Util::cap_alloc.alloc<L4::Task>());
+    auto dma = L4Re::chkcap(L4Re::Util::make_unique_cap<L4::Task>());
     L4Re::chksys(L4Re::Env::env()->factory()->create(dma.get(), L4_PROTO_DMA_SPACE));
 
     set_managed_kern_dma_space(dma.release());
@@ -976,6 +978,10 @@ Acpi_dev::discover_crs(Hw::Device *host)
 	                              d->Irq.Interrupts[c]));
 	  break;
 
+        case ACPI_RESOURCE_TYPE_DMA:
+          // ignore this legacy type to avoid warnings about unknown types
+          break;
+
 	case ACPI_RESOURCE_TYPE_EXTENDED_IRQ:
 	  flags = Resource::Irq_res | Resource::Irq_type_base;
 	  flags |= (!d->ExtendedIrq.Triggering) * Resource::Irq_type_base * L4_IRQ_F_LEVEL;
@@ -1138,12 +1144,16 @@ Acpi_device_driver::find(unsigned short type)
 
 Acpi_dev *
 Acpi_device_driver::probe(Hw::Device *device, ACPI_HANDLE acpi_hdl,
-                          ACPI_DEVICE_INFO const *info)
+                          ACPI_DEVICE_INFO const *)
 {
+  ACPI_NAMESPACE_NODE *node = AcpiNsValidateHandle(acpi_hdl);
   Acpi_dev *adev = new Acpi_dev(acpi_hdl);
-  if ((info->Valid & ACPI_VALID_STA)
-      && (info->CurrentStatus & ACPI_STA_DEVICE_ENABLED))
+  UINT32 sta;
+
+  if (ACPI_SUCCESS(AcpiUtExecute_STA(node, &sta))
+      && (sta & ACPI_STA_DEVICE_ENABLED))
     adev->discover_crs(device);
+
   device->add_feature(adev);
   return adev;
 }

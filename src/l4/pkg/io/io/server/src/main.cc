@@ -46,8 +46,6 @@
 #include <lauxlib.h>
 #include <lualib.h>
 
-#include "lua_glue.swg.h"
-
 namespace {
 
 static Hw::Root_bus *
@@ -87,26 +85,24 @@ static const luaL_Reg libs[] =
   { NULL, NULL }
 };
 
-using L4Re::Util::Auto_cap;
-
 class Io_config_x : public Io_config
 {
 public:
   Io_config_x()
   : _do_transparent_msi(false), _verbose_lvl(1) {}
 
-  bool transparent_msi(Hw::Device *) const
+  bool transparent_msi(Hw::Device *) const override
   { return _do_transparent_msi; }
 
-  bool legacy_ide_resources(Hw::Device *) const
+  bool legacy_ide_resources(Hw::Device *) const override
   { return true; }
 
-  bool expansion_rom(Hw::Device *) const
+  bool expansion_rom(Hw::Device *) const override
   { return false; }
 
   void set_transparent_msi(bool v) { _do_transparent_msi = v; }
 
-  int verbose() const { return _verbose_lvl; }
+  int verbose() const override { return _verbose_lvl; }
   void inc_verbosity() { ++_verbose_lvl; }
 
 private:
@@ -189,7 +185,6 @@ int add_vbus(Vi::Device *dev)
 
   b->request_child_resources();
   b->allocate_pending_child_resources();
-  b->setup_resources();
   if (!registry->register_obj(b, b->name()).is_valid())
     {
       d_printf(DBG_WARN, "WARNING: Service registration failed: '%s'\n", b->name());
@@ -199,29 +194,6 @@ int add_vbus(Vi::Device *dev)
     dump(b);
   return 0;
 }
-
-
-struct Add_system_bus
-{
-  void operator () (Vi::Device *dev)
-  {
-    Vi::System_bus *b = dynamic_cast<Vi::System_bus*>(dev);
-    if (!b)
-      {
-        d_printf(DBG_ERR, "ERROR: found non system-bus device as root device, ignored\n");
-	return;
-      }
-
-    b->request_child_resources();
-    b->allocate_pending_child_resources();
-    b->setup_resources();
-    if (!registry->register_obj(b, b->name()).is_valid())
-      {
-	d_printf(DBG_WARN, "WARNING: Service registration failed: '%s'\n", b->name());
-	return;
-      }
-  }
-};
 
 
 static int
@@ -257,7 +229,7 @@ read_config(char const *cfg_file, lua_State *lua)
       d_printf(DBG_ERR, "%s: cannot open/read file: %s\n", cfg_file, lua_err);
       exit(1);
     default:
-      d_printf(DBG_ERR, "%s: unknown error: %s\n", cfg_file, lua_err);
+      d_printf(DBG_ERR, "%s: unknown error\n", cfg_file);
       exit(1);
     }
 
@@ -391,6 +363,25 @@ run(int argc, char * const *argv)
     }
 
   luaopen_Io(lua);
+
+  extern char const _binary_io_lua_start[];
+  extern char const _binary_io_lua_end[];
+
+  if (luaL_loadbuffer(lua, _binary_io_lua_start,
+                      _binary_io_lua_end - _binary_io_lua_start,
+                      "@io.lua"))
+    {
+      d_printf(DBG_ERR, "INTERNAL: lua error: %s.\n", lua_tostring(lua, -1));
+      lua_pop(lua, lua_gettop(lua));
+      return 1;
+    }
+
+  if (lua_pcall(lua, 0, 1, 0))
+    {
+      d_printf(DBG_ERR, "INTERNAL: lua error: %s.\n", lua_tostring(lua, -1));
+      lua_pop(lua, lua_gettop(lua));
+      return 1;
+    }
 
   for (; argfileidx < argc; ++argfileidx)
     read_config(argv[argfileidx], lua);

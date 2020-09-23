@@ -112,8 +112,7 @@ protected:
   u64 _sz_chip;
 
   int _bus_width;
-  int _delay;
-  int _options;
+  int _options = 0;
 
 private:
   State _state;
@@ -187,7 +186,7 @@ protected:
     { return !(addr & (sz_write - 1)); }
 
   virtual u8 rd_dat() = 0;
-  virtual void rd_dat(const u8 *buf, unsigned len) = 0;
+  virtual void rd_dat(u8 *buf, unsigned len) = 0;
   virtual void wr_dat(const u8 *buf, unsigned len) = 0;
 
   bool is_wp();

@@ -1,0 +1,6 @@
+<map id="L4::Server_object::dispatch" name="L4::Server_object::dispatch">
+<area shape="rect" id="node2" href="$namespaceL4.html#ade8c6f7c3471209d45401e564d3fd3b7" title="static_cast for capabilities. " alt="" coords="213,5,315,32"/>
+<area shape="rect" id="node4" href="$classL4_1_1Server__object.html#a505f2d9c6fc2794613243764095b0cbe" title="The abstract handler for client requests to the object. " alt="" coords="195,57,333,98"/>
+<area shape="rect" id="node5" href="$structL4_1_1Epiface.html#a0d454b9446bdf9e317b09574a5155fe0" title="Get the capability to the kernel object belonging to this object. " alt="" coords="191,123,337,149"/>
+<area shape="rect" id="node3" href="$classL4_1_1Cap__base.html#a90ff089ca2442b128c2b2b0e1c22c6d7" title="Return capability selector. " alt="" coords="385,5,523,32"/>
+</map>

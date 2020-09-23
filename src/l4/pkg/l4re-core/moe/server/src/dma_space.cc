@@ -57,7 +57,6 @@ public:
     // XXX: think about splitting etc.
     delete m;
     return 0;
-    //return ds->dma_unmap(0, offset, size, attrs, dir);
   }
 
   void remove(Dma::Mapping *m) override
@@ -122,12 +121,12 @@ private:
       }
   }
 
-  L4::Cap<L4::Task> dma_kern_space;
+  L4::Cap<L4::Task> _dma_kern_space;
 
   bool is_equal(L4::Cap<L4::Task> s) const
   {
     L4::Cap<L4::Task> myself(L4_BASE_TASK_CAP);
-    return myself->cap_equal(s, dma_kern_space).label();
+    return myself->cap_equal(s, _dma_kern_space).label();
   }
 
   void remove(Dma::Mapping *m) override
@@ -153,7 +152,7 @@ private:
          if (0)
            printf("DMA: unmap   %lx-%lx\n", a, a+(1UL << o)-1);
 
-         dma_kern_space->unmap(fp, L4_FP_ALL_SPACES);
+         _dma_kern_space->unmap(fp, L4_FP_ALL_SPACES);
          s -= (1UL << o);
          a += (1UL << o);
        }
@@ -161,13 +160,13 @@ private:
 
 public:
   explicit Task_mapper(L4::Cap<L4::Task> s)
-  : dma_kern_space(s)
+  : _dma_kern_space(s)
   { _mappers.add(this); }
 
   ~Task_mapper() noexcept
   {
-    if (dma_kern_space)
-      object_pool.cap_alloc()->free(dma_kern_space);
+    if (_dma_kern_space)
+      object_pool.cap_alloc()->free(_dma_kern_space);
   }
 
   static Task_mapper *find_mapper(L4::Cap<L4::Task> task)
@@ -185,8 +184,8 @@ public:
     if (0)
       printf("DMA %p: map: offs=%lx sz=%zx ...\n", this, offset, *_size);
 
-    // FIXME: do correct page alignment etc.
-    offset = l4_trunc_page(offset);
+    // Only full pages can be mapped, so work with a rounded offset internally.
+    l4_addr_t aligned_offset = l4_trunc_page(offset);
 
     unsigned long max_sz = ds->round_size();
     if (offset >= max_sz)
@@ -197,7 +196,7 @@ public:
     if (*_size > max_sz)
       *_size = max_sz;
 
-    l4_size_t size = *_size;
+    l4_size_t size = *_size + (offset - aligned_offset);
     l4_addr_t a = find_free(min, max, size, L4_SUPERPAGESHIFT); //ds->page_shift());
     if (a == L4_INVALID_ADDR)
       L4Re::chksys(-L4_ENOMEM);
@@ -209,30 +208,36 @@ public:
 
     node->key = Region(a, a + size - 1);
     if (!_map.insert(node.get()).second)
-      L4Re::chksys(-L4_ENOMEM);
+      {
+        // This should not really happen if find_free() above found a free
+        // region.
+        L4Re::chksys(-L4_EEXIST);
+      }
 
     node->mapper = this;
     node->attrs = attrs;
     node->dir = dir;
 
-    *dma_addr = a;
+    // Return the address of the requested offset. This works with unmap
+    // below because unmap accepts any address in the region for unmapping.
+    *dma_addr = a + (offset - aligned_offset);
     for (;;)
       {
         L4::Ipc::Snd_fpage fpage;
-        L4Re::chksys(ds->map(offset, a, Moe::Dataspace::Writable,
+        L4Re::chksys(ds->map(aligned_offset, a, L4Re::Dataspace::F::RW,
                              a, a + size - 1, fpage));
 
         L4::Cap<L4::Task> myself(L4_BASE_TASK_CAP);
 
         l4_fpage_t f;
         f.raw = fpage.data();
-        L4Re::chksys(dma_kern_space->map(myself, f, a));
+        L4Re::chksys(_dma_kern_space->map(myself, f, a));
 
         unsigned long s = 1UL << fpage.order();
         if (size <= s)
           break;
 
-        offset += s;
+        aligned_offset += s;
         a += s;
         size -= s;
       }
@@ -248,7 +253,6 @@ public:
 
     // XXX: think about node splitting, merging
     delete m;
-    //return ds->dma_unmap(0, offset, size, attrs, dir);
     return 0;
   }
 };

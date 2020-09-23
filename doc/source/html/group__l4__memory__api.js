@@ -16,8 +16,9 @@ var group__l4__memory__api =
     [ "l4_addr_consts_t", "group__l4__memory__api.html#ga5cbba3eb068bbd8339e70dfc40d018a9", [
       [ "L4_INVALID_ADDR", "group__l4__memory__api.html#gga5cbba3eb068bbd8339e70dfc40d018a9ab57b8e497dd882e24a3f85c4521cc7cb", null ]
     ] ],
+    [ "l4_bytes_to_mwords", "group__l4__memory__api.html#ga2be30f4e5dde3c85d115d2a9c77f6215", null ],
     [ "l4_round_page", "group__l4__memory__api.html#ga96e3b2d8e69308aecbb11d1d24f61662", null ],
-    [ "l4_round_size", "group__l4__memory__api.html#gae8aa66c17956ac2dfc2a6d5788fd97a9", null ],
+    [ "l4_round_size", "group__l4__memory__api.html#gae876a4c6e0f21b2ecbf17863dc7d11e4", null ],
     [ "l4_trunc_page", "group__l4__memory__api.html#ga70b72ae96c18cb49a3445198711bba0d", null ],
     [ "l4_trunc_size", "group__l4__memory__api.html#ga792959ba1e87fecf90018876f32d7bc9", null ]
 ];

@@ -114,6 +114,8 @@ define SRC_libc/stdlib
   random_r
   realpath
   setenv
+  srand48
+  srand48_r
   stdlib
   strtol
   strtoll
@@ -289,6 +291,7 @@ define SRC_libc/misc
   dirent/telldir
   error/err
   fnmatch/fnmatch
+  getauxval
   glob/glob
   internals/errno
   internals/h_errno
@@ -611,6 +614,10 @@ define SRC_libcrypt
   crypt
   des
   md5
+  sha256
+  sha256-crypt
+  sha512
+  sha512-crypt
 endef
 
 define SRC_libm

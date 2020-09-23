@@ -97,10 +97,8 @@ $(document).ready(function(){initNavTree('structL4virtio_1_1Svr_1_1Bad__descript
 <div id="dynsection-0-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-0-content" class="dyncontent" style="display:none;">
-<div class="center"><img src="structL4virtio_1_1Svr_1_1Bad__descriptor__coll__graph.png" border="0" usemap="#L4virtio_1_1Svr_1_1Bad__descriptor_coll__map" alt="Collaboration graph"/></div>
-<map name="L4virtio_1_1Svr_1_1Bad__descriptor_coll__map" id="L4virtio_1_1Svr_1_1Bad__descriptor_coll__map">
-<area shape="rect" id="node2" href="classL4virtio_1_1Svr_1_1Request__processor.html" title="Encapsulate the state for processing a VIRTIO request. " alt="" coords="5,5,159,156"/>
-</map>
+<div class="center"><iframe scrolling="no" frameborder="0" src="structL4virtio_1_1Svr_1_1Bad__descriptor__coll__graph.svg" width="164" height="331"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-types"></a>
@@ -122,6 +120,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:ae82011a511ea644185bceea4956910f3"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structL4virtio_1_1Svr_1_1Bad__descriptor.html#ae82011a511ea644185bceea4956910f3">Bad_descriptor</a> (<a class="el" href="classL4virtio_1_1Svr_1_1Request__processor.html">Request_processor</a> const *<a class="el" href="structL4virtio_1_1Svr_1_1Bad__descriptor.html#a3150820d3477fd80ee02180e4281f5ff">proc</a>, <a class="el" href="structL4virtio_1_1Svr_1_1Bad__descriptor.html#a6d0361d240b52210a4a6bcb5570a6a25">Error</a> e)</td></tr>
 <tr class="memdesc:ae82011a511ea644185bceea4956910f3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Make a bad descriptor exception.  <a href="#ae82011a511ea644185bceea4956910f3">More...</a><br /></td></tr>
 <tr class="separator:ae82011a511ea644185bceea4956910f3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a51453cd96d2d1e6e8593396791ee42d5"><td class="memItemLeft" align="right" valign="top">char const  *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structL4virtio_1_1Svr_1_1Bad__descriptor.html#a51453cd96d2d1e6e8593396791ee42d5">message</a> () const</td></tr>
+<tr class="memdesc:a51453cd96d2d1e6e8593396791ee42d5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get a human readable description of the error code.  <a href="#a51453cd96d2d1e6e8593396791ee42d5">More...</a><br /></td></tr>
+<tr class="separator:a51453cd96d2d1e6e8593396791ee42d5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Data Fields</h2></td></tr>
@@ -133,7 +134,7 @@ Data Fields</h2></td></tr>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Exception used by Queue to indicate descriptor errors. </p>
 
-<p class="definition">Definition at line <a class="el" href="virtio_source.html#l00329">329</a> of file <a class="el" href="virtio_source.html">virtio</a>.</p>
+<p class="definition">Definition at line <a class="el" href="virtio_source.html#l00325">325</a> of file <a class="el" href="virtio_source.html">virtio</a>.</p>
 </div><h2 class="groupheader">Member Enumeration Documentation</h2>
 <a id="a6d0361d240b52210a4a6bcb5570a6a25"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a6d0361d240b52210a4a6bcb5570a6a25">&#9670;&nbsp;</a></span>Error</h2>
@@ -161,7 +162,7 @@ Data Fields</h2></td></tr>
 </td></tr>
 </table>
 
-<p class="definition">Definition at line <a class="el" href="virtio_source.html#l00332">332</a> of file <a class="el" href="virtio_source.html">virtio</a>.</p>
+<p class="definition">Definition at line <a class="el" href="virtio_source.html#l00328">328</a> of file <a class="el" href="virtio_source.html">virtio</a>.</p>
 
 </div>
 </div>
@@ -209,7 +210,38 @@ Data Fields</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="virtio_source.html#l00352">352</a> of file <a class="el" href="virtio_source.html">virtio</a>.</p>
+<p class="definition">Definition at line <a class="el" href="virtio_source.html#l00348">348</a> of file <a class="el" href="virtio_source.html">virtio</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a id="a51453cd96d2d1e6e8593396791ee42d5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a51453cd96d2d1e6e8593396791ee42d5">&#9670;&nbsp;</a></span>message()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">char const* L4virtio::Svr::Bad_descriptor::message </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Get a human readable description of the error code. </p>
+<dl class="section return"><dt>Returns</dt><dd>Message describing the error. </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="virtio_source.html#l00357">357</a> of file <a class="el" href="virtio_source.html">virtio</a>.</p>
 
 </div>
 </div>
@@ -223,7 +255,7 @@ Data Fields</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="namespaceL4virtio.html">L4virtio</a></li><li class="navelem"><b>Svr</b></li><li class="navelem"><a class="el" href="structL4virtio_1_1Svr_1_1Bad__descriptor.html">Bad_descriptor</a></li>
-    <li class="footer">Generated on Sun Sep 24 2017 23:15:14 for L4Re - L4 Runtime Environment by
+    <li class="footer">Generated on Tue Aug 11 2020 13:28:17 for L4Re - L4 Runtime Environment by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.13 </li>
   </ul>

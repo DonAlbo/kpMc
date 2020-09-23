@@ -777,7 +777,6 @@ _GLIBCXX_BEGIN_NAMESPACE_CONTAINER
 
       /**
        *  @brief Attempts to insert a std::pair into the %map.
-
        *  @param __x Pair to be inserted (see std::make_pair for easy
        *	     creation of pairs).
        *
@@ -790,19 +789,26 @@ _GLIBCXX_BEGIN_NAMESPACE_CONTAINER
        *  first element (the key) is not already present in the %map.
        *
        *  Insertion requires logarithmic time.
+       *  @{
        */
       std::pair<iterator, bool>
       insert(const value_type& __x)
       { return _M_t._M_insert_unique(__x); }
 
 #if __cplusplus >= 201103L
-      template<typename _Pair, typename = typename
-	       std::enable_if<std::is_constructible<value_type,
-						    _Pair&&>::value>::type>
-	std::pair<iterator, bool>
+      // _GLIBCXX_RESOLVE_LIB_DEFECTS
+      // 2354. Unnecessary copying when inserting into maps with braced-init
+      std::pair<iterator, bool>
+      insert(value_type&& __x)
+      { return _M_t._M_insert_unique(std::move(__x)); }
+
+      template<typename _Pair>
+	__enable_if_t<is_constructible<value_type, _Pair>::value,
+		      pair<iterator, bool>>
 	insert(_Pair&& __x)
-	{ return _M_t._M_insert_unique(std::forward<_Pair>(__x)); }
+	{ return _M_t._M_emplace_unique(std::forward<_Pair>(__x)); }
 #endif
+      // @}
 
 #if __cplusplus >= 201103L
       /**
@@ -839,6 +845,7 @@ _GLIBCXX_BEGIN_NAMESPACE_CONTAINER
        *  for more on @a hinting.
        *
        *  Insertion requires logarithmic time (if the hint is not taken).
+       *  @{
        */
       iterator
 #if __cplusplus >= 201103L
@@ -849,14 +856,21 @@ _GLIBCXX_BEGIN_NAMESPACE_CONTAINER
       { return _M_t._M_insert_unique_(__position, __x); }
 
 #if __cplusplus >= 201103L
-      template<typename _Pair, typename = typename
-	       std::enable_if<std::is_constructible<value_type,
-						    _Pair&&>::value>::type>
-	iterator
+      // _GLIBCXX_RESOLVE_LIB_DEFECTS
+      // 2354. Unnecessary copying when inserting into maps with braced-init
+      iterator
+      insert(const_iterator __position, value_type&& __x)
+      { return _M_t._M_insert_unique_(__position, std::move(__x)); }
+
+      template<typename _Pair>
+	__enable_if_t<is_constructible<value_type, _Pair>::value, iterator>
 	insert(const_iterator __position, _Pair&& __x)
-	{ return _M_t._M_insert_unique_(__position,
-					std::forward<_Pair>(__x)); }
+	{
+	  return _M_t._M_emplace_hint_unique(__position,
+					     std::forward<_Pair>(__x));
+	}
 #endif
+      // @}
 
       /**
        *  @brief Template function that attempts to insert a range of elements.

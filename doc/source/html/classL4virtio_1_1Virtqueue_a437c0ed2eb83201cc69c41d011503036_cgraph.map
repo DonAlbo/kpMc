@@ -1,3 +1,4 @@
 <map id="L4virtio::Virtqueue::setup_simple" name="L4virtio::Virtqueue::setup_simple">
-<area shape="rect" id="node2" href="$group__l4__memory__api.html#gae8aa66c17956ac2dfc2a6d5788fd97a9" title="Round value up to the next alignment with bits size. " alt="" coords="187,13,297,39"/>
+<area shape="rect" id="node2" href="$group__l4__memory__api.html#gae876a4c6e0f21b2ecbf17863dc7d11e4" title="Round value up to the next alignment with bits size. " alt="" coords="187,13,297,39"/>
+<area shape="rect" id="node3" href="$group__l4__memory__api.html#ga2be30f4e5dde3c85d115d2a9c77f6215" title="Determine how many machine words (l4_umword_t) are required to store a buffer of &#39;size&#39; bytes..." alt="" coords="345,13,496,39"/>
 </map>

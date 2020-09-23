@@ -33,15 +33,24 @@ class Device;
 class Dev_feature
 {
 public:
-  virtual ~Dev_feature() = 0;
   virtual bool match_hw_feature(Hw::Dev_feature const *) const = 0;
   virtual int dispatch(l4_umword_t obj, l4_uint32_t func, L4::Ipc::Iostream &ios) = 0;
   virtual Device *host() const = 0;
   virtual void set_host(Device *d) = 0;
   virtual l4_uint32_t interface_type() const = 0;
+
+protected:
+  ~Dev_feature() = default;
 };
 
-inline Dev_feature::~Dev_feature() {}
+class Msi_src_feature : public Dev_feature
+{
+public:
+  virtual Io_irq_pin::Msi_src *msi_src() const = 0;
+
+protected:
+  ~Msi_src_feature() = default;
+};
 
 
 class Device : public Generic_device, public Device_tree_mixin<Device>
@@ -82,7 +91,7 @@ public:
   virtual ~Device()
   { __devs.erase(l4vbus_device_handle_t(this)); }
 
-  char const *name() const
+  char const *name() const override
   { return _name.c_str(); }
 
   bool name(cxx::String const &n)
@@ -91,7 +100,7 @@ public:
     return true;
   }
 
-  bool resource_allocated(Resource const *) const;
+  bool resource_allocated(Resource const *) const override;
 
   virtual int add_filter(cxx::String const &, cxx::String const &)
   { return -ENODEV; }
@@ -105,10 +114,10 @@ public:
   virtual void finalize_setup()
   {}
 
-  Device *parent() const { return _dt.parent(); }
-  Device *children() const { return _dt.children(); }
-  Device *next() const { return _dt.next(); }
-  int depth() const { return _dt.depth(); }
+  Device *parent() const override { return _dt.parent(); }
+  Device *children() const override { return _dt.children(); }
+  Device *next() const override { return _dt.next(); }
+  int depth() const override { return _dt.depth(); }
 
   virtual Io::Event_source_infos const *get_event_infos() const
   { return 0; }
@@ -124,13 +133,14 @@ public:
   Device() : _name("(noname)")
   { __devs.insert(l4vbus_device_handle_t(this)); }
 
-  void dump(int indent) const;
+  Device *get_dev_by_id(l4vbus_device_handle_t id);
+
+  void dump(int indent) const override;
 
 protected:
   // helper functions
   int get_by_hid(L4::Ipc::Iostream &ios);
   int vbus_get_device(L4::Ipc::Iostream &ios);
-  Device *get_dev_by_id(l4vbus_device_handle_t id);
 
   Device *get_root()
   {

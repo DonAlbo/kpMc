@@ -1,0 +1,4 @@
+<map id="l4virtio_device_notification_irq" name="l4virtio_device_notification_irq">
+<area shape="rect" id="node2" href="$group__l4virtio__transport.html#gae37bcd45875b27b302320e6b9580191d" title="Check if the given bit in a feature map is set. " alt="" coords="265,13,408,39"/>
+<area shape="rect" id="node3" href="$classL4virtio_1_1Svr_1_1Dev__config.html#ac0a15fe6ca82defa26c36e37447275eb" title="Setup an L4&#45;Virtio config space in an existing data space. " alt="" coords="456,5,601,47"/>
+</map>

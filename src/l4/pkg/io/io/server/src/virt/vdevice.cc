@@ -117,7 +117,7 @@ Device::vbus_get_device(L4::Ipc::Iostream &ios)
   inf.num_resources = resources()->size();
   if (hid())
     {
-      strncpy(inf.name, name(), sizeof(inf.name));
+      strncpy(inf.name, name(), sizeof(inf.name) - 1);
       inf.name[sizeof(inf.name) - 1] = 0;
     }
   else
@@ -148,9 +148,10 @@ Device::find_msi_src(Msi_src_info si)
 int
 Device::vdevice_dispatch(l4_umword_t obj, l4_uint32_t func, L4::Ipc::Iostream &ios)
 {
-  if (l4vbus_subinterface(func) == L4VBUS_INTERFACE_GENERIC)
+  switch (l4vbus_subinterface(func))
     {
-      switch (func)
+    case L4VBUS_INTERFACE_GENERIC:
+      switch ((L4vbus_vdevice_op)func)
 	{
 	case L4vbus_vdevice_hid:
 	    {
@@ -237,6 +238,12 @@ Device::vdevice_dispatch(l4_umword_t obj, l4_uint32_t func, L4::Ipc::Iostream &i
 
           return L4_EOK;
 
+        default: return -L4_ENOSYS;
+        }
+
+    case L4VBUS_INTERFACE_PM:
+      switch (func)
+        {
         case L4VBUS_PM_OP_SUSPEND:
           return pm_suspend();
 
@@ -245,6 +252,9 @@ Device::vdevice_dispatch(l4_umword_t obj, l4_uint32_t func, L4::Ipc::Iostream &i
 
 	default: return -L4_ENOSYS;
 	}
+
+    default:
+      break;
     }
 
   for (Feature_list::const_iterator i = _features.begin();

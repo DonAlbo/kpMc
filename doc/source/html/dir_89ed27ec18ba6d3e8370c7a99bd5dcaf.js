@@ -11,6 +11,5 @@ var dir_89ed27ec18ba6d3e8370c7a99bd5dcaf =
     [ "port_io.h", "amd64_2l4_2util_2port__io_8h.html", null ],
     [ "rdtsc.h", "amd64_2l4_2util_2rdtsc_8h.html", "amd64_2l4_2util_2rdtsc_8h" ],
     [ "spin.h", "amd64_2l4_2util_2spin_8h.html", null ],
-    [ "stack_impl.h", "amd64_2l4_2util_2stack__impl_8h.html", "amd64_2l4_2util_2stack__impl_8h" ],
     [ "util.h", "amd64_2l4_2util_2util_8h.html", "amd64_2l4_2util_2util_8h" ]
 ];

@@ -1,0 +1,5 @@
+<map id="L4::Ipc::make_cap_rw" name="L4::Ipc::make_cap_rw">
+<area shape="rect" id="node2" href="$classL4Re_1_1Util_1_1Event__buffer__t.html#a7ccb828618951c13cd1ccd7ebe1959e2" title="Attach event buffer from address space. " alt="" coords="211,5,377,47"/>
+<area shape="rect" id="node3" href="$classL4Re_1_1Util_1_1Event__t.html#a6052908f83d35a7bb1ba9371cbfc9834" title="Initialise an event object. " alt="" coords="226,71,362,112"/>
+<area shape="rect" id="node4" href="$classL4Re_1_1Util_1_1Event__t.html#a2161b185b3f69aa9ef597a03fdbde247" title="Initialise an event object in polling mode. " alt="" coords="226,136,362,177"/>
+</map>

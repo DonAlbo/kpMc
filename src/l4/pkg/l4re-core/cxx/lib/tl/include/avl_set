@@ -46,25 +46,39 @@ private:
   /// Super-class type
   typedef __Bst_iter_b<Node, Node_op> Base;
 
+  /// our non-const key type
+  typedef typename Type_traits<Key>::Non_const_type Non_const_key;
+
+  /// our non-const iterator type
+  typedef Avl_set_iter<Node, Non_const_key, Node_op> Non_const_iter;
+
   using Base::_n;
   using Base::_r;
   using Base::inc;
 
 public:
   /// Create an invalid iterator (end marker)
-  Avl_set_iter() {}
+  Avl_set_iter() = default;
 
   /**
-   * \brief Create an iterator for the given tree.
+   * Create an iterator for the given tree.
    * \param t the root node of the tree to iterate.
-   * \param cmp the conmparison functor for tree elements.
    */
   Avl_set_iter(Node const *t) : Base(t) {}
 
+  /**
+   * Create an iterator from a BST iterator.
+   * \prarm o  The BST iterator that shall be copied.
+   */
   Avl_set_iter(Base const &o) : Base(o) {}
 
-  Avl_set_iter(Avl_set_iter<Node, typename Type_traits<Key>::Non_const_type, Node_op> const &o)
+  /// Allow copy of non-const iterator to const iterator versions.
+  Avl_set_iter(Non_const_iter const &o)
   : Base(o) {}
+
+  /// Allow assignment of non-const iterator to const iterator versions.
+  Avl_set_iter &operator = (Non_const_iter const &o)
+  { Base::operator = (o); return *this; }
 
   /**
    * \brief Dereference the iterator and get the item out of the tree.
@@ -117,12 +131,18 @@ template< typename ITEM_TYPE, class COMPARE,
 class Base_avl_set
 {
 public:
+  /**
+   * Return status constants.
+   *
+   * These constants are compatible with the L4 error codes, see
+   * #l4_error_code_t.
+   */
   enum
   {
-    E_noent =  2,
-    E_exist = 17,
-    E_nomem = 12,
-    E_inval = 22
+    E_noent =  2, ///< Item does not exist.
+    E_exist = 17, ///< Item exists already.
+    E_nomem = 12, ///< Memory allocation failed.
+    E_inval = 22  ///< Internal error.
   };
   /// Type for the items store in the set
   typedef ITEM_TYPE Item_type;
@@ -143,7 +163,7 @@ private:
     /// The actual item stored in the node.
     Item_type  item;
 
-    _Node() : Avl_tree_node(), item() {}
+    _Node() = default;
 
     _Node(Item_type const &item) : Avl_tree_node(), item(item) {}
   };
@@ -163,9 +183,6 @@ public:
   public:
     /// Default construction for NIL pointer.
     Node() : _n(0) {}
-
-    /// Default assignment.
-    Node &operator = (Node const &o) { _n = o._n; return *this; }
 
     /**
      *  Dereference the pointer.
@@ -254,11 +271,12 @@ public:
    * \param item  The item to insert.
    *
    * \return A pair of iterator (`first`) and return value (`second`).
-   *         `second` will be 0 if the  element was inserted into the set
-   *         and `-E_exist` if an element is already in the set.
+   *         `second` will be 0 if the element was inserted into the set
+   *         and `-#E_exist` if the element was already in the set and
+   *         the set was therefore not updated.
    *         In both cases, `first` contains an iterator that points to
    *         the element.
-   *         `second` may also be `-E_nomem` in when memory for the node
+   *         `second` may also be `-#E_nomem` when memory for the node
    *         could not be allocated. `first` is then invalid.
    *
    * Insert a new item into the set, each item can only be once in
@@ -396,7 +414,10 @@ Base_avl_set<Item,Compare,Alloc,KEY_TYPE>::insert(Item const &item)
   new (n, Nothrow()) _Node(item);
   Pair<_Node *, bool> err = _tree.insert(n);
   if (!err.second)
-    _alloc.free(n);
+    {
+      n->~_Node();
+      _alloc.free(n);
+    }
 
   return cxx::pair(Iterator(typename Tree::Iterator(err.first, err.first)), err.second ? 0 : -E_exist);
 }

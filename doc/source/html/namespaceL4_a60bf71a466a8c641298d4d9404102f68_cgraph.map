@@ -1,0 +1,6 @@
+<map id="L4::cap_dynamic_cast" name="L4::cap_dynamic_cast">
+<area shape="rect" id="node2" href="$namespaceL4.html#a0118f233567805e8d15e6fd3eb3b64fb" title="reinterpret_cast for capabilities. " alt="" coords="215,5,389,32"/>
+<area shape="rect" id="node4" href="$group__l4__ipc__err__api.html#ga05c11e3e10b6c2aa941396ac2018899f" title="Return error code of a system call return message tag or the tag label. " alt="" coords="266,56,338,83"/>
+<area shape="rect" id="node5" href="$classL4_1_1Meta.html#addf2185549b0b361b8990011f35d1247" title="Figure out if the object supports the given protocol (number). " alt="" coords="234,107,370,133"/>
+<area shape="rect" id="node3" href="$classL4_1_1Cap__base.html#a90ff089ca2442b128c2b2b0e1c22c6d7" title="Return capability selector. " alt="" coords="437,5,575,32"/>
+</map>

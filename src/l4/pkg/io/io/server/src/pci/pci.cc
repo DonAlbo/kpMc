@@ -11,7 +11,6 @@
 #include <l4/sys/types.h>
 #include <l4/cxx/string>
 #include <l4/cxx/minmax>
-#include <l4/io/pciids.h>
 
 #include <l4/util/util.h>
 
@@ -24,8 +23,12 @@
 #include "debug.h"
 #include "main.h"
 #include "pci.h"
+#ifdef CONFIG_L4IO_PCIID_DB
+# include "pciids.h"
+#endif
 #include "phys_space.h"
 #include "cfg.h"
+#include "resource_provider.h"
 #include "../utils.h"
 
 namespace Hw { namespace Pci {
@@ -39,7 +42,7 @@ public:
   : Pci_pci_bridge_basic(host, bus, hdr_type)
   {}
 
-  void discover_resources(Hw::Device *host);
+  void discover_resources(Hw::Device *host) override;
 };
 
 Root_bridge *root_bridge(int segment)
@@ -188,8 +191,7 @@ Bus::discover_bus(Hw::Device *host)
 
   bool found = false;
 
-  int device = 0;
-  for (device = 0; device < 32; ++device)
+  for (int device = 0; device < 32; ++device)
     {
       int funcs = 1;
       for (int function = 0; function < funcs; ++function)
@@ -224,9 +226,21 @@ Bus::discover_bus(Hw::Device *host)
 	    {
 	      Pci_pci_bridge_basic *b = 0;
 	      if ((hdr_type & 0x7f) == 1)
-		b = new Pci_pci_bridge(child, this, hdr_type);
+                {
+                  child->set_name_if_empty("PCI-to-PCI bridge");
+                  b = new Pci_pci_bridge(child, this, hdr_type);
+                }
 	      else if((hdr_type & 0x7f) == 2)
-		b = new Pci_cardbus_bridge(child, this, hdr_type);
+                {
+                  child->set_name_if_empty("PCI-to-Cardbus bridge");
+                  b = new Pci_cardbus_bridge(child, this, hdr_type);
+                }
+              else
+                {
+                  d_printf(DBG_WARN, "Ignoring unknown PCI bridge type %02x at %08x\n",
+                           hdr_type, devfn(device, function));
+                  continue;
+                }
 
 	      l4_uint32_t buses;
 	      bool reassign_buses = false;
@@ -262,7 +276,10 @@ Bus::discover_bus(Hw::Device *host)
 	      d = b;
 	    }
 	  else
-	    d = new Dev(child, this, hdr_type);
+            {
+              child->set_name_if_empty("PCI device");
+              d = new Dev(child, this, hdr_type);
+            }
 
 	  child->add_feature(d);
 
@@ -277,7 +294,7 @@ Bus::discover_bus(Hw::Device *host)
           d->discover_resources(child);
 
           // go down the PCI hierarchy recursively,
-          // to assign bus numbers (if not yet assigned) the rights way
+          // to assign bus numbers (if not yet assigned) the right way
           d->discover_bus(child);
 	}
     }
@@ -484,7 +501,7 @@ Dev::find_pci_cap(unsigned char id)
   if (o == 0)
     return Cap();
 
-  for (Cap c = Cap(cfg_addr(o), bus()); c.is_valid(); c = c.next())
+  for (Cap c = Cap(this, o); c.is_valid(); c = c.next())
     if (c.id() == id)
       return c;
 
@@ -526,7 +543,8 @@ Dev::discover_bar(int bar)
   Resource *res = 0;
   if (!(x & 1))
     {
-      //printf("%08x: BAR[%d] mmio ... %x\n", adr(), bar, x );
+      if (0)
+        printf("%08x: BAR[%d] mmio ... %x\n", host()->adr(), bar, x );
       res = new Resource(mem_flags);
       // set ID to 'BARx', x == bar
       res->set_id(0x00524142 + (((l4_uint32_t)('0' + bar)) << 24));
@@ -561,15 +579,16 @@ Dev::discover_bar(int bar)
 
       res->start_size(a, size);
 
-      // printf("%08x: BAR[%d] mem ...\n", adr(), bar*4 + 10 );
+      if (0)
+        printf("%08x: BAR[%d] mem ...\n", host()->adr(), bar*4 + 10 );
       _bars[bar - res->is_64bit()] = res;
       if (res->is_64bit())
 	_bars[bar] = (Resource*)1;
-
     }
   else
     {
-      // printf("%08x: BAR[%d] io ...\n", adr(), bar );
+      if (0)
+        printf("%08x: BAR[%d] io ...\n", host()->adr(), bar );
       int s;
       for (s = 2; s < 32; ++s)
 	if ((x >> s) & 1)
@@ -591,7 +610,6 @@ Dev::discover_bar(int bar)
 void
 Dev::discover_expansion_rom()
 {
-
   if (!Io_config::cfg->expansion_rom(host()))
     return;
 
@@ -616,7 +634,8 @@ Dev::discover_expansion_rom()
 
   x &= ~0x3ff;
 
-  if (0) printf("ROM %08x: %08x %08x\n", _host->adr(), x, v);
+  if (0)
+    printf("ROM %08x: %08x %08x\n", _host->adr(), x, v);
 
   int s;
   for (s = 2; s < 32; ++s)
@@ -633,6 +652,31 @@ Dev::discover_expansion_rom()
   res->start_size(v & ~3, 1 << s);
   res->validate();
   _host->add_resource_rq(res);
+}
+
+void
+Dev::discover_pcie_caps()
+{
+  l4_uint16_t offset = 0x100;
+
+  for (;;)
+    {
+      Hw::Pci::Extended_cap cap(this, offset);
+
+      if (offset == 0x100 && !cap.is_valid())
+        return;
+
+      switch (cap.id())
+        {
+        case Hw::Pci::Extended_cap::Acs:
+          parse_acs_cap(cap);
+          break;
+        }
+
+      offset = cap.next();
+      if (!offset)
+        return;
+    }
 }
 
 void
@@ -666,10 +710,11 @@ Dev::discover_pci_caps()
           parse_msi_cap(cfg_addr(cap_ptr));
           break;
         case Hw::Pci::Cap::Pcie:
-            {
-              l4_uint32_t v = cfg_read<l4_uint32_t>(cap_ptr + 4);
-              _phantomfn_bits = (v >> 3) & 3;
-            }
+          {
+            l4_uint32_t v = cfg_read<l4_uint32_t>(cap_ptr + 4);
+            _phantomfn_bits = (v >> 3) & 3;
+            break;
+          }
         default:
           break;
         }
@@ -679,8 +724,8 @@ Dev::discover_pci_caps()
 void
 Dev::discover_resources(Hw::Device *host)
 {
-
-  // printf("survey ... %x.%x\n", dynamic_cast<Hw::Pci::Bus*>(parent())->num, adr());
+  if (0)
+    printf("survey ... %x.%x\n", bus()->num, host->adr());
   l4_uint32_t v;
   cfg_read(Config::Subsys_vendor, &v, Cfg_long);
   subsys_ids = v;
@@ -693,11 +738,7 @@ Dev::discover_resources(Hw::Device *host)
                                   | Resource::F_hierarchical,
                                   irq_pin - 1, irq_pin - 1);
       r->set_id("PIN");
-      r->dump(0);
       host->add_resource_rq(r);
-      //new Resource(Resource::Irq_res | Resource::F_relative
-//                                  | Resource::F_hierarchical,
-//                                  irq_pin - 1, irq_pin - 1));
     }
 
   cfg_read(Config::Command, &v, Cfg_short);
@@ -709,6 +750,10 @@ Dev::discover_resources(Hw::Device *host)
 
   discover_expansion_rom();
   discover_pci_caps();
+
+  Cap pcie = find_pci_cap(Cap::Pcie);
+  if (pcie.is_valid())
+      discover_pcie_caps();
 
   Dma_domain *d = host->dma_domain();
   if (!d)
@@ -746,11 +791,12 @@ Dev::setup(Hw::Device *)
 
       l4_uint32_t v;
       cfg_read(reg, &v, Cfg_long);
-      if (l4_uint32_t(v & ~0xf) == l4_uint32_t(s & 0xffffffff))
+      l4_uint32_t mask = (r->type() == Resource::Io_res) ? ~0x3 : ~0xf;
+      if (l4_uint32_t(v & mask) == l4_uint32_t(s & 0xffffffff))
         decoders_to_enable |= (r->type() == Resource::Io_res) ? 1 : 2;
       else
         {
-          decoders_to_enable &= ~ (r->type() == Resource::Io_res) ? 1 : 2;
+          decoders_to_enable &= ~((r->type() == Resource::Io_res) ? 1 : 2);
           d_printf(DBG_ERR, "ERROR: could not set PCI BAR %d\n", i);
         }
 
@@ -774,7 +820,7 @@ Dev::setup(Hw::Device *)
 void
 Dev::pm_save_state(Hw::Device *)
 {
-  _saved_state.save(Config(cfg_addr(0), bus()));
+  _saved_state.save(this);
   flags.state_saved() = true;
 }
 
@@ -783,7 +829,7 @@ Dev::pm_restore_state(Hw::Device *)
 {
   if (flags.state_saved())
     {
-      _saved_state.restore(Config(cfg_addr(0), bus()));
+      _saved_state.restore(this);
       flags.state_saved() = false;
     }
 }
@@ -950,10 +996,12 @@ Pci_pci_bridge::setup_children(Hw::Device *)
       l4_uint32_t v = (mmio->start() >> 16) & 0xfff0;
       v |= mmio->end() & 0xfff00000;
       cfg_write(0x20, v, Cfg_long);
-      // printf("%08x: set mmio to %08x\n", adr(), v);
+      if (0)
+        printf("%08x: set mmio to %08x\n", host()->adr(), v);
       l4_uint32_t r;
       cfg_read(0x20, &r, Cfg_long);
-      // printf("%08x: mmio =      %08x\n", adr(), r);
+      if (0)
+        printf("%08x: mmio =      %08x\n", host()->adr(), r);
       cfg_read(0x04, &r, Cfg_short);
       r |= 3;
       cfg_write(0x4, r, Cfg_short);
@@ -964,7 +1012,8 @@ Pci_pci_bridge::setup_children(Hw::Device *)
       l4_uint32_t v = (pref_mmio->start() >> 16) & 0xfff0;
       v |= pref_mmio->end() & 0xfff00000;
       cfg_write(0x24, v, Cfg_long);
-      // printf("%08x: set pref mmio to %08x\n", adr(), v);
+      if (0)
+        printf("%08x: set pref mmio to %08x\n", host()->adr(), v);
     }
 }
 
@@ -988,7 +1037,8 @@ Pci_pci_bridge::discover_resources(Hw::Device *host)
   else
     r->set_empty();
 
-  // printf("%08x: mmio = %08x\n", adr(), v);
+  if (0)
+    printf("%08x: mmio = %08x\n", _host->adr(), v);
   mmio = r;
   mmio->validate();
   _host->add_resource_rq(mmio);
@@ -1062,14 +1112,28 @@ Root_bridge::setup(Hw::Device *host)
 }
 
 static const char * const pci_classes[] =
-    { "unknown", "mass storage contoller", "network controller", 
-      "display controller", "multimedia device", "memory controller",
-      "bridge device", "simple communication controller", 
-      "system peripheral", "input device", "docking station", 
-      "processor", "serial bus controller", "wireless controller",
-      "intelligent I/O controller", "satellite communication controller",
-      "encryption/decryption controller", 
-      "data aquisition/signal processing controller" };
+{
+  /* 0x00 */ "legacy",
+  /* 0x01 */ "mass storage controller",
+  /* 0x02 */ "network controller",
+  /* 0x03 */ "display controller",
+  /* 0x04 */ "multimedia device",
+  /* 0x05 */ "memory controller",
+  /* 0x06 */ "bridge device",
+  /* 0x07 */ "simple communication controller",
+  /* 0x08 */ "system peripheral",
+  /* 0x09 */ "input device",
+  /* 0x0a */ "docking station",
+  /* 0x0b */ "processor",
+  /* 0x0c */ "serial bus controller",
+  /* 0x0d */ "wireless controller",
+  /* 0x0e */ "intelligent I/O controller",
+  /* 0x0f */ "satellite communication controller",
+  /* 0x10 */ "encryption/decryption controller",
+  /* 0x11 */ "data acquisition/signal processing controller",
+  /* 0x12 */ "processing accelerator",
+  /* 0x13 */ "non-essential instrumentation function"
+};
 
 static char const * const pci_bridges[] =
 { "Host/PCI Bridge", "ISA Bridge", "EISA Bridge", "Micro Channel Bridge",
@@ -1104,15 +1168,15 @@ Dev::dump(int indent) const
 	classname = pci_bridges[sc];
     }
 
-  printf("%*.s%04x:%02x:%02x.%x: %s [%d]\n", indent, " ",
+  printf("%*.s%04x:%02x:%02x.%x: %s (0x%06x) [%d]\n", indent, " ",
          0, (int)_bus->num, _host->adr() >> 16, _host->adr() & 0xffff,
-         classname, (int)hdr_type);
+         classname, cls_rev >> 8, (int)hdr_type);
 
-  printf("%*.s              0x%04x 0x%04x\n", indent, " ", vendor(), device());
+  printf("%*.s0x%04x 0x%04x\n", indent + 14, " ", vendor(), device());
 #ifdef CONFIG_L4IO_PCIID_DB
   char buf[130];
   libpciids_name_device(buf, sizeof(buf), vendor(), device());
-  printf("%*.s              %s\n", indent, " ", buf);
+  printf("%*.s%s\n", indent + 14, " ", buf);
 #endif
 #if 0
   if (verbose_lvl)
@@ -1215,7 +1279,7 @@ Pci_pci_bridge_irq_router_rs::request(Resource *parent, ::Device *pdev,
   if (pdev->parent())
     {
       child->start((child->start() + (cd->adr() >> 16)) & 3);
-      res = pdev->parent()->request_child_resource(child, pdev);
+      res = pdev->parent()->request_child_resource(child, cdev);
       if (res)
 	child->parent(parent);
     }
@@ -1235,8 +1299,9 @@ Saved_config::find_cap(l4_uint8_t type)
 }
 
 void
-Saved_config::save(Config cfg)
+Saved_config::save(If *dev)
 {
+  Cfg_ptr cfg(dev, 0);
   for (unsigned i = 0; i < 16; ++i)
     cfg.read(i * 4, &_regs.w[i]);
 
@@ -1245,7 +1310,7 @@ Saved_config::save(Config cfg)
 }
 
 static void
-restore_cfg_word(Config cfg, l4_uint32_t value, int retry)
+restore_cfg_word(Cfg_ptr cfg, l4_uint32_t value, int retry)
 {
   l4_uint32_t v;
   cfg.read(0, &v);
@@ -1267,7 +1332,7 @@ restore_cfg_word(Config cfg, l4_uint32_t value, int retry)
 }
 
 static void
-restore_cfg_range(Config cfg, l4_uint32_t *saved,
+restore_cfg_range(Cfg_ptr cfg, l4_uint32_t *saved,
                   unsigned start, unsigned end, unsigned retry = 0)
 {
   for (unsigned i = start; i <= end; ++i)
@@ -1275,9 +1340,11 @@ restore_cfg_range(Config cfg, l4_uint32_t *saved,
 }
 
 void
-Saved_config::restore(Config cfg)
+Saved_config::restore(If *dev)
 {
   Saved_cap *pcie = find_cap(Cap::Pcie);
+
+  Cfg_ptr cfg(dev, 0);
 
   // PCI express state must be restored first
   if (pcie)

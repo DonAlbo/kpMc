@@ -95,9 +95,8 @@ $(document).ready(function(){initNavTree('classL4Re_1_1Util_1_1Names_1_1Name__sp
 <div id="dynsection-0-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-0-content" class="dyncontent" style="display:none;">
-<div class="center"><img src="classL4Re_1_1Util_1_1Names_1_1Name__space__coll__graph.png" border="0" usemap="#L4Re_1_1Util_1_1Names_1_1Name__space_coll__map" alt="Collaboration graph"/></div>
-<map name="L4Re_1_1Util_1_1Names_1_1Name__space_coll__map" id="L4Re_1_1Util_1_1Names_1_1Name__space_coll__map">
-</map>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classL4Re_1_1Util_1_1Names_1_1Name__space__coll__graph.svg" width="184" height="382"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-methods"></a>
@@ -108,7 +107,7 @@ Protected Member Functions</h2></td></tr>
 <tr class="memitem:a178ce4ad018bf4a803fd986c22b42ecf"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classL4Re_1_1Util_1_1Names_1_1Name__space.html#a178ce4ad018bf4a803fd986c22b42ecf">free_dynamic_entry</a> (Entry *e)=0</td></tr>
 <tr class="memdesc:a178ce4ad018bf4a803fd986c22b42ecf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Free an entry previously allocated with <a class="el" href="classL4Re_1_1Util_1_1Names_1_1Name__space.html#a7c6c63b532220f226424589a699be794" title="Allocate a new entry for the given name. ">alloc_dynamic_entry()</a>.  <a href="#a178ce4ad018bf4a803fd986c22b42ecf">More...</a><br /></td></tr>
 <tr class="separator:a178ce4ad018bf4a803fd986c22b42ecf"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a787bb1aab2aa9a3e99b19d6be342d42a"><td class="memItemLeft" align="right" valign="top">virtual int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classL4Re_1_1Util_1_1Names_1_1Name__space.html#a787bb1aab2aa9a3e99b19d6be342d42a">get_epiface</a> (<a class="el" href="group__l4__basic__types.html#ga1c2c4b333f75b1d05b59855910f2b9cb">l4_umword_t</a> data, bool is_local, L4::Epiface **lo)=0</td></tr>
+<tr class="memitem:a787bb1aab2aa9a3e99b19d6be342d42a"><td class="memItemLeft" align="right" valign="top">virtual int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classL4Re_1_1Util_1_1Names_1_1Name__space.html#a787bb1aab2aa9a3e99b19d6be342d42a">get_epiface</a> (<a class="el" href="group__l4__basic__types.html#ga1c2c4b333f75b1d05b59855910f2b9cb">l4_umword_t</a> data, bool is_local, <a class="el" href="structL4_1_1Epiface.html">L4::Epiface</a> **lo)=0</td></tr>
 <tr class="memdesc:a787bb1aab2aa9a3e99b19d6be342d42a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return a pointer to the epiface assigned to a given label.  <a href="#a787bb1aab2aa9a3e99b19d6be342d42a">More...</a><br /></td></tr>
 <tr class="separator:a787bb1aab2aa9a3e99b19d6be342d42a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab36cf947bcdba9218c9d9dafe7475788"><td class="memItemLeft" align="right" valign="top">virtual int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classL4Re_1_1Util_1_1Names_1_1Name__space.html#ab36cf947bcdba9218c9d9dafe7475788">copy_receive_cap</a> (<a class="el" href="classL4_1_1Cap.html">L4::Cap</a>&lt; void &gt; *cap)=0</td></tr>
@@ -117,7 +116,7 @@ Protected Member Functions</h2></td></tr>
 <tr class="memitem:ada03a5d94da34260e476a308f637bfb5"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classL4Re_1_1Util_1_1Names_1_1Name__space.html#ada03a5d94da34260e476a308f637bfb5">free_capability</a> (<a class="el" href="classL4_1_1Cap.html">L4::Cap</a>&lt; void &gt; cap)=0</td></tr>
 <tr class="memdesc:ada03a5d94da34260e476a308f637bfb5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Free a capability previously acquired with <a class="el" href="classL4Re_1_1Util_1_1Names_1_1Name__space.html#ab36cf947bcdba9218c9d9dafe7475788" title="Return the receive capability for permanent use. ">copy_receive_cap()</a>.  <a href="#ada03a5d94da34260e476a308f637bfb5">More...</a><br /></td></tr>
 <tr class="separator:ada03a5d94da34260e476a308f637bfb5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af7c92e05493887466de5be8c8774e274"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classL4Re_1_1Util_1_1Names_1_1Name__space.html#af7c92e05493887466de5be8c8774e274">free_epiface</a> (L4::Epiface *epiface)=0</td></tr>
+<tr class="memitem:af7c92e05493887466de5be8c8774e274"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classL4Re_1_1Util_1_1Names_1_1Name__space.html#af7c92e05493887466de5be8c8774e274">free_epiface</a> (<a class="el" href="structL4_1_1Epiface.html">L4::Epiface</a> *epiface)=0</td></tr>
 <tr class="memdesc:af7c92e05493887466de5be8c8774e274"><td class="mdescLeft">&#160;</td><td class="mdescRight">Free epiface previously acquired with <a class="el" href="classL4Re_1_1Util_1_1Names_1_1Name__space.html#a787bb1aab2aa9a3e99b19d6be342d42a" title="Return a pointer to the epiface assigned to a given label. ">get_epiface()</a>.  <a href="#af7c92e05493887466de5be8c8774e274">More...</a><br /></td></tr>
 <tr class="separator:af7c92e05493887466de5be8c8774e274"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
@@ -168,7 +167,8 @@ Protected Member Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>A pointer to the newly allocated entry or NULL on error. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>A pointer to the newly allocated entry or NULL on error.</dd></dl>
+<p>This method is called when a new entry was received. It must allocate memory, copy <code>n</code> out of the receive buffer and wrap everything in an Entry. </p>
 
 </div>
 </div>
@@ -199,10 +199,11 @@ Protected Member Functions</h2></td></tr>
 <p>Return the receive capability for permanent use. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[out]</td><td class="paramname">cap</td><td>Capability slot with the received capability. Must be permanently available until <a class="el" href="classL4Re_1_1Util_1_1Names_1_1Name__space.html#ada03a5d94da34260e476a308f637bfb5" title="Free a capability previously acquired with copy_receive_cap(). ">free_capability()</a> is called. </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">cap</td><td>Capability slot with the received capability. Must be permanently available until <a class="el" href="classL4Re_1_1Util_1_1Names_1_1Name__space.html#ada03a5d94da34260e476a308f637bfb5" title="Free a capability previously acquired with copy_receive_cap(). ">free_capability()</a> is called.</td></tr>
   </table>
   </dd>
 </dl>
+<p>This method is called when a new entry is registered together with a capability mapping. It must decide whether and where to store the capability and return the final capability slot. Typical implementations return the capability slot in the receive window and allocate a new receive window. </p>
 
 </div>
 </div>
@@ -233,10 +234,11 @@ Protected Member Functions</h2></td></tr>
 <p>Free a capability previously acquired with <a class="el" href="classL4Re_1_1Util_1_1Names_1_1Name__space.html#ab36cf947bcdba9218c9d9dafe7475788" title="Return the receive capability for permanent use. ">copy_receive_cap()</a>. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">cap</td><td>Capability to free. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">cap</td><td>Capability to free.</td></tr>
   </table>
   </dd>
 </dl>
+<p>Counterpart of <a class="el" href="classL4Re_1_1Util_1_1Names_1_1Name__space.html#ab36cf947bcdba9218c9d9dafe7475788" title="Return the receive capability for permanent use. ">copy_receive_cap</a>. Free the capability slot when the entry is deleted or changed. </p>
 
 </div>
 </div>
@@ -286,7 +288,7 @@ Protected Member Functions</h2></td></tr>
         <tr>
           <td class="memname">virtual void L4Re::Util::Names::Name_space::free_epiface </td>
           <td>(</td>
-          <td class="paramtype">L4::Epiface *&#160;</td>
+          <td class="paramtype"><a class="el" href="structL4_1_1Epiface.html">L4::Epiface</a> *&#160;</td>
           <td class="paramname"><em>epiface</em></td><td>)</td>
           <td></td>
         </tr>
@@ -333,7 +335,7 @@ Protected Member Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">L4::Epiface **&#160;</td>
+          <td class="paramtype"><a class="el" href="structL4_1_1Epiface.html">L4::Epiface</a> **&#160;</td>
           <td class="paramname"><em>lo</em>&#160;</td>
         </tr>
         <tr>
@@ -353,13 +355,14 @@ Protected Member Functions</h2></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">data</td><td>Label or in the local case the capability slot of the receiving capability. </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">is_local</td><td>If true, a truly local capability was supplied. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">is_local</td><td>If true, a local capability slot was supplied, if false the label of a locally bound IPC gate. </td></tr>
     <tr><td class="paramdir">[out]</td><td class="paramname">lo</td><td>Pointer to epiface responsible for the capability.</td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>L4_OK if a valid interface could be found or an error message otherwise.</dd></dl>
-<p>The caller must make sure that the epiface remains valid until free_epiface is called. In particular, the capability slot must not be reallocated as long as the namespace server holds a reference to the epiface. </p>
+<dl class="section return"><dt>Returns</dt><dd><a class="el" href="group__l4__error__api.html#ggab4c8abc71ffa221a25c1ca5840a354f9aca91ea3bdb5bd82f63784ee66b489d5e" title="Ok. ">L4_EOK</a> if a valid interface could be found or an error message otherwise.</dd></dl>
+<p>This method is called when a new entry is registered and some local ID was received for the capability. In this case, the generic implementation needs to get the epiface in order to get the capability.</p>
+<p>The callee must make sure that the epiface remains valid until free_epiface is called. In particular, the capability slot must not be reallocated as long as the namespace server holds a reference to the epiface. </p>
 
 </div>
 </div>
@@ -372,8 +375,8 @@ Protected Member Functions</h2></td></tr>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="namespaceL4Re.html">L4Re</a></li><li class="navelem"><b>Util</b></li><li class="navelem"><b>Names</b></li><li class="navelem"><a class="el" href="classL4Re_1_1Util_1_1Names_1_1Name__space.html">Name_space</a></li>
-    <li class="footer">Generated on Sun Sep 24 2017 23:15:13 for L4Re - L4 Runtime Environment by
+    <li class="navelem"><a class="el" href="namespaceL4Re.html">L4Re</a></li><li class="navelem"><a class="el" href="namespaceL4Re_1_1Util.html">Util</a></li><li class="navelem"><b>Names</b></li><li class="navelem"><a class="el" href="classL4Re_1_1Util_1_1Names_1_1Name__space.html">Name_space</a></li>
+    <li class="footer">Generated on Tue Aug 11 2020 13:28:17 for L4Re - L4 Runtime Environment by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.13 </li>
   </ul>

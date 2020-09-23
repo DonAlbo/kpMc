@@ -22,8 +22,13 @@ class Region
 public:
   enum Type { No_mem, Kernel, Sigma0, Boot, Root, Arch, Ram, Info };
 
+  enum Subtype_info
+  {
+    Info_acpi_rsdp = 0,
+  };
+
   /** Basic noop constructor, to be able to have array without ini code */
-  Region() {}
+  Region() = default;
 
   /** Create an invalid region. */
   Region(Type) : _begin(0), _end(0) {}
@@ -78,7 +83,7 @@ public:
   /**
    * Create a region (using start and end pointers)
    * @param begin start address
-   * @param end the address of the last byte in the region
+   * @param end The address of the first byte after the region.
    * @param name The name of the region
    * @param t the type of the region
    * @param sub the subtype of the region
@@ -147,6 +152,8 @@ public:
   void name(char const *name) { _name = name; }
   /** Get the type of the region. */
   Type type() const { return (Type)(_t); }
+  /** Set the type of the region. */
+  void type(Type t) { _t = t; }
   /** Get the subtype of the region. */
   short sub_type() const { return _s; }
   /** Set the subtype of the region. */

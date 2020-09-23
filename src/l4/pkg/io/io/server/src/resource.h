@@ -12,10 +12,12 @@
 #include <l4/sys/icu>
 
 #include <l4/vbus/vbus_types.h>
+#include <string>
 #include <vector>
 
 #include <l4/re/dataspace>
 #include <l4/re/util/cap_alloc>
+#include <l4/re/util/unique_cap>
 #include <l4/re/rm>
 
 #include "res.h"
@@ -48,12 +50,14 @@ class Resource_space
 public:
   virtual bool request(Resource *parent, Device *pdev,
                        Resource *child, Device *cdev) = 0;
+  virtual void assign(Resource *parent, Resource *child) = 0;
   virtual bool alloc(Resource *parent, Device *pdev,
                      Resource *child, Device *cdev, bool resize) = 0;
-  virtual ~Resource_space() noexcept = 0;
-};
+  virtual bool adjust_children(Resource *self) = 0;
 
-inline Resource_space::~Resource_space() noexcept {}
+protected:
+  ~Resource_space() noexcept = default;
+};
 
 class Resource
 {
@@ -90,7 +94,10 @@ public:
     F_can_move     = 0x8000,
 
     F_width_64bit   = 0x010000,
+    F_cached_mem    = 0x020000,
     F_relative      = 0x040000,
+
+    Mem_type_read_only    = 0x100000,
 
     Irq_type_base         = 0x100000,
     Irq_type_mask         = L4_IRQ_F_MASK       * Irq_type_base,
@@ -130,6 +137,7 @@ public:
   bool hierarchical() const { return _f & F_hierarchical; }
   bool disabled() const { return _f & F_disabled; }
   bool prefetchable() const { return _f & F_prefetchable; }
+  bool cached_mem() const { return _f & F_cached_mem; }
   bool empty() const { return _f & F_empty; }
   bool fixed_addr() const { return !(_f & F_can_move); }
   bool fixed_size() const { return !(_f & F_can_resize); }
@@ -155,6 +163,13 @@ public:
 
   l4_uint32_t id() const { return _id; }
 
+  std::string id_str() const
+  {
+    std::string s;
+    for (l4_uint32_t id = _id; id; id >>=8)
+      s += id & 0xff;
+    return s;
+  }
 
 public:
 //private:
@@ -260,34 +275,6 @@ public:
   { return ~0; }
 };
 
-class Resource_provider : public Resource
-{
-private:
-  class _RS : public Resource_space
-  {
-  private:
-    typedef Resource::Addr Addr;
-    typedef Resource::Size Size;
-    Resource_list _rl;
-
-  public:
-    bool request(Resource *parent, Device *pdev, Resource *child, Device *cdev);
-    bool alloc(Resource *parent, Device *pdev, Resource *child, Device *cdev,
-               bool resize);
-  };
-
-  mutable _RS _rs;
-
-public:
-  explicit Resource_provider(unsigned long flags)
-  : Resource(flags), _rs() {}
-
-  Resource_provider(unsigned long flags, Addr s, Addr e)
-  : Resource(flags, s, e), _rs() {}
-
-  Resource_space *provided() const
-  { return &_rs; }
-};
 
 class Root_resource : public Resource
 {
@@ -298,18 +285,18 @@ public:
   Root_resource(unsigned long flags, Resource_space *rs)
   : Resource(flags), _rs(rs) {}
 
-  Resource_space *provided() const { return _rs; }
-  void dump(int) const {}
+  Resource_space *provided() const override { return _rs; }
+  void dump(int) const override {}
 };
 
 
 class Mmio_data_space : public Resource
 {
 private:
-  L4Re::Util::Auto_cap<L4Re::Dataspace>::Cap _ds_ram;
+  L4Re::Util::Unique_cap<L4Re::Dataspace> _ds_ram;
 
 public:
-  L4Re::Rm::Auto_region<l4_addr_t> _r;
+  L4Re::Rm::Unique_region<l4_addr_t> _r;
 
   Mmio_data_space(Size size, unsigned long alloc_flags = 0)
   : Resource(Mmio_res, 0, size - 1)
@@ -319,7 +306,7 @@ public:
 
   void alloc_ram(Size size, unsigned long alloc_flags);
 
-  l4_addr_t map_iomem() const
+  l4_addr_t map_iomem() const override
   {
     return _r.get();
   }

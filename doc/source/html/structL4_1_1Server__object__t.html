@@ -97,21 +97,16 @@ $(document).ready(function(){initNavTree('structL4_1_1Server__object__t.html',''
 <div id="dynsection-0-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-0-content" class="dyncontent" style="display:none;">
-<div class="center"><img src="structL4_1_1Server__object__t__inherit__graph.png" border="0" usemap="#L4_1_1Server__object__t_3_01IFACE_00_01BASE_01_4_inherit__map" alt="Inheritance graph"/></div>
-<map name="L4_1_1Server__object__t_3_01IFACE_00_01BASE_01_4_inherit__map" id="L4_1_1Server__object__t_3_01IFACE_00_01BASE_01_4_inherit__map">
-<area shape="rect" id="node2" href="structL4_1_1Server__object__x.html" title="Helper class to implement p_dispatch based server objects. " alt="" coords="5,204,152,296"/>
-<area shape="rect" id="node3" href="structL4_1_1Server__object__t.html" title="{L4::Server_object_t\l\&lt; Kobject \&gt;\n||+ get_buffer_demand()\l+ dispatch_meta_request()\l+ proto_dispatch()\l}" alt="" coords="176,189,368,311"/>
-<area shape="rect" id="node4" href="structL4_1_1Irq__handler__object.html" title="Server object base class for handling IRQ messages. " alt="" coords="191,360,353,437"/>
-</map>
+<div class="center"><iframe scrolling="no" frameborder="0" src="structL4_1_1Server__object__t__inherit__graph.svg" width="374" height="443"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 <div id="dynsection-1" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-1-trigger" src="closed.png" alt="+"/> Collaboration diagram for L4::Server_object_t&lt; IFACE, BASE &gt;:</div>
 <div id="dynsection-1-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-1-content" class="dyncontent" style="display:none;">
-<div class="center"><img src="structL4_1_1Server__object__t__coll__graph.png" border="0" usemap="#L4_1_1Server__object__t_3_01IFACE_00_01BASE_01_4_coll__map" alt="Collaboration graph"/></div>
-<map name="L4_1_1Server__object__t_3_01IFACE_00_01BASE_01_4_coll__map" id="L4_1_1Server__object__t_3_01IFACE_00_01BASE_01_4_coll__map">
-</map>
+<div class="center"><iframe scrolling="no" frameborder="0" src="structL4_1_1Server__object__t__coll__graph.svg" width="203" height="132"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-types"></a>
@@ -150,7 +145,7 @@ struct L4::Server_object_t&lt; IFACE, BASE &gt;</h3>
 </dl>
 <dl><dt><b>Examples: </b></dt><dd><a class="el" href="examples_2libs_2l4re_2c_09_09_2shared_ds_2ds_srv_8cc-example.html#_a0">examples/libs/l4re/c++/shared_ds/ds_srv.cc</a>, and <a class="el" href="examples_2libs_2l4re_2streammap_2server_8cc-example.html#_a2">examples/libs/l4re/streammap/server.cc</a>.</dd>
 </dl>
-<p class="definition">Definition at line <a class="el" href="cxx_2ipc__server_source.html#l00092">92</a> of file <a class="el" href="cxx_2ipc__server_source.html">ipc_server</a>.</p>
+<p class="definition">Definition at line <a class="el" href="cxx_2ipc__server_source.html#l00091">91</a> of file <a class="el" href="cxx_2ipc__server_source.html">ipc_server</a>.</p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
 <a id="a19c29c3b617648ab2e10bdf9c1d13604"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a19c29c3b617648ab2e10bdf9c1d13604">&#9670;&nbsp;</a></span>dispatch_meta_request()</h2>
@@ -187,7 +182,7 @@ template&lt;typename IFACE, typename BASE = L4::Server_object&gt; </div>
 </dl>
 <p>This function can be used to handle incoming <a class="el" href="group__l4__msgtag__api.html#gga61165805662641702f50e4f524a8df01a9c3bab59b9863f958ab21ac418eb1596" title="Meta information protocol. ">L4_PROTO_META</a> protcol requests. The implementation uses the <a class="el" href="structL4_1_1Type__info.html" title="Dynamic Type Information for L4Re Interfaces. ">L4::Type_info</a> of <em>IFACE</em> to handle the requests. Call this function in the implementation of <a class="el" href="classL4_1_1Server__object.html#a505f2d9c6fc2794613243764095b0cbe" title="The abstract handler for client requests to the object. ">Server_object::dispatch()</a> when the received message tag has protocol <a class="el" href="group__l4__msgtag__api.html#gga61165805662641702f50e4f524a8df01a9c3bab59b9863f958ab21ac418eb1596" title="Meta information protocol. ">L4_PROTO_META</a> (L4::Meta::Protocol). </p>
 
-<p class="definition">Definition at line <a class="el" href="cxx_2ipc__server_source.html#l00111">111</a> of file <a class="el" href="cxx_2ipc__server_source.html">ipc_server</a>.</p>
+<p class="definition">Definition at line <a class="el" href="cxx_2ipc__server_source.html#l00110">110</a> of file <a class="el" href="cxx_2ipc__server_source.html">ipc_server</a>.</p>
 
 </div>
 </div>
@@ -217,7 +212,7 @@ template&lt;typename IFACE, typename BASE = L4::Server_object&gt; </div>
 </div><div class="memdoc">
 <dl class="section return"><dt>Returns</dt><dd>the server-side buffer demand based in <em>IFACE</em>. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="cxx_2ipc__server_source.html#l00098">98</a> of file <a class="el" href="cxx_2ipc__server_source.html">ipc_server</a>.</p>
+<p class="definition">Definition at line <a class="el" href="cxx_2ipc__server_source.html#l00097">97</a> of file <a class="el" href="cxx_2ipc__server_source.html">ipc_server</a>.</p>
 
 </div>
 </div>
@@ -268,7 +263,7 @@ template&lt;typename THIS &gt; </div>
 <p>Implementation of protocol-based dispatch for this server object. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">self</td><td>The this pointer for teh object (inhertits from <a class="el" href="structL4_1_1Server__object__t.html" title="Base class (template) for server implementing server objects. ">Server_object_t</a>). </td></tr>
+    <tr><td class="paramname">self</td><td>The this pointer for the object (inherits from <a class="el" href="structL4_1_1Server__object__t.html" title="Base class (template) for server implementing server objects. ">Server_object_t</a>). </td></tr>
     <tr><td class="paramname">rights</td><td>The rights from the received IPC (forwarded to p_dispatch()). </td></tr>
     <tr><td class="paramname">ios</td><td>The message stream for the incoming and the reply message.</td></tr>
   </table>
@@ -276,18 +271,16 @@ template&lt;typename THIS &gt; </div>
 </dl>
 <p><a class="el" href="classL4_1_1Server.html" title="Basic server loop for handling client requests. ">Server</a> objects may call this function from their dispatch() function. This function reads the protocol ID from the message tag and uses the p_dispatch code to dispatch to overloaded p_dispatch functions of self. </p>
 
-<p class="definition">Definition at line <a class="el" href="cxx_2ipc__server_source.html#l00126">126</a> of file <a class="el" href="cxx_2ipc__server_source.html">ipc_server</a>.</p>
+<p class="definition">Definition at line <a class="el" href="cxx_2ipc__server_source.html#l00125">125</a> of file <a class="el" href="cxx_2ipc__server_source.html">ipc_server</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="cxx_2ipc__server_source.html#l00158">L4::Server_object_x&lt; Derived, IFACE, BASE &gt;::dispatch()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="cxx_2ipc__server_source.html#l00157">L4::Server_object_x&lt; Derived, IFACE, BASE &gt;::dispatch()</a>.</p>
 <div id="dynsection-2" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-2-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
 <div id="dynsection-2-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-2-content" class="dyncontent" style="display:none;">
-<div class="center"><img src="structL4_1_1Server__object__t_a0272837ace7417acf9497fc9b1c40fc2_icgraph.png" border="0" usemap="#structL4_1_1Server__object__t_a0272837ace7417acf9497fc9b1c40fc2_icgraph" alt=""/></div>
-<map name="structL4_1_1Server__object__t_a0272837ace7417acf9497fc9b1c40fc2_icgraph" id="structL4_1_1Server__object__t_a0272837ace7417acf9497fc9b1c40fc2_icgraph">
-<area shape="rect" id="node2" href="structL4_1_1Server__object__x.html#a8ef4af4e10f927a2957b4f61e6c2b3fd" title="Implementation forwarding to p_dispatch(). " alt="" coords="196,5,343,47"/>
-</map>
+<div class="center"><iframe scrolling="no" frameborder="0" src="structL4_1_1Server__object__t_a0272837ace7417acf9497fc9b1c40fc2_icgraph.svg" width="348" height="52"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 
 </div>
@@ -302,7 +295,7 @@ template&lt;typename THIS &gt; </div>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="namespaceL4.html">L4</a></li><li class="navelem"><a class="el" href="structL4_1_1Server__object__t.html">Server_object_t</a></li>
-    <li class="footer">Generated on Sun Sep 24 2017 23:15:13 for L4Re - L4 Runtime Environment by
+    <li class="footer">Generated on Tue Aug 11 2020 13:28:16 for L4Re - L4 Runtime Environment by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.13 </li>
   </ul>

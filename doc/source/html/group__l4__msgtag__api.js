@@ -1,18 +1,18 @@
 var group__l4__msgtag__api =
 [
     [ "l4_msgtag_t", "structl4__msgtag__t.html", [
-      [ "flags", "structl4__msgtag__t.html#a6474820cd12a54260fcc2e6ea2c55979", null ],
-      [ "has_error", "structl4__msgtag__t.html#a26b13889368ed62ec4c85682e29c0dd4", null ],
-      [ "is_exception", "structl4__msgtag__t.html#a10f4278b393457d6e3d8a228691216de", null ],
-      [ "is_io_page_fault", "structl4__msgtag__t.html#ab718981ede39f2089d3c63ec6087875a", null ],
-      [ "is_page_fault", "structl4__msgtag__t.html#a93002bd8038c9a7fc487626b2edcc6b2", null ],
-      [ "is_preemption", "structl4__msgtag__t.html#a976073c2be1d3093f3488d25d6142d83", null ],
-      [ "is_sigma0", "structl4__msgtag__t.html#ad0dc884fb3aea443dd01dd53a90cd6e7", null ],
-      [ "is_sys_exception", "structl4__msgtag__t.html#a75b9532def7916024d6ddac329442963", null ],
-      [ "items", "structl4__msgtag__t.html#a3501f3dd92f575a05ae16ecbfec15627", null ],
-      [ "label", "structl4__msgtag__t.html#a55113867a8fe404c4ed019dacceb84e6", null ],
-      [ "label", "structl4__msgtag__t.html#a2ddba5b1307e019dfe0b82d0ee351484", null ],
-      [ "words", "structl4__msgtag__t.html#ac83d977d5290b342cd18e36e0fb0a04b", null ],
+      [ "flags", "structl4__msgtag__t.html#af6b9564a9a16427cec0e81a4628996b8", null ],
+      [ "has_error", "structl4__msgtag__t.html#a09c8212b870e6c144fd072dbde5b5262", null ],
+      [ "is_exception", "structl4__msgtag__t.html#a8a2755347df105887a10de2ba1b33c13", null ],
+      [ "is_io_page_fault", "structl4__msgtag__t.html#a995020e309a88f516da3322ad2d9fa50", null ],
+      [ "is_page_fault", "structl4__msgtag__t.html#a3082955bfed4ee7bbedbb3cee8b04f13", null ],
+      [ "is_preemption", "structl4__msgtag__t.html#a56573ba4b1115e54e6b4260aa6a10a08", null ],
+      [ "is_sigma0", "structl4__msgtag__t.html#a3f70055362c4ef939c1e1e32763a0644", null ],
+      [ "is_sys_exception", "structl4__msgtag__t.html#a8d448be109b3957abb8a011cc23ec4fe", null ],
+      [ "items", "structl4__msgtag__t.html#ad014e4a9f4509b068ddda678f6f8d568", null ],
+      [ "label", "structl4__msgtag__t.html#a002076380a3f6e4f29a1f6b50ce2bde2", null ],
+      [ "label", "structl4__msgtag__t.html#a6e88169d6d19a653d1d69d8c11e95572", null ],
+      [ "words", "structl4__msgtag__t.html#a98577ea730d9abcd938b89d5c7adb18c", null ],
       [ "raw", "structl4__msgtag__t.html#adcc4bbec40c01f7418f800e071d9712f", null ]
     ] ],
     [ "l4_msgtag_t", "group__l4__msgtag__api.html#ga05eb6ccb839e1686f5a1c474430de788", null ],
@@ -47,7 +47,8 @@ var group__l4__msgtag__api =
       [ "L4_PROTO_SEMAPHORE", "group__l4__msgtag__api.html#gga61165805662641702f50e4f524a8df01ad93a31752d5bd7e8076bec7d8e4293f3", null ],
       [ "L4_PROTO_META", "group__l4__msgtag__api.html#gga61165805662641702f50e4f524a8df01a9c3bab59b9863f958ab21ac418eb1596", null ],
       [ "L4_PROTO_IOMMU", "group__l4__msgtag__api.html#gga61165805662641702f50e4f524a8df01aba6bc7fb4446c4527d485a6c2dea153d", null ],
-      [ "L4_PROTO_DEBUGGER", "group__l4__msgtag__api.html#gga61165805662641702f50e4f524a8df01adc55eb8da9eba43b3a014e5a5e0a9ac2", null ]
+      [ "L4_PROTO_DEBUGGER", "group__l4__msgtag__api.html#gga61165805662641702f50e4f524a8df01adc55eb8da9eba43b3a014e5a5e0a9ac2", null ],
+      [ "L4_PROTO_SMCCC", "group__l4__msgtag__api.html#gga61165805662641702f50e4f524a8df01af9d0a853f2f7a508b9452c01cf17e8ee", null ]
     ] ],
     [ "L4_platform_ctl_proto", "group__l4__msgtag__api.html#ga3b9e290891059ae64daab8e01c02eeb3", [
       [ "L4_PROTO_PLATFORM_CTL", "group__l4__msgtag__api.html#gga3b9e290891059ae64daab8e01c02eeb3a107f89be6beed111d0f240371876e73d", null ]

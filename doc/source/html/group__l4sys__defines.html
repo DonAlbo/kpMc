@@ -96,10 +96,8 @@ $(document).ready(function(){initNavTree('group__l4sys__defines.html','');});
 <div id="dynsection-0-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-0-content" class="dyncontent" style="display:none;">
-<center><table><tr><td><img src="group__l4sys__defines.png" border="0" alt="" usemap="#group____l4sys____defines"/>
-<map name="group____l4sys____defines" id="group____l4sys____defines">
-<area shape="rect" id="node1" href="group__l4__api.html" title="Interfaces for all kinds of base functionality. " alt="" coords="5,5,85,32"/>
-</map>
+<center><table><tr><td><div class="center"><iframe scrolling="no" frameborder="0" src="group__l4sys__defines.svg" width="246" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </td></tr></table></center>
 </div>
 <table class="memberdecls">
@@ -192,7 +190,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="grou
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <p><a class="el" href="namespaceL4.html" title="L4 low-level kernel interface. ">L4</a> standard macros for header files, function definitions, and public APIs etc. </p>
-<dl class="section user"><dt>Include File</dt><dd><div class="fragment"><div class="line"><span class="preprocessor">#include &lt;<a class="code" href="compiler_8h.html">l4/sys/compiler.h</a>&gt;</span> </div></div><!-- fragment --> </dd></dl>
+<dl class="section user"><dt>Include File^^ #include &lt;l4/sys/compiler.h&gt; </dt><dd></dd></dl>
 <h2 class="groupheader">Macro Definition Documentation</h2>
 <a id="ga2480e75b7c2b4976ce05d124d6d4c984"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ga2480e75b7c2b4976ce05d124d6d4c984">&#9670;&nbsp;</a></span>L4_ALWAYS_INLINE</h2>
@@ -228,7 +226,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="grou
 <p>Attribute to mark functions, variables, and data types as being explicitly hidden from users of a library. </p>
 <p>This attribute is intended for functions, data, and data types that shall never be visible outside of a library. In particular, for shared libraries this may result in much faster code within the library and short linking times.</p>
 <div class="fragment"><div class="line"><span class="keyword">class </span><a class="code" href="group__l4sys__defines.html#gacd71f0ba2a27d5dfb679c2e8b6b20fee">L4_HIDDEN</a> My_class</div><div class="line">{</div><div class="line">  ...</div><div class="line">};</div><div class="line"></div><div class="line"><span class="keywordtype">int</span> <a class="code" href="group__l4sys__defines.html#gacd71f0ba2a27d5dfb679c2e8b6b20fee">L4_HIDDEN</a> <span class="keyword">function</span>(void);</div><div class="line"></div><div class="line"><span class="keywordtype">int</span> <a class="code" href="group__l4sys__defines.html#gacd71f0ba2a27d5dfb679c2e8b6b20fee">L4_HIDDEN</a> global_data; <span class="comment">// global data is not recommended</span></div></div><!-- fragment --> 
-<p class="definition">Definition at line <a class="el" href="compiler_8h_source.html#l00212">212</a> of file <a class="el" href="compiler_8h_source.html">compiler.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="compiler_8h_source.html#l00216">216</a> of file <a class="el" href="compiler_8h_source.html">compiler.h</a>.</p>
 
 </div>
 </div>
@@ -246,11 +244,11 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="grou
 
 <p>Mark a function declaration and definition as never throwing an exception. </p>
 <p>(Also for C code).</p>
-<p>This macro shall be used to mark C and C++ functions that never throw any exception. Note that also C functions may throw exceptions according to the compilers ABI and shall be marke with L4_NOTHROW if they never do. In C++ this is equvalent to <code>throw()</code>.</p>
+<p>This macro shall be used to mark C and C++ functions that never throw any exception. Note that also C functions may throw exceptions according to the compilers ABI and shall be marked with L4_NOTHROW if they never do. In C++ this is equivalent to <code>throw()</code>.</p>
 <div class="fragment"><div class="line"><span class="keywordtype">int</span> foo() <a class="code" href="group__l4sys__defines.html#ga362dfa378e662dd04f710a23fc7ea931">L4_NOTHROW</a>;</div><div class="line">...</div><div class="line"><span class="keywordtype">int</span> foo() <a class="code" href="group__l4sys__defines.html#ga362dfa378e662dd04f710a23fc7ea931">L4_NOTHROW</a></div><div class="line">{</div><div class="line">  ...</div><div class="line">  <span class="keywordflow">return</span> result;</div><div class="line">}</div></div><!-- fragment --> 
-<p class="definition">Definition at line <a class="el" href="compiler_8h_source.html#l00185">185</a> of file <a class="el" href="compiler_8h_source.html">compiler.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="compiler_8h_source.html#l00186">186</a> of file <a class="el" href="compiler_8h_source.html">compiler.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="l4_2sys_2types_8h_source.html#l00190">l4_msgtag_t::has_error()</a>, <a class="el" href="l4_2sys_2consts_8h_source.html#l00359">l4_round_page()</a>, <a class="el" href="amd64_2l4_2util_2util_8h_source.html#l00050">l4_sleep_forever()</a>, <a class="el" href="l4_2sys_2consts_8h_source.html#l00334">l4_trunc_page()</a>, <a class="el" href="l4_2sys_2consts_8h_source.html#l00345">l4_trunc_size()</a>, <a class="el" href="____vm-vmx_8h_source.html#l00357">l4_vm_vmx_field_len()</a>, <a class="el" href="vcpu_2vcpu_8h_source.html#l00216">l4vcpu_irq_disable_save()</a>, and <a class="el" href="virtio_8h_source.html#l00281">l4virtio_get_feature()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="l4_2sys_2types_8h_source.html#l00191">l4_msgtag_t::has_error()</a>, <a class="el" href="l4_2sys_2consts_8h_source.html#l00389">l4_round_page()</a>, <a class="el" href="l4_2sys_2consts_8h_source.html#l00400">l4_round_size()</a>, <a class="el" href="amd64_2l4_2util_2util_8h_source.html#l00050">l4_sleep_forever()</a>, <a class="el" href="l4_2sys_2consts_8h_source.html#l00364">l4_trunc_page()</a>, <a class="el" href="l4_2sys_2consts_8h_source.html#l00375">l4_trunc_size()</a>, <a class="el" href="____vm-vmx_8h_source.html#l00357">l4_vm_vmx_field_len()</a>, <a class="el" href="env_8h_source.html#l00081">l4re_env_cap_entry_t::l4re_env_cap_entry_t()</a>, <a class="el" href="vcpu_2vcpu_8h_source.html#l00216">l4vcpu_irq_disable_save()</a>, and <a class="el" href="virtio_8h_source.html#l00276">l4virtio_get_feature()</a>.</p>
 
 </div>
 </div>
@@ -260,7 +258,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="grou
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated on Sun Sep 24 2017 23:15:11 for L4Re - L4 Runtime Environment by
+    <li class="footer">Generated on Tue Aug 11 2020 13:28:15 for L4Re - L4 Runtime Environment by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.13 </li>
   </ul>

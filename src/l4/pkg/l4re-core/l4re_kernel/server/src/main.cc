@@ -24,9 +24,9 @@
 #include <l4/sys/thread>
 #include <l4/sys/cxx/ipc_server_loop>
 
-#include <cstdlib>
-#include <cstring>
-#include <cassert>
+#include <stdlib.h>
+#include <string.h>
+#include <assert.h>
 
 #include "region.h"
 #include "globals.h"
@@ -72,6 +72,7 @@ void *__libc_alloc_initial_tls(unsigned long)
   // __libc_alloc_initial_tls must not be called here, this is just
   // a safety measure
   assert(0);
+  return nullptr;
 }
 
 static L4::Server<Loop_hooks> server(l4_utcb());
@@ -91,7 +92,8 @@ static void insert_regions()
           auto pager = L4::cap_reinterpret_cast<L4Re::Dataspace>(Env::env()->rm());
           void *x = Global::local_rm
             ->attach((void*)r->start, r->end - r->start +1,
-                     Region_handler(pager, L4_INVALID_CAP, 0, Rm::Pager), 0);
+                     Region_handler(pager, L4_INVALID_CAP, 0,
+                                    Rm::F::Pager | Rm::F::RWX), Rm::Flags(0));
           if (!x)
             {
               L4::cerr << "l4re: error while initializing region mapper\n";
@@ -161,8 +163,8 @@ static int run(int argc, char const *argv[], char const *envp[])
       char s[15];
       char *t = strstr(Global::l4re_aux->binary, "rom/");
       s[0] = '#';
-      strncpy(s + 1, t ? t + 4 : Global::l4re_aux->binary, sizeof(s)-1);
-      s[sizeof(s)-1] = 0;
+      strncpy(s + 1, t ? t + 4 : Global::l4re_aux->binary, sizeof(s) - 2);
+      s[sizeof(s) - 1] = 0;
       l4_debugger_set_object_name(L4_BASE_THREAD_CAP, s);
       l4_debugger_set_object_name(L4_BASE_TASK_CAP, s + 1);
     }

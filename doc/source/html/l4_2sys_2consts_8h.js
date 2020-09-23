@@ -31,6 +31,7 @@ var l4_2sys_2consts_8h =
       [ "L4_BASE_SCHEDULER_CAP", "group__l4__cap__api.html#ggaa7801b63edba351bad9ea8026432b5c4ab64205360a4af2b208ba478a85826f8b", null ],
       [ "L4_BASE_IOMMU_CAP", "group__l4__cap__api.html#ggaa7801b63edba351bad9ea8026432b5c4a193606abf6233dbecc3ab445068dde15", null ],
       [ "L4_BASE_DEBUGGER_CAP", "group__l4__cap__api.html#ggaa7801b63edba351bad9ea8026432b5c4a3b548600669ef80f419b7d7118768ecc", null ],
+      [ "L4_BASE_ARM_SMCCC_CAP", "group__l4__cap__api.html#ggaa7801b63edba351bad9ea8026432b5c4aefcb3c078e5a5d3d7bed1eae5f22e4fa", null ],
       [ "L4_BASE_CAPS_LAST", "group__l4__cap__api.html#ggaa7801b63edba351bad9ea8026432b5c4a8383f81861d75ee0a3e37bc00ed77135", null ]
     ] ],
     [ "l4_msg_item_consts_t", "group__l4__msgitem__api.html#ga94ecfe2908867c4ed0c13a7a97337f6a", [
@@ -57,8 +58,9 @@ var l4_2sys_2consts_8h =
       [ "L4_FP_DELETE_OBJ", "group__l4__task__api.html#gga3c24e67b976870a3e911c43c83382f66a49114f3e6952b9448fe776f2ab18813f", null ],
       [ "L4_FP_OTHER_SPACES", "group__l4__task__api.html#gga3c24e67b976870a3e911c43c83382f66af5f4ec77edcf5a85ecd79b0ae24e31f0", null ]
     ] ],
+    [ "l4_bytes_to_mwords", "group__l4__memory__api.html#ga2be30f4e5dde3c85d115d2a9c77f6215", null ],
     [ "l4_round_page", "group__l4__memory__api.html#ga96e3b2d8e69308aecbb11d1d24f61662", null ],
-    [ "l4_round_size", "group__l4__memory__api.html#gae8aa66c17956ac2dfc2a6d5788fd97a9", null ],
+    [ "l4_round_size", "group__l4__memory__api.html#gae876a4c6e0f21b2ecbf17863dc7d11e4", null ],
     [ "l4_trunc_page", "group__l4__memory__api.html#ga70b72ae96c18cb49a3445198711bba0d", null ],
     [ "l4_trunc_size", "group__l4__memory__api.html#ga792959ba1e87fecf90018876f32d7bc9", null ]
 ];

@@ -1,3 +1,4 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="node1" href="$structL4_1_1Ipc_1_1Array__in__buf.html" title="Server&#45;side copy in buffer for Array. " alt="" coords="5,5,203,61"/>
+<area shape="rect" id="node1" href="$structL4_1_1Epiface__t0.html" title="L4::Epiface_t0\&lt; void,\l BASE \&gt;" alt="" coords="5,5,157,47"/>
+<area shape="rect" id="node2" href="$structL4_1_1Irqep__t.html" title="Epiface implementation for interrupt handlers. " alt="" coords="205,5,359,47"/>
 </map>

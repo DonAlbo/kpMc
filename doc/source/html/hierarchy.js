@@ -3,9 +3,6 @@ var hierarchy =
     [ "L4::Ipc::Array_ref< CHAR, LEN >", "structL4_1_1Ipc_1_1Array__ref.html", [
       [ "L4::Ipc::Array< CHAR, LEN >", "structL4_1_1Ipc_1_1Array.html", null ]
     ] ],
-    [ "L4Re::Util::Auto_cap< L4::Irq >", "structL4Re_1_1Util_1_1Auto__cap.html", null ],
-    [ "L4Re::Util::Auto_cap< L4Re::Dataspace >", "structL4Re_1_1Util_1_1Auto__cap.html", null ],
-    [ "L4Re::Util::Auto_del_cap< L4::Triggerable >", "structL4Re_1_1Util_1_1Auto__del__cap.html", null ],
     [ "cxx::Bits::Base_avl_set< ITEM_TYPE, COMPARE, ALLOC, Bits::Avl_set_get_key< ITEM_TYPE > >", "classcxx_1_1Bits_1_1Base__avl__set.html", [
       [ "cxx::Avl_set< ITEM_TYPE, COMPARE, ALLOC >", "classcxx_1_1Avl__set.html", null ]
     ] ],
@@ -21,11 +18,11 @@ var hierarchy =
     [ "cxx::Base_slab_static< sizeof(Type), Slab_size, Max_free, Alloc >", "classcxx_1_1Base__slab__static.html", [
       [ "cxx::Slab_static< Type, Slab_size, Max_free, Alloc >", "classcxx_1_1Slab__static.html", null ]
     ] ],
+    [ "cxx::Bits::Basic_list< Bits::Basic_list_policy< cxx::Base_slab::Slab_i, H_list_item > >", "classcxx_1_1Bits_1_1Basic__list.html", [
+      [ "cxx::H_list< cxx::Base_slab::Slab_i >", "classcxx_1_1H__list.html", null ]
+    ] ],
     [ "cxx::Bits::Basic_list< Bits::Basic_list_policy< Observer, H_list_item > >", "classcxx_1_1Bits_1_1Basic__list.html", [
       [ "cxx::H_list< Observer >", "classcxx_1_1H__list.html", null ]
-    ] ],
-    [ "cxx::Bits::Basic_list< Bits::Basic_list_policy< Slab_i, H_list_item > >", "classcxx_1_1Bits_1_1Basic__list.html", [
-      [ "cxx::H_list< Slab_i >", "classcxx_1_1H__list.html", null ]
     ] ],
     [ "cxx::Bits::Basic_list< Bits::Basic_list_policy< T, H_list_item > >", "classcxx_1_1Bits_1_1Basic__list.html", [
       [ "cxx::H_list< T >", "classcxx_1_1H__list.html", null ]
@@ -86,6 +83,7 @@ var hierarchy =
     [ "L4::Ipc::Msg::Clnt_val_ops< Detail::_Plain< typename _Elem< T > ::arg_type >::type, typename Direction< T >::type, typename Class< typename Detail::_Plain< T >::type >::type >", "structL4_1_1Ipc_1_1Msg_1_1Clnt__val__ops.html", null ],
     [ "cxx::Auto_ptr< T >", "classcxx_1_1Auto__ptr.html", null ],
     [ "cxx::Base_slab< Obj_size, Slab_size, Max_free, Alloc >", "classcxx_1_1Base__slab.html", null ],
+    [ "cxx::Base_slab< Obj_size, Slab_size, Max_free, Alloc >::Slab_i", "structcxx_1_1Base__slab_1_1Slab__i.html", null ],
     [ "cxx::Base_slab_static< Obj_size, Slab_size, Max_free, Alloc >", "classcxx_1_1Base__slab__static.html", null ],
     [ "cxx::Bitfield< T, LSB, MSB >", "classcxx_1_1Bitfield.html", null ],
     [ "cxx::Bitfield< T, LSB, MSB >::Value_base< TT >", "classcxx_1_1Bitfield_1_1Value__base.html", [
@@ -113,6 +111,10 @@ var hierarchy =
       [ "cxx::Avl_tree_node", "classcxx_1_1Avl__tree__node.html", null ]
     ] ],
     [ "cxx::Bits::Direction", "structcxx_1_1Bits_1_1Direction.html", null ],
+    [ "cxx::Bits::Smart_ptr_list< ITEM >", "classcxx_1_1Bits_1_1Smart__ptr__list.html", null ],
+    [ "cxx::Bits::Smart_ptr_list_item< T, STORE_T >", "classcxx_1_1Bits_1_1Smart__ptr__list__item.html", [
+      [ "cxx::Ref_obj_list_item< T >", "structcxx_1_1Ref__obj__list__item.html", null ]
+    ] ],
     [ "cxx::H_list_item_t< ELEM_TYPE >", "classcxx_1_1H__list__item__t.html", [
       [ "L4::Ipc_svr::Timeout", "classL4_1_1Ipc__svr_1_1Timeout.html", null ]
     ] ],
@@ -135,7 +137,7 @@ var hierarchy =
       [ "L4Re::Util::Names::Name", "classL4Re_1_1Util_1_1Names_1_1Name.html", null ]
     ] ],
     [ "L4virtio::Svr::Device_t< Ds_data >", "classL4virtio_1_1Svr_1_1Device__t.html", [
-      [ "L4virtio::Svr::Block_dev< Ds_data >", "classL4virtio_1_1Svr_1_1Block__dev.html", null ]
+      [ "L4virtio::Svr::Block_dev_base< Ds_data >", "classL4virtio_1_1Svr_1_1Block__dev__base.html", null ]
     ] ],
     [ "L4virtio::Svr::Driver_mem_list_t< Ds_data >", "classL4virtio_1_1Svr_1_1Driver__mem__list__t.html", null ],
     [ "L4virtio::Svr::Driver_mem_region_t< Ds_data >", "classL4virtio_1_1Svr_1_1Driver__mem__region__t.html", null ],
@@ -149,6 +151,16 @@ var hierarchy =
     [ "Elf64_Phdr", "structElf64__Phdr.html", null ],
     [ "Elf64_Shdr", "structElf64__Shdr.html", null ],
     [ "Elf64_Sym", "structElf64__Sym.html", null ],
+    [ "L4::Epiface_t0< IFACE, BASE >", "structL4_1_1Epiface__t0.html", [
+      [ "L4::Epiface_t< Derived, IFACE, BASE, bool >", "structL4_1_1Epiface__t.html", null ]
+    ] ],
+    [ "L4::Epiface_t0< void, BASE >", "structL4_1_1Epiface__t0.html", [
+      [ "L4::Irqep_t< Derived, BASE, bool >", "structL4_1_1Irqep__t.html", null ]
+    ] ],
+    [ "L4::Types::Flags_ops_t< Flags >", "structL4_1_1Types_1_1Flags__ops__t.html", null ],
+    [ "L4::Types::Flags_ops_t< Flags_t< DT, T > >", "structL4_1_1Types_1_1Flags__ops__t.html", [
+      [ "L4::Types::Flags_t< DT, T >", "structL4_1_1Types_1_1Flags__t.html", null ]
+    ] ],
     [ "cxx::H_list_item_t< Weak_ref_base >", "classcxx_1_1H__list__item__t.html", [
       [ "cxx::Weak_ref_base", "classcxx_1_1Weak__ref__base.html", [
         [ "cxx::Weak_ref< T >", "classcxx_1_1Weak__ref.html", null ]
@@ -162,6 +174,7 @@ var hierarchy =
       [ "L4::Iommu", "classL4_1_1Iommu.html", null ]
     ] ],
     [ "L4::Alloc_list", "classL4_1_1Alloc__list.html", null ],
+    [ "L4::Arm_smccc", "classL4_1_1Arm__smccc.html", null ],
     [ "L4::Basic_registry", "classL4_1_1Basic__registry.html", [
       [ "L4Re::Util::Object_registry", "classL4Re_1_1Util_1_1Object__registry.html", null ]
     ] ],
@@ -180,6 +193,25 @@ var hierarchy =
       [ "L4::Cap< T >", "classL4_1_1Cap.html", null ],
       [ "L4::Smart_cap< T, SMART >", "classL4_1_1Smart__cap.html", null ]
     ] ],
+    [ "L4::Epiface", "structL4_1_1Epiface.html", [
+      [ "L4::Epiface_t0< L4::Kobject, L4::Epiface >", "structL4_1_1Epiface__t0.html", [
+        [ "L4::Epiface_t< Null_handler, L4::Kobject >", "structL4_1_1Epiface__t.html", null ]
+      ] ],
+      [ "L4::Epiface_t0< L4virtio::Device, L4::Epiface >", "structL4_1_1Epiface__t0.html", [
+        [ "L4::Epiface_t< Block_dev< Ds_data >, L4virtio::Device >", "structL4_1_1Epiface__t.html", null ]
+      ] ],
+      [ "L4::Epiface_t0< void, Epiface >", "structL4_1_1Epiface__t0.html", [
+        [ "L4::Irqep_t< Irq_object >", "structL4_1_1Irqep__t.html", null ]
+      ] ],
+      [ "L4::Server_object", "classL4_1_1Server__object.html", [
+        [ "L4::Server_object_x< Derived, IFACE, BASE >", "structL4_1_1Server__object__x.html", null ],
+        [ "L4::Server_object_t< Kobject >", "structL4_1_1Server__object__t.html", [
+          [ "L4::Irq_handler_object", "structL4_1_1Irq__handler__object.html", null ]
+        ] ]
+      ] ]
+    ] ],
+    [ "L4::Epiface_t0< RPC_IFACE, BASE >", "structL4_1_1Epiface__t0.html", null ],
+    [ "L4::Exception", "classL4_1_1Exception.html", null ],
     [ "L4::Exception_tracer", "classL4_1_1Exception__tracer.html", [
       [ "L4::Base_exception", "classL4_1_1Base__exception.html", [
         [ "L4::Invalid_capability", "classL4_1_1Invalid__capability.html", null ],
@@ -263,6 +295,7 @@ var hierarchy =
     [ "L4::Ipc::Varg_list_ref", "classL4_1_1Ipc_1_1Varg__list__ref.html", [
       [ "L4::Ipc::Varg_list< MAX >", "classL4_1_1Ipc_1_1Varg__list.html", null ]
     ] ],
+    [ "L4::Ipc::Varg_list_ref::Iterator", "classL4_1_1Ipc_1_1Varg__list__ref_1_1Iterator.html", null ],
     [ "L4::Ipc_svr::Compound_reply", "structL4_1_1Ipc__svr_1_1Compound__reply.html", [
       [ "L4::Ipc_svr::Default_loop_hooks", "structL4_1_1Ipc__svr_1_1Default__loop__hooks.html", null ],
       [ "L4Re::Util::Br_manager_hooks", "structL4Re_1_1Util_1_1Br__manager__hooks.html", null ]
@@ -298,12 +331,18 @@ var hierarchy =
     [ "L4::Irq_eoi", "classL4_1_1Irq__eoi.html", [
       [ "L4::Kobject_t< Icu, Irq_eoi, L4_PROTO_IRQ, Type_info::Demand_t< 1 > >", "classL4_1_1Kobject__t.html", [
         [ "L4::Icu", "classL4_1_1Icu.html", [
+          [ "L4::Kobject_t< Device, L4::Icu, L4VIRTIO_PROTOCOL, L4::Type_info::Demand_t< 1 > >", "classL4_1_1Kobject__t.html", [
+            [ "L4virtio::Device", "classL4virtio_1_1Device.html", null ]
+          ] ],
           [ "L4::Kobject_t< Event, L4::Icu, L4RE_PROTO_EVENT >", "classL4_1_1Kobject__t.html", [
             [ "L4Re::Event", "classL4Re_1_1Event.html", [
               [ "L4::Kobject_3t< Vbus, L4Re::Dataspace, L4Re::Inhibitor, L4Re::Event >", "structL4_1_1Kobject__3t.html", [
                 [ "L4vbus::Vbus", "classL4vbus_1_1Vbus.html", null ]
               ] ]
             ] ]
+          ] ],
+          [ "L4::Kobject_t< Random, L4::Icu >", "classL4_1_1Kobject__t.html", [
+            [ "L4Re::Random", "structL4Re_1_1Random.html", null ]
           ] ],
           [ "L4::Kobject_t< Scheduler, Icu, L4_PROTO_SCHEDULER, Type_info::Demand_t< 1 > >", "classL4_1_1Kobject__t.html", [
             [ "L4::Scheduler", "classL4_1_1Scheduler.html", null ]
@@ -319,7 +358,7 @@ var hierarchy =
       ] ],
       [ "L4::Kobject_t< Triggerable, Irq_eoi, L4_PROTO_IRQ >", "classL4_1_1Kobject__t.html", [
         [ "L4::Triggerable", "structL4_1_1Triggerable.html", [
-          [ "L4::Kobject_t< Irq, Triggerable, L4_PROTO_IRQ_SENDER >", "classL4_1_1Kobject__t.html", [
+          [ "L4::Kobject_2t< Irq, Triggerable, Rcv_endpoint, L4_PROTO_IRQ_SENDER >", "classL4_1_1Kobject__2t.html", [
             [ "L4::Irq", "classL4_1_1Irq.html", null ]
           ] ],
           [ "L4::Kobject_t< Irq_mux, Triggerable, L4_PROTO_IRQ_MUX >", "classL4_1_1Kobject__t.html", [
@@ -333,6 +372,7 @@ var hierarchy =
     ] ],
     [ "L4::Kip::Mem_desc", "classL4_1_1Kip_1_1Mem__desc.html", null ],
     [ "L4::Kobject", "classL4_1_1Kobject.html", [
+      [ "L4::Kobject_t< Arm_smccc, L4::Kobject, PROTO, Type_info::Demand_t<> >", "classL4_1_1Kobject__t.html", null ],
       [ "L4::Kobject_t< Cmd_control, L4::Kobject, L4::PROTO_ANY, Type_info::Demand_t<> >", "classL4_1_1Kobject__t.html", null ],
       [ "L4::Kobject_t< Dataspace, L4::Kobject, L4RE_PROTO_DATASPACE, L4::Type_info::Demand_t< 1 > >", "classL4_1_1Kobject__t.html", [
         [ "L4Re::Dataspace", "classL4Re_1_1Dataspace.html", [
@@ -346,7 +386,6 @@ var hierarchy =
         [ "L4::Debugger", "classL4_1_1Debugger.html", null ]
       ] ],
       [ "L4::Kobject_t< Derived, L4::Kobject, PROTO, S_DEMAND >", "classL4_1_1Kobject__t.html", null ],
-      [ "L4::Kobject_t< Device, L4::Kobject, L4VIRTIO_PROTOCOL, L4::Type_info::Demand_t< 1 > >", "classL4_1_1Kobject__t.html", null ],
       [ "L4::Kobject_t< Dma_space, L4::Kobject, PROTO, L4::Type_info::Demand_t< 1 > >", "classL4_1_1Kobject__t.html", null ],
       [ "L4::Kobject_t< Exception, L4::Kobject, PROTO, Type_info::Demand_t<> >", "classL4_1_1Kobject__t.html", null ],
       [ "L4::Kobject_t< Factory, Kobject, L4_PROTO_FACTORY >", "classL4_1_1Kobject__t.html", [
@@ -365,9 +404,6 @@ var hierarchy =
         ] ]
       ] ],
       [ "L4::Kobject_t< Io_pager, L4::Kobject, PROTO, Type_info::Demand_t<> >", "classL4_1_1Kobject__t.html", null ],
-      [ "L4::Kobject_t< Ipc_gate, Kobject, L4_PROTO_KOBJECT, Type_info::Demand_t< 1 > >", "classL4_1_1Kobject__t.html", [
-        [ "L4::Ipc_gate", "classL4_1_1Ipc__gate.html", null ]
-      ] ],
       [ "L4::Kobject_t< Irq_eoi, L4::Kobject, PROTO, Type_info::Demand_t<> >", "classL4_1_1Kobject__t.html", null ],
       [ "L4::Kobject_t< Meta, Kobject, L4_PROTO_META >", "classL4_1_1Kobject__t.html", [
         [ "L4::Meta", "classL4_1_1Meta.html", null ]
@@ -384,9 +420,18 @@ var hierarchy =
       [ "L4::Kobject_t< Platform_control, Kobject, L4_PROTO_PLATFORM_CTL >", "classL4_1_1Kobject__t.html", [
         [ "L4::Platform_control", "classL4_1_1Platform__control.html", null ]
       ] ],
+      [ "L4::Kobject_t< Rcv_endpoint, Kobject, L4_PROTO_KOBJECT, Type_info::Demand_t< 1 > >", "classL4_1_1Kobject__t.html", [
+        [ "L4::Rcv_endpoint", "classL4_1_1Rcv__endpoint.html", [
+          [ "L4::Kobject_2t< Irq, Triggerable, Rcv_endpoint, L4_PROTO_IRQ_SENDER >", "classL4_1_1Kobject__2t.html", null ],
+          [ "L4::Kobject_t< Ipc_gate, Rcv_endpoint, L4_PROTO_KOBJECT, Type_info::Demand_t< 1 > >", "classL4_1_1Kobject__t.html", [
+            [ "L4::Ipc_gate", "classL4_1_1Ipc__gate.html", null ]
+          ] ]
+        ] ]
+      ] ],
       [ "L4::Kobject_t< Task, Kobject, L4_PROTO_TASK, Type_info::Demand_t< 2 > >", "classL4_1_1Kobject__t.html", [
         [ "L4::Task", "classL4_1_1Task.html", [
           [ "L4::Kobject_t< Vm, Task, L4_PROTO_VM >", "classL4_1_1Kobject__t.html", [
+            [ "L4::Vm", "classL4_1_1Vm.html", null ],
             [ "L4::Vm", "classL4_1_1Vm.html", null ]
           ] ]
         ] ]
@@ -400,6 +445,7 @@ var hierarchy =
     [ "L4::Kobject_demand< T >", "structL4_1_1Kobject__demand.html", null ],
     [ "L4::Kobject_t< Derived, Base, PROTO, S_DEMAND >", "classL4_1_1Kobject__t.html", null ],
     [ "L4::Kobject_typeid< T >", "structL4_1_1Kobject__typeid.html", null ],
+    [ "L4::Kobject_typeid< void >", "structL4_1_1Kobject__typeid_3_01void_01_4.html", null ],
     [ "L4::Kobject_x< Derived, ARGS >", "structL4_1_1Kobject__x.html", null ],
     [ "L4::Poll_timeout_kipclock", "classL4_1_1Poll__timeout__kipclock.html", null ],
     [ "L4::Proto_t< P >", "structL4_1_1Proto__t.html", null ],
@@ -408,12 +454,6 @@ var hierarchy =
     ] ],
     [ "L4::Server< LOOP_HOOKS >", "classL4_1_1Server.html", [
       [ "L4Re::Util::Registry_server< LOOP_HOOKS >", "classL4Re_1_1Util_1_1Registry__server.html", null ]
-    ] ],
-    [ "L4::Server_object", "classL4_1_1Server__object.html", [
-      [ "L4::Server_object_x< Derived, IFACE, BASE >", "structL4_1_1Server__object__x.html", null ],
-      [ "L4::Server_object_t< Kobject >", "structL4_1_1Server__object__t.html", [
-        [ "L4::Irq_handler_object", "structL4_1_1Irq__handler__object.html", null ]
-      ] ]
     ] ],
     [ "L4::Server_object_t< IFACE, BASE >", "structL4_1_1Server__object__t.html", [
       [ "L4::Server_object_x< Derived, IFACE, BASE >", "structL4_1_1Server__object__x.html", null ]
@@ -455,6 +495,9 @@ var hierarchy =
     [ "L4::Typeid::Rpcs_code< OPCODE_TYPE >", "structL4_1_1Typeid_1_1Rpcs__code.html", null ],
     [ "L4::Types::Bool< V >", "structL4_1_1Types_1_1Bool.html", null ],
     [ "L4::Types::Flags< BITS_ENUM, UNDERLYING >", "classL4_1_1Types_1_1Flags.html", null ],
+    [ "L4::Types::Flags_ops_t< DT >", "structL4_1_1Types_1_1Flags__ops__t.html", null ],
+    [ "L4::Types::Int_for_size< SIZE, bool >", "structL4_1_1Types_1_1Int__for__size.html", null ],
+    [ "L4::Types::Int_for_type< T >", "structL4_1_1Types_1_1Int__for__type.html", null ],
     [ "l4_buf_regs_t", "structl4__buf__regs__t.html", null ],
     [ "l4_exc_regs_t", "structl4__exc__regs__t.html", null ],
     [ "l4_fpage_t", "unionl4__fpage__t.html", null ],
@@ -463,6 +506,7 @@ var hierarchy =
     ] ],
     [ "l4_icu_msi_info_t", "structl4__icu__msi__info__t.html", null ],
     [ "l4_kernel_info_mem_desc_t", "structl4__kernel__info__mem__desc__t.html", null ],
+    [ "l4_kernel_info_t", "structl4__kernel__info__t.html", null ],
     [ "l4_msg_regs_t", "unionl4__msg__regs__t.html", null ],
     [ "l4_msgtag_t", "structl4__msgtag__t.html", null ],
     [ "l4_sched_cpu_set_t", "structl4__sched__cpu__set__t.html", null ],
@@ -487,6 +531,7 @@ var hierarchy =
     [ "l4_vm_svm_vmcb_t", "structl4__vm__svm__vmcb__t.html", null ],
     [ "l4_vm_tz_state", "structl4__vm__tz__state.html", null ],
     [ "L4Re::Cap_alloc", "classL4Re_1_1Cap__alloc.html", null ],
+    [ "L4Re::Dataspace::F", "structL4Re_1_1Dataspace_1_1F.html", null ],
     [ "L4Re::Dataspace::Stats", "structL4Re_1_1Dataspace_1_1Stats.html", null ],
     [ "L4Re::Dma_space", "classL4Re_1_1Dma__space.html", null ],
     [ "L4Re::Env", "classL4Re_1_1Env.html", null ],
@@ -497,12 +542,16 @@ var hierarchy =
     ] ],
     [ "L4Re::Event_buffer_t< PAYLOAD >::Event", "structL4Re_1_1Event__buffer__t_1_1Event.html", null ],
     [ "L4Re::Ned::Cmd_control", "classL4Re_1_1Ned_1_1Cmd__control.html", null ],
+    [ "L4Re::Rm::Area", "structL4Re_1_1Rm_1_1Area.html", null ],
+    [ "L4Re::Rm::F", "structL4Re_1_1Rm_1_1F.html", null ],
+    [ "L4Re::Rm::Region", "structL4Re_1_1Rm_1_1Region.html", null ],
     [ "L4Re::Smart_cap_auto< Unmap_flags >", "classL4Re_1_1Smart__cap__auto.html", null ],
-    [ "L4Re::Util::Auto_cap< T >", "structL4Re_1_1Util_1_1Auto__cap.html", null ],
-    [ "L4Re::Util::Auto_del_cap< T >", "structL4Re_1_1Util_1_1Auto__del__cap.html", null ],
+    [ "L4Re::Smart_count_cap< Unmap_flags >", "classL4Re_1_1Smart__count__cap.html", null ],
     [ "L4Re::Util::Cap_alloc_base", "classL4Re_1_1Util_1_1Cap__alloc__base.html", null ],
+    [ "L4Re::Util::Counter< COUNTER >", "structL4Re_1_1Util_1_1Counter.html", null ],
     [ "L4Re::Util::Counting_cap_alloc< COUNTERTYPE >", "classL4Re_1_1Util_1_1Counting__cap__alloc.html", null ],
     [ "L4Re::Util::Dataspace_svr", "classL4Re_1_1Util_1_1Dataspace__svr.html", null ],
+    [ "L4Re::Util::Event_svr< SVR >", "classL4Re_1_1Util_1_1Event__svr.html", null ],
     [ "L4Re::Util::Event_t< PAYLOAD >", "classL4Re_1_1Util_1_1Event__t.html", null ],
     [ "L4Re::Util::Item_alloc_base", "classL4Re_1_1Util_1_1Item__alloc__base.html", null ],
     [ "L4Re::Util::Names::Name_space", "classL4Re_1_1Util_1_1Names_1_1Name__space.html", null ],
@@ -591,9 +640,14 @@ var hierarchy =
     [ "L4virtio::Virtqueue::Used::Flags", "structL4virtio_1_1Virtqueue_1_1Used_1_1Flags.html", null ],
     [ "L4virtio::Virtqueue::Used_elem", "structL4virtio_1_1Virtqueue_1_1Used__elem.html", null ],
     [ "l4virtio_block_config_t", "structl4virtio__block__config__t.html", null ],
+    [ "l4virtio_block_discard_t", "structl4virtio__block__discard__t.html", null ],
     [ "l4virtio_block_header_t", "structl4virtio__block__header__t.html", null ],
     [ "l4virtio_config_hdr_t", "structl4virtio__config__hdr__t.html", null ],
     [ "l4virtio_config_queue_t", "structl4virtio__config__queue__t.html", null ],
+    [ "l4virtio_input_absinfo_t", "structl4virtio__input__absinfo__t.html", null ],
+    [ "l4virtio_input_config_t", "structl4virtio__input__config__t.html", null ],
+    [ "l4virtio_input_devids_t", "structl4virtio__input__devids__t.html", null ],
+    [ "l4virtio_input_event_t", "structl4virtio__input__event__t.html", null ],
     [ "L4vbus::Pm< Device >", "classL4vbus_1_1Pm.html", [
       [ "L4vbus::Device", "classL4vbus_1_1Device.html", [
         [ "L4vbus::Gpio_module", "classL4vbus_1_1Gpio__module.html", null ],

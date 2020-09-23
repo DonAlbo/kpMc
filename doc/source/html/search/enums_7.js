@@ -1,6 +1,5 @@
 var searchData=
 [
-  ['map_5fflags',['Map_flags',['../classL4Re_1_1Dataspace.html#aabaf1549938f599cbf4e10db50095d13',1,'L4Re::Dataspace']]],
   ['map_5ftype',['Map_type',['../classL4_1_1Ipc_1_1Gen__fpage.html#a9bf0508c5cbe34e5b39942177c5f9bbc',1,'L4::Ipc::Gen_fpage']]],
   ['masks',['Masks',['../classcxx_1_1Bitfield.html#a85afeb75ac1516f5bec8fe3cb63f9b35',1,'cxx::Bitfield']]],
   ['mem_5falloc_5fflags',['Mem_alloc_flags',['../classL4Re_1_1Mem__alloc.html#a47f3e054def977c17dbf60bfbb4ee05e',1,'L4Re::Mem_alloc']]],

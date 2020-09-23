@@ -98,10 +98,8 @@ $(document).ready(function(){initNavTree('group__l4__icu__api.html','');});
 <div id="dynsection-0-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-0-content" class="dyncontent" style="display:none;">
-<center><table><tr><td><img src="group__l4__icu__api.png" border="0" alt="" usemap="#group____l4____icu____api"/>
-<map name="group____l4____icu____api" id="group____l4____icu____api">
-<area shape="rect" id="node2" href="group__l4__kernel__object__api.html" title="API of kernel objects. " alt="" coords="5,5,120,32"/>
-</map>
+<center><table><tr><td><div class="center"><iframe scrolling="no" frameborder="0" src="group__l4__icu__api.svg" width="312" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </td></tr></table></center>
 </div>
 <table class="memberdecls">
@@ -177,7 +175,7 @@ Functions</h2></td></tr>
 <li><a class="el" href="group__l4__icu__api.html#ga793c534597fd98ee93cbaf24ad08a615" title="Bind an interrupt line of an interrupt controller to an interrupt object. ">l4_icu_bind()</a></li>
 <li><a class="el" href="group__l4__icu__api.html#gaab0c2827a3cf3eccf79a87f8069aa167" title="Unmask an IRQ line. ">l4_icu_unmask()</a> to receive the first IRQ</li>
 </ol>
-<dl class="section user"><dt>Include File</dt><dd><div class="fragment"><div class="line"><span class="preprocessor">#include &lt;<a class="code" href="icu_8h.html">l4/sys/icu.h</a>&gt;</span> </div></div><!-- fragment --> </dd></dl>
+<dl class="section user"><dt>Include File^^ #include &lt;l4/sys/icu.h&gt; </dt><dd></dd></dl>
 <h2 class="groupheader">Typedef Documentation</h2>
 <a id="gacfdf3e00e12fe195b2403f437cc09f17"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#gacfdf3e00e12fe195b2403f437cc09f17">&#9670;&nbsp;</a></span>l4_icu_info_t</h2>
@@ -270,7 +268,7 @@ Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>Syscall return tag. The caller should check the return value using <a class="el" href="group__l4__ipc__err__api.html#ga05c11e3e10b6c2aa941396ac2018899f" title="Return error code of a system call return message tag. ">l4_error()</a> to check for errors and to identify the correct method for unmasking the interrupt. Return values <code>&lt; 0</code> indicate an error. A return value of <code>0</code> means a direct unmask via the IRQ object using <a class="el" href="group__l4__irq__api.html#ga213b7c4fe4d690ec2aec84fd226883c4" title="Unmask IRQ. ">l4_irq_unmask()</a>. A return value of <code>1</code> means that the interrupt has to be unmasked via the ICU using <a class="el" href="group__l4__icu__api.html#gaab0c2827a3cf3eccf79a87f8069aa167" title="Unmask an IRQ line. ">l4_icu_unmask()</a>. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>Syscall return tag. The caller should check the return value using <a class="el" href="group__l4__ipc__err__api.html#ga05c11e3e10b6c2aa941396ac2018899f" title="Return error code of a system call return message tag or the tag label. ">l4_error()</a> to check for errors and to identify the correct method for unmasking the interrupt. Return values <code>&lt; 0</code> indicate an error. A return value of <code>0</code> means a direct unmask via the IRQ object using <a class="el" href="group__l4__irq__api.html#ga213b7c4fe4d690ec2aec84fd226883c4" title="Unmask IRQ. ">l4_irq_unmask()</a>. A return value of <code>1</code> means that the interrupt has to be unmasked via the ICU using <a class="el" href="group__l4__icu__api.html#gaab0c2827a3cf3eccf79a87f8069aa167" title="Unmask an IRQ line. ">l4_icu_unmask()</a>. </dd></dl>
 <dl><dt><b>Examples: </b></dt><dd><a class="el" href="examples_2sys_2isr_2main_8c-example.html#a7">examples/sys/isr/main.c</a>.</dd>
 </dl>
 <p class="definition">Definition at line <a class="el" href="icu_8h_source.html#l00473">473</a> of file <a class="el" href="icu_8h_source.html">icu.h</a>.</p>
@@ -281,11 +279,8 @@ Functions</h2></td></tr>
 <div id="dynsection-1-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-1-content" class="dyncontent" style="display:none;">
-<div class="center"><img src="group__l4__icu__api_ga793c534597fd98ee93cbaf24ad08a615_cgraph.png" border="0" usemap="#group__l4__icu__api_ga793c534597fd98ee93cbaf24ad08a615_cgraph" alt=""/></div>
-<map name="group__l4__icu__api_ga793c534597fd98ee93cbaf24ad08a615_cgraph" id="group__l4__icu__api_ga793c534597fd98ee93cbaf24ad08a615_cgraph">
-<area shape="rect" id="node2" href="group__l4__icu__api.html#ga29217a67f405c5d860002dd902bf71e4" title="Bind an interrupt line of an interrupt controller to an interrupt object. " alt="" coords="145,5,252,32"/>
-<area shape="rect" id="node3" href="group__l4__utcb__api.html#gadc099b4a59e1d99638c72c11a8c8b644" title="Get the UTCB address. " alt="" coords="165,56,232,83"/>
-</map>
+<div class="center"><iframe scrolling="no" frameborder="0" src="group__l4__icu__api_ga793c534597fd98ee93cbaf24ad08a615_cgraph.svg" width="258" height="88"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 
 </div>
@@ -346,22 +341,18 @@ Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>Syscall return tag. The caller should check the return value using <a class="el" href="group__l4__ipc__err__api.html#ga05c11e3e10b6c2aa941396ac2018899f" title="Return error code of a system call return message tag. ">l4_error()</a> to check for errors and to identify the correct method for unmasking the interrupt. Return values <code>&lt; 0</code> indicate an error. A return value of <code>0</code> means a direct unmask via the IRQ object using <a class="el" href="classL4_1_1Irq.html#a4b42ef9f65bf806f000862a9b00b7414" title="Unmask IRQ. ">L4::Irq::unmask</a>. A return value of <code>1</code> means that the interrupt has to be unmasked via the ICU using <a class="el" href="classL4_1_1Irq__eoi.html#ae1d9638d709cc2ec608e945196dfaf7a" title="Acknowledge the given interrupt line. ">L4::Icu::unmask</a>. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>Syscall return tag. The caller should check the return value using <a class="el" href="group__l4__ipc__err__api.html#ga05c11e3e10b6c2aa941396ac2018899f" title="Return error code of a system call return message tag or the tag label. ">l4_error()</a> to check for errors and to identify the correct method for unmasking the interrupt. Return values <code>&lt; 0</code> indicate an error. A return value of <code>0</code> means a direct unmask via the IRQ object using <a class="el" href="classL4_1_1Irq.html#a9719b8fca30723b52981bed686764901" title="Unmask IRQ. ">L4::Irq::unmask</a>. A return value of <code>1</code> means that the interrupt has to be unmasked via the ICU using <a class="el" href="classL4_1_1Irq__eoi.html#a2143eb2495d0135bc432efc362845483" title="Acknowledge the given interrupt line. ">L4::Icu::unmask</a>. </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="icu_8h_source.html#l00373">373</a> of file <a class="el" href="icu_8h_source.html">icu.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="irq_source.html#l00290">L4::Icu::bind()</a>, and <a class="el" href="icu_8h_source.html#l00473">l4_icu_bind()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="irq_source.html#l00312">L4::Icu::bind()</a>, and <a class="el" href="icu_8h_source.html#l00473">l4_icu_bind()</a>.</p>
 <div id="dynsection-2" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-2-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
 <div id="dynsection-2-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-2-content" class="dyncontent" style="display:none;">
-<div class="center"><img src="group__l4__icu__api_ga29217a67f405c5d860002dd902bf71e4_icgraph.png" border="0" usemap="#group__l4__icu__api_ga29217a67f405c5d860002dd902bf71e4_icgraph" alt=""/></div>
-<map name="group__l4__icu__api_ga29217a67f405c5d860002dd902bf71e4_icgraph" id="group__l4__icu__api_ga29217a67f405c5d860002dd902bf71e4_icgraph">
-<area shape="rect" id="node2" href="classL4_1_1Icu.html#a998aaa8314b29b44aac4e3b59d7abfa0" title="Bind an interrupt line of an interrupt controller to an interrupt object. " alt="" coords="160,13,255,39"/>
-<area shape="rect" id="node4" href="group__l4__icu__api.html#ga793c534597fd98ee93cbaf24ad08a615" title="Bind an interrupt line of an interrupt controller to an interrupt object. " alt="" coords="161,63,253,90"/>
-<area shape="rect" id="node3" href="classL4Re_1_1Util_1_1Event__t.html#a6052908f83d35a7bb1ba9371cbfc9834" title="Initialise an event object. " alt="" coords="303,5,439,47"/>
-</map>
+<div class="center"><iframe scrolling="no" frameborder="0" src="group__l4__icu__api_ga29217a67f405c5d860002dd902bf71e4_icgraph.svg" width="444" height="96"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 
 </div>
@@ -418,11 +409,8 @@ Functions</h2></td></tr>
 <div id="dynsection-3-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-3-content" class="dyncontent" style="display:none;">
-<div class="center"><img src="group__l4__icu__api_ga01c207fa8b166832b7eab0c60a8f2a7b_cgraph.png" border="0" usemap="#group__l4__icu__api_ga01c207fa8b166832b7eab0c60a8f2a7b_cgraph" alt=""/></div>
-<map name="group__l4__icu__api_ga01c207fa8b166832b7eab0c60a8f2a7b_cgraph" id="group__l4__icu__api_ga01c207fa8b166832b7eab0c60a8f2a7b_cgraph">
-<area shape="rect" id="node2" href="group__l4__icu__api.html#ga7850caf0c29c87ba3477e1fe1139681f" title="Get information about the capabilities of the ICU. " alt="" coords="143,5,247,32"/>
-<area shape="rect" id="node3" href="group__l4__utcb__api.html#gadc099b4a59e1d99638c72c11a8c8b644" title="Get the UTCB address. " alt="" coords="161,56,228,83"/>
-</map>
+<div class="center"><iframe scrolling="no" frameborder="0" src="group__l4__icu__api_ga01c207fa8b166832b7eab0c60a8f2a7b_cgraph.svg" width="252" height="88"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 
 </div>
@@ -480,17 +468,14 @@ Functions</h2></td></tr>
 
 <p class="definition">Definition at line <a class="el" href="icu_8h_source.html#l00397">397</a> of file <a class="el" href="icu_8h_source.html">icu.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="irq_source.html#l00321">L4::Icu::info()</a>, and <a class="el" href="icu_8h_source.html#l00481">l4_icu_info()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="irq_source.html#l00347">L4::Icu::info()</a>, and <a class="el" href="icu_8h_source.html#l00481">l4_icu_info()</a>.</p>
 <div id="dynsection-4" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-4-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
 <div id="dynsection-4-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-4-content" class="dyncontent" style="display:none;">
-<div class="center"><img src="group__l4__icu__api_ga7850caf0c29c87ba3477e1fe1139681f_icgraph.png" border="0" usemap="#group__l4__icu__api_ga7850caf0c29c87ba3477e1fe1139681f_icgraph" alt=""/></div>
-<map name="group__l4__icu__api_ga7850caf0c29c87ba3477e1fe1139681f_icgraph" id="group__l4__icu__api_ga7850caf0c29c87ba3477e1fe1139681f_icgraph">
-<area shape="rect" id="node2" href="classL4_1_1Icu.html#a21945937443dd5425d6372f02906c46c" title="Get information about the capabilities of the ICU. " alt="" coords="157,5,248,32"/>
-<area shape="rect" id="node3" href="group__l4__icu__api.html#ga01c207fa8b166832b7eab0c60a8f2a7b" title="Get information about the capabilites of the ICU. " alt="" coords="158,56,247,83"/>
-</map>
+<div class="center"><iframe scrolling="no" frameborder="0" src="group__l4__icu__api_ga7850caf0c29c87ba3477e1fe1139681f_icgraph.svg" width="254" height="88"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 
 </div>
@@ -624,16 +609,14 @@ Functions</h2></td></tr>
 
 <p class="definition">Definition at line <a class="el" href="icu_8h_source.html#l00460">460</a> of file <a class="el" href="icu_8h_source.html">icu.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="irq_source.html#l00364">L4::Icu::mask()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="irq_source.html#l00390">L4::Icu::mask()</a>.</p>
 <div id="dynsection-5" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-5-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
 <div id="dynsection-5-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-5-content" class="dyncontent" style="display:none;">
-<div class="center"><img src="group__l4__icu__api_gad1fc6f5aef910ca6b9b3a6c9d0f3b345_icgraph.png" border="0" usemap="#group__l4__icu__api_gad1fc6f5aef910ca6b9b3a6c9d0f3b345_icgraph" alt=""/></div>
-<map name="group__l4__icu__api_gad1fc6f5aef910ca6b9b3a6c9d0f3b345_icgraph" id="group__l4__icu__api_gad1fc6f5aef910ca6b9b3a6c9d0f3b345_icgraph">
-<area shape="rect" id="node2" href="classL4_1_1Icu.html#acfe9ae0d990609e8757b372cf061834f" title="Mask an IRQ line. " alt="" coords="168,5,269,32"/>
-</map>
+<div class="center"><iframe scrolling="no" frameborder="0" src="group__l4__icu__api_gad1fc6f5aef910ca6b9b3a6c9d0f3b345_icgraph.svg" width="275" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 
 </div>
@@ -704,11 +687,8 @@ Functions</h2></td></tr>
 <div id="dynsection-6-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-6-content" class="dyncontent" style="display:none;">
-<div class="center"><img src="group__l4__icu__api_ga626c5b32a678d274de89b2be944b6a3f_cgraph.png" border="0" usemap="#group__l4__icu__api_ga626c5b32a678d274de89b2be944b6a3f_cgraph" alt=""/></div>
-<map name="group__l4__icu__api_ga626c5b32a678d274de89b2be944b6a3f_cgraph" id="group__l4__icu__api_ga626c5b32a678d274de89b2be944b6a3f_cgraph">
-<area shape="rect" id="node2" href="group__l4__icu__api.html#ga0c5c381566e2e9a8dbb41f14e33c4437" title="Get MSI info about IRQ. " alt="" coords="172,5,305,32"/>
-<area shape="rect" id="node3" href="group__l4__utcb__api.html#gadc099b4a59e1d99638c72c11a8c8b644" title="Get the UTCB address. " alt="" coords="205,56,272,83"/>
-</map>
+<div class="center"><iframe scrolling="no" frameborder="0" src="group__l4__icu__api_ga626c5b32a678d274de89b2be944b6a3f_cgraph.svg" width="311" height="88"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 
 </div>
@@ -786,10 +766,8 @@ Functions</h2></td></tr>
 <div id="dynsection-7-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-7-content" class="dyncontent" style="display:none;">
-<div class="center"><img src="group__l4__icu__api_ga0c5c381566e2e9a8dbb41f14e33c4437_icgraph.png" border="0" usemap="#group__l4__icu__api_ga0c5c381566e2e9a8dbb41f14e33c4437_icgraph" alt=""/></div>
-<map name="group__l4__icu__api_ga0c5c381566e2e9a8dbb41f14e33c4437_icgraph" id="group__l4__icu__api_ga0c5c381566e2e9a8dbb41f14e33c4437_icgraph">
-<area shape="rect" id="node2" href="group__l4__icu__api.html#ga626c5b32a678d274de89b2be944b6a3f" title="Get MSI info about IRQ. " alt="" coords="187,5,305,32"/>
-</map>
+<div class="center"><iframe scrolling="no" frameborder="0" src="group__l4__icu__api_ga0c5c381566e2e9a8dbb41f14e33c4437_icgraph.svg" width="311" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 
 </div>
@@ -853,11 +831,8 @@ Functions</h2></td></tr>
 <div id="dynsection-8-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-8-content" class="dyncontent" style="display:none;">
-<div class="center"><img src="group__l4__icu__api_gad387684dcc6b4838f1d4f466e1aeef6f_cgraph.png" border="0" usemap="#group__l4__icu__api_gad387684dcc6b4838f1d4f466e1aeef6f_cgraph" alt=""/></div>
-<map name="group__l4__icu__api_gad387684dcc6b4838f1d4f466e1aeef6f_cgraph" id="group__l4__icu__api_gad387684dcc6b4838f1d4f466e1aeef6f_cgraph">
-<area shape="rect" id="node2" href="group__l4__icu__api.html#gac43905e779ca41f20c9cd23fb28ac095" title="Set interrupt mode. " alt="" coords="181,5,324,32"/>
-<area shape="rect" id="node3" href="group__l4__utcb__api.html#gadc099b4a59e1d99638c72c11a8c8b644" title="Get the UTCB address. " alt="" coords="219,56,286,83"/>
-</map>
+<div class="center"><iframe scrolling="no" frameborder="0" src="group__l4__icu__api_gad387684dcc6b4838f1d4f466e1aeef6f_cgraph.svg" width="330" height="88"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 
 </div>
@@ -922,17 +897,14 @@ Functions</h2></td></tr>
 
 <p class="definition">Definition at line <a class="el" href="icu_8h_source.html#l00434">434</a> of file <a class="el" href="icu_8h_source.html">icu.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="icu_8h_source.html#l00500">l4_icu_set_mode()</a>, and <a class="el" href="irq_source.html#l00386">L4::Icu::set_mode()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="icu_8h_source.html#l00500">l4_icu_set_mode()</a>, and <a class="el" href="irq_source.html#l00418">L4::Icu::set_mode()</a>.</p>
 <div id="dynsection-9" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-9-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
 <div id="dynsection-9-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-9-content" class="dyncontent" style="display:none;">
-<div class="center"><img src="group__l4__icu__api_gac43905e779ca41f20c9cd23fb28ac095_icgraph.png" border="0" usemap="#group__l4__icu__api_gac43905e779ca41f20c9cd23fb28ac095_icgraph" alt=""/></div>
-<map name="group__l4__icu__api_gac43905e779ca41f20c9cd23fb28ac095_icgraph" id="group__l4__icu__api_gac43905e779ca41f20c9cd23fb28ac095_icgraph">
-<area shape="rect" id="node2" href="group__l4__icu__api.html#gad387684dcc6b4838f1d4f466e1aeef6f" title="Set interrupt mode. " alt="" coords="197,5,325,32"/>
-<area shape="rect" id="node3" href="classL4_1_1Icu.html#ab2d78ee6c906239bde95f669a10405de" title="Set interrupt mode. " alt="" coords="196,56,327,83"/>
-</map>
+<div class="center"><iframe scrolling="no" frameborder="0" src="group__l4__icu__api_gac43905e779ca41f20c9cd23fb28ac095_icgraph.svg" width="332" height="88"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 
 </div>
@@ -996,11 +968,8 @@ Functions</h2></td></tr>
 <div id="dynsection-10-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-10-content" class="dyncontent" style="display:none;">
-<div class="center"><img src="group__l4__icu__api_ga77d613300601861b13605e7687146dc5_cgraph.png" border="0" usemap="#group__l4__icu__api_ga77d613300601861b13605e7687146dc5_cgraph" alt=""/></div>
-<map name="group__l4__icu__api_ga77d613300601861b13605e7687146dc5_cgraph" id="group__l4__icu__api_ga77d613300601861b13605e7687146dc5_cgraph">
-<area shape="rect" id="node2" href="group__l4__icu__api.html#gae74204b8f2101e176add646ec2958182" title="Remove binding of an interrupt line from the interrupt controller object. " alt="" coords="160,5,283,32"/>
-<area shape="rect" id="node3" href="group__l4__utcb__api.html#gadc099b4a59e1d99638c72c11a8c8b644" title="Get the UTCB address. " alt="" coords="188,56,255,83"/>
-</map>
+<div class="center"><iframe scrolling="no" frameborder="0" src="group__l4__icu__api_ga77d613300601861b13605e7687146dc5_cgraph.svg" width="288" height="88"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 
 </div>
@@ -1065,17 +1034,14 @@ Functions</h2></td></tr>
 
 <p class="definition">Definition at line <a class="el" href="icu_8h_source.html#l00385">385</a> of file <a class="el" href="icu_8h_source.html">icu.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="icu_8h_source.html#l00477">l4_icu_unbind()</a>, and <a class="el" href="irq_source.html#l00306">L4::Icu::unbind()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="icu_8h_source.html#l00477">l4_icu_unbind()</a>, and <a class="el" href="irq_source.html#l00330">L4::Icu::unbind()</a>.</p>
 <div id="dynsection-11" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-11-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
 <div id="dynsection-11-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-11-content" class="dyncontent" style="display:none;">
-<div class="center"><img src="group__l4__icu__api_gae74204b8f2101e176add646ec2958182_icgraph.png" border="0" usemap="#group__l4__icu__api_gae74204b8f2101e176add646ec2958182_icgraph" alt=""/></div>
-<map name="group__l4__icu__api_gae74204b8f2101e176add646ec2958182_icgraph" id="group__l4__icu__api_gae74204b8f2101e176add646ec2958182_icgraph">
-<area shape="rect" id="node2" href="group__l4__icu__api.html#ga77d613300601861b13605e7687146dc5" title="Remove binding of an interrupt line from the interrupt controller object. " alt="" coords="177,5,284,32"/>
-<area shape="rect" id="node3" href="classL4_1_1Icu.html#a47be3c88b707afd0fc55475261f6164d" title="Remove binding of an interrupt line from the interrupt controller object. " alt="" coords="176,56,285,83"/>
-</map>
+<div class="center"><iframe scrolling="no" frameborder="0" src="group__l4__icu__api_gae74204b8f2101e176add646ec2958182_icgraph.svg" width="291" height="88"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 
 </div>
@@ -1206,7 +1172,7 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Syscall return tag.</dd></dl>
-<dl class="section note"><dt>Note</dt><dd>If <code>label</code> is NULL this function is a send-only operation and there is no return value except for a failed send operation. In this case use <a class="el" href="group__l4__ipc__err__api.html#gad40f404217497793e95a10d77a47db39" title="Get the error code for an object invocation. ">l4_ipc_error()</a> to check for errors, <b>do not</b> use <a class="el" href="group__l4__ipc__err__api.html#ga05c11e3e10b6c2aa941396ac2018899f" title="Return error code of a system call return message tag. ">l4_error()</a>, because <a class="el" href="group__l4__ipc__err__api.html#ga05c11e3e10b6c2aa941396ac2018899f" title="Return error code of a system call return message tag. ">l4_error()</a> will always return an error. </dd></dl>
+<dl class="section note"><dt>Note</dt><dd>If <code>label</code> is NULL this function is a send-only operation and there is no return value except for a failed send operation. In this case use <a class="el" href="group__l4__ipc__err__api.html#gad40f404217497793e95a10d77a47db39" title="Get the error code for an object invocation. ">l4_ipc_error()</a> to check for errors, <b>do not</b> use <a class="el" href="group__l4__ipc__err__api.html#ga05c11e3e10b6c2aa941396ac2018899f" title="Return error code of a system call return message tag or the tag label. ">l4_error()</a>, because <a class="el" href="group__l4__ipc__err__api.html#ga05c11e3e10b6c2aa941396ac2018899f" title="Return error code of a system call return message tag or the tag label. ">l4_error()</a> will always return an error. </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="icu_8h_source.html#l00465">465</a> of file <a class="el" href="icu_8h_source.html">icu.h</a>.</p>
 
@@ -1218,7 +1184,7 @@ Functions</h2></td></tr>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated on Sun Sep 24 2017 23:15:12 for L4Re - L4 Runtime Environment by
+    <li class="footer">Generated on Tue Aug 11 2020 13:28:15 for L4Re - L4 Runtime Environment by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.13 </li>
   </ul>

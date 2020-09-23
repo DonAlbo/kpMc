@@ -95,24 +95,21 @@ $(document).ready(function(){initNavTree('classL4_1_1Basic__registry.html','');}
 <div id="dynsection-0-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-0-content" class="dyncontent" style="display:none;">
-<div class="center"><img src="classL4_1_1Basic__registry__inherit__graph.png" border="0" usemap="#L4_1_1Basic__registry_inherit__map" alt="Inheritance graph"/></div>
-<map name="L4_1_1Basic__registry_inherit__map" id="L4_1_1Basic__registry_inherit__map">
-<area shape="rect" id="node2" href="classL4Re_1_1Util_1_1Object__registry.html" title="A registry that manages server objects and their attached IPC gates for a single server loop for a sp..." alt="" coords="5,145,148,355"/>
-</map>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classL4_1_1Basic__registry__inherit__graph.svg" width="154" height="360"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 <div id="dynsection-1" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-1-trigger" src="closed.png" alt="+"/> Collaboration diagram for L4::Basic_registry:</div>
 <div id="dynsection-1-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-1-content" class="dyncontent" style="display:none;">
-<div class="center"><img src="classL4_1_1Basic__registry__coll__graph.png" border="0" usemap="#L4_1_1Basic__registry_coll__map" alt="Collaboration graph"/></div>
-<map name="L4_1_1Basic__registry_coll__map" id="L4_1_1Basic__registry_coll__map">
-</map>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classL4_1_1Basic__registry__coll__graph.svg" width="144" height="103"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
-<tr class="memitem:a91c81e54c228226969432e0a1b009883"><td class="memItemLeft" align="right" valign="top">static Value *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classL4_1_1Basic__registry.html#a91c81e54c228226969432e0a1b009883">find</a> (<a class="el" href="group__l4__basic__types.html#ga1c2c4b333f75b1d05b59855910f2b9cb">l4_umword_t</a> label)</td></tr>
+<tr class="memitem:a91c81e54c228226969432e0a1b009883"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="structL4_1_1Epiface.html">Value</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classL4_1_1Basic__registry.html#a91c81e54c228226969432e0a1b009883">find</a> (<a class="el" href="group__l4__basic__types.html#ga1c2c4b333f75b1d05b59855910f2b9cb">l4_umword_t</a> label)</td></tr>
 <tr class="memdesc:a91c81e54c228226969432e0a1b009883"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the server object for an <a class="el" href="classL4_1_1Ipc__gate.html" title="The C++ IPC gate interface. ">Ipc_gate</a> label.  <a href="#a91c81e54c228226969432e0a1b009883">More...</a><br /></td></tr>
 <tr class="separator:a91c81e54c228226969432e0a1b009883"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a730ef8bbfbc7154a04e50aae88252b43"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="structl4__msgtag__t.html">l4_msgtag_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classL4_1_1Basic__registry.html#a730ef8bbfbc7154a04e50aae88252b43">dispatch</a> (<a class="el" href="structl4__msgtag__t.html">l4_msgtag_t</a> tag, <a class="el" href="group__l4__basic__types.html#ga1c2c4b333f75b1d05b59855910f2b9cb">l4_umword_t</a> label, <a class="el" href="group__l4__utcb__api.html#ga89be8a86d11c1d532b636cc2df1330fb">l4_utcb_t</a> *utcb)</td></tr>
@@ -122,7 +119,7 @@ Static Public Member Functions</h2></td></tr>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>This registry returns the corresponding server object based on the label of an <a class="el" href="classL4_1_1Ipc__gate.html" title="The C++ IPC gate interface. ">Ipc_gate</a>. </p>
 
-<p class="definition">Definition at line <a class="el" href="ipc__epiface_source.html#l00469">469</a> of file <a class="el" href="ipc__epiface_source.html">ipc_epiface</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ipc__epiface_source.html#l00541">541</a> of file <a class="el" href="ipc__epiface_source.html">ipc_epiface</a>.</p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
 <a id="a730ef8bbfbc7154a04e50aae88252b43"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a730ef8bbfbc7154a04e50aae88252b43">&#9670;&nbsp;</a></span>dispatch()</h2>
@@ -176,19 +173,7 @@ Static Public Member Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The return code from the object's dispatch function or -L4_ENOENT if the object does not exist. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="ipc__epiface_source.html#l00494">494</a> of file <a class="el" href="ipc__epiface_source.html">ipc_epiface</a>.</p>
-
-<p class="reference">References <a class="el" href="err_8h_source.html#l00045">L4_ENOENT</a>, and <a class="el" href="l4_2sys_2types_8h_source.html#l00407">l4_msgtag()</a>.</p>
-<div id="dynsection-2" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
-  <img id="dynsection-2-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
-<div id="dynsection-2-summary" class="dynsummary" style="display:block;">
-</div>
-<div id="dynsection-2-content" class="dyncontent" style="display:none;">
-<div class="center"><img src="classL4_1_1Basic__registry_a730ef8bbfbc7154a04e50aae88252b43_cgraph.png" border="0" usemap="#classL4_1_1Basic__registry_a730ef8bbfbc7154a04e50aae88252b43_cgraph" alt=""/></div>
-<map name="classL4_1_1Basic__registry_a730ef8bbfbc7154a04e50aae88252b43_cgraph" id="classL4_1_1Basic__registry_a730ef8bbfbc7154a04e50aae88252b43_cgraph">
-<area shape="rect" id="node2" href="group__l4__msgtag__api.html#ga661d71acad9d096fa990f7c94943bc78" title="Create a message tag from the specified values. " alt="" coords="187,13,273,39"/>
-</map>
-</div>
+<p class="definition">Definition at line <a class="el" href="ipc__epiface_source.html#l00566">566</a> of file <a class="el" href="ipc__epiface_source.html">ipc_epiface</a>.</p>
 
 </div>
 </div>
@@ -202,7 +187,7 @@ Static Public Member Functions</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">static Value* L4::Basic_registry::find </td>
+          <td class="memname">static <a class="el" href="structL4_1_1Epiface.html">Value</a>* L4::Basic_registry::find </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="group__l4__basic__types.html#ga1c2c4b333f75b1d05b59855910f2b9cb">l4_umword_t</a>&#160;</td>
           <td class="paramname"><em>label</em></td><td>)</td>
@@ -223,9 +208,9 @@ Static Public Member Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>A pointer to the Epiface identified by the given label. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>A pointer to the <a class="el" href="structL4_1_1Epiface.html" title="Base class for interface implementations. ">Epiface</a> identified by the given label. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="ipc__epiface_source.html#l00478">478</a> of file <a class="el" href="ipc__epiface_source.html">ipc_epiface</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ipc__epiface_source.html#l00550">550</a> of file <a class="el" href="ipc__epiface_source.html">ipc_epiface</a>.</p>
 
 </div>
 </div>
@@ -239,7 +224,7 @@ Static Public Member Functions</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="namespaceL4.html">L4</a></li><li class="navelem"><a class="el" href="classL4_1_1Basic__registry.html">Basic_registry</a></li>
-    <li class="footer">Generated on Sun Sep 24 2017 23:15:12 for L4Re - L4 Runtime Environment by
+    <li class="footer">Generated on Tue Aug 11 2020 13:28:16 for L4Re - L4 Runtime Environment by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.13 </li>
   </ul>

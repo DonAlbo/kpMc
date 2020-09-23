@@ -46,7 +46,7 @@ Moe::Dataspace_noncont::free_page(Page &p) const throw()
 
 Moe::Dataspace::Address
 Moe::Dataspace_noncont::address(l4_addr_t offset,
-                                Ds_rw rw, l4_addr_t,
+                                Flags flags, l4_addr_t,
                                 l4_addr_t, l4_addr_t) const
 {
   // XXX: There may be a problem with data spaces with
@@ -57,16 +57,15 @@ Moe::Dataspace_noncont::address(l4_addr_t offset,
 
   Page &p = alloc_page(offset);
 
-  if (!is_writable())
-    rw = Read_only;
+  flags &= map_flags();
 
-  if ((rw == Writable) && (p.flags() & Page_cow))
+  if (flags.w() && (p.flags() & Page_cow))
     {
       if (Moe::Pages::ref_count(*p) == 1)
         p.set(*p, p.flags() & ~Page_cow);
       else
         {
-          void *np = qalloc()->alloc_pages(page_size(), page_size());
+          void *np = qalloc()->alloc_pages(page_size(), page_size(), cfg());
           Moe::Pages::share(np);
 
           // L4::cout << "copy on write for " << *p << " to " << np << '\n';
@@ -76,8 +75,8 @@ Moe::Dataspace_noncont::address(l4_addr_t offset,
           // And we should provide a single API with opcode bits to allow
           // a combination of cache clean and I cache coherency in a single
           // operation.
-          l4_cache_coherent((l4_addr_t)np, (l4_addr_t)np + page_size() - 1);
-          l4_cache_clean_data((l4_addr_t)np, (l4_addr_t)np + page_size() - 1);
+          l4_cache_coherent((l4_addr_t)np, (l4_addr_t)np + page_size());
+          l4_cache_clean_data((l4_addr_t)np, (l4_addr_t)np + page_size());
           unmap_page(p);
           Moe::Pages::unshare(*p);
           p.set(np, 0);
@@ -86,15 +85,15 @@ Moe::Dataspace_noncont::address(l4_addr_t offset,
 
   if (!*p)
     {
-      p.set(qalloc()->alloc_pages(page_size(), page_size()), 0);
+      p.set(qalloc()->alloc_pages(page_size(), page_size(), cfg()), 0);
       Moe::Pages::share(*p);
       memset(*p, 0, page_size());
       // No need for I cache coherence, as we just zero fill and assume that
       // this is no executable code
-      l4_cache_clean_data((l4_addr_t)*p, (l4_addr_t)(*p) + page_size() - 1);
+      l4_cache_clean_data((l4_addr_t)*p, (l4_addr_t)(*p) + page_size());
     }
 
-  return Address(l4_addr_t(*p), page_shift(), rw, offset & (page_size()-1));
+  return Address(l4_addr_t(*p), page_shift(), flags, offset & (page_size()-1));
 }
 
 int
@@ -108,18 +107,11 @@ Moe::Dataspace_noncont::pre_allocate(l4_addr_t offset, l4_size_t size, unsigned 
   l4_size_t ps = page_size();
   for (l4_addr_t o = l4_trunc_size(offset, page_shift()); o < end_off; o += ps)
     {
-      Address a = address(o, rights & L4_CAP_FPAGE_W ? Writable : Read_only);
+      Address a = address(o, map_flags(rights));
       if (a.is_nil())
         return a.error();
     }
   return 0;
-}
-
-void
-Moe::Dataspace_noncont::unmap(bool ro) const throw()
-{
-  for (unsigned long i = num_pages(); i > 0; --i)
-    unmap_page(page((i - 1) << page_shift()), ro);
 }
 
 long
@@ -161,18 +153,19 @@ namespace {
   class Mem_one_page : public Moe::Dataspace_noncont
   {
   public:
-    Mem_one_page(unsigned long size, unsigned long flags) throw()
-    : Moe::Dataspace_noncont(size, flags)
+    Mem_one_page(unsigned long size, Flags flags,
+                 Single_page_alloc_base::Config cfg) throw()
+    : Moe::Dataspace_noncont(size, flags, cfg)
     {}
 
     ~Mem_one_page() throw()
     { free_page(page(0)); }
 
-    Page &page(unsigned long /*offs*/) const throw()
-    { return const_cast<Page &>(reinterpret_cast<Page const &>(pages)); }
+    Page &page(unsigned long /*offs*/) const throw() override
+    { return const_cast<Page &>(_page); }
 
-    Page &alloc_page(unsigned long /*offs*/) const throw()
-    { return const_cast<Page &>(reinterpret_cast<Page const &>(pages)); }
+    Page &alloc_page(unsigned long /*offs*/) const throw() override
+    { return const_cast<Page &>(_page); }
   };
 
   class Mem_small : public Moe::Dataspace_noncont
@@ -186,11 +179,12 @@ namespace {
   public:
     unsigned long meta_size() const throw()
     { return (l4_round_size(num_pages()*sizeof(unsigned long), Meta_align_bits)); }
-    Mem_small(unsigned long size, unsigned long flags)
-    : Moe::Dataspace_noncont(size, flags)
+    Mem_small(unsigned long size, Flags flags,
+              Single_page_alloc_base::Config cfg)
+    : Moe::Dataspace_noncont(size, flags, cfg)
     {
-      pages = (unsigned long *)qalloc()->alloc_pages(meta_size(), Meta_align);
-      memset(pages, 0, meta_size());
+      _pages = (Page *)qalloc()->alloc_pages(meta_size(), Meta_align, cfg);
+      memset((void *)_pages, 0, meta_size());
     }
 
     ~Mem_small() throw()
@@ -198,14 +192,14 @@ namespace {
       for (unsigned long i = num_pages(); i > 0; --i)
         free_page(page((i - 1) << page_shift()));
 
-      qalloc()->free_pages(pages, meta_size());
+      qalloc()->free_pages(_pages, meta_size());
     }
 
-    Page &page(unsigned long offs) const throw()
-    { return (Page &)(pages[offs >> page_shift()]); }
+    Page &page(unsigned long offs) const throw() override
+    { return _pages[offs >> page_shift()]; }
 
-    Page &alloc_page(unsigned long offs) const throw()
-    { return (Page &)(pages[offs >> page_shift()]); }
+    Page &alloc_page(unsigned long offs) const throw() override
+    { return _pages[offs >> page_shift()]; }
 
   };
 
@@ -238,7 +232,7 @@ namespace {
     };
 
     L1 &__p(unsigned long offs) const throw()
-    { return ((L1*)pages)[(offs >> page_shift()) / entries2()]; }
+    { return ((L1*)_pages)[(offs >> page_shift()) / entries2()]; }
 
     unsigned l2_idx(unsigned long offs) const
     { return (offs >> page_shift()) & (entries2() - 1); }
@@ -250,11 +244,12 @@ namespace {
     long meta1_size() const throw()
     { return l4_round_size(entries1() * sizeof(L1 *), 10); }
 
-    Mem_big(unsigned long size, unsigned long flags)
-    : Moe::Dataspace_noncont(size, flags)
+    Mem_big(unsigned long size, Flags flags,
+            Single_page_alloc_base::Config cfg)
+    : Moe::Dataspace_noncont(size, flags, cfg)
     {
-      pages = (unsigned long *)qalloc()->alloc_pages(meta1_size(), 1024);
-      memset(pages, 0, meta1_size());
+      _pages = (Page *)qalloc()->alloc_pages(meta1_size(), 1024, cfg);
+      memset((void *)_pages, 0, meta1_size());
     }
 
     ~Mem_big() throw()
@@ -262,17 +257,17 @@ namespace {
       for (unsigned long i = 0; i < size(); i += page_size())
         free_page(page(i));
 
-      for (L1 *p = (L1 *)pages; p != (L1 *)pages + entries1(); ++p)
+      for (L1 *p = (L1 *)_pages; p != (L1 *)_pages + entries1(); ++p)
         {
           if (**p)
             qalloc()->free_pages(**p, meta2_size());
           p->set(0);
         }
 
-      qalloc()->free_pages(pages, meta1_size());
+      qalloc()->free_pages(_pages, meta1_size());
     }
 
-    Page &page(unsigned long offs) const throw()
+    Page &page(unsigned long offs) const throw() override
     {
       static Page invalid_page;
       if (!*__p(offs))
@@ -281,12 +276,12 @@ namespace {
       return __p(offs)[l2_idx(offs)];
     }
 
-    Page &alloc_page(unsigned long offs) const
+    Page &alloc_page(unsigned long offs) const override
     {
       L1 &_p = __p(offs);
       if (!*_p)
         {
-          void *a = qalloc()->alloc_pages(meta2_size(), meta2_size());
+          void *a = qalloc()->alloc_pages(meta2_size(), meta2_size(), cfg());
           assert (((l4_addr_t)a & 0xfff) == 0);
           _p.set(a);
           memset(a, 0, meta2_size());
@@ -300,13 +295,14 @@ namespace {
 
 Moe::Dataspace_noncont *
 Moe::Dataspace_noncont::create(Moe::Q_alloc *q, unsigned long size,
-                               unsigned long flags)
+                               Single_page_alloc_base::Config cfg,
+                               Flags flags)
 {
   if (size <= L4_PAGESIZE)
-    return q->make_obj<Mem_one_page>(size, flags);
+    return q->make_obj<Mem_one_page>(size, flags, cfg);
   else if (size <= L4_PAGESIZE * (L4_PAGESIZE / sizeof(unsigned long)))
-    return q->make_obj<Mem_small>(size, flags);
+    return q->make_obj<Mem_small>(size, flags, cfg);
   else
-    return q->make_obj<Mem_big>(size, flags);
+    return q->make_obj<Mem_big>(size, flags, cfg);
 }
 

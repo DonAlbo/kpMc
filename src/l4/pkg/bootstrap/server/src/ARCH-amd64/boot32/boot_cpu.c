@@ -64,7 +64,11 @@ enum
   INTEL_PML4E_PFN	= 0x000ffffffffff000LL,
 
   CPUF_4MB_PAGES	= 0x00000008,
+};
 
+// enum of 32-bit size members
+enum
+{
   CR0_PG		= 0x80000000,
   CR4_PSE		= 0x00000010,
   CR4_PAE		= 0x00000020,
@@ -291,7 +295,7 @@ paging_enable(l4_uint32_t pml4)
   asm volatile("movl  %0,%%cr0 ; jmp  1f ; 1:" : : "r" (get_cr0() | CR0_PG));
 }
 
-static void
+static void L4_NORETURN
 panic(const char *str)
 {
   printf("PANIC: %s\n", str);
@@ -579,7 +583,7 @@ base_paging_init(l4_uint64_t phys_mem_max)
   paging_enable(base_pml4_pa);
 }
 
-void trap_dump_panic(const struct trap_state *st);
+void trap_dump_panic(const struct trap_state *st) L4_NORETURN;
 void trap_dump_panic(const struct trap_state *st)
 {
   int from_user = st->cs & 3;

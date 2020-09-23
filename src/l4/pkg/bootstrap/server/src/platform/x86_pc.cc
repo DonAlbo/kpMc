@@ -34,52 +34,6 @@ enum { Verbose_mbi = 1 };
 
 namespace {
 
-#ifdef REALMODE_LOADING
-struct Platform_x86_1 : Platform_x86
-{
-  char const *realmode_pointer;
-
-  void setup_memory_map()
-  {
-    Region_list *ram = mem_manager->ram;
-    Region_list *regions = mem_manager->regions;
-
-    unsigned long m = *(l4_uint32_t*)(realmode_pointer + 0x1e0);
-    printf("Detected memory size: %ldKB\n", m);
-    ram->add(Region::n(0, 0x9fc00, ".ram", Region::Ram));
-    ram->add(Region::n(0x100000, (m + 1024) << 10, ".ram", Region::Ram));
-    regions->add(Region::n(0, 0x1000, ".BIOS", Region::Arch, 0));
-    // Quirks
-
-    // Fix EBDA in conventional memory
-    unsigned long p = *(l4_uint16_t *)0x40e << 4;
-
-    if (p > 0x400)
-      {
-        unsigned long e = p + 1024;
-        Region *r = ram->find(Region(p, e - 1));
-        if (r)
-          {
-            if (e - 1 < r->end())
-              ram->add(Region::n(e, r->end(), ".ram", Region::Ram), true);
-            r->end(p);
-          }
-      }
-  }
-
-  char const *cmdline() const
-  {
-    return 0;
-    l4_uint32_t p = *(l4_uint32_t*)(realmode_pointer + 0x228);
-    if (!p)
-      return 0;
-
-    return (char const *)p;
-  }
-};
-
-#else // REALMODE_LOADING
-
 struct Platform_x86_1 : Platform_x86
 {
   l4util_mb_info_t *mbi;
@@ -167,9 +121,6 @@ struct Platform_x86_1 : Platform_x86
   }
 };
 
-#endif // !REALMODE_LOADING
-
-
 #ifdef IMAGE_MODE
 
 class Platform_x86_loader_mbi :
@@ -189,6 +140,8 @@ class Platform_x86_multiboot : public Platform_x86_1, public Boot_modules
 {
 public:
   Boot_modules *modules() { return this; }
+  unsigned base_mod_idx(Mod_info_flags mod_info_mod_type)
+  { return mod_info_mod_type - 1; }
 
   Module module(unsigned index, bool) const
   {
@@ -242,17 +195,25 @@ public:
                              ".mbi", Region::Boot));
 
     for (unsigned i = 0; i < mbi->mods_count; ++i)
-      regions->add(mod_region(i, mb_mod[i].mod_start,
-                              mb_mod[i].mod_end - mb_mod[i].mod_start));
+      {
+        /*
+         * Avoid overflow on size calculation of empty modules,
+         * i.e. mod_start == mod_end. Grub generates MBI entries
+         * with start == end == 0 for empty files loaded as modules.
+         */
+        if (mb_mod[i].mod_start >= mb_mod[i].mod_end)
+          panic("Found a module with unplausible size (%s). Abort.\n",
+                (char const*)(l4_addr_t)mb_mod[i].cmdline);
+        regions->add(mod_region(i, mb_mod[i].mod_start,
+                                mb_mod[i].mod_end - mb_mod[i].mod_start));
+      }
   }
 
-  void move_module(unsigned index, void *dest,
-                   bool overlap_check)
+  void move_module(unsigned index, void *dest)
   {
     l4util_mb_mod_t *mod = (l4util_mb_mod_t*)(unsigned long)mbi->mods_addr + index;
     unsigned long size = mod->mod_end - mod->mod_start;
-    _move_module(index, dest, (char const *)(l4_addr_t)mod->mod_start,
-                 size, overlap_check);
+    _move_module(index, dest, (char const *)(l4_addr_t)mod->mod_start, size);
 
     assert ((l4_addr_t)dest < 0xfffffff0);
     assert ((l4_addr_t)dest < 0xfffffff0 - size);
@@ -298,7 +259,7 @@ public:
 
     // mark the region as reserved
     mem_manager->regions->add(Region::start_size((l4_addr_t)_mb, total_size, ".mbi_rt",
-                                                 Region::Root));
+                                                 Region::Root, L4_FPAGE_RWX));
     if (Verbose_mbi)
       printf("  reserved %ld bytes at %p\n", total_size, _mb);
 
@@ -369,10 +330,6 @@ public:
     // currently no better one that is called this late.
     if (rsdp_start)
       {
-        enum {
-          // XXX: need a single definition of this
-          Info_acpi_rsdp = 0
-        };
         char *rsdp_buf =
           (char *)mem_manager->find_free_ram(sizeof(rsdp_tmp_buf));
         if (!rsdp_buf)
@@ -382,7 +339,7 @@ public:
         mem_manager->regions->add(
           Region::n((l4_addr_t)rsdp_buf,
                     (l4_addr_t)rsdp_buf + sizeof(rsdp_tmp_buf), ".ACPI",
-                    Region::Info, Info_acpi_rsdp));
+                    Region::Info, Region::Info_acpi_rsdp));
       }
 
     return mbi;
@@ -525,6 +482,9 @@ void __main(l4util_mb_info_t *mbi, unsigned long p2, char const *realmode_si,
   ctor_init();
   Platform_base::platform = &_x86_pc_platform;
   _x86_pc_platform.init();
+#ifdef IMAGE_MODE
+  init_modules_infos();
+#endif
 #ifdef ARCH_amd64
   // remember this info to reserve the memory in setup_memory_map later
   _x86_pc_platform.boot32_info = boot32_info;
@@ -532,20 +492,10 @@ void __main(l4util_mb_info_t *mbi, unsigned long p2, char const *realmode_si,
   (void)boot32_info;
 #endif
   char const *cmdline;
-#if defined(REALMODE_LOADING)
-  /* create synthetic multi boot info, if loaded from realmode */
-  (void)mbi;
-  (void)p2;
-  _x86_pc_platform.realmode_pointer = realmode_si;
-  cmdline = _x86_pc_platform.cmdline();
-  if (!cmdline)
-    cmdline = _mbi_cmdline;
-#else
   (void)realmode_si;
   assert(p2 == L4UTIL_MB_VALID); /* we need to be multiboot-booted */
   _x86_pc_platform.mbi = mbi;
   cmdline = (char const *)(l4_addr_t)mbi->cmdline;
-#endif
   _x86_pc_platform.setup_uart(cmdline);
   pci_quirks();
 

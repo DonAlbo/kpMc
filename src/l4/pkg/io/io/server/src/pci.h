@@ -12,6 +12,7 @@
 #include "hw_device.h"
 #include <l4/sys/cxx/types>
 #include <l4/cxx/bitfield>
+#include <l4/cxx/type_traits>
 #include "irqs.h"
 
 #include <pthread.h>
@@ -111,7 +112,7 @@ public:
   { return cfg_write(Cfg_addr(bus, devfn >> 16, devfn & 0xffff, reg), value, w); }
 
   bool discover_bus(Hw::Device *host);
-  void dump(int) const;
+  void dump(int) const override;
 
   virtual void increase_subordinate(int s) = 0;
 
@@ -218,11 +219,62 @@ struct Pm_cap
   { return cap + 2; }
 };
 
+/**
+ * Mixin for PCI config space accessors to allow typed
+ * read and write.
+ */
+template<typename B>
+class Cfg_rw_mixin
+{
+private:
+  B *_this() { return static_cast<B *>(this); }
+  B const *_this() const { return static_cast<B const *>(this); }
+
+public:
+  template<typename T>
+  int read(unsigned offset, T *val) const
+  {
+    union
+    {
+      l4_uint32_t v;
+      T t;
+    } x;
+
+    int r = _this()->read(offset, &x.v, cfg_width<T>::width);
+    *val = x.t;
+    return r;
+  }
+
+  template<typename T> T read(unsigned offset) const
+  {
+    T v;
+    read(offset, &v);
+    return v;
+  }
+
+  template<typename T>
+  int write(unsigned offset, T const &val) const
+  {
+    union
+    {
+      l4_uint32_t v;
+      T t;
+    } x;
+
+    x.t = val;
+    return _this()->write(offset, x.v, cfg_width<T>::width);
+  }
+};
+
 
 /**
- * \brief Encapsulate the config space of a PCI device.
+ * Encapsulate the config space of a PCI device (without a device).
+ *
+ * This class is used to access the config space of the PCI bus
+ * without having a PCI device object allocated yet. If there
+ * is already a PCI device object use Cfg_ptr instead.
  */
-class Config
+class Config : public Cfg_rw_mixin<Config>
 {
 public:
   enum Regs
@@ -299,40 +351,15 @@ public:
 
   bool is_valid() const { return _bus; }
 
-  int read(unsigned reg, l4_uint32_t *value, Cfg_width w)
+  int read(unsigned reg, l4_uint32_t *value, Cfg_width w) const
   { return _bus->cfg_read(_addr + reg, value, w); }
 
-  int write(unsigned reg, l4_uint32_t value, Cfg_width w)
+  using Cfg_rw_mixin<Config>::read;
+
+  int write(unsigned reg, l4_uint32_t value, Cfg_width w) const
   { return _bus->cfg_write(_addr + reg, value, w); }
 
-  template<typename T>
-  int read(unsigned reg, T *val)
-  {
-    union
-    {
-      l4_uint32_t v;
-      T t;
-    } x;
-
-    int r = read(reg, &x.v, cfg_width<T>::width);
-    *val = x.t;
-    return r;
-  }
-
-  template<typename T> T read(unsigned reg) { T v; read(reg, &v); return v; }
-
-  template<typename T>
-  int write(unsigned reg, T const &val)
-  {
-    union
-    {
-      l4_uint32_t v;
-      T t;
-    } x;
-
-    x.t = val;
-    return write(reg, x.v, cfg_width<T>::width);
-  }
+  using Cfg_rw_mixin<Config>::write;
 
   Config operator + (unsigned offset) const
   { return Config(_addr + offset, _bus); }
@@ -345,7 +372,39 @@ private:
   Bus *_bus;
 };
 
-class Cap : public Config
+/**
+ * Encapsulate the config space of PCI device object.
+ */
+class Cfg_ptr : public Cfg_rw_mixin<Cfg_ptr>
+{
+public:
+  explicit Cfg_ptr(If *dev, l4_uint16_t reg = 0) : _dev(dev), _reg(reg) {}
+  Cfg_ptr() = default;
+
+  bool is_valid() const { return _dev; }
+
+  int read(unsigned offset, l4_uint32_t *value, Cfg_width w) const
+  { return _dev->cfg_read(_reg + offset, value, w); }
+
+  using Cfg_rw_mixin<Cfg_ptr>::read;
+
+  int write(unsigned offset, l4_uint32_t value, Cfg_width w) const
+  { return _dev->cfg_write(_reg + offset, value, w); }
+
+  using Cfg_rw_mixin<Cfg_ptr>::write;
+
+  Cfg_ptr operator + (unsigned offset) const
+  { return Cfg_ptr(_dev, _reg + offset); }
+
+  If *dev() const { return _dev; }
+  l4_uint16_t reg() const { return _reg; }
+
+private:
+  If *_dev = nullptr;
+  l4_uint16_t _reg = 0;
+};
+
+class Cap : public Cfg_ptr
 {
 public:
   enum Types
@@ -358,20 +417,83 @@ public:
     Msi_x = 0x11
   };
 
-  l4_uint8_t id() { l4_uint8_t r; read(0, &r); return r; }
+  l4_uint8_t id()
+  {
+    l4_uint8_t r;
+    read(0, &r);
+    return r;
+  }
+
   Cap next()
   {
     l4_uint8_t r;
     read(1, &r);
     if (r)
-      return Cap(Cfg_addr(addr(), r), bus());
+      return Cap(dev(), r);
+
     return Cap();
   }
 
   Cap() = default;
-  Cap(Cfg_addr addr, Bus *bus)
-  : Config(addr, bus)
-  {}
+  Cap(Cfg_ptr const &cfg) : Cfg_ptr(cfg) {}
+  Cap(If *dev, l4_uint16_t reg) : Cfg_ptr(dev, reg) {}
+};
+
+/**
+ * Wrapper class to work with PCIe extended capabilities
+ */
+class Extended_cap : public Cfg_ptr
+{
+public:
+  enum Types
+  {
+    Aer = 0x01, ///< Advanced Error Reporting
+    Dsn = 0x03, ///< Device Serial Number
+    Pbe = 0x04, ///< Power Budgeting
+    Acs = 0x0d, ///< Access Control Services
+  };
+
+  Extended_cap() = default;
+  Extended_cap(Cfg_ptr const &cfg) : Cfg_ptr(cfg) {}
+  Extended_cap(If *dev, l4_uint16_t offset) : Cfg_ptr(dev, offset) {}
+
+  bool is_valid()
+  {
+    return id() != 0 && id() < 0xffff && version() > 0;
+  }
+
+  l4_uint32_t header()
+  {
+    l4_uint32_t hdr;
+    read(0, &hdr);
+    return hdr;
+  }
+
+  l4_uint16_t id()
+  {
+    l4_uint16_t id;
+    read(0, &id);
+    return id;
+  }
+
+  l4_uint8_t version()
+  {
+    l4_uint8_t v;
+    read(2, &v);
+    return v & 0xf;
+  }
+
+  l4_uint16_t next()
+  {
+    l4_uint16_t n;
+    read(2, &n);
+    return (n & 0xffc0) >> 4;
+  }
+
+  void dump()
+  {
+    printf("Extended Cap: id=%x, version=%x, next=%x\n", id(), version(), next());
+  }
 };
 
 
@@ -380,8 +502,8 @@ class Saved_cap : public cxx::H_list_item_t<Saved_cap>
 public:
   Saved_cap(l4_uint8_t type, unsigned pos) : _type(type), _reg(pos) {}
   virtual ~Saved_cap() = 0;
-  void save(Config cfg) { _save(cfg + _reg); }
-  void restore(Config cfg) { _restore(cfg + _reg); }
+  void save(Cfg_ptr cfg) { _save(cfg + _reg); }
+  void restore(Cfg_ptr cfg) { _restore(cfg + _reg); }
 
   l4_uint8_t type() const { return _type; }
   unsigned cap_offset() const { return _reg; }
@@ -390,8 +512,8 @@ private:
   l4_uint8_t _type;
   unsigned   _reg;
 
-  virtual void _save(Config cfg) = 0;
-  virtual void _restore(Config cfg) = 0;
+  virtual void _save(Cfg_ptr cfg) = 0;
+  virtual void _restore(Cfg_ptr cfg) = 0;
 
 };
 
@@ -409,8 +531,8 @@ public:
       }
   }
 
-  void save(Config cfg);
-  void restore(Config cfg);
+  void save(If *dev);
+  void restore(If *dev);
 
   Saved_cap *find_cap(l4_uint8_t type);
   void add_cap(Saved_cap *cap)
@@ -446,9 +568,9 @@ public:
 
   Hw::Device *host() const { return _host; }
 
-  void setup(Hw::Device *host);
+  void setup(Hw::Device *host) override;
 
-  void increase_subordinate(int x)
+  void increase_subordinate(int x) override
   {
     if (x > subordinate)
       subordinate = x;
@@ -535,6 +657,11 @@ private:
   Saved_config _saved_state;
 
   void parse_msi_cap(Cfg_addr cap_ptr);
+
+  /*
+   * Configure PCIe ACS
+   */
+  void parse_acs_cap(Extended_cap acs_cap);
 
 public:
   enum Cfg_status
@@ -650,6 +777,7 @@ private:
   int discover_bar(int bar);
   void discover_expansion_rom();
   void discover_pci_caps();
+  void discover_pcie_caps();
 };
 
 
@@ -670,8 +798,8 @@ class Irq_router : public Resource
 {
 public:
   Irq_router() : Resource(Irq_res) {}
-  void dump(int) const;
-  bool compatible(Resource *consumer, bool = true) const
+  void dump(int) const override;
+  bool compatible(Resource *consumer, bool = true) const override
   {
     // only relative CPU IRQ lines are compatible with IRQ routing
     // global IRQs must be allocated at a higher level
@@ -688,16 +816,38 @@ protected:
   mutable Irq_rs _rs;
 
 public:
-  RES_SPACE *provided() const { return &_rs; }
+  template< typename ...ARGS >
+  Irq_router_res(ARGS && ...args) : _rs(cxx::forward<ARGS>(args)...) {}
+
+  RES_SPACE *provided() const override { return &_rs; }
 };
 
 
+/**
+ * Default router if no IRQ router is present on the PCI bus.
+ *
+ * This router forwards Resource_space::request() calls to the parent bus. The
+ * mapping from the IRQ pin (\#IRQA..\#IRQD) to the interrupt line depends on
+ * the device slot.
+ */
 class Pci_pci_bridge_irq_router_rs : public Resource_space
 {
 public:
-  bool request(Resource *parent, ::Device *, Resource *child, ::Device *cdev);
-  bool alloc(Resource *, ::Device *, Resource *, ::Device *, bool)
+  bool request(Resource *parent, ::Device *,
+               Resource *child, ::Device *cdev) override;
+  bool alloc(Resource *, ::Device *, Resource *, ::Device *, bool) override
   { return false; }
+
+  void assign(Resource *, Resource *) override
+  {
+    d_printf(DBG_ERR, "internal error: cannot assign to root Pci_pci_bridge_irq_router_rs\n");
+  }
+
+  bool adjust_children(Resource *) override
+  {
+    d_printf(DBG_ERR, "internal error: cannot adjust root Pci_pci_bridge_irq_router_rs\n");
+    return false;
+  }
 };
 
 
@@ -721,7 +871,7 @@ public:
    */
   Pci_pci_bridge_basic(Hw::Device *host, Bus *bus, l4_uint8_t hdr_type);
 
-  void increase_subordinate(int x)
+  void increase_subordinate(int x) override
   {
     if (subordinate < x)
       {
@@ -731,19 +881,19 @@ public:
       }
   }
 
-  int cfg_read(Cfg_addr addr, l4_uint32_t *value, Cfg_width width)
+  int cfg_read(Cfg_addr addr, l4_uint32_t *value, Cfg_width width) override
   { return _bus->cfg_read(addr, value, width); }
 
-  int cfg_write(Cfg_addr addr, l4_uint32_t value, Cfg_width width)
+  int cfg_write(Cfg_addr addr, l4_uint32_t value, Cfg_width width) override
   { return _bus->cfg_write(addr, value, width); }
 
-  void discover_bus(Hw::Device *host)
+  void discover_bus(Hw::Device *host) override
   {
     Bus::discover_bus(host);
     Dev::discover_bus(host);
   }
 
-  void dump(int indent) const
+  void dump(int indent) const override
   {
     Dev::dump(indent);
     Bus::dump(indent);
@@ -763,8 +913,8 @@ public:
   : Pci_pci_bridge_basic(host, bus, hdr_type), mmio(0), pref_mmio(0), io(0)
   {}
 
-  void setup_children(Hw::Device *host);
-  void discover_resources(Hw::Device *host);
+  void setup_children(Hw::Device *host) override;
+  void discover_resources(Hw::Device *host) override;
 };
 
 struct Port_root_bridge : public Root_bridge
@@ -773,8 +923,8 @@ struct Port_root_bridge : public Root_bridge
                             Bus_type bus_type, Hw::Device *host)
   : Root_bridge(segment, bus_nr, bus_type, host) {}
 
-  int cfg_read(Cfg_addr addr, l4_uint32_t *value, Cfg_width);
-  int cfg_write(Cfg_addr addr, l4_uint32_t value, Cfg_width);
+  int cfg_read(Cfg_addr addr, l4_uint32_t *value, Cfg_width) override;
+  int cfg_write(Cfg_addr addr, l4_uint32_t value, Cfg_width) override;
 
 private:
   pthread_mutex_t _cfg_lock = PTHREAD_MUTEX_INITIALIZER;
@@ -792,8 +942,8 @@ struct Mmio_root_bridge : public Root_bridge
       throw("ne");
   }
 
-  int cfg_read(Cfg_addr addr, l4_uint32_t *value, Cfg_width);
-  int cfg_write(Cfg_addr addr, l4_uint32_t value, Cfg_width);
+  int cfg_read(Cfg_addr addr, l4_uint32_t *value, Cfg_width) override;
+  int cfg_write(Cfg_addr addr, l4_uint32_t value, Cfg_width) override;
 
   l4_addr_t a(Cfg_addr addr) const { return _mmio + addr.addr(); }
 

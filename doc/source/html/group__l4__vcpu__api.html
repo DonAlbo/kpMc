@@ -97,10 +97,8 @@ $(document).ready(function(){initNavTree('group__l4__vcpu__api.html','');});
 <div id="dynsection-0-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-0-content" class="dyncontent" style="display:none;">
-<center><table><tr><td><img src="group__l4__vcpu__api.png" border="0" alt="" usemap="#group____l4____vcpu____api"/>
-<map name="group____l4____vcpu____api" id="group____l4____vcpu____api">
-<area shape="rect" id="node1" href="group__l4__thread__api.html" title="Thread object. " alt="" coords="5,5,73,32"/>
-</map>
+<center><table><tr><td><div class="center"><iframe scrolling="no" frameborder="0" src="group__l4__vcpu__api.svg" width="211" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </td></tr></table></center>
 </div>
 <table class="memberdecls">
@@ -173,6 +171,11 @@ Enumerations</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <p>vCPU API </p>
+<p>The vCPU API in <a class="el" href="namespaceL4Re.html" title="L4Re C++ Interfaces. ">L4Re</a> implements virtual processors (vCPUs) on top of <a class="el" href="classL4_1_1Thread.html" title="C++ L4 kernel thread interface. ">L4::Thread</a>. This API can be used for user level threading, operating system rehosting (see L4Linux) and virtualization.</p>
+<p>You switch a thread into <code>vCPU</code> operation with <a class="el" href="classL4_1_1Thread.html#a94a6d8a5a7a78fa99ef3c6358e0a0459" title="Enable or disable the vCPU feature for the thread. ">L4::Thread::vcpu_control</a>.</p>
+<p>Extended vCPU operation is used for hardware CPU virtualization. It can be enabled with <a class="el" href="classL4_1_1Thread.html#ac341b827b00c21bc3753c30163e0f173" title="Enable or disable the extended vCPU feature for the thread. ">L4::Thread::vcpu_control_ext</a>.</p>
+<p><a class="el" href="group__api__libvcpu.html">vCPU Support Library</a> defines a convenience API for working with vCPUs.</p>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="group__api__libvcpu.html" title="vCPU handling functionality. ">vCPU Support Library</a> </dd></dl>
 <h2 class="groupheader">Enumeration Type Documentation</h2>
 <a id="ga648aa99b07fd60d941c5ebb25f746967"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ga648aa99b07fd60d941c5ebb25f746967">&#9670;&nbsp;</a></span>L4_vcpu_state_flags</h2>
@@ -202,7 +205,7 @@ Enumerations</h2></td></tr>
 </td></tr>
 </table>
 
-<p class="definition">Definition at line <a class="el" href="sys_2vcpu_8h_source.html#l00058">58</a> of file <a class="el" href="sys_2vcpu_8h_source.html">vcpu.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="sys_2vcpu_8h_source.html#l00071">71</a> of file <a class="el" href="sys_2vcpu_8h_source.html">vcpu.h</a>.</p>
 
 </div>
 </div>
@@ -226,7 +229,7 @@ Enumerations</h2></td></tr>
 </td></tr>
 </table>
 
-<p class="definition">Definition at line <a class="el" href="sys_2vcpu_8h_source.html#l00081">81</a> of file <a class="el" href="sys_2vcpu_8h_source.html">vcpu.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="sys_2vcpu_8h_source.html#l00094">94</a> of file <a class="el" href="sys_2vcpu_8h_source.html">vcpu.h</a>.</p>
 
 </div>
 </div>
@@ -248,7 +251,7 @@ Enumerations</h2></td></tr>
 </td></tr>
 </table>
 
-<p class="definition">Definition at line <a class="el" href="sys_2vcpu_8h_source.html#l00072">72</a> of file <a class="el" href="sys_2vcpu_8h_source.html">vcpu.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="sys_2vcpu_8h_source.html#l00085">85</a> of file <a class="el" href="sys_2vcpu_8h_source.html">vcpu.h</a>.</p>
 
 </div>
 </div>
@@ -258,7 +261,7 @@ Enumerations</h2></td></tr>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated on Sun Sep 24 2017 23:15:12 for L4Re - L4 Runtime Environment by
+    <li class="footer">Generated on Tue Aug 11 2020 13:28:15 for L4Re - L4 Runtime Environment by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.13 </li>
   </ul>

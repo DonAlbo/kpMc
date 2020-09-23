@@ -88,17 +88,15 @@ $(document).ready(function(){initNavTree('group__api__l4re__event.html','');});
 </div><!--header-->
 <div class="contents">
 
-<p><a class="el" href="classL4Re_1_1Event.html" title="Event class. ">Event</a> interface.  
+<p><a class="el" href="classL4Re_1_1Event.html" title="Event class. ">Event</a> API.  
 <a href="#details">More...</a></p>
 <div id="dynsection-0" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-0-trigger" src="closed.png" alt="+"/> Collaboration diagram for Event API:</div>
 <div id="dynsection-0-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-0-content" class="dyncontent" style="display:none;">
-<center><table><tr><td><img src="group__api__l4re__event.png" border="0" alt="" usemap="#group____api____l4re____event"/>
-<map name="group____api____l4re____event" id="group____api____l4re____event">
-<area shape="rect" id="node2" href="group__api__l4re.html" title="Documentation of the L4 Runtime Environment C++ API. " alt="" coords="5,5,153,32"/>
-</map>
+<center><table><tr><td><div class="center"><iframe scrolling="no" frameborder="0" src="group__api__l4re__event.svg" width="291" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </td></tr></table></center>
 </div>
 <table class="memberdecls">
@@ -112,14 +110,16 @@ Data Structures</h2></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<p><a class="el" href="classL4Re_1_1Event.html" title="Event class. ">Event</a> interface. </p>
+<p><a class="el" href="classL4Re_1_1Event.html" title="Event class. ">Event</a> API. </p>
+<p>On top of a shared <a class="el" href="classL4Re_1_1Dataspace.html" title="Interface for memory-like objects. ">L4Re::Dataspace</a> (and optionally using <a class="el" href="structL4_1_1Triggerable.html" title="Interface that allows an object to be triggered by some source. ">L4::Triggerable</a>), the event API implements asynchronous event transmission from an event provider (server) to an event receiver (client). Events are put into an <a class="el" href="classL4Re_1_1Event__buffer__t.html" title="Event buffer class. ">Event_buffer_t</a> residing on the shared <a class="el" href="classL4Re_1_1Dataspace.html" title="Interface for memory-like objects. ">L4Re::Dataspace</a>.</p>
+<p>This interface is not usually used directly. Instead use <a class="el" href="classL4Re_1_1Util_1_1Event__t.html" title="Convenience wrapper for getting access to an event object. ">L4Re::Util::Event_t</a> for clients. An example server portion is implemented in <a class="el" href="classL4Re_1_1Util_1_1Event__svr.html" title="Convenience wrapper for implementing an event server. ">L4Re::Util::Event_svr</a>. </p>
 </div><!-- contents -->
 </div><!-- doc-content -->
 <!-- HTML footer for doxygen 1.8.13-->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated on Sun Sep 24 2017 23:15:12 for L4Re - L4 Runtime Environment by
+    <li class="footer">Generated on Tue Aug 11 2020 13:28:16 for L4Re - L4 Runtime Environment by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.13 </li>
   </ul>

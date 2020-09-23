@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['name',['name',['../structl4vbus__device__t.html#ab0ea301eb8c36066426adeea2377ccb2',1,'l4vbus_device_t::name()'],['../structl4re__env__cap__entry__t.html#a475787b73b8a4b82a42f9fa5e1098118',1,'l4re_env_cap_entry_t::name()']]],
+  ['name',['name',['../structl4re__env__cap__entry__t.html#a475787b73b8a4b82a42f9fa5e1098118',1,'l4re_env_cap_entry_t::name()'],['../structl4vbus__device__t.html#ab0ea301eb8c36066426adeea2377ccb2',1,'l4vbus_device_t::name()']]],
   ['next',['next',['../classL4virtio_1_1Virtqueue_1_1Desc.html#a1cc6e1da64e64f03e33a525501b42c29',1,'L4virtio::Virtqueue::Desc']]],
   ['nr_5firqs',['nr_irqs',['../structl4__icu__info__t.html#aa4095d8f20850fc1b3814946c0330ca8',1,'l4_icu_info_t']]],
   ['nr_5fmsis',['nr_msis',['../structl4__icu__info__t.html#a84a4af9b1e2def9499727e34abf2a24e',1,'l4_icu_info_t']]],

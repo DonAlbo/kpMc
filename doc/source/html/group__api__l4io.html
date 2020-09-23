@@ -147,9 +147,6 @@ Functions</h2></td></tr>
 <tr class="memitem:ga53ec000ff724338cf0caf5cc8eaf9847"><td class="memItemLeft" align="right" valign="top">long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__api__l4io.html#ga53ec000ff724338cf0caf5cc8eaf9847">l4io_release_iomem</a> (<a class="el" href="group__l4__basic__types.html#ga4087b991c40c0d2fcde9ca331049a4d4">l4_addr_t</a> virt, unsigned long size)</td></tr>
 <tr class="memdesc:ga53ec000ff724338cf0caf5cc8eaf9847"><td class="mdescLeft">&#160;</td><td class="mdescRight">Release an IO memory region.  <a href="#ga53ec000ff724338cf0caf5cc8eaf9847">More...</a><br /></td></tr>
 <tr class="separator:ga53ec000ff724338cf0caf5cc8eaf9847"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga91cdc19644ce0e5406e8fe06e2476673"><td class="memItemLeft" align="right" valign="top">long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__api__l4io.html#ga91cdc19644ce0e5406e8fe06e2476673">l4io_search_iomem_region</a> (<a class="el" href="group__l4__basic__types.html#ga4087b991c40c0d2fcde9ca331049a4d4">l4_addr_t</a> phys, <a class="el" href="group__l4__basic__types.html#ga4087b991c40c0d2fcde9ca331049a4d4">l4_addr_t</a> size, <a class="el" href="group__l4__basic__types.html#ga4087b991c40c0d2fcde9ca331049a4d4">l4_addr_t</a> *rstart, <a class="el" href="group__l4__basic__types.html#ga4087b991c40c0d2fcde9ca331049a4d4">l4_addr_t</a> *rsize)</td></tr>
-<tr class="memdesc:ga91cdc19644ce0e5406e8fe06e2476673"><td class="mdescLeft">&#160;</td><td class="mdescRight">Search for a IO memory region.  <a href="#ga91cdc19644ce0e5406e8fe06e2476673">More...</a><br /></td></tr>
-<tr class="separator:ga91cdc19644ce0e5406e8fe06e2476673"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga4157f860899b502fa9679797a0a513b6"><td class="memItemLeft" align="right" valign="top">long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__api__l4io.html#ga4157f860899b502fa9679797a0a513b6">l4io_request_ioport</a> (unsigned portnum, unsigned len)</td></tr>
 <tr class="memdesc:ga4157f860899b502fa9679797a0a513b6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Request an IO port region.  <a href="#ga4157f860899b502fa9679797a0a513b6">More...</a><br /></td></tr>
 <tr class="separator:ga4157f860899b502fa9679797a0a513b6"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -731,70 +728,13 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="ga91cdc19644ce0e5406e8fe06e2476673"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga91cdc19644ce0e5406e8fe06e2476673">&#9670;&nbsp;</a></span>l4io_search_iomem_region()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">long l4io_search_iomem_region </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="group__l4__basic__types.html#ga4087b991c40c0d2fcde9ca331049a4d4">l4_addr_t</a>&#160;</td>
-          <td class="paramname"><em>phys</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="group__l4__basic__types.html#ga4087b991c40c0d2fcde9ca331049a4d4">l4_addr_t</a>&#160;</td>
-          <td class="paramname"><em>size</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="group__l4__basic__types.html#ga4087b991c40c0d2fcde9ca331049a4d4">l4_addr_t</a> *&#160;</td>
-          <td class="paramname"><em>rstart</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="group__l4__basic__types.html#ga4087b991c40c0d2fcde9ca331049a4d4">l4_addr_t</a> *&#160;</td>
-          <td class="paramname"><em>rsize</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Search for a IO memory region. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">phys</td><td>Physical address to look for </td></tr>
-    <tr><td class="paramname">size</td><td>Size of requested memory area </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="retval"><dt>Return values</dt><dd>
-  <table class="retval">
-    <tr><td class="paramname">rstart</td><td>Start address for region </td></tr>
-    <tr><td class="paramname">rsize</td><td>Size of region in bytes </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>0 if an IO region was found, &lt;0 if not </dd></dl>
-
-</div>
-</div>
 </div><!-- contents -->
 </div><!-- doc-content -->
 <!-- HTML footer for doxygen 1.8.13-->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated on Sun Sep 24 2017 23:15:11 for L4Re - L4 Runtime Environment by
+    <li class="footer">Generated on Tue Aug 11 2020 13:28:16 for L4Re - L4 Runtime Environment by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.13 </li>
   </ul>

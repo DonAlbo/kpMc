@@ -55,7 +55,8 @@ public:
   typedef L4::Cap<L4Re::Dataspace> Dataspace;
   enum { Have_find = true };
   static int validate_ds(L4::Ipc_svr::Server_iface *sif,
-                         L4::Ipc::Snd_fpage const & /*ds_cap*/, unsigned,
+                         L4::Ipc::Snd_fpage const & /*ds_cap*/,
+                         L4Re::Rm::Flags,
                          L4::Cap<L4Re::Dataspace> *ds)
   {
     // XXX: must check that ds is from trusted allocator!

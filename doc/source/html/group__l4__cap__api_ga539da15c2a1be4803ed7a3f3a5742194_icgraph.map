@@ -1,0 +1,6 @@
+<map id="l4_is_valid_cap" name="l4_is_valid_cap">
+<area shape="rect" id="node2" href="$classL4Re_1_1Util_1_1Cap__alloc__base.html#afe4cbd695e9050e2827d17e7e960e67d" title="Free a capability slot. " alt="" coords="172,5,323,47"/>
+<area shape="rect" id="node3" href="$classL4Re_1_1Util_1_1Counting__cap__alloc.html#a4f65c951a2cc3aae899c67e1ef325a8a" title="Free the capability. " alt="" coords="175,71,319,112"/>
+<area shape="rect" id="node4" href="$classL4Re_1_1Util_1_1Br__manager.html#a9a58e2029692a47257671d53c6bca492" title="Make a buffer&#45;register (BR) manager. " alt="" coords="373,37,540,79"/>
+<area shape="rect" id="node5" href="$classL4Re_1_1Util_1_1Object__registry.html#aeeea59583ffddfef4e7c1c3e6eed41b6" title="Remove a server object from the handler list. " alt="" coords="371,103,543,144"/>
+</map>

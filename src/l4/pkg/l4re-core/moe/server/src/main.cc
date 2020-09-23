@@ -12,6 +12,7 @@
 #include <l4/util/util.h>
 #include <l4/sigma0/sigma0.h>
 
+#include <l4/sys/assert.h>
 #include <l4/sys/kip>
 #include <l4/sys/utcb.h>
 #include <l4/sys/debugger.h>
@@ -33,7 +34,6 @@
 #include <cstdio>
 
 #include "boot_fs.h"
-#include "exception.h"
 #include "globals.h"
 #include "loader_elf.h"
 #include "log.h"
@@ -71,7 +71,7 @@ static Dbg warn(Dbg::Warn);
 static
 l4_kernel_info_t const *map_kip()
 {
-  // map the KIP 1:1, because moe hast all memory 1:1 and the kip would
+  // map the KIP 1:1, because moe has all memory 1:1 and the kip would
   // possibly overlap with 1:1 memory if we have lots of RAM.
   _current_kip = l4sigma0_map_kip(Sigma0_cap, 0, L4_WHOLE_ADDRESS_SPACE);
 
@@ -86,6 +86,23 @@ l4_kernel_info_t const *map_kip()
 }
 
 static
+bool is_moe_cmdline(char const *cmdline)
+{
+  static unsigned proglen = strlen(PROG);
+  char const *ptr = strstr(cmdline, PROG);
+  while (ptr)
+    {
+      if ((ptr[proglen] == ' ' || ptr[proglen] == '\0')
+          && (ptr == cmdline || ptr[-1] == '/'))
+        return true;
+
+      ptr = strstr(ptr + 1, PROG);
+    }
+
+  return false;
+}
+
+static
 char *my_cmdline()
 {
   l4util_mb_info_t const *_mbi_ = (l4util_mb_info_t const *)(unsigned long)kip()->user_ptr;
@@ -95,7 +112,7 @@ char *my_cmdline()
   char *cmdline = 0;
 
   for (unsigned mod = 0; mod < num_modules; ++mod)
-    if (strstr((char const *)(unsigned long)modules[mod].cmdline, PROG))
+    if (is_moe_cmdline((char const *)(unsigned long)modules[mod].cmdline))
       {
         cmdline = (char *)(unsigned long)modules[mod].cmdline;
         break;
@@ -233,7 +250,7 @@ static void
 init_kip_ds()
 {
   kip_ds = new Moe::Dataspace_static(const_cast<l4_kernel_info_t *>(kip()),
-                                     L4_PAGESIZE, 0);
+                                     L4_PAGESIZE, L4Re::Dataspace::F::RX);
   if (!kip_ds)
     {
       Err(Err::Fatal).printf("could not allocate dataspace for KIP!\n");
@@ -243,6 +260,17 @@ init_kip_ds()
   object_pool.cap_alloc()->alloc(kip_ds);
 }
 
+static L4::Cap<void>
+new_sigma0_cap()
+{
+  L4::Cap<void> new_sigma0_cap = object_pool.cap_alloc()->alloc();
+
+  L4Re::chksys(
+    L4::Cap<L4::Factory>(Sigma0_cap)->create(new_sigma0_cap, L4_PROTO_SIGMA0),
+    "Create new sigma0 cap for the initial task.");
+
+  return new_sigma0_cap;
+}
 
 class Loop_hooks :
   public L4::Ipc_svr::Ignore_errors,
@@ -313,7 +341,7 @@ public:
         catch (L4::Runtime_error &e)
           {
             int res = e.err_no();
-            dbg.printf("reply(excption) = %d\n", res);
+            dbg.printf("reply(exception) = %d\n", res);
             return l4_msgtag(res, 0, 0, 0);
           }
       }
@@ -385,7 +413,7 @@ static unsigned long parse_flags(cxx::String const &_args, Dbg_bits const *dbb,
 
       if (!b->tag)
         {
-          warn.printf("ignore unkown argument for %.*s: '%.*s'\n",
+          warn.printf("ignore unknown argument for %.*s: '%.*s'\n",
                       opt.len(), opt.start(), a.len(), a.start());
 
         }
@@ -461,7 +489,7 @@ parse_option(cxx::String const &o)
       switch (o[s])
         {
         default:
-          warn.printf("unkown command-line option '%c'\n", o[s]);
+          warn.printf("unknown command-line option '%c'\n", o[s]);
           break;
         }
     }
@@ -492,6 +520,11 @@ static void init_emergency_memory()
   // emergency_pool in GCC versions 5 and newer
   static __attribute__((aligned(L4_PAGESIZE))) char buf[3 * L4_PAGESIZE];
   Single_page_alloc_base::_free(buf, sizeof(buf), true);
+  // make sure the emergency memory is RWX for future reuse
+  int err = l4sigma0_map_mem(Sigma0_cap, (l4_addr_t) buf, (l4_addr_t) buf,
+                             sizeof(buf));
+  l4_assert(!err);
+  (void)err;
 }
 
 static __attribute__((used, section(".preinit_array")))
@@ -549,9 +582,14 @@ int main(int argc, char**argv)
       root_name_space()->register_obj("icu", Entry::F_rw, L4_BASE_ICU_CAP);
       if (L4::Cap<void>(L4_BASE_IOMMU_CAP).validate().label())
         root_name_space()->register_obj("iommu", Entry::F_rw, L4_BASE_IOMMU_CAP);
-      root_name_space()->register_obj("sigma0", Entry::F_trusted | Entry::F_rw, L4_BASE_PAGER_CAP);
+      if (L4::Cap<void>(L4_BASE_ARM_SMCCC_CAP).validate().label())
+        root_name_space()->register_obj("arm_smc", Entry::F_rw, L4_BASE_ARM_SMCCC_CAP);
+      root_name_space()->register_obj("sigma0", Entry::F_trusted | Entry::F_rw,
+                                      new_sigma0_cap());
       root_name_space()->register_obj("mem", Entry::F_trusted | Entry::F_rw, Allocator::root_allocator());
-      root_name_space()->register_obj("jdb", Entry::F_trusted | Entry::F_rw, L4_BASE_DEBUGGER_CAP);
+      if (L4::Cap<void>(L4_BASE_DEBUGGER_CAP).validate().label())
+        root_name_space()->register_obj("jdb", Entry::F_trusted | Entry::F_rw, L4_BASE_DEBUGGER_CAP);
+      root_name_space()->register_obj("kip", Entry::F_rw, kip_ds->obj_cap());
 
       char *cmdline = my_cmdline();
 
@@ -610,4 +648,3 @@ int main(int argc, char**argv)
     }
   return 0;
 }
-

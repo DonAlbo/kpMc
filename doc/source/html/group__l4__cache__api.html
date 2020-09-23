@@ -95,10 +95,8 @@ $(document).ready(function(){initNavTree('group__l4__cache__api.html','');});
 <div id="dynsection-0-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-0-content" class="dyncontent" style="display:none;">
-<center><table><tr><td><img src="group__l4__cache__api.png" border="0" alt="" usemap="#group____l4____cache____api"/>
-<map name="group____l4____cache____api" id="group____l4____cache____api">
-<area shape="rect" id="node1" href="group__l4__api.html" title="Interfaces for all kinds of base functionality. " alt="" coords="5,5,85,32"/>
-</map>
+<center><table><tr><td><div class="center"><iframe scrolling="no" frameborder="0" src="group__l4__cache__api.svg" width="283" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </td></tr></table></center>
 </div>
 <table class="memberdecls">
@@ -126,7 +124,7 @@ int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <p>Various functions for cache consistency. </p>
-<dl class="section user"><dt>Include File</dt><dd><div class="fragment"><div class="line"><span class="preprocessor">#include &lt;l4/sys/cache.h&gt;</span> </div></div><!-- fragment --> </dd></dl>
+<dl class="section user"><dt>Include File^^ #include &lt;l4/sys/cache.h&gt; </dt><dd></dd></dl>
 <h2 class="groupheader">Function Documentation</h2>
 <a id="gadc960cee81afb33f99cf7978ff1f487a"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#gadc960cee81afb33f99cf7978ff1f487a">&#9670;&nbsp;</a></span>l4_cache_clean_data()</h2>
@@ -173,13 +171,14 @@ int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group
 <dl class="retval"><dt>Return values</dt><dd>
   <table class="retval">
     <tr><td class="paramname">0</td><td>on success </td></tr>
-    <tr><td class="paramname">-EFAULT</td><td>in the case of an unresolved page fault in the given area </td></tr>
+    <tr><td class="paramname">-EFAULT</td><td>in the case of an unresolved page fault in the given area</td></tr>
   </table>
   </dd>
 </dl>
+<p>Writes back any dirty cache lines in the range but leaves them in the cache. </p>
 <dl><dt><b>Examples: </b></dt><dd><a class="el" href="examples_2libs_2l4re_2c_09_09_2shared_ds_2ds_clnt_8cc-example.html#a15">examples/libs/l4re/c++/shared_ds/ds_clnt.cc</a>.</dd>
 </dl>
-<p class="definition">Definition at line <a class="el" href="arm_2l4_2sys_2cache_8h_source.html#l00084">84</a> of file <a class="el" href="arm_2l4_2sys_2cache_8h_source.html">cache.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="arm_2l4_2sys_2cache_8h_source.html#l00081">81</a> of file <a class="el" href="arm_2l4_2sys_2cache_8h_source.html">cache.h</a>.</p>
 
 </div>
 </div>
@@ -233,7 +232,7 @@ int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="arm_2l4_2sys_2cache_8h_source.html#l00108">108</a> of file <a class="el" href="arm_2l4_2sys_2cache_8h_source.html">cache.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="arm_2l4_2sys_2cache_8h_source.html#l00105">105</a> of file <a class="el" href="arm_2l4_2sys_2cache_8h_source.html">cache.h</a>.</p>
 
 </div>
 </div>
@@ -287,7 +286,7 @@ int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="arm_2l4_2sys_2cache_8h_source.html#l00116">116</a> of file <a class="el" href="arm_2l4_2sys_2cache_8h_source.html">cache.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="arm_2l4_2sys_2cache_8h_source.html#l00113">113</a> of file <a class="el" href="arm_2l4_2sys_2cache_8h_source.html">cache.h</a>.</p>
 
 </div>
 </div>
@@ -336,12 +335,13 @@ int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group
 <dl class="retval"><dt>Return values</dt><dd>
   <table class="retval">
     <tr><td class="paramname">0</td><td>on success </td></tr>
-    <tr><td class="paramname">-EFAULT</td><td>in the case of an unresolved page fault in the given area </td></tr>
+    <tr><td class="paramname">-EFAULT</td><td>in the case of an unresolved page fault in the given area</td></tr>
   </table>
   </dd>
 </dl>
+<p>Writes back any dirty cache lines and invalidates all cache entries in the range. </p>
 
-<p class="definition">Definition at line <a class="el" href="arm_2l4_2sys_2cache_8h_source.html#l00092">92</a> of file <a class="el" href="arm_2l4_2sys_2cache_8h_source.html">cache.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="arm_2l4_2sys_2cache_8h_source.html#l00089">89</a> of file <a class="el" href="arm_2l4_2sys_2cache_8h_source.html">cache.h</a>.</p>
 
 </div>
 </div>
@@ -390,12 +390,14 @@ int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group
 <dl class="retval"><dt>Return values</dt><dd>
   <table class="retval">
     <tr><td class="paramname">0</td><td>on success </td></tr>
-    <tr><td class="paramname">-EFAULT</td><td>in the case of an unresolved page fault in the given area </td></tr>
+    <tr><td class="paramname">-EFAULT</td><td>in the case of an unresolved page fault in the given area</td></tr>
   </table>
   </dd>
 </dl>
+<p>Invalidates all cache entries in the range but does not necessarily write back dirty cache lines.</p>
+<dl class="section note"><dt>Note</dt><dd>Implementations may choose to write back dirty lines nonetheless if this is more efficient. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="arm_2l4_2sys_2cache_8h_source.html#l00100">100</a> of file <a class="el" href="arm_2l4_2sys_2cache_8h_source.html">cache.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="arm_2l4_2sys_2cache_8h_source.html#l00097">97</a> of file <a class="el" href="arm_2l4_2sys_2cache_8h_source.html">cache.h</a>.</p>
 
 </div>
 </div>
@@ -405,7 +407,7 @@ int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated on Sun Sep 24 2017 23:15:12 for L4Re - L4 Runtime Environment by
+    <li class="footer">Generated on Tue Aug 11 2020 13:28:15 for L4Re - L4 Runtime Environment by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.13 </li>
   </ul>

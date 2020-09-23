@@ -22,7 +22,7 @@
 
 namespace L4Re { namespace Util {
 
-static FILE *out = stdout;
+static FILE *&out = stdout;
 #ifndef NDEBUG
 unsigned long Dbg::level = 1;
 

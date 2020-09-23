@@ -98,10 +98,8 @@ $(document).ready(function(){initNavTree('group__l4__vcon__api.html','');});
 <div id="dynsection-0-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-0-content" class="dyncontent" style="display:none;">
-<center><table><tr><td><img src="group__l4__vcon__api.png" border="0" alt="" usemap="#group____l4____vcon____api"/>
-<map name="group____l4____vcon____api" id="group____l4____vcon____api">
-<area shape="rect" id="node2" href="group__l4__kernel__object__api.html" title="API of kernel objects. " alt="" coords="5,5,120,32"/>
-</map>
+<center><table><tr><td><div class="center"><iframe scrolling="no" frameborder="0" src="group__l4__vcon__api.svg" width="291" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </td></tr></table></center>
 </div>
 <table class="memberdecls">
@@ -182,7 +180,7 @@ Functions</h2></td></tr>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <p>Virtual console for simple character based input and output. </p>
 <p>The interrupt for read events is provided by the virtual key interrupt.</p>
-<dl class="section user"><dt>Include File</dt><dd><div class="fragment"><div class="line"><span class="preprocessor">#include &lt;<a class="code" href="vcon_8h.html">l4/sys/vcon.h</a>&gt;</span> </div></div><!-- fragment --></dd></dl>
+<dl class="section user"><dt>Include File^^ #include &lt;l4/sys/vcon.h&gt; </dt><dd></dd></dl>
 <p>See <a class="el" href="classL4_1_1Vcon.html" title="C++ L4 Vcon interface. ">L4::Vcon</a> for the C++ interface. </p>
 <h2 class="groupheader">Enumeration Type Documentation</h2>
 <a id="gaa3725be256c6fea35cc773d1da4ae72e"></a>
@@ -330,19 +328,16 @@ Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Syscall return tag </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="vcon_8h_source.html#l00409">409</a> of file <a class="el" href="vcon_8h_source.html">vcon.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="vcon_8h_source.html#l00408">408</a> of file <a class="el" href="vcon_8h_source.html">vcon.h</a>.</p>
 
-<p class="reference">References <a class="el" href="l4_2sys_2utcb_8h_source.html#l00340">l4_utcb()</a>, and <a class="el" href="vcon_8h_source.html#l00391">l4_vcon_get_attr_u()</a>.</p>
+<p class="reference">References <a class="el" href="l4_2sys_2utcb_8h_source.html#l00340">l4_utcb()</a>, and <a class="el" href="vcon_8h_source.html#l00390">l4_vcon_get_attr_u()</a>.</p>
 <div id="dynsection-1" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-1-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
 <div id="dynsection-1-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-1-content" class="dyncontent" style="display:none;">
-<div class="center"><img src="group__l4__vcon__api_gadc134de4289402f313cae68717e0a5d4_cgraph.png" border="0" usemap="#group__l4__vcon__api_gadc134de4289402f313cae68717e0a5d4_cgraph" alt=""/></div>
-<map name="group__l4__vcon__api_gadc134de4289402f313cae68717e0a5d4_cgraph" id="group__l4__vcon__api_gadc134de4289402f313cae68717e0a5d4_cgraph">
-<area shape="rect" id="node2" href="group__l4__utcb__api.html#gadc099b4a59e1d99638c72c11a8c8b644" title="Get the UTCB address. " alt="" coords="219,5,286,32"/>
-<area shape="rect" id="node3" href="group__l4__vcon__api.html#gae9c105658ebcbc5d1a86e0672f0a5465" title="Get attributes of this virtual console. " alt="" coords="181,56,324,83"/>
-</map>
+<div class="center"><iframe scrolling="no" frameborder="0" src="group__l4__vcon__api_gadc134de4289402f313cae68717e0a5d4_cgraph.svg" width="330" height="88"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 
 </div>
@@ -391,26 +386,23 @@ Functions</h2></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir"></td><td class="paramname">vcon</td><td>Capability index of the vcon object. </td></tr>
-    <tr><td class="paramdir">[out]</td><td class="paramname">attr</td><td>Attribute structure. Contains the attributes after a successfull call of this function. </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">attr</td><td>Attribute structure. Contains the attributes after a successful call of this function. </td></tr>
     <tr><td class="paramdir"></td><td class="paramname">utcb</td><td>UTCB pointer of the calling thread.</td></tr>
   </table>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Syscall return tag. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="vcon_8h_source.html#l00391">391</a> of file <a class="el" href="vcon_8h_source.html">vcon.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="vcon_8h_source.html#l00390">390</a> of file <a class="el" href="vcon_8h_source.html">vcon.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="vcon_source.html#l00145">L4::Vcon::get_attr()</a>, and <a class="el" href="vcon_8h_source.html#l00409">l4_vcon_get_attr()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="vcon_source.html#l00145">L4::Vcon::get_attr()</a>, and <a class="el" href="vcon_8h_source.html#l00408">l4_vcon_get_attr()</a>.</p>
 <div id="dynsection-2" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-2-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
 <div id="dynsection-2-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-2-content" class="dyncontent" style="display:none;">
-<div class="center"><img src="group__l4__vcon__api_gae9c105658ebcbc5d1a86e0672f0a5465_icgraph.png" border="0" usemap="#group__l4__vcon__api_gae9c105658ebcbc5d1a86e0672f0a5465_icgraph" alt=""/></div>
-<map name="group__l4__vcon__api_gae9c105658ebcbc5d1a86e0672f0a5465_icgraph" id="group__l4__vcon__api_gae9c105658ebcbc5d1a86e0672f0a5465_icgraph">
-<area shape="rect" id="node2" href="classL4_1_1Vcon.html#aa454b098bbf63ac18c59e044200c3e9a" title="Get attributes of this virtual console. " alt="" coords="196,5,327,32"/>
-<area shape="rect" id="node3" href="group__l4__vcon__api.html#gadc134de4289402f313cae68717e0a5d4" title="Get attributes of a Vcon. " alt="" coords="197,56,325,83"/>
-</map>
+<div class="center"><iframe scrolling="no" frameborder="0" src="group__l4__vcon__api_gae9c105658ebcbc5d1a86e0672f0a5465_icgraph.svg" width="332" height="88"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 
 </div>
@@ -474,19 +466,16 @@ Functions</h2></td></tr>
 </dl>
 <dl class="section note"><dt>Note</dt><dd>Size must not exceed <a class="el" href="group__l4__vcon__api.html#ggabd2b33d43db88423dfb7d40ebce134a2a85b6eb2687db0571494a931b926692ae" title="Maximum size that can be read with one l4_vcon_read* call. ">L4_VCON_READ_SIZE</a>. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="vcon_8h_source.html#l00365">365</a> of file <a class="el" href="vcon_8h_source.html">vcon.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="vcon_8h_source.html#l00364">364</a> of file <a class="el" href="vcon_8h_source.html">vcon.h</a>.</p>
 
-<p class="reference">References <a class="el" href="l4_2sys_2utcb_8h_source.html#l00340">l4_utcb()</a>, and <a class="el" href="vcon_8h_source.html#l00355">l4_vcon_read_u()</a>.</p>
+<p class="reference">References <a class="el" href="l4_2sys_2utcb_8h_source.html#l00340">l4_utcb()</a>, and <a class="el" href="vcon_8h_source.html#l00354">l4_vcon_read_u()</a>.</p>
 <div id="dynsection-3" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-3-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
 <div id="dynsection-3-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-3-content" class="dyncontent" style="display:none;">
-<div class="center"><img src="group__l4__vcon__api_ga6c775101d4cb0763e352ae9bb395a7a1_cgraph.png" border="0" usemap="#group__l4__vcon__api_ga6c775101d4cb0763e352ae9bb395a7a1_cgraph" alt=""/></div>
-<map name="group__l4__vcon__api_ga6c775101d4cb0763e352ae9bb395a7a1_cgraph" id="group__l4__vcon__api_ga6c775101d4cb0763e352ae9bb395a7a1_cgraph">
-<area shape="rect" id="node2" href="group__l4__utcb__api.html#gadc099b4a59e1d99638c72c11a8c8b644" title="Get the UTCB address. " alt="" coords="189,5,256,32"/>
-<area shape="rect" id="node3" href="group__l4__vcon__api.html#gaac94d1d8c7650a94642d5d9254f418bc" title="Read data from this virtual console. " alt="" coords="161,56,284,83"/>
-</map>
+<div class="center"><iframe scrolling="no" frameborder="0" src="group__l4__vcon__api_ga6c775101d4cb0763e352ae9bb395a7a1_cgraph.svg" width="290" height="88"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 
 </div>
@@ -557,19 +546,16 @@ Functions</h2></td></tr>
 </dl>
 <dl class="section note"><dt>Note</dt><dd>Size must not exceed <a class="el" href="group__l4__vcon__api.html#ggabd2b33d43db88423dfb7d40ebce134a2a85b6eb2687db0571494a931b926692ae" title="Maximum size that can be read with one l4_vcon_read* call. ">L4_VCON_READ_SIZE</a>. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="vcon_8h_source.html#l00355">355</a> of file <a class="el" href="vcon_8h_source.html">vcon.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="vcon_8h_source.html#l00354">354</a> of file <a class="el" href="vcon_8h_source.html">vcon.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="vcon_8h_source.html#l00365">l4_vcon_read()</a>, and <a class="el" href="vcon_source.html#l00094">L4::Vcon::read()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="vcon_8h_source.html#l00364">l4_vcon_read()</a>, and <a class="el" href="vcon_source.html#l00094">L4::Vcon::read()</a>.</p>
 <div id="dynsection-4" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-4-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
 <div id="dynsection-4-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-4-content" class="dyncontent" style="display:none;">
-<div class="center"><img src="group__l4__vcon__api_gaac94d1d8c7650a94642d5d9254f418bc_icgraph.png" border="0" usemap="#group__l4__vcon__api_gaac94d1d8c7650a94642d5d9254f418bc_icgraph" alt=""/></div>
-<map name="group__l4__vcon__api_gaac94d1d8c7650a94642d5d9254f418bc_icgraph" id="group__l4__vcon__api_gaac94d1d8c7650a94642d5d9254f418bc_icgraph">
-<area shape="rect" id="node2" href="group__l4__vcon__api.html#ga6c775101d4cb0763e352ae9bb395a7a1" title="Read data from virtual console. " alt="" coords="177,5,285,32"/>
-<area shape="rect" id="node3" href="classL4_1_1Vcon.html#aa3376a1e0a39edbfc95102c613492dd4" title="Read data from this virtual console. " alt="" coords="176,56,287,83"/>
-</map>
+<div class="center"><iframe scrolling="no" frameborder="0" src="group__l4__vcon__api_gaac94d1d8c7650a94642d5d9254f418bc_icgraph.svg" width="292" height="88"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 
 </div>
@@ -636,7 +622,7 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="vcon_8h_source.html#l00349">349</a> of file <a class="el" href="vcon_8h_source.html">vcon.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="vcon_8h_source.html#l00348">348</a> of file <a class="el" href="vcon_8h_source.html">vcon.h</a>.</p>
 
 </div>
 </div>
@@ -690,9 +676,9 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Syscall return tag</dd></dl>
-<dl class="section note"><dt>Note</dt><dd>Size must not exceed <a class="el" href="group__l4__vcon__api.html#ggabd2b33d43db88423dfb7d40ebce134a2ac70a0f703b45becb557ee2212e47a9fc" title="Maximum size that can be written with one l4_vcon_write call. ">L4_VCON_WRITE_SIZE</a>, a proper value of the <code>size</code> parameter is NOT checked. Also, this function is a send only operation, this means there is no return value except for a failed send operation. Use <a class="el" href="group__l4__ipc__err__api.html#gad40f404217497793e95a10d77a47db39" title="Get the error code for an object invocation. ">l4_ipc_error()</a> to check for send errors, do not use <a class="el" href="group__l4__ipc__err__api.html#ga05c11e3e10b6c2aa941396ac2018899f" title="Return error code of a system call return message tag. ">l4_error()</a>, as <a class="el" href="group__l4__ipc__err__api.html#ga05c11e3e10b6c2aa941396ac2018899f" title="Return error code of a system call return message tag. ">l4_error()</a> will always return an error. </dd></dl>
+<dl class="section note"><dt>Note</dt><dd>Size must not exceed <a class="el" href="group__l4__vcon__api.html#ggabd2b33d43db88423dfb7d40ebce134a2ac70a0f703b45becb557ee2212e47a9fc" title="Maximum size that can be written with one l4_vcon_write call. ">L4_VCON_WRITE_SIZE</a>, a proper value of the <code>size</code> parameter is NOT checked. Also, this function is a send only operation, this means there is no return value except for a failed send operation. Use <a class="el" href="group__l4__ipc__err__api.html#gad40f404217497793e95a10d77a47db39" title="Get the error code for an object invocation. ">l4_ipc_error()</a> to check for send errors, do not use <a class="el" href="group__l4__ipc__err__api.html#ga05c11e3e10b6c2aa941396ac2018899f" title="Return error code of a system call return message tag or the tag label. ">l4_error()</a>, as <a class="el" href="group__l4__ipc__err__api.html#ga05c11e3e10b6c2aa941396ac2018899f" title="Return error code of a system call return message tag or the tag label. ">l4_error()</a> will always return an error. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="vcon_8h_source.html#l00289">289</a> of file <a class="el" href="vcon_8h_source.html">vcon.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="vcon_8h_source.html#l00288">288</a> of file <a class="el" href="vcon_8h_source.html">vcon.h</a>.</p>
 
 <p class="reference">References <a class="el" href="l4_2sys_2utcb_8h_source.html#l00340">l4_utcb()</a>, and <a class="el" href="vcon_8h_source.html#l00275">l4_vcon_send_u()</a>.</p>
 <div id="dynsection-5" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
@@ -700,11 +686,8 @@ Functions</h2></td></tr>
 <div id="dynsection-5-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-5-content" class="dyncontent" style="display:none;">
-<div class="center"><img src="group__l4__vcon__api_gabbc45ad5d795d46d1edbf8118957ecb2_cgraph.png" border="0" usemap="#group__l4__vcon__api_gabbc45ad5d795d46d1edbf8118957ecb2_cgraph" alt=""/></div>
-<map name="group__l4__vcon__api_gabbc45ad5d795d46d1edbf8118957ecb2_cgraph" id="group__l4__vcon__api_gabbc45ad5d795d46d1edbf8118957ecb2_cgraph">
-<area shape="rect" id="node2" href="group__l4__utcb__api.html#gadc099b4a59e1d99638c72c11a8c8b644" title="Get the UTCB address. " alt="" coords="193,5,260,32"/>
-<area shape="rect" id="node3" href="group__l4__vcon__api.html#ga05df63a45bb7ade1e0e19caaa6e35f5f" title="Send data to this virtual console. " alt="" coords="164,56,289,83"/>
-</map>
+<div class="center"><iframe scrolling="no" frameborder="0" src="group__l4__vcon__api_gabbc45ad5d795d46d1edbf8118957ecb2_cgraph.svg" width="295" height="88"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 
 </div>
@@ -766,24 +749,18 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Syscall return tag</dd></dl>
-<dl class="section note"><dt>Note</dt><dd>Size must not exceed <a class="el" href="group__l4__vcon__api.html#ggabd2b33d43db88423dfb7d40ebce134a2ac70a0f703b45becb557ee2212e47a9fc" title="Maximum size that can be written with one l4_vcon_write call. ">L4_VCON_WRITE_SIZE</a>, a proper value of the <code>size</code> parameter is NOT checked. Also, this function is a send only operation, this means there is no return value except for a failed send operation. Use <a class="el" href="group__l4__ipc__err__api.html#gad40f404217497793e95a10d77a47db39" title="Get the error code for an object invocation. ">l4_ipc_error()</a> to check for send errors, do not use <a class="el" href="group__l4__ipc__err__api.html#ga05c11e3e10b6c2aa941396ac2018899f" title="Return error code of a system call return message tag. ">l4_error()</a>, as <a class="el" href="group__l4__ipc__err__api.html#ga05c11e3e10b6c2aa941396ac2018899f" title="Return error code of a system call return message tag. ">l4_error()</a> will always return an error. </dd></dl>
+<dl class="section note"><dt>Note</dt><dd>Size must not exceed <a class="el" href="group__l4__vcon__api.html#ggabd2b33d43db88423dfb7d40ebce134a2ac70a0f703b45becb557ee2212e47a9fc" title="Maximum size that can be written with one l4_vcon_write call. ">L4_VCON_WRITE_SIZE</a>, a proper value of the <code>size</code> parameter is NOT checked. Also, this function is a send only operation, this means there is no return value except for a failed send operation. Use <a class="el" href="group__l4__ipc__err__api.html#gad40f404217497793e95a10d77a47db39" title="Get the error code for an object invocation. ">l4_ipc_error()</a> to check for send errors, do not use <a class="el" href="group__l4__ipc__err__api.html#ga05c11e3e10b6c2aa941396ac2018899f" title="Return error code of a system call return message tag or the tag label. ">l4_error()</a>, as <a class="el" href="group__l4__ipc__err__api.html#ga05c11e3e10b6c2aa941396ac2018899f" title="Return error code of a system call return message tag or the tag label. ">l4_error()</a> will always return an error. </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="vcon_8h_source.html#l00275">275</a> of file <a class="el" href="vcon_8h_source.html">vcon.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="vcon_8h_source.html#l00289">l4_vcon_send()</a>, <a class="el" href="vcon_8h_source.html#l00295">l4_vcon_write_u()</a>, and <a class="el" href="vcon_source.html#l00063">L4::Vcon::send()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="vcon_8h_source.html#l00288">l4_vcon_send()</a>, <a class="el" href="vcon_8h_source.html#l00294">l4_vcon_write_u()</a>, and <a class="el" href="vcon_source.html#l00063">L4::Vcon::send()</a>.</p>
 <div id="dynsection-6" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-6-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
 <div id="dynsection-6-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-6-content" class="dyncontent" style="display:none;">
-<div class="center"><img src="group__l4__vcon__api_ga05df63a45bb7ade1e0e19caaa6e35f5f_icgraph.png" border="0" usemap="#group__l4__vcon__api_ga05df63a45bb7ade1e0e19caaa6e35f5f_icgraph" alt=""/></div>
-<map name="group__l4__vcon__api_ga05df63a45bb7ade1e0e19caaa6e35f5f_icgraph" id="group__l4__vcon__api_ga05df63a45bb7ade1e0e19caaa6e35f5f_icgraph">
-<area shape="rect" id="node2" href="group__l4__vcon__api.html#gabbc45ad5d795d46d1edbf8118957ecb2" title="Send data to virtual console. " alt="" coords="185,5,296,32"/>
-<area shape="rect" id="node3" href="group__l4__vcon__api.html#ga899728ba23baf18f59f62142534e039c" title="Write data to this virtual console. " alt="" coords="179,56,303,83"/>
-<area shape="rect" id="node6" href="classL4_1_1Vcon.html#a7f3af2e912eddfae6b0fd8505beec77f" title="Send data to this virtual console. " alt="" coords="184,107,297,133"/>
-<area shape="rect" id="node4" href="classL4_1_1Vcon.html#acb9a53b77487d644212030c27d642f1e" title="Write data to this virtual console. " alt="" coords="351,31,463,57"/>
-<area shape="rect" id="node5" href="group__l4__vcon__api.html#ga9f083a69c2c51329da6778a3af0331bc" title="Write data to virtual console. " alt="" coords="352,81,461,108"/>
-</map>
+<div class="center"><iframe scrolling="no" frameborder="0" src="group__l4__vcon__api_ga05df63a45bb7ade1e0e19caaa6e35f5f_icgraph.svg" width="468" height="139"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 
 </div>
@@ -832,19 +809,16 @@ Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Syscall return tag </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="vcon_8h_source.html#l00385">385</a> of file <a class="el" href="vcon_8h_source.html">vcon.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="vcon_8h_source.html#l00384">384</a> of file <a class="el" href="vcon_8h_source.html">vcon.h</a>.</p>
 
-<p class="reference">References <a class="el" href="l4_2sys_2utcb_8h_source.html#l00340">l4_utcb()</a>, and <a class="el" href="vcon_8h_source.html#l00371">l4_vcon_set_attr_u()</a>.</p>
+<p class="reference">References <a class="el" href="l4_2sys_2utcb_8h_source.html#l00340">l4_utcb()</a>, and <a class="el" href="vcon_8h_source.html#l00370">l4_vcon_set_attr_u()</a>.</p>
 <div id="dynsection-7" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-7-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
 <div id="dynsection-7-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-7-content" class="dyncontent" style="display:none;">
-<div class="center"><img src="group__l4__vcon__api_gad6423b427845fd9cff6d6b39b17f44d3_cgraph.png" border="0" usemap="#group__l4__vcon__api_gad6423b427845fd9cff6d6b39b17f44d3_cgraph" alt=""/></div>
-<map name="group__l4__vcon__api_gad6423b427845fd9cff6d6b39b17f44d3_cgraph" id="group__l4__vcon__api_gad6423b427845fd9cff6d6b39b17f44d3_cgraph">
-<area shape="rect" id="node2" href="group__l4__utcb__api.html#gadc099b4a59e1d99638c72c11a8c8b644" title="Get the UTCB address. " alt="" coords="218,5,285,32"/>
-<area shape="rect" id="node3" href="group__l4__vcon__api.html#ga17f827c7d5f96b36a7c552af8d61a0e5" title="Set the attributes of this virtual console. " alt="" coords="180,56,323,83"/>
-</map>
+<div class="center"><iframe scrolling="no" frameborder="0" src="group__l4__vcon__api_gad6423b427845fd9cff6d6b39b17f44d3_cgraph.svg" width="328" height="88"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 
 </div>
@@ -900,19 +874,16 @@ Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Syscall return tag. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="vcon_8h_source.html#l00371">371</a> of file <a class="el" href="vcon_8h_source.html">vcon.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="vcon_8h_source.html#l00370">370</a> of file <a class="el" href="vcon_8h_source.html">vcon.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="vcon_8h_source.html#l00385">l4_vcon_set_attr()</a>, and <a class="el" href="vcon_source.html#l00132">L4::Vcon::set_attr()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="vcon_8h_source.html#l00384">l4_vcon_set_attr()</a>, and <a class="el" href="vcon_source.html#l00132">L4::Vcon::set_attr()</a>.</p>
 <div id="dynsection-8" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-8-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
 <div id="dynsection-8-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-8-content" class="dyncontent" style="display:none;">
-<div class="center"><img src="group__l4__vcon__api_ga17f827c7d5f96b36a7c552af8d61a0e5_icgraph.png" border="0" usemap="#group__l4__vcon__api_ga17f827c7d5f96b36a7c552af8d61a0e5_icgraph" alt=""/></div>
-<map name="group__l4__vcon__api_ga17f827c7d5f96b36a7c552af8d61a0e5_icgraph" id="group__l4__vcon__api_ga17f827c7d5f96b36a7c552af8d61a0e5_icgraph">
-<area shape="rect" id="node2" href="group__l4__vcon__api.html#gad6423b427845fd9cff6d6b39b17f44d3" title="Set attributes of a Vcon. " alt="" coords="198,5,325,32"/>
-<area shape="rect" id="node3" href="classL4_1_1Vcon.html#a3f49fc477f851177920b05743c113e98" title="Set the attributes of this virtual console. " alt="" coords="196,56,327,83"/>
-</map>
+<div class="center"><iframe scrolling="no" frameborder="0" src="group__l4__vcon__api_ga17f827c7d5f96b36a7c552af8d61a0e5_icgraph.svg" width="332" height="88"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 
 </div>
@@ -974,22 +945,16 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="vcon_8h_source.html#l00310">310</a> of file <a class="el" href="vcon_8h_source.html">vcon.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="vcon_8h_source.html#l00309">309</a> of file <a class="el" href="vcon_8h_source.html">vcon.h</a>.</p>
 
-<p class="reference">References <a class="el" href="l4_2sys_2utcb_8h_source.html#l00340">l4_utcb()</a>, and <a class="el" href="vcon_8h_source.html#l00295">l4_vcon_write_u()</a>.</p>
+<p class="reference">References <a class="el" href="l4_2sys_2utcb_8h_source.html#l00340">l4_utcb()</a>, and <a class="el" href="vcon_8h_source.html#l00294">l4_vcon_write_u()</a>.</p>
 <div id="dynsection-9" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-9-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
 <div id="dynsection-9-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-9-content" class="dyncontent" style="display:none;">
-<div class="center"><img src="group__l4__vcon__api_ga9f083a69c2c51329da6778a3af0331bc_cgraph.png" border="0" usemap="#group__l4__vcon__api_ga9f083a69c2c51329da6778a3af0331bc_cgraph" alt=""/></div>
-<map name="group__l4__vcon__api_ga9f083a69c2c51329da6778a3af0331bc_cgraph" id="group__l4__vcon__api_ga9f083a69c2c51329da6778a3af0331bc_cgraph">
-<area shape="rect" id="node2" href="group__l4__utcb__api.html#gadc099b4a59e1d99638c72c11a8c8b644" title="Get the UTCB address. " alt="" coords="191,5,258,32"/>
-<area shape="rect" id="node3" href="group__l4__vcon__api.html#ga899728ba23baf18f59f62142534e039c" title="Write data to this virtual console. " alt="" coords="163,56,287,83"/>
-<area shape="rect" id="node4" href="group__l4__vcon__api.html#ga05df63a45bb7ade1e0e19caaa6e35f5f" title="Send data to this virtual console. " alt="" coords="351,5,476,32"/>
-<area shape="rect" id="node5" href="group__l4__msgtag__api.html#ga52e71bb66855f4d78fa5c82b5f0c5a87" title="Test for error indicator flag. " alt="" coords="335,56,492,83"/>
-<area shape="rect" id="node6" href="group__l4__ipc__err__api.html#ga05c11e3e10b6c2aa941396ac2018899f" title="Return error code of a system call return message tag. " alt="" coords="377,107,449,133"/>
-</map>
+<div class="center"><iframe scrolling="no" frameborder="0" src="group__l4__vcon__api_ga9f083a69c2c51329da6778a3af0331bc_cgraph.svg" width="498" height="139"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 
 </div>
@@ -1058,33 +1023,26 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="vcon_8h_source.html#l00295">295</a> of file <a class="el" href="vcon_8h_source.html">vcon.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="vcon_8h_source.html#l00294">294</a> of file <a class="el" href="vcon_8h_source.html">vcon.h</a>.</p>
 
-<p class="reference">References <a class="el" href="l4_2sys_2ipc_8h_source.html#l00517">l4_error()</a>, <a class="el" href="l4_2sys_2types_8h_source.html#l00435">l4_msgtag_has_error()</a>, <a class="el" href="vcon_8h_source.html#l00275">l4_vcon_send_u()</a>, and <a class="el" href="vcon_8h_source.html#l00098">L4_VCON_WRITE_SIZE</a>.</p>
+<p class="reference">References <a class="el" href="l4_2sys_2ipc_8h_source.html#l00520">l4_error()</a>, <a class="el" href="l4_2sys_2types_8h_source.html#l00437">l4_msgtag_has_error()</a>, <a class="el" href="vcon_8h_source.html#l00275">l4_vcon_send_u()</a>, and <a class="el" href="vcon_8h_source.html#l00098">L4_VCON_WRITE_SIZE</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="vcon_8h_source.html#l00310">l4_vcon_write()</a>, and <a class="el" href="vcon_source.html#l00077">L4::Vcon::write()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="vcon_8h_source.html#l00309">l4_vcon_write()</a>, and <a class="el" href="vcon_source.html#l00077">L4::Vcon::write()</a>.</p>
 <div id="dynsection-10" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-10-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
 <div id="dynsection-10-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-10-content" class="dyncontent" style="display:none;">
-<div class="center"><img src="group__l4__vcon__api_ga899728ba23baf18f59f62142534e039c_cgraph.png" border="0" usemap="#group__l4__vcon__api_ga899728ba23baf18f59f62142534e039c_cgraph" alt=""/></div>
-<map name="group__l4__vcon__api_ga899728ba23baf18f59f62142534e039c_cgraph" id="group__l4__vcon__api_ga899728ba23baf18f59f62142534e039c_cgraph">
-<area shape="rect" id="node2" href="group__l4__ipc__err__api.html#ga05c11e3e10b6c2aa941396ac2018899f" title="Return error code of a system call return message tag. " alt="" coords="220,5,292,32"/>
-<area shape="rect" id="node3" href="group__l4__msgtag__api.html#ga52e71bb66855f4d78fa5c82b5f0c5a87" title="Test for error indicator flag. " alt="" coords="177,56,335,83"/>
-<area shape="rect" id="node4" href="group__l4__vcon__api.html#ga05df63a45bb7ade1e0e19caaa6e35f5f" title="Send data to this virtual console. " alt="" coords="193,107,319,133"/>
-</map>
+<div class="center"><iframe scrolling="no" frameborder="0" src="group__l4__vcon__api_ga899728ba23baf18f59f62142534e039c_cgraph.svg" width="340" height="139"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 <div id="dynsection-11" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-11-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
 <div id="dynsection-11-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-11-content" class="dyncontent" style="display:none;">
-<div class="center"><img src="group__l4__vcon__api_ga899728ba23baf18f59f62142534e039c_icgraph.png" border="0" usemap="#group__l4__vcon__api_ga899728ba23baf18f59f62142534e039c_icgraph" alt=""/></div>
-<map name="group__l4__vcon__api_ga899728ba23baf18f59f62142534e039c_icgraph" id="group__l4__vcon__api_ga899728ba23baf18f59f62142534e039c_icgraph">
-<area shape="rect" id="node2" href="group__l4__vcon__api.html#ga9f083a69c2c51329da6778a3af0331bc" title="Write data to virtual console. " alt="" coords="179,5,288,32"/>
-<area shape="rect" id="node3" href="classL4_1_1Vcon.html#acb9a53b77487d644212030c27d642f1e" title="Write data to this virtual console. " alt="" coords="177,56,289,83"/>
-</map>
+<div class="center"><iframe scrolling="no" frameborder="0" src="group__l4__vcon__api_ga899728ba23baf18f59f62142534e039c_icgraph.svg" width="295" height="88"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 
 </div>
@@ -1095,7 +1053,7 @@ Functions</h2></td></tr>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated on Sun Sep 24 2017 23:15:12 for L4Re - L4 Runtime Environment by
+    <li class="footer">Generated on Tue Aug 11 2020 13:28:15 for L4Re - L4 Runtime Environment by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.13 </li>
   </ul>

@@ -1,0 +1,11 @@
+<map id="L4Re::Util::Dataspace_svr::is_static" name="L4Re::Util::Dataspace_svr::is_static">
+<area shape="rect" id="node2" href="$classL4Re_1_1Util_1_1Dataspace__svr.html#aa85cfff9018ab447c78b1bebea9236c2" title="Allocate a region within a dataspace. " alt="" coords="209,5,365,47"/>
+<area shape="rect" id="node3" href="$classL4Re_1_1Util_1_1Dataspace__svr.html#ac20641a3871785e42a36906745eebca0" title="Clear a region in the dataspace. " alt="" coords="413,93,569,135"/>
+<area shape="rect" id="node4" href="$classL4Re_1_1Util_1_1Dataspace__svr.html#ae43d4d403894536dd261a834e2bcc417" title="Copy from src dataspace to this destination dataspace. " alt="" coords="209,123,365,164"/>
+<area shape="rect" id="node5" href="$classL4_1_1Ipc_1_1Gen__fpage.html#aca293488415bad034e62c26944bb0e7e" title="Return the raw flex page descriptor. " alt="" coords="217,188,357,229"/>
+<area shape="rect" id="node6" href="$classL4_1_1Ipc_1_1Gen__fpage.html#a4b39da7f8b5f30657de05383cd987c92" title="Check if a label was received instead of a mapping. " alt="" coords="217,253,357,295"/>
+<area shape="rect" id="node7" href="$group__l4__memory__api.html#gae876a4c6e0f21b2ecbf17863dc7d11e4" title="Round value up to the next alignment with bits size. " alt="" coords="232,319,343,346"/>
+<area shape="rect" id="node9" href="$classL4Re_1_1Util_1_1Dataspace__svr.html#a8b739f2a06b2e6cf2f4a29b106eba294" title="Map a region of the dataspace. " alt="" coords="209,371,365,412"/>
+<area shape="rect" id="node10" href="$classL4Re_1_1Util_1_1Dataspace__svr.html#a1bfc015d00ffa24baa958dffe9b47b0b" title="Define the size of the flexpage to map. " alt="" coords="209,436,365,477"/>
+<area shape="rect" id="node8" href="$group__l4__memory__api.html#ga2be30f4e5dde3c85d115d2a9c77f6215" title="Determine how many machine words (l4_umword_t) are required to store a buffer of &#39;size&#39; bytes..." alt="" coords="416,319,567,346"/>
+</map>

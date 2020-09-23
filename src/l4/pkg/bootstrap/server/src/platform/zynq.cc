@@ -29,17 +29,34 @@ class Platform_arm_zynq : public Platform_single_region_ram
     kuart.baud      = 115200;
     kuart.reg_shift = 0;
 
-    kuart.base_baud = 5000000;
+#ifdef PLATFORM_TYPE_zynqmp
+    kuart.base_baud = 99648000;
     switch (PLATFORM_UART_NR) {
-      case 0: kuart.base_address = 0xe0000000; // qemu
+      default:
+      case 0: kuart.base_address = 0xff000000;
+              kuart.irqno        = 32 + 21;
+              break;
+      case 1: kuart.base_address = 0xff010000;
+              kuart.irqno        = 32 + 22;
+              break;
+    };
+#else
+    kuart.base_baud = 49536000;
+    switch (PLATFORM_UART_NR) {
+      case 0: kuart.base_address = 0xe0000000; // QEMU
               kuart.irqno        = 59;
               break;
       default:
-      case 1: kuart.base_address = 0xe0001000; // zedboard
+      case 1: kuart.base_address = 0xe0001000; // Zedboard
               kuart.irqno        = 82;
               break;
     };
+#endif
 
+    kuart.access_type  = L4_kernel_options::Uart_type_mmio;
+    kuart_flags       |=   L4_kernel_options::F_uart_base
+                         | L4_kernel_options::F_uart_baud
+                         | L4_kernel_options::F_uart_irq;
     static L4::Uart_cadence _uart(kuart.base_baud);
     static L4::Io_register_block_mmio r(kuart.base_address);
     _uart.startup(&r);
@@ -49,8 +66,14 @@ class Platform_arm_zynq : public Platform_single_region_ram
 
   void reboot()
   {
-    L4::Io_register_block_mmio r(0xf8000200);
-    r.write<unsigned>(1, 0);
+    enum
+    {
+      SLCR_UNLOCK  = 0x008,
+      PSS_RST_CTRL = 0x200
+    };
+    L4::Io_register_block_mmio r(0xf8000000);
+    r.write<unsigned>(SLCR_UNLOCK, 0xdf0d);
+    r.write<unsigned>(PSS_RST_CTRL, 1);
   }
 };
 }

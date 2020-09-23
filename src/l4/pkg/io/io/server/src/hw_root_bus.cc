@@ -23,33 +23,58 @@ namespace {
 class Root_irq_rs : public Resource_space
 {
 public:
-  bool request(Resource *parent, Device *, Resource *child, Device *)
+  bool request(Resource *parent, Device *,
+               Resource *child, Device *) override
   {
     child->parent(parent);
 
     return true;
   };
 
-  bool alloc(Resource *, Device *, Resource *, Device *, bool)
+  bool alloc(Resource *, Device *, Resource *, Device *, bool) override
   { return false; }
+
+  void assign(Resource *, Resource *) override
+  {
+    d_printf(DBG_ERR, "internal error: cannot assign to root Root_irq_rs\n");
+  }
+
+  bool adjust_children(Resource *) override
+  {
+    d_printf(DBG_ERR, "internal error: cannot adjust root Root_irq_rs\n");
+    return false;
+  }
 };
 
 // --- Root address space for IO-Ports --------------------------------------
 class Root_io_rs : public Resource_space
 {
 public:
-  bool request(Resource *parent, Device *, Resource *child, Device *)
+  bool request(Resource *parent, Device *,
+               Resource *child, Device *) override
   {
     child->parent(parent);
 
     return true;
   }
 
-  bool alloc(Resource *parent, Device *, Resource *child, Device *, bool)
+  bool alloc(Resource *parent, Device *,
+             Resource *child, Device *, bool) override
   {
     child->parent(parent);
 
     return true;
+  }
+
+  void assign(Resource *, Resource *) override
+  {
+    d_printf(DBG_ERR, "internal error: cannot assign to root Root_io_rs\n");
+  }
+
+  bool adjust_children(Resource *) override
+  {
+    d_printf(DBG_ERR, "internal error: cannot adjust root Root_io_rs\n");
+    return false;
   }
 };
 
@@ -58,15 +83,27 @@ public:
 class Root_mmio_rs : public Resource_space
 {
 public:
-  bool request(Resource *parent, Device *, Resource *child, Device *);
-  bool alloc(Resource *parent, Device *, Resource *child, Device *, bool);
+  bool request(Resource *parent, Device *, Resource *child, Device *) override;
+  bool alloc(Resource *parent, Device *,
+             Resource *child, Device *, bool) override;
+  void assign(Resource *, Resource *) override
+  {
+    d_printf(DBG_ERR, "internal error: cannot assign to root Root_mmio_rs\n");
+  }
+
+  bool adjust_children(Resource *) override
+  {
+    d_printf(DBG_ERR, "internal error: cannot adjust root Root_mmio_rs\n");
+    return false;
+  }
 };
 
 bool
 Root_mmio_rs::request(Resource *parent, Device *, Resource *child, Device *)
 {
   //printf("request resource at root level: "); child->dump();
-  if (Phys_space::space.alloc(Phys_space::Phys_region(child->start(), child->end())))
+  if (Phys_space::space.request(
+        Phys_space::Phys_region(child->start(), child->end())))
     {
       child->parent(parent);
       return true;
@@ -107,7 +144,35 @@ Root_mmio_rs::alloc(Resource *parent, Device *, Resource *child, Device *,
   return true;
 }
 
-// --- End Root address space for MMIO --------------------------------------
+
+// --- Root DMA domain space -----------------------------------------------
+class Root_dma_domain_rs : public Resource_space
+{
+public:
+  bool request(Resource *parent, Device *,
+               Resource *child, Device *) override
+  {
+    child->parent(parent);
+
+    return true;
+  }
+
+  bool alloc(Resource *, Device *, Resource *, Device *, bool) override
+  { return false; }
+
+  void assign(Resource *, Resource *) override
+  {
+    d_printf(DBG_ERR, "internal error: cannot assign to root Root_dma_domain_rs\n");
+  }
+
+  bool adjust_children(Resource *) override
+  {
+    d_printf(DBG_ERR, "internal error: cannot adjust root Root_dma_domain_rs\n");
+    return false;
+  }
+};
+
+// --- End Root DMA domain space  ------------------------------------------
 }
 
 namespace {
@@ -119,7 +184,7 @@ struct Generic_pm : Hw::Root_bus::Pm
   Generic_pm() : pfc(L4Re::Env::env()->get_cap<L4::Platform_control>("icu"))
   {}
 
-  int suspend()
+  int suspend() override
   {
     if (pfc)
       return l4_error(pfc->system_suspend(0));
@@ -129,7 +194,7 @@ struct Generic_pm : Hw::Root_bus::Pm
     return 0;
   }
 
-  int shutdown()
+  int shutdown() override
   {
     if (pfc)
       return l4_error(pfc->system_shutdown(0));
@@ -139,7 +204,7 @@ struct Generic_pm : Hw::Root_bus::Pm
     return 0;
   }
 
-  int reboot()
+  int reboot() override
   {
     if (pfc)
       return l4_error(pfc->system_shutdown(1));
@@ -162,21 +227,30 @@ Root_bus::Root_bus(char const *name)
 
   // add root resource for IRQs
   Root_resource *r = new Root_resource(Resource::Irq_res, new Root_irq_rs());
+  r->set_id("IRQR");
   add_resource(r);
 
   Resource_space *rs_mmio = new Root_mmio_rs();
   // add root resource for non-prefetchable MMIO resources
   r = new Root_resource(Resource::Mmio_res, rs_mmio);
   r->add_flags(Resource::F_width_64bit);
+  r->set_id("MMIO");
   add_resource(r);
 
   // add root resource for prefetchable MMIO resources
   r = new Root_resource(Resource::Mmio_res | Resource::F_prefetchable, rs_mmio);
   r->add_flags(Resource::F_width_64bit);
+  r->set_id("MMIO");
   add_resource(r);
 
   // add root resource for IO ports
   r = new Root_resource(Resource::Io_res, new Root_io_rs());
+  r->set_id("IO");
+  add_resource(r);
+
+  // add root DMA domain resource space
+  r = new Root_resource(Resource::Dma_domain_res, new Root_dma_domain_rs());
+  r->set_id("DMAD");
   add_resource(r);
 }
 

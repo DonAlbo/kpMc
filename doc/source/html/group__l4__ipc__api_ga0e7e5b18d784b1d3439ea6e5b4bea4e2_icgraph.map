@@ -6,8 +6,8 @@
 <area shape="rect" id="node21" href="$group__l4__ipc__api.html#ga72ee1f322b3f633fb885905ce213e2b5" title="Send a message and do an open wait. " alt="" coords="112,427,275,453"/>
 <area shape="rect" id="node22" href="$group__l4__ipc__api.html#gade81ef7ed9cb9e08bec716e640eabe04" title="Wait for an incoming message from any possible sender. " alt="" coords="147,325,239,352"/>
 <area shape="rect" id="node3" href="$x86_2l4f_2l4_2util_2port__io_8h.html#a38a37fdbed4dd2dca75ce192d506a2d4" title="Map a range of I/O ports. " alt="" coords="346,5,475,32"/>
-<area shape="rect" id="node4" href="$classL4_1_1Ipc_1_1Iostream.html#a18ac55dddefc29f84d47935dbc86b7ca" title="Do an IPC call using the message in the output stream and receiving to the input stream. " alt="" coords="335,56,486,83"/>
-<area shape="rect" id="node5" href="$classL4_1_1Thread.html#a61ecf8a06d2b4996ebb67180b1d5d35c" title="Apply sender modifiction rules. " alt="" coords="342,107,479,149"/>
+<area shape="rect" id="node4" href="$classL4_1_1Ipc_1_1Iostream.html#a18ac55dddefc29f84d47935dbc86b7ca" title="Do an IPC call using the message in the output stream and receive the reply in the input stream..." alt="" coords="335,56,486,83"/>
+<area shape="rect" id="node5" href="$classL4_1_1Thread.html#a9bcade7e8db8d775cc1f2a2a6225c845" title="Apply sender modification rules. " alt="" coords="342,107,479,149"/>
 <area shape="rect" id="node6" href="$classL4Re_1_1Util_1_1Object__registry.html#aeeea59583ffddfef4e7c1c3e6eed41b6" title="Remove a server object from the handler list. " alt="" coords="569,107,741,149"/>
 <area shape="rect" id="node8" href="$classL4_1_1Ipc_1_1Istream.html#aeefe739d106daa026a1d94ade34f1d97" title="Wait for an incoming message from any sender. " alt="" coords="337,275,484,301"/>
 <area shape="rect" id="node9" href="$group__l4__ipc__api.html#gac3b4a3b13e77b799dc154c57a04cdd9b" title="Sleep for an amount of time. " alt="" coords="360,224,461,251"/>
@@ -18,8 +18,8 @@
 <area shape="rect" id="node16" href="$classL4_1_1Ipc_1_1Ostream.html#a0ac15ba65285ed66a3b2ae7f9dc612d1" title="Send the message via IPC to the given receiver. " alt="" coords="331,493,491,520"/>
 <area shape="rect" id="node17" href="$group__l4__irq__api.html#ga180cfaf342ce9ff484a6aa7c276e1597" title="Trigger. " alt="" coords="350,544,471,571"/>
 <area shape="rect" id="node18" href="$group__l4__irq__api.html#gab24e0fc21a207fd566ece1e6fafbac48" title="Trigger an IRQ. " alt="" coords="601,519,708,545"/>
-<area shape="rect" id="node19" href="$structL4_1_1Triggerable.html#adf91901c4e2bd784c687e102a8469c45" title="Trigger. " alt="" coords="573,569,736,596"/>
-<area shape="rect" id="node20" href="$structL4_1_1Semaphore.html#aa13181d7e43470c833a76f430b0c547c" title="Semaphore up operation (wrapper for trigger()). " alt="" coords="811,569,949,596"/>
+<area shape="rect" id="node19" href="$structL4_1_1Triggerable.html#a7109ca8b4aeac0169639f973c91a3a6b" title="Trigger. " alt="" coords="573,569,736,596"/>
+<area shape="rect" id="node20" href="$structL4_1_1Semaphore.html#a3de7e4e35ff4dadab9a26f3b87fb76bc" title="Semaphore up operation (wrapper for trigger()). " alt="" coords="811,569,949,596"/>
 <area shape="rect" id="node23" href="$group__api__libvcpu.html#gaa1e7797e4ed8b7dabd40c9849f5c362c" title="Disable a vCPU for event delivery and return previous state. " alt="" coords="323,325,499,352"/>
 <area shape="rect" id="node24" href="$classL4vcpu_1_1Vcpu.html#a05a251f7ecc0852035f2db1cd8b23188" title="Disable the vCPU for event delivery and return previous state. " alt="" coords="547,325,763,352"/>
 </map>

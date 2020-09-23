@@ -1,0 +1,4 @@
+<map id="L4virtio::Svr::Dev_status::device_needs_reset" name="L4virtio::Svr::Dev_status::device_needs_reset">
+<area shape="rect" id="node2" href="$classL4virtio_1_1Svr_1_1Dev__config.html#afc2b3a6d213dc5fbaf7e500f784b5076" title="Set DEVICE_NEEDS_RESET bit in device status register. " alt="" coords="255,5,397,61"/>
+<area shape="rect" id="node3" href="$classL4virtio_1_1Svr_1_1Device__t.html#a29f780ecb04509d8b72f4a155b073c74" title="Transition device into DEVICE_NEEDS_RESET state. " alt="" coords="445,13,643,54"/>
+</map>

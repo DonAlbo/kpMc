@@ -26,6 +26,7 @@
 
 #include <l4/sys/kernel_object.h>
 #include <l4/sys/ipc.h>
+#include <l4/sys/rcv_endpoint.h>
 
 /**
  * \defgroup l4_irq_api IRQs
@@ -64,7 +65,8 @@
  */
 L4_INLINE l4_msgtag_t
 l4_irq_attach(l4_cap_idx_t irq, l4_umword_t label,
-              l4_cap_idx_t thread) L4_NOTHROW;
+              l4_cap_idx_t thread) L4_NOTHROW
+  L4_DEPRECATED("Use l4_rcv_ep_bind_thread().");
 
 /**
  * \ingroup l4_irq_api
@@ -75,7 +77,8 @@ l4_irq_attach(l4_cap_idx_t irq, l4_umword_t label,
  */
 L4_INLINE l4_msgtag_t
 l4_irq_attach_u(l4_cap_idx_t irq, l4_umword_t label,
-                l4_cap_idx_t thread, l4_utcb_t *utcb) L4_NOTHROW;
+                l4_cap_idx_t thread, l4_utcb_t *utcb) L4_NOTHROW
+  L4_DEPRECATED("Use l4_rcv_ep_bind_thread_u().");
 
 /**
  * Chain an IRQ to another master IRQ source.
@@ -267,7 +270,7 @@ l4_irq_attach_u(l4_cap_idx_t irq, l4_umword_t label,
     {
       items = 1;
       m->mr[2] = l4_map_obj_control(0, 0);
-      m->mr[3] = l4_obj_fpage(thread, 0, L4_FPAGE_RWX).raw;
+      m->mr[3] = l4_obj_fpage(thread, 0, L4_CAP_FPAGE_RWS).raw;
     }
   return l4_ipc_call(irq, utcb, l4_msgtag(L4_PROTO_IRQ_SENDER, 2, items, 0),
                      L4_IPC_NEVER);
@@ -280,7 +283,7 @@ l4_irq_mux_chain_u(l4_cap_idx_t irq, l4_cap_idx_t slave,
   l4_msg_regs_t *m = l4_utcb_mr_u(utcb);
   m->mr[0] = L4_IRQ_MUX_OP_CHAIN;
   m->mr[1] = l4_map_obj_control(0, 0);
-  m->mr[2] = l4_obj_fpage(slave, 0, L4_FPAGE_RWX).raw;
+  m->mr[2] = l4_obj_fpage(slave, 0, L4_CAP_FPAGE_RWS).raw;
   return l4_ipc_call(irq, utcb, l4_msgtag(L4_PROTO_IRQ_MUX, 1, 1, 0),
                      L4_IPC_NEVER);
 }
@@ -328,7 +331,10 @@ L4_INLINE l4_msgtag_t
 l4_irq_attach(l4_cap_idx_t irq, l4_umword_t label,
               l4_cap_idx_t thread) L4_NOTHROW
 {
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
   return l4_irq_attach_u(irq, label, thread, l4_utcb());
+#pragma GCC diagnostic pop
 }
 
 L4_INLINE l4_msgtag_t

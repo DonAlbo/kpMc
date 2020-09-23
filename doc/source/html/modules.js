@@ -1,13 +1,12 @@
 var modules =
 [
     [ "Base API", "group__l4__api.html", "group__l4__api" ],
-    [ "DMA API for L4Re", "group__api__l4re__dma.html", null ],
     [ "EDID parsing functionality", "group__libedid.html", "group__libedid" ],
     [ "IO interface", "group__api__l4io.html", "group__api__l4io" ],
     [ "IRQ handling library", "group__l4irq__api.html", "group__l4irq__api" ],
     [ "L4 IPC Opcodes", "group__l4__protocol__ops.html", "group__l4__protocol__ops" ],
-    [ "L4 V-BUS functions", "group__l4vbus__module.html", "group__l4vbus__module" ],
     [ "L4 VIRTIO Interface", "group__l4virtio.html", "group__l4virtio" ],
+    [ "L4 Vbus functions", "group__l4vbus__module.html", "group__l4vbus__module" ],
     [ "L4Re C Interface", "group__api__l4re__c.html", "group__api__l4re__c" ],
     [ "L4Re C++ Interface", "group__api__l4re.html", "group__api__l4re" ],
     [ "Server-Side IPC framework", "group__cxx__ipc__server.html", "group__cxx__ipc__server" ],

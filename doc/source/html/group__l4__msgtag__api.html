@@ -98,10 +98,8 @@ $(document).ready(function(){initNavTree('group__l4__msgtag__api.html','');});
 <div id="dynsection-0-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-0-content" class="dyncontent" style="display:none;">
-<center><table><tr><td><img src="group__l4__msgtag__api.png" border="0" alt="" usemap="#group____l4____msgtag____api"/>
-<map name="group____l4____msgtag____api" id="group____l4____msgtag____api">
-<area shape="rect" id="node1" href="group__l4__ipc__api.html" title="API for L4 object invocation. " alt="" coords="5,5,136,32"/>
-</map>
+<center><table><tr><td><div class="center"><iframe scrolling="no" frameborder="0" src="group__l4__msgtag__api.svg" width="299" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </td></tr></table></center>
 </div>
 <table class="memberdecls">
@@ -152,7 +150,9 @@ Enumerations</h2></td></tr>
 &#160;&#160;<a class="el" href="group__l4__msgtag__api.html#gga61165805662641702f50e4f524a8df01ad93a31752d5bd7e8076bec7d8e4293f3">L4_PROTO_SEMAPHORE</a> = -20L, 
 <a class="el" href="group__l4__msgtag__api.html#gga61165805662641702f50e4f524a8df01a9c3bab59b9863f958ab21ac418eb1596">L4_PROTO_META</a> = -21L, 
 <a class="el" href="group__l4__msgtag__api.html#gga61165805662641702f50e4f524a8df01aba6bc7fb4446c4527d485a6c2dea153d">L4_PROTO_IOMMU</a> = -22L, 
-<a class="el" href="group__l4__msgtag__api.html#gga61165805662641702f50e4f524a8df01adc55eb8da9eba43b3a014e5a5e0a9ac2">L4_PROTO_DEBUGGER</a> = -23L
+<a class="el" href="group__l4__msgtag__api.html#gga61165805662641702f50e4f524a8df01adc55eb8da9eba43b3a014e5a5e0a9ac2">L4_PROTO_DEBUGGER</a> = -23L, 
+<br />
+&#160;&#160;<a class="el" href="group__l4__msgtag__api.html#gga61165805662641702f50e4f524a8df01af9d0a853f2f7a508b9452c01cf17e8ee">L4_PROTO_SMCCC</a> = -24L
 <br />
  }<tr class="memdesc:ga61165805662641702f50e4f524a8df01"><td class="mdescLeft">&#160;</td><td class="mdescRight">Message tag for IPC operations.  <a href="group__l4__msgtag__api.html#ga61165805662641702f50e4f524a8df01">More...</a><br /></td></tr>
 </td></tr>
@@ -210,7 +210,7 @@ Functions</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <p>API related to the message tag data type. </p>
-<dl class="section user"><dt>Include File</dt><dd><div class="fragment"><div class="line"><span class="preprocessor">#include &lt;<a class="code" href="l4_2sys_2types_8h.html">l4/sys/types.h</a>&gt;</span> </div></div><!-- fragment --> </dd></dl>
+<dl class="section user"><dt>Include File^^ #include &lt;l4/sys/types.h&gt; </dt><dd></dd></dl>
 <h2 class="groupheader">Typedef Documentation</h2>
 <a id="ga05eb6ccb839e1686f5a1c474430de788"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ga05eb6ccb839e1686f5a1c474430de788">&#9670;&nbsp;</a></span>l4_msgtag_t</h2>
@@ -225,7 +225,7 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Message tag data structure. </p>
-<dl class="section user"><dt>Include File</dt><dd><div class="fragment"><div class="line"><span class="preprocessor">#include &lt;<a class="code" href="l4_2sys_2types_8h.html">l4/sys/types.h</a>&gt;</span> </div></div><!-- fragment --></dd></dl>
+<dl class="section user"><dt>Include File^^ #include &lt;l4/sys/types.h&gt; </dt><dd></dd></dl>
 <p>Describes the details of an IPC operation, in particular which parts of the UTCB have to be transmitted, and also flags to enable real-time and FPU extensions.</p>
 <p>The message tag also contains a user-defined label that could be used to specify a protocol ID. Some negative values are reserved for kernel protocols such as page faults and exceptions.</p>
 <p>The type must be treated completely opaque. </p>
@@ -250,7 +250,7 @@ Functions</h2></td></tr>
 <tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="gga65d15ec03a90046ba12ba0d3ca9dae15aad1669664171cc979970b1e2300bd463"></a>L4_MSGTAG_ERROR&#160;</td><td class="fielddoc"><p>Error indicator flag. </p>
 </td></tr>
 <tr><td class="fieldname"><a id="gga65d15ec03a90046ba12ba0d3ca9dae15aea4fd67d2f81b00e6949ddcdc7beb5f9"></a>L4_MSGTAG_TRANSFER_FPU&#160;</td><td class="fielddoc"><p>Enable FPU transfer flag for IPC. </p>
-<p>By enabling this flag when sending IPC, the sender indicates that the contents of the FPU shall be transfered to the receiving thread. However, the receiver has to indicate its willingness to receive FPU context in its buffer descriptor register (BDR). </p>
+<p>By enabling this flag when sending IPC, the sender indicates that the contents of the FPU shall be transferred to the receiving thread. However, the receiver has to indicate its willingness to receive FPU context in its buffer descriptor register (BDR). </p>
 </td></tr>
 <tr><td class="fieldname"><a id="gga65d15ec03a90046ba12ba0d3ca9dae15ad220e1ca078f0ea69c8368cb3401d941"></a>L4_MSGTAG_SCHEDULE&#160;</td><td class="fielddoc"><p>Enable schedule in IPC flag. </p>
 <p>Usually IPC operations donate the remaining time slice of a thread to the called thread. Enabling this flag when sending IPC does a real scheduling decision. However, this flag decreases IPC performance. </p>
@@ -262,7 +262,7 @@ Functions</h2></td></tr>
 </td></tr>
 </table>
 
-<p class="definition">Definition at line <a class="el" href="l4_2sys_2types_8h_source.html#l00094">94</a> of file <a class="el" href="l4_2sys_2types_8h_source.html">types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="l4_2sys_2types_8h_source.html#l00095">95</a> of file <a class="el" href="l4_2sys_2types_8h_source.html">types.h</a>.</p>
 
 </div>
 </div>
@@ -301,7 +301,7 @@ Functions</h2></td></tr>
 </td></tr>
 <tr><td class="fieldname"><a id="gga61165805662641702f50e4f524a8df01a639afc5cbe1ab656656a229ee2917aa8"></a>L4_PROTO_IO_PAGE_FAULT&#160;</td><td class="fielddoc"><p>I/O page fault message. </p>
 </td></tr>
-<tr><td class="fieldname"><a id="gga61165805662641702f50e4f524a8df01a4d73bcf33c37734b33c47ef4b11ec5fa"></a>L4_PROTO_KOBJECT&#160;</td><td class="fielddoc"><p>Protocol for messages to a a generic kobject. </p>
+<tr><td class="fieldname"><a id="gga61165805662641702f50e4f524a8df01a4d73bcf33c37734b33c47ef4b11ec5fa"></a>L4_PROTO_KOBJECT&#160;</td><td class="fielddoc"><p>Protocol for messages to a generic kobject. </p>
 </td></tr>
 <tr><td class="fieldname"><a id="gga61165805662641702f50e4f524a8df01a5a866db052f859a32768fc3a703fa40d"></a>L4_PROTO_TASK&#160;</td><td class="fielddoc"><p>Protocol for messages to a task object. </p>
 </td></tr>
@@ -327,7 +327,9 @@ Functions</h2></td></tr>
 </td></tr>
 <tr><td class="fieldname"><a id="gga61165805662641702f50e4f524a8df01aba6bc7fb4446c4527d485a6c2dea153d"></a>L4_PROTO_IOMMU&#160;</td><td class="fielddoc"><p>Protocol ID for IO-MMUs. </p>
 </td></tr>
-<tr><td class="fieldname"><a id="gga61165805662641702f50e4f524a8df01adc55eb8da9eba43b3a014e5a5e0a9ac2"></a>L4_PROTO_DEBUGGER&#160;</td><td class="fielddoc"><p>Protocol ID for the ddebugger. </p>
+<tr><td class="fieldname"><a id="gga61165805662641702f50e4f524a8df01adc55eb8da9eba43b3a014e5a5e0a9ac2"></a>L4_PROTO_DEBUGGER&#160;</td><td class="fielddoc"><p>Protocol ID for the debugger. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga61165805662641702f50e4f524a8df01af9d0a853f2f7a508b9452c01cf17e8ee"></a>L4_PROTO_SMCCC&#160;</td><td class="fielddoc"><p>Protocol ID for ARM SMCCC calls. </p>
 </td></tr>
 </table>
 
@@ -419,33 +421,26 @@ Functions</h2></td></tr>
 <dl class="section return"><dt>Returns</dt><dd>Message tag </dd></dl>
 <dl><dt><b>Examples: </b></dt><dd><a class="el" href="examples_2sys_2aliens_2main_8c-example.html#a15">examples/sys/aliens/main.c</a>, <a class="el" href="examples_2sys_2ipc_2ipc_example_8c-example.html#a5">examples/sys/ipc/ipc_example.c</a>, <a class="el" href="examples_2sys_2singlestep_2main_8c-example.html#a31">examples/sys/singlestep/main.c</a>, <a class="el" href="examples_2sys_2start-with-exc_2main_8c-example.html#a37">examples/sys/start-with-exc/main.c</a>, and <a class="el" href="examples_2sys_2utcb-ipc_2main_8c-example.html#a6">examples/sys/utcb-ipc/main.c</a>.</dd>
 </dl>
-<p class="definition">Definition at line <a class="el" href="l4_2sys_2types_8h_source.html#l00407">407</a> of file <a class="el" href="l4_2sys_2types_8h_source.html">types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="l4_2sys_2types_8h_source.html#l00408">408</a> of file <a class="el" href="l4_2sys_2types_8h_source.html">types.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="ipc__epiface_source.html#l00494">L4::Basic_registry::dispatch()</a>, <a class="el" href="l4_2sys_2types_8h_source.html#l00190">l4_msgtag_t::has_error()</a>, <a class="el" href="ipc__server__loop_source.html#l00360">L4::Server&lt; LOOP_HOOKS &gt;::internal_loop()</a>, <a class="el" href="l4_2sys_2irq_8h_source.html#l00297">l4_irq_trigger_u()</a>, <a class="el" href="x86_2l4f_2l4_2util_2port__io_8h_source.html#l00056">l4util_ioport_map()</a>, <a class="el" href="sys_2thread_source.html#l00373">L4::Thread::modify_senders()</a>, <a class="el" href="ipc__server__loop_source.html#l00192">L4::Ipc_svr::Exc_dispatch&lt; R, Exc &gt;::operator()()</a>, and <a class="el" href="ipc__stream_source.html#l00745">L4::Ipc::Ostream::utcb()</a>.</p>
+<p class="reference">References <a class="el" href="l4_2sys_2types_8h_source.html#l00177">l4_msgtag_t::flags()</a>, <a class="el" href="l4_2sys_2types_8h_source.html#l00170">l4_msgtag_t::items()</a>, <a class="el" href="l4_2sys_2types_8h_source.html#l00164">l4_msgtag_t::label()</a>, and <a class="el" href="l4_2sys_2types_8h_source.html#l00168">l4_msgtag_t::words()</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="l4_2sys_2types_8h_source.html#l00191">l4_msgtag_t::has_error()</a>, <a class="el" href="ipc__server__loop_source.html#l00368">L4::Server&lt; LOOP_HOOKS &gt;::internal_loop()</a>, <a class="el" href="l4_2sys_2irq_8h_source.html#l00300">l4_irq_trigger_u()</a>, <a class="el" href="x86_2l4f_2l4_2util_2port__io_8h_source.html#l00056">l4util_ioport_map()</a>, <a class="el" href="sys_2thread_source.html#l00390">L4::Thread::modify_senders()</a>, <a class="el" href="ipc__epiface_source.html#l00302">L4::Irqep_t&lt; Irq_object &gt;::obj_cap()</a>, <a class="el" href="ipc__server__loop_source.html#l00192">L4::Ipc_svr::Exc_dispatch&lt; R, Exc &gt;::operator()()</a>, and <a class="el" href="ipc__stream_source.html#l00756">L4::Ipc::Ostream::utcb()</a>.</p>
 <div id="dynsection-1" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
-  <img id="dynsection-1-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
+  <img id="dynsection-1-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
 <div id="dynsection-1-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-1-content" class="dyncontent" style="display:none;">
-<div class="center"><img src="group__l4__msgtag__api_ga661d71acad9d096fa990f7c94943bc78_icgraph.png" border="0" usemap="#group__l4__msgtag__api_ga661d71acad9d096fa990f7c94943bc78_icgraph" alt=""/></div>
-<map name="group__l4__msgtag__api_ga661d71acad9d096fa990f7c94943bc78_icgraph" id="group__l4__msgtag__api_ga661d71acad9d096fa990f7c94943bc78_icgraph">
-<area shape="rect" id="node2" href="classL4_1_1Basic__registry.html#a730ef8bbfbc7154a04e50aae88252b43" title="The dispatch function called by the server loop. " alt="" coords="163,41,297,82"/>
-<area shape="rect" id="node3" href="structl4__msgtag__t.html#a26b13889368ed62ec4c85682e29c0dd4" title="Test if flags indicate an error. " alt="" coords="147,107,313,133"/>
-<area shape="rect" id="node8" href="classL4_1_1Server.html#ac0965dc536f1df5dfe0be1b224feab89" title="The server loop. " alt="" coords="368,157,543,184"/>
-<area shape="rect" id="node9" href="group__l4__irq__api.html#ga180cfaf342ce9ff484a6aa7c276e1597" title="Trigger. " alt="" coords="169,208,291,235"/>
-<area shape="rect" id="node13" href="x86_2l4f_2l4_2util_2port__io_8h.html#a38a37fdbed4dd2dca75ce192d506a2d4" title="Map a range of I/O ports. " alt="" coords="165,259,295,285"/>
-<area shape="rect" id="node14" href="classL4_1_1Thread.html#a61ecf8a06d2b4996ebb67180b1d5d35c" title="Apply sender modifiction rules. " alt="" coords="161,310,299,351"/>
-<area shape="rect" id="node16" href="structL4_1_1Ipc__svr_1_1Exc__dispatch.html#a551ccfbe372009fa7319689dedfc4ded" title="Dispatch the call via Direct_dispatch&lt;R&gt;() and handle exceptions. " alt="" coords="140,375,320,417"/>
-<area shape="rect" id="node17" href="classL4_1_1Ipc_1_1Ostream.html#aef4ef51d0dbf137e37e854237e498dd7" title="Return utcb pointer. " alt="" coords="153,441,307,468"/>
-<area shape="rect" id="node4" href="namespaceL4.html#aba0849c4b92afdccbe110489e18dadbd" title="Throw an L4 IPC error as exception. " alt="" coords="368,5,543,32"/>
-<area shape="rect" id="node6" href="namespaceL4Re.html#ae0dd5d25abdc1d195edd8ab6b744334c" title="Generate C++ exception on error. " alt="" coords="403,56,508,83"/>
-<area shape="rect" id="node7" href="classL4_1_1Server.html#a4333dc750dee494087ee92ab058718a1" title="Internal implementation for reply and wait. " alt="" coords="369,107,541,133"/>
-<area shape="rect" id="node5" href="namespaceL4.html#a54f8da0e02ff2496f1ad935e38ab17c4" title="Throw an L4 IPC error as exception. " alt="" coords="591,5,765,32"/>
-<area shape="rect" id="node10" href="group__l4__irq__api.html#gab24e0fc21a207fd566ece1e6fafbac48" title="Trigger an IRQ. " alt="" coords="402,208,509,235"/>
-<area shape="rect" id="node11" href="structL4_1_1Triggerable.html#adf91901c4e2bd784c687e102a8469c45" title="Trigger. " alt="" coords="374,259,537,285"/>
-<area shape="rect" id="node12" href="structL4_1_1Semaphore.html#aa13181d7e43470c833a76f430b0c547c" title="Semaphore up operation (wrapper for trigger()). " alt="" coords="609,259,747,285"/>
-<area shape="rect" id="node15" href="classL4Re_1_1Util_1_1Object__registry.html#aeeea59583ffddfef4e7c1c3e6eed41b6" title="Remove a server object from the handler list. " alt="" coords="369,310,541,351"/>
-</map>
+<div class="center"><iframe scrolling="no" frameborder="0" src="group__l4__msgtag__api_ga661d71acad9d096fa990f7c94943bc78_cgraph.svg" width="288" height="190"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+<div id="dynsection-2" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-2-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
+<div id="dynsection-2-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-2-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="group__l4__msgtag__api_ga661d71acad9d096fa990f7c94943bc78_icgraph.svg" width="771" height="590"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 
 </div>
@@ -484,9 +479,9 @@ Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Flags </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="l4_2sys_2types_8h_source.html#l00430">430</a> of file <a class="el" href="l4_2sys_2types_8h_source.html">types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="l4_2sys_2types_8h_source.html#l00432">432</a> of file <a class="el" href="l4_2sys_2types_8h_source.html">types.h</a>.</p>
 
-<p class="reference">References <a class="el" href="l4_2sys_2types_8h_source.html#l00160">l4_msgtag_t::raw</a>.</p>
+<p class="reference">References <a class="el" href="l4_2sys_2types_8h_source.html#l00161">l4_msgtag_t::raw</a>.</p>
 
 </div>
 </div>
@@ -525,33 +520,18 @@ Functions</h2></td></tr>
 <p>Return whether the kernel operation caused a communication error, e.g. with IPC. if true: utcb-&gt;error is valid, otherwise utcb-&gt;error is not valid </p>
 <dl><dt><b>Examples: </b></dt><dd><a class="el" href="examples_2sys_2aliens_2main_8c-example.html#a36">examples/sys/aliens/main.c</a>, <a class="el" href="examples_2sys_2singlestep_2main_8c-example.html#a20">examples/sys/singlestep/main.c</a>, and <a class="el" href="examples_2sys_2utcb-ipc_2main_8c-example.html#a7">examples/sys/utcb-ipc/main.c</a>.</dd>
 </dl>
-<p class="definition">Definition at line <a class="el" href="l4_2sys_2types_8h_source.html#l00435">435</a> of file <a class="el" href="l4_2sys_2types_8h_source.html">types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="l4_2sys_2types_8h_source.html#l00437">437</a> of file <a class="el" href="l4_2sys_2types_8h_source.html">types.h</a>.</p>
 
-<p class="reference">References <a class="el" href="l4_2sys_2types_8h_source.html#l00101">L4_MSGTAG_ERROR</a>, and <a class="el" href="l4_2sys_2types_8h_source.html#l00160">l4_msgtag_t::raw</a>.</p>
+<p class="reference">References <a class="el" href="l4_2sys_2types_8h_source.html#l00102">L4_MSGTAG_ERROR</a>, and <a class="el" href="l4_2sys_2types_8h_source.html#l00161">l4_msgtag_t::raw</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="l4_2sys_2types_8h_source.html#l00190">l4_msgtag_t::has_error()</a>, <a class="el" href="l4_2sys_2ipc_8h_source.html#l00500">l4_ipc_error()</a>, <a class="el" href="vcon_8h_source.html#l00295">l4_vcon_write_u()</a>, and <a class="el" href="vcpu_2vcpu_8h_source.html#l00216">l4vcpu_irq_disable_save()</a>.</p>
-<div id="dynsection-2" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
-  <img id="dynsection-2-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
-<div id="dynsection-2-summary" class="dynsummary" style="display:block;">
+<p class="reference">Referenced by <a class="el" href="l4_2sys_2types_8h_source.html#l00191">l4_msgtag_t::has_error()</a>, <a class="el" href="l4_2sys_2ipc_8h_source.html#l00503">l4_ipc_error()</a>, <a class="el" href="vcon_8h_source.html#l00294">l4_vcon_write_u()</a>, and <a class="el" href="vcpu_2vcpu_8h_source.html#l00216">l4vcpu_irq_disable_save()</a>.</p>
+<div id="dynsection-3" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-3-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
+<div id="dynsection-3-summary" class="dynsummary" style="display:block;">
 </div>
-<div id="dynsection-2-content" class="dyncontent" style="display:none;">
-<div class="center"><img src="group__l4__msgtag__api_ga52e71bb66855f4d78fa5c82b5f0c5a87_icgraph.png" border="0" usemap="#group__l4__msgtag__api_ga52e71bb66855f4d78fa5c82b5f0c5a87_icgraph" alt=""/></div>
-<map name="group__l4__msgtag__api_ga52e71bb66855f4d78fa5c82b5f0c5a87_icgraph" id="group__l4__msgtag__api_ga52e71bb66855f4d78fa5c82b5f0c5a87_icgraph">
-<area shape="rect" id="node2" href="structl4__msgtag__t.html#a26b13889368ed62ec4c85682e29c0dd4" title="Test if flags indicate an error. " alt="" coords="215,107,382,133"/>
-<area shape="rect" id="node8" href="group__l4__ipc__err__api.html#gad40f404217497793e95a10d77a47db39" title="Get the error code for an object invocation. " alt="" coords="249,267,348,293"/>
-<area shape="rect" id="node11" href="group__l4__vcon__api.html#ga899728ba23baf18f59f62142534e039c" title="Write data to this virtual console. " alt="" coords="237,325,361,352"/>
-<area shape="rect" id="node14" href="group__api__libvcpu.html#gaa1e7797e4ed8b7dabd40c9849f5c362c" title="Disable a vCPU for event delivery and return previous state. " alt="" coords="211,401,387,428"/>
-<area shape="rect" id="node3" href="namespaceL4.html#aba0849c4b92afdccbe110489e18dadbd" title="Throw an L4 IPC error as exception. " alt="" coords="455,5,630,32"/>
-<area shape="rect" id="node5" href="namespaceL4Re.html#ae0dd5d25abdc1d195edd8ab6b744334c" title="Generate C++ exception on error. " alt="" coords="490,56,595,83"/>
-<area shape="rect" id="node6" href="classL4_1_1Server.html#a4333dc750dee494087ee92ab058718a1" title="Internal implementation for reply and wait. " alt="" coords="457,107,629,133"/>
-<area shape="rect" id="node7" href="classL4_1_1Server.html#ac0965dc536f1df5dfe0be1b224feab89" title="The server loop. " alt="" coords="455,157,630,184"/>
-<area shape="rect" id="node4" href="namespaceL4.html#a54f8da0e02ff2496f1ad935e38ab17c4" title="Throw an L4 IPC error as exception. " alt="" coords="699,5,873,32"/>
-<area shape="rect" id="node9" href="x86_2l4f_2l4_2util_2port__io_8h.html#a38a37fdbed4dd2dca75ce192d506a2d4" title="Map a range of I/O ports. " alt="" coords="478,208,607,235"/>
-<area shape="rect" id="node10" href="classL4Re_1_1Util_1_1Event__buffer__consumer__t.html#a4ed22b41ce4c7e6b93efae878b1415ef" title="Continuously wait for events and process them. " alt="" coords="459,259,626,301"/>
-<area shape="rect" id="node12" href="classL4_1_1Vcon.html#acb9a53b77487d644212030c27d642f1e" title="Write data to this virtual console. " alt="" coords="487,325,599,352"/>
-<area shape="rect" id="node13" href="group__l4__vcon__api.html#ga9f083a69c2c51329da6778a3af0331bc" title="Write data to virtual console. " alt="" coords="488,376,597,403"/>
-<area shape="rect" id="node15" href="classL4vcpu_1_1Vcpu.html#a05a251f7ecc0852035f2db1cd8b23188" title="Disable the vCPU for event delivery and return previous state. " alt="" coords="435,427,651,453"/>
-</map>
+<div id="dynsection-3-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="group__l4__msgtag__api_ga52e71bb66855f4d78fa5c82b5f0c5a87_icgraph.svg" width="879" height="510"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 
 </div>
@@ -590,35 +570,26 @@ Functions</h2></td></tr>
 <dl class="section return"><dt>Returns</dt><dd>Boolean value </dd></dl>
 <dl><dt><b>Examples: </b></dt><dd><a class="el" href="examples_2sys_2aliens_2main_8c-example.html#a41">examples/sys/aliens/main.c</a>, <a class="el" href="examples_2sys_2singlestep_2main_8c-example.html#a26">examples/sys/singlestep/main.c</a>, and <a class="el" href="examples_2sys_2start-with-exc_2main_8c-example.html#a23">examples/sys/start-with-exc/main.c</a>.</dd>
 </dl>
-<p class="definition">Definition at line <a class="el" href="l4_2sys_2types_8h_source.html#l00449">449</a> of file <a class="el" href="l4_2sys_2types_8h_source.html">types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="l4_2sys_2types_8h_source.html#l00451">451</a> of file <a class="el" href="l4_2sys_2types_8h_source.html">types.h</a>.</p>
 
-<p class="reference">References <a class="el" href="l4_2sys_2types_8h_source.html#l00418">l4_msgtag_label()</a>, and <a class="el" href="l4_2sys_2types_8h_source.html#l00059">L4_PROTO_EXCEPTION</a>.</p>
+<p class="reference">References <a class="el" href="l4_2sys_2types_8h_source.html#l00420">l4_msgtag_label()</a>, and <a class="el" href="l4_2sys_2types_8h_source.html#l00059">L4_PROTO_EXCEPTION</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="l4_2sys_2types_8h_source.html#l00190">l4_msgtag_t::has_error()</a>.</p>
-<div id="dynsection-3" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
-  <img id="dynsection-3-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
-<div id="dynsection-3-summary" class="dynsummary" style="display:block;">
-</div>
-<div id="dynsection-3-content" class="dyncontent" style="display:none;">
-<div class="center"><img src="group__l4__msgtag__api_ga0f2cf0a5f8d4a733f69b94dcc388c2ef_cgraph.png" border="0" usemap="#group__l4__msgtag__api_ga0f2cf0a5f8d4a733f69b94dcc388c2ef_cgraph" alt=""/></div>
-<map name="group__l4__msgtag__api_ga0f2cf0a5f8d4a733f69b94dcc388c2ef_cgraph" id="group__l4__msgtag__api_ga0f2cf0a5f8d4a733f69b94dcc388c2ef_cgraph">
-<area shape="rect" id="node2" href="group__l4__msgtag__api.html#gab0c4422a230cf5ef5793dbab1faeb3af" title="Get the protocol of tag. " alt="" coords="228,5,352,32"/>
-</map>
-</div>
+<p class="reference">Referenced by <a class="el" href="l4_2sys_2types_8h_source.html#l00191">l4_msgtag_t::has_error()</a>.</p>
 <div id="dynsection-4" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
-  <img id="dynsection-4-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
+  <img id="dynsection-4-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
 <div id="dynsection-4-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-4-content" class="dyncontent" style="display:none;">
-<div class="center"><img src="group__l4__msgtag__api_ga0f2cf0a5f8d4a733f69b94dcc388c2ef_icgraph.png" border="0" usemap="#group__l4__msgtag__api_ga0f2cf0a5f8d4a733f69b94dcc388c2ef_icgraph" alt=""/></div>
-<map name="group__l4__msgtag__api_ga0f2cf0a5f8d4a733f69b94dcc388c2ef_icgraph" id="group__l4__msgtag__api_ga0f2cf0a5f8d4a733f69b94dcc388c2ef_icgraph">
-<area shape="rect" id="node2" href="structl4__msgtag__t.html#a26b13889368ed62ec4c85682e29c0dd4" title="Test if flags indicate an error. " alt="" coords="228,81,395,108"/>
-<area shape="rect" id="node3" href="namespaceL4.html#aba0849c4b92afdccbe110489e18dadbd" title="Throw an L4 IPC error as exception. " alt="" coords="443,5,617,32"/>
-<area shape="rect" id="node5" href="namespaceL4Re.html#ae0dd5d25abdc1d195edd8ab6b744334c" title="Generate C++ exception on error. " alt="" coords="477,56,583,83"/>
-<area shape="rect" id="node6" href="classL4_1_1Server.html#a4333dc750dee494087ee92ab058718a1" title="Internal implementation for reply and wait. " alt="" coords="444,107,616,133"/>
-<area shape="rect" id="node7" href="classL4_1_1Server.html#ac0965dc536f1df5dfe0be1b224feab89" title="The server loop. " alt="" coords="443,157,617,184"/>
-<area shape="rect" id="node4" href="namespaceL4.html#a54f8da0e02ff2496f1ad935e38ab17c4" title="Throw an L4 IPC error as exception. " alt="" coords="665,5,840,32"/>
-</map>
+<div class="center"><iframe scrolling="no" frameborder="0" src="group__l4__msgtag__api_ga0f2cf0a5f8d4a733f69b94dcc388c2ef_cgraph.svg" width="358" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+<div id="dynsection-5" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-5-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
+<div id="dynsection-5-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-5-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="group__l4__msgtag__api_ga0f2cf0a5f8d4a733f69b94dcc388c2ef_icgraph.svg" width="846" height="240"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 
 </div>
@@ -656,35 +627,26 @@ Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Boolean value </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="l4_2sys_2types_8h_source.html#l00455">455</a> of file <a class="el" href="l4_2sys_2types_8h_source.html">types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="l4_2sys_2types_8h_source.html#l00457">457</a> of file <a class="el" href="l4_2sys_2types_8h_source.html">types.h</a>.</p>
 
-<p class="reference">References <a class="el" href="l4_2sys_2types_8h_source.html#l00418">l4_msgtag_label()</a>, and <a class="el" href="l4_2sys_2types_8h_source.html#l00061">L4_PROTO_IO_PAGE_FAULT</a>.</p>
+<p class="reference">References <a class="el" href="l4_2sys_2types_8h_source.html#l00420">l4_msgtag_label()</a>, and <a class="el" href="l4_2sys_2types_8h_source.html#l00061">L4_PROTO_IO_PAGE_FAULT</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="l4_2sys_2types_8h_source.html#l00190">l4_msgtag_t::has_error()</a>.</p>
-<div id="dynsection-5" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
-  <img id="dynsection-5-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
-<div id="dynsection-5-summary" class="dynsummary" style="display:block;">
-</div>
-<div id="dynsection-5-content" class="dyncontent" style="display:none;">
-<div class="center"><img src="group__l4__msgtag__api_ga463384faf9cb37d3f65f24913e34d687_cgraph.png" border="0" usemap="#group__l4__msgtag__api_ga463384faf9cb37d3f65f24913e34d687_cgraph" alt=""/></div>
-<map name="group__l4__msgtag__api_ga463384faf9cb37d3f65f24913e34d687_cgraph" id="group__l4__msgtag__api_ga463384faf9cb37d3f65f24913e34d687_cgraph">
-<area shape="rect" id="node2" href="group__l4__msgtag__api.html#gab0c4422a230cf5ef5793dbab1faeb3af" title="Get the protocol of tag. " alt="" coords="217,13,341,39"/>
-</map>
-</div>
+<p class="reference">Referenced by <a class="el" href="l4_2sys_2types_8h_source.html#l00191">l4_msgtag_t::has_error()</a>.</p>
 <div id="dynsection-6" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
-  <img id="dynsection-6-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
+  <img id="dynsection-6-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
 <div id="dynsection-6-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-6-content" class="dyncontent" style="display:none;">
-<div class="center"><img src="group__l4__msgtag__api_ga463384faf9cb37d3f65f24913e34d687_icgraph.png" border="0" usemap="#group__l4__msgtag__api_ga463384faf9cb37d3f65f24913e34d687_icgraph" alt=""/></div>
-<map name="group__l4__msgtag__api_ga463384faf9cb37d3f65f24913e34d687_icgraph" id="group__l4__msgtag__api_ga463384faf9cb37d3f65f24913e34d687_icgraph">
-<area shape="rect" id="node2" href="structl4__msgtag__t.html#a26b13889368ed62ec4c85682e29c0dd4" title="Test if flags indicate an error. " alt="" coords="217,81,384,108"/>
-<area shape="rect" id="node3" href="namespaceL4.html#aba0849c4b92afdccbe110489e18dadbd" title="Throw an L4 IPC error as exception. " alt="" coords="432,5,607,32"/>
-<area shape="rect" id="node5" href="namespaceL4Re.html#ae0dd5d25abdc1d195edd8ab6b744334c" title="Generate C++ exception on error. " alt="" coords="467,56,572,83"/>
-<area shape="rect" id="node6" href="classL4_1_1Server.html#a4333dc750dee494087ee92ab058718a1" title="Internal implementation for reply and wait. " alt="" coords="433,107,605,133"/>
-<area shape="rect" id="node7" href="classL4_1_1Server.html#ac0965dc536f1df5dfe0be1b224feab89" title="The server loop. " alt="" coords="432,157,607,184"/>
-<area shape="rect" id="node4" href="namespaceL4.html#a54f8da0e02ff2496f1ad935e38ab17c4" title="Throw an L4 IPC error as exception. " alt="" coords="655,5,829,32"/>
-</map>
+<div class="center"><iframe scrolling="no" frameborder="0" src="group__l4__msgtag__api_ga463384faf9cb37d3f65f24913e34d687_cgraph.svg" width="347" height="52"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+<div id="dynsection-7" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-7-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
+<div id="dynsection-7-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-7-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="group__l4__msgtag__api_ga463384faf9cb37d3f65f24913e34d687_icgraph.svg" width="835" height="240"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 
 </div>
@@ -722,35 +684,26 @@ Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Boolean value </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="l4_2sys_2types_8h_source.html#l00440">440</a> of file <a class="el" href="l4_2sys_2types_8h_source.html">types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="l4_2sys_2types_8h_source.html#l00442">442</a> of file <a class="el" href="l4_2sys_2types_8h_source.html">types.h</a>.</p>
 
-<p class="reference">References <a class="el" href="l4_2sys_2types_8h_source.html#l00418">l4_msgtag_label()</a>, and <a class="el" href="l4_2sys_2types_8h_source.html#l00056">L4_PROTO_PAGE_FAULT</a>.</p>
+<p class="reference">References <a class="el" href="l4_2sys_2types_8h_source.html#l00420">l4_msgtag_label()</a>, and <a class="el" href="l4_2sys_2types_8h_source.html#l00056">L4_PROTO_PAGE_FAULT</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="l4_2sys_2types_8h_source.html#l00190">l4_msgtag_t::has_error()</a>.</p>
-<div id="dynsection-7" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
-  <img id="dynsection-7-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
-<div id="dynsection-7-summary" class="dynsummary" style="display:block;">
-</div>
-<div id="dynsection-7-content" class="dyncontent" style="display:none;">
-<div class="center"><img src="group__l4__msgtag__api_gaf949daa8e7aa7d20743502de15e86dcd_cgraph.png" border="0" usemap="#group__l4__msgtag__api_gaf949daa8e7aa7d20743502de15e86dcd_cgraph" alt=""/></div>
-<map name="group__l4__msgtag__api_gaf949daa8e7aa7d20743502de15e86dcd_cgraph" id="group__l4__msgtag__api_gaf949daa8e7aa7d20743502de15e86dcd_cgraph">
-<area shape="rect" id="node2" href="group__l4__msgtag__api.html#gab0c4422a230cf5ef5793dbab1faeb3af" title="Get the protocol of tag. " alt="" coords="232,5,356,32"/>
-</map>
-</div>
+<p class="reference">Referenced by <a class="el" href="l4_2sys_2types_8h_source.html#l00191">l4_msgtag_t::has_error()</a>.</p>
 <div id="dynsection-8" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
-  <img id="dynsection-8-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
+  <img id="dynsection-8-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
 <div id="dynsection-8-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-8-content" class="dyncontent" style="display:none;">
-<div class="center"><img src="group__l4__msgtag__api_gaf949daa8e7aa7d20743502de15e86dcd_icgraph.png" border="0" usemap="#group__l4__msgtag__api_gaf949daa8e7aa7d20743502de15e86dcd_icgraph" alt=""/></div>
-<map name="group__l4__msgtag__api_gaf949daa8e7aa7d20743502de15e86dcd_icgraph" id="group__l4__msgtag__api_gaf949daa8e7aa7d20743502de15e86dcd_icgraph">
-<area shape="rect" id="node2" href="structl4__msgtag__t.html#a26b13889368ed62ec4c85682e29c0dd4" title="Test if flags indicate an error. " alt="" coords="232,81,399,108"/>
-<area shape="rect" id="node3" href="namespaceL4.html#aba0849c4b92afdccbe110489e18dadbd" title="Throw an L4 IPC error as exception. " alt="" coords="447,5,621,32"/>
-<area shape="rect" id="node5" href="namespaceL4Re.html#ae0dd5d25abdc1d195edd8ab6b744334c" title="Generate C++ exception on error. " alt="" coords="481,56,587,83"/>
-<area shape="rect" id="node6" href="classL4_1_1Server.html#a4333dc750dee494087ee92ab058718a1" title="Internal implementation for reply and wait. " alt="" coords="448,107,620,133"/>
-<area shape="rect" id="node7" href="classL4_1_1Server.html#ac0965dc536f1df5dfe0be1b224feab89" title="The server loop. " alt="" coords="447,157,621,184"/>
-<area shape="rect" id="node4" href="namespaceL4.html#a54f8da0e02ff2496f1ad935e38ab17c4" title="Throw an L4 IPC error as exception. " alt="" coords="669,5,844,32"/>
-</map>
+<div class="center"><iframe scrolling="no" frameborder="0" src="group__l4__msgtag__api_gaf949daa8e7aa7d20743502de15e86dcd_cgraph.svg" width="362" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+<div id="dynsection-9" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-9-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
+<div id="dynsection-9-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-9-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="group__l4__msgtag__api_gaf949daa8e7aa7d20743502de15e86dcd_icgraph.svg" width="850" height="240"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 
 </div>
@@ -788,35 +741,26 @@ Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Boolean value </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="l4_2sys_2types_8h_source.html#l00443">443</a> of file <a class="el" href="l4_2sys_2types_8h_source.html">types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="l4_2sys_2types_8h_source.html#l00445">445</a> of file <a class="el" href="l4_2sys_2types_8h_source.html">types.h</a>.</p>
 
-<p class="reference">References <a class="el" href="l4_2sys_2types_8h_source.html#l00418">l4_msgtag_label()</a>, and <a class="el" href="l4_2sys_2types_8h_source.html#l00057">L4_PROTO_PREEMPTION</a>.</p>
+<p class="reference">References <a class="el" href="l4_2sys_2types_8h_source.html#l00420">l4_msgtag_label()</a>, and <a class="el" href="l4_2sys_2types_8h_source.html#l00057">L4_PROTO_PREEMPTION</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="l4_2sys_2types_8h_source.html#l00190">l4_msgtag_t::has_error()</a>.</p>
-<div id="dynsection-9" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
-  <img id="dynsection-9-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
-<div id="dynsection-9-summary" class="dynsummary" style="display:block;">
-</div>
-<div id="dynsection-9-content" class="dyncontent" style="display:none;">
-<div class="center"><img src="group__l4__msgtag__api_gafb02742f6231ff4568412fed96e7e272_cgraph.png" border="0" usemap="#group__l4__msgtag__api_gafb02742f6231ff4568412fed96e7e272_cgraph" alt=""/></div>
-<map name="group__l4__msgtag__api_gafb02742f6231ff4568412fed96e7e272_cgraph" id="group__l4__msgtag__api_gafb02742f6231ff4568412fed96e7e272_cgraph">
-<area shape="rect" id="node2" href="group__l4__msgtag__api.html#gab0c4422a230cf5ef5793dbab1faeb3af" title="Get the protocol of tag. " alt="" coords="237,5,361,32"/>
-</map>
-</div>
+<p class="reference">Referenced by <a class="el" href="l4_2sys_2types_8h_source.html#l00191">l4_msgtag_t::has_error()</a>.</p>
 <div id="dynsection-10" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
-  <img id="dynsection-10-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
+  <img id="dynsection-10-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
 <div id="dynsection-10-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-10-content" class="dyncontent" style="display:none;">
-<div class="center"><img src="group__l4__msgtag__api_gafb02742f6231ff4568412fed96e7e272_icgraph.png" border="0" usemap="#group__l4__msgtag__api_gafb02742f6231ff4568412fed96e7e272_icgraph" alt=""/></div>
-<map name="group__l4__msgtag__api_gafb02742f6231ff4568412fed96e7e272_icgraph" id="group__l4__msgtag__api_gafb02742f6231ff4568412fed96e7e272_icgraph">
-<area shape="rect" id="node2" href="structl4__msgtag__t.html#a26b13889368ed62ec4c85682e29c0dd4" title="Test if flags indicate an error. " alt="" coords="237,81,404,108"/>
-<area shape="rect" id="node3" href="namespaceL4.html#aba0849c4b92afdccbe110489e18dadbd" title="Throw an L4 IPC error as exception. " alt="" coords="452,5,627,32"/>
-<area shape="rect" id="node5" href="namespaceL4Re.html#ae0dd5d25abdc1d195edd8ab6b744334c" title="Generate C++ exception on error. " alt="" coords="487,56,592,83"/>
-<area shape="rect" id="node6" href="classL4_1_1Server.html#a4333dc750dee494087ee92ab058718a1" title="Internal implementation for reply and wait. " alt="" coords="453,107,625,133"/>
-<area shape="rect" id="node7" href="classL4_1_1Server.html#ac0965dc536f1df5dfe0be1b224feab89" title="The server loop. " alt="" coords="452,157,627,184"/>
-<area shape="rect" id="node4" href="namespaceL4.html#a54f8da0e02ff2496f1ad935e38ab17c4" title="Throw an L4 IPC error as exception. " alt="" coords="675,5,849,32"/>
-</map>
+<div class="center"><iframe scrolling="no" frameborder="0" src="group__l4__msgtag__api_gafb02742f6231ff4568412fed96e7e272_cgraph.svg" width="367" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+<div id="dynsection-11" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-11-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
+<div id="dynsection-11-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-11-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="group__l4__msgtag__api_gafb02742f6231ff4568412fed96e7e272_icgraph.svg" width="855" height="240"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 
 </div>
@@ -854,35 +798,26 @@ Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Boolean value </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="l4_2sys_2types_8h_source.html#l00452">452</a> of file <a class="el" href="l4_2sys_2types_8h_source.html">types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="l4_2sys_2types_8h_source.html#l00454">454</a> of file <a class="el" href="l4_2sys_2types_8h_source.html">types.h</a>.</p>
 
-<p class="reference">References <a class="el" href="l4_2sys_2types_8h_source.html#l00418">l4_msgtag_label()</a>, and <a class="el" href="l4_2sys_2types_8h_source.html#l00060">L4_PROTO_SIGMA0</a>.</p>
+<p class="reference">References <a class="el" href="l4_2sys_2types_8h_source.html#l00420">l4_msgtag_label()</a>, and <a class="el" href="l4_2sys_2types_8h_source.html#l00060">L4_PROTO_SIGMA0</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="l4_2sys_2types_8h_source.html#l00190">l4_msgtag_t::has_error()</a>.</p>
-<div id="dynsection-11" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
-  <img id="dynsection-11-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
-<div id="dynsection-11-summary" class="dynsummary" style="display:block;">
-</div>
-<div id="dynsection-11-content" class="dyncontent" style="display:none;">
-<div class="center"><img src="group__l4__msgtag__api_ga047100a8ec6216015fbd1385f5443760_cgraph.png" border="0" usemap="#group__l4__msgtag__api_ga047100a8ec6216015fbd1385f5443760_cgraph" alt=""/></div>
-<map name="group__l4__msgtag__api_ga047100a8ec6216015fbd1385f5443760_cgraph" id="group__l4__msgtag__api_ga047100a8ec6216015fbd1385f5443760_cgraph">
-<area shape="rect" id="node2" href="group__l4__msgtag__api.html#gab0c4422a230cf5ef5793dbab1faeb3af" title="Get the protocol of tag. " alt="" coords="212,5,336,32"/>
-</map>
-</div>
+<p class="reference">Referenced by <a class="el" href="l4_2sys_2types_8h_source.html#l00191">l4_msgtag_t::has_error()</a>.</p>
 <div id="dynsection-12" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
-  <img id="dynsection-12-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
+  <img id="dynsection-12-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
 <div id="dynsection-12-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-12-content" class="dyncontent" style="display:none;">
-<div class="center"><img src="group__l4__msgtag__api_ga047100a8ec6216015fbd1385f5443760_icgraph.png" border="0" usemap="#group__l4__msgtag__api_ga047100a8ec6216015fbd1385f5443760_icgraph" alt=""/></div>
-<map name="group__l4__msgtag__api_ga047100a8ec6216015fbd1385f5443760_icgraph" id="group__l4__msgtag__api_ga047100a8ec6216015fbd1385f5443760_icgraph">
-<area shape="rect" id="node2" href="structl4__msgtag__t.html#a26b13889368ed62ec4c85682e29c0dd4" title="Test if flags indicate an error. " alt="" coords="212,81,379,108"/>
-<area shape="rect" id="node3" href="namespaceL4.html#aba0849c4b92afdccbe110489e18dadbd" title="Throw an L4 IPC error as exception. " alt="" coords="427,5,601,32"/>
-<area shape="rect" id="node5" href="namespaceL4Re.html#ae0dd5d25abdc1d195edd8ab6b744334c" title="Generate C++ exception on error. " alt="" coords="461,56,567,83"/>
-<area shape="rect" id="node6" href="classL4_1_1Server.html#a4333dc750dee494087ee92ab058718a1" title="Internal implementation for reply and wait. " alt="" coords="428,107,600,133"/>
-<area shape="rect" id="node7" href="classL4_1_1Server.html#ac0965dc536f1df5dfe0be1b224feab89" title="The server loop. " alt="" coords="427,157,601,184"/>
-<area shape="rect" id="node4" href="namespaceL4.html#a54f8da0e02ff2496f1ad935e38ab17c4" title="Throw an L4 IPC error as exception. " alt="" coords="649,5,824,32"/>
-</map>
+<div class="center"><iframe scrolling="no" frameborder="0" src="group__l4__msgtag__api_ga047100a8ec6216015fbd1385f5443760_cgraph.svg" width="342" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+<div id="dynsection-13" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-13-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
+<div id="dynsection-13-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-13-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="group__l4__msgtag__api_ga047100a8ec6216015fbd1385f5443760_icgraph.svg" width="830" height="240"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 
 </div>
@@ -920,35 +855,26 @@ Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Boolean value </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="l4_2sys_2types_8h_source.html#l00446">446</a> of file <a class="el" href="l4_2sys_2types_8h_source.html">types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="l4_2sys_2types_8h_source.html#l00448">448</a> of file <a class="el" href="l4_2sys_2types_8h_source.html">types.h</a>.</p>
 
-<p class="reference">References <a class="el" href="l4_2sys_2types_8h_source.html#l00418">l4_msgtag_label()</a>, and <a class="el" href="l4_2sys_2types_8h_source.html#l00058">L4_PROTO_SYS_EXCEPTION</a>.</p>
+<p class="reference">References <a class="el" href="l4_2sys_2types_8h_source.html#l00420">l4_msgtag_label()</a>, and <a class="el" href="l4_2sys_2types_8h_source.html#l00058">L4_PROTO_SYS_EXCEPTION</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="l4_2sys_2types_8h_source.html#l00190">l4_msgtag_t::has_error()</a>.</p>
-<div id="dynsection-13" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
-  <img id="dynsection-13-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
-<div id="dynsection-13-summary" class="dynsummary" style="display:block;">
-</div>
-<div id="dynsection-13-content" class="dyncontent" style="display:none;">
-<div class="center"><img src="group__l4__msgtag__api_gafc73bad60b56767f6eb04cf4b71838ee_cgraph.png" border="0" usemap="#group__l4__msgtag__api_gafc73bad60b56767f6eb04cf4b71838ee_cgraph" alt=""/></div>
-<map name="group__l4__msgtag__api_gafc73bad60b56767f6eb04cf4b71838ee_cgraph" id="group__l4__msgtag__api_gafc73bad60b56767f6eb04cf4b71838ee_cgraph">
-<area shape="rect" id="node2" href="group__l4__msgtag__api.html#gab0c4422a230cf5ef5793dbab1faeb3af" title="Get the protocol of tag. " alt="" coords="256,5,380,32"/>
-</map>
-</div>
+<p class="reference">Referenced by <a class="el" href="l4_2sys_2types_8h_source.html#l00191">l4_msgtag_t::has_error()</a>.</p>
 <div id="dynsection-14" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
-  <img id="dynsection-14-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
+  <img id="dynsection-14-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
 <div id="dynsection-14-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-14-content" class="dyncontent" style="display:none;">
-<div class="center"><img src="group__l4__msgtag__api_gafc73bad60b56767f6eb04cf4b71838ee_icgraph.png" border="0" usemap="#group__l4__msgtag__api_gafc73bad60b56767f6eb04cf4b71838ee_icgraph" alt=""/></div>
-<map name="group__l4__msgtag__api_gafc73bad60b56767f6eb04cf4b71838ee_icgraph" id="group__l4__msgtag__api_gafc73bad60b56767f6eb04cf4b71838ee_icgraph">
-<area shape="rect" id="node2" href="structl4__msgtag__t.html#a26b13889368ed62ec4c85682e29c0dd4" title="Test if flags indicate an error. " alt="" coords="256,81,423,108"/>
-<area shape="rect" id="node3" href="namespaceL4.html#aba0849c4b92afdccbe110489e18dadbd" title="Throw an L4 IPC error as exception. " alt="" coords="471,5,645,32"/>
-<area shape="rect" id="node5" href="namespaceL4Re.html#ae0dd5d25abdc1d195edd8ab6b744334c" title="Generate C++ exception on error. " alt="" coords="505,56,611,83"/>
-<area shape="rect" id="node6" href="classL4_1_1Server.html#a4333dc750dee494087ee92ab058718a1" title="Internal implementation for reply and wait. " alt="" coords="472,107,644,133"/>
-<area shape="rect" id="node7" href="classL4_1_1Server.html#ac0965dc536f1df5dfe0be1b224feab89" title="The server loop. " alt="" coords="471,157,645,184"/>
-<area shape="rect" id="node4" href="namespaceL4.html#a54f8da0e02ff2496f1ad935e38ab17c4" title="Throw an L4 IPC error as exception. " alt="" coords="693,5,868,32"/>
-</map>
+<div class="center"><iframe scrolling="no" frameborder="0" src="group__l4__msgtag__api_gafc73bad60b56767f6eb04cf4b71838ee_cgraph.svg" width="386" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+<div id="dynsection-15" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-15-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
+<div id="dynsection-15-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-15-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="group__l4__msgtag__api_gafc73bad60b56767f6eb04cf4b71838ee_icgraph.svg" width="874" height="240"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 
 </div>
@@ -986,26 +912,18 @@ Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Number of items. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="l4_2sys_2types_8h_source.html#l00426">426</a> of file <a class="el" href="l4_2sys_2types_8h_source.html">types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="l4_2sys_2types_8h_source.html#l00428">428</a> of file <a class="el" href="l4_2sys_2types_8h_source.html">types.h</a>.</p>
 
-<p class="reference">References <a class="el" href="l4_2sys_2types_8h_source.html#l00160">l4_msgtag_t::raw</a>.</p>
+<p class="reference">References <a class="el" href="l4_2sys_2types_8h_source.html#l00161">l4_msgtag_t::raw</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="l4_2sys_2types_8h_source.html#l00190">l4_msgtag_t::has_error()</a>, and <a class="el" href="x86_2l4f_2l4_2util_2port__io_8h_source.html#l00056">l4util_ioport_map()</a>.</p>
-<div id="dynsection-15" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
-  <img id="dynsection-15-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
-<div id="dynsection-15-summary" class="dynsummary" style="display:block;">
+<p class="reference">Referenced by <a class="el" href="l4_2sys_2types_8h_source.html#l00191">l4_msgtag_t::has_error()</a>, and <a class="el" href="x86_2l4f_2l4_2util_2port__io_8h_source.html#l00056">l4util_ioport_map()</a>.</p>
+<div id="dynsection-16" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-16-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
+<div id="dynsection-16-summary" class="dynsummary" style="display:block;">
 </div>
-<div id="dynsection-15-content" class="dyncontent" style="display:none;">
-<div class="center"><img src="group__l4__msgtag__api_ga2f57b9cb540e4cbb6a77363828b9a671_icgraph.png" border="0" usemap="#group__l4__msgtag__api_ga2f57b9cb540e4cbb6a77363828b9a671_icgraph" alt=""/></div>
-<map name="group__l4__msgtag__api_ga2f57b9cb540e4cbb6a77363828b9a671_icgraph" id="group__l4__msgtag__api_ga2f57b9cb540e4cbb6a77363828b9a671_icgraph">
-<area shape="rect" id="node2" href="structl4__msgtag__t.html#a26b13889368ed62ec4c85682e29c0dd4" title="Test if flags indicate an error. " alt="" coords="181,81,348,108"/>
-<area shape="rect" id="node8" href="x86_2l4f_2l4_2util_2port__io_8h.html#a38a37fdbed4dd2dca75ce192d506a2d4" title="Map a range of I/O ports. " alt="" coords="200,132,329,159"/>
-<area shape="rect" id="node3" href="namespaceL4.html#aba0849c4b92afdccbe110489e18dadbd" title="Throw an L4 IPC error as exception. " alt="" coords="396,5,571,32"/>
-<area shape="rect" id="node5" href="namespaceL4Re.html#ae0dd5d25abdc1d195edd8ab6b744334c" title="Generate C++ exception on error. " alt="" coords="431,56,536,83"/>
-<area shape="rect" id="node6" href="classL4_1_1Server.html#a4333dc750dee494087ee92ab058718a1" title="Internal implementation for reply and wait. " alt="" coords="397,107,569,133"/>
-<area shape="rect" id="node7" href="classL4_1_1Server.html#ac0965dc536f1df5dfe0be1b224feab89" title="The server loop. " alt="" coords="396,157,571,184"/>
-<area shape="rect" id="node4" href="namespaceL4.html#a54f8da0e02ff2496f1ad935e38ab17c4" title="Throw an L4 IPC error as exception. " alt="" coords="619,5,793,32"/>
-</map>
+<div id="dynsection-16-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="group__l4__msgtag__api_ga2f57b9cb540e4cbb6a77363828b9a671_icgraph.svg" width="799" height="240"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 
 </div>
@@ -1044,31 +962,18 @@ Functions</h2></td></tr>
 <dl class="section return"><dt>Returns</dt><dd>Label </dd></dl>
 <dl><dt><b>Examples: </b></dt><dd><a class="el" href="examples_2sys_2singlestep_2main_8c-example.html#a36">examples/sys/singlestep/main.c</a>, and <a class="el" href="examples_2sys_2start-with-exc_2main_8c-example.html#a24">examples/sys/start-with-exc/main.c</a>.</dd>
 </dl>
-<p class="definition">Definition at line <a class="el" href="l4_2sys_2types_8h_source.html#l00418">418</a> of file <a class="el" href="l4_2sys_2types_8h_source.html">types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="l4_2sys_2types_8h_source.html#l00420">420</a> of file <a class="el" href="l4_2sys_2types_8h_source.html">types.h</a>.</p>
 
-<p class="reference">References <a class="el" href="l4_2sys_2types_8h_source.html#l00160">l4_msgtag_t::raw</a>.</p>
+<p class="reference">References <a class="el" href="l4_2sys_2types_8h_source.html#l00161">l4_msgtag_t::raw</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="l4_2sys_2types_8h_source.html#l00190">l4_msgtag_t::has_error()</a>, <a class="el" href="l4_2sys_2types_8h_source.html#l00449">l4_msgtag_is_exception()</a>, <a class="el" href="l4_2sys_2types_8h_source.html#l00455">l4_msgtag_is_io_page_fault()</a>, <a class="el" href="l4_2sys_2types_8h_source.html#l00440">l4_msgtag_is_page_fault()</a>, <a class="el" href="l4_2sys_2types_8h_source.html#l00443">l4_msgtag_is_preemption()</a>, <a class="el" href="l4_2sys_2types_8h_source.html#l00452">l4_msgtag_is_sigma0()</a>, and <a class="el" href="l4_2sys_2types_8h_source.html#l00446">l4_msgtag_is_sys_exception()</a>.</p>
-<div id="dynsection-16" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
-  <img id="dynsection-16-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
-<div id="dynsection-16-summary" class="dynsummary" style="display:block;">
+<p class="reference">Referenced by <a class="el" href="l4_2sys_2types_8h_source.html#l00191">l4_msgtag_t::has_error()</a>, <a class="el" href="l4_2sys_2types_8h_source.html#l00451">l4_msgtag_is_exception()</a>, <a class="el" href="l4_2sys_2types_8h_source.html#l00457">l4_msgtag_is_io_page_fault()</a>, <a class="el" href="l4_2sys_2types_8h_source.html#l00442">l4_msgtag_is_page_fault()</a>, <a class="el" href="l4_2sys_2types_8h_source.html#l00445">l4_msgtag_is_preemption()</a>, <a class="el" href="l4_2sys_2types_8h_source.html#l00454">l4_msgtag_is_sigma0()</a>, and <a class="el" href="l4_2sys_2types_8h_source.html#l00448">l4_msgtag_is_sys_exception()</a>.</p>
+<div id="dynsection-17" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-17-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
+<div id="dynsection-17-summary" class="dynsummary" style="display:block;">
 </div>
-<div id="dynsection-16-content" class="dyncontent" style="display:none;">
-<div class="center"><img src="group__l4__msgtag__api_gab0c4422a230cf5ef5793dbab1faeb3af_icgraph.png" border="0" usemap="#group__l4__msgtag__api_gab0c4422a230cf5ef5793dbab1faeb3af_icgraph" alt=""/></div>
-<map name="group__l4__msgtag__api_gab0c4422a230cf5ef5793dbab1faeb3af_icgraph" id="group__l4__msgtag__api_gab0c4422a230cf5ef5793dbab1faeb3af_icgraph">
-<area shape="rect" id="node2" href="structl4__msgtag__t.html#a26b13889368ed62ec4c85682e29c0dd4" title="Test if flags indicate an error. " alt="" coords="428,164,595,190"/>
-<area shape="rect" id="node8" href="group__l4__msgtag__api.html#ga0f2cf0a5f8d4a733f69b94dcc388c2ef" title="Test for exception protocol. " alt="" coords="191,46,366,73"/>
-<area shape="rect" id="node9" href="group__l4__msgtag__api.html#ga463384faf9cb37d3f65f24913e34d687" title="Test for IO&#45;page&#45;fault protocol. " alt="" coords="197,98,361,139"/>
-<area shape="rect" id="node10" href="group__l4__msgtag__api.html#gaf949daa8e7aa7d20743502de15e86dcd" title="Test for page&#45;fault protocol. " alt="" coords="189,164,368,190"/>
-<area shape="rect" id="node11" href="group__l4__msgtag__api.html#gafb02742f6231ff4568412fed96e7e272" title="Test for preemption protocol. " alt="" coords="187,214,371,241"/>
-<area shape="rect" id="node12" href="group__l4__msgtag__api.html#ga047100a8ec6216015fbd1385f5443760" title="Test for sigma0 protocol. " alt="" coords="199,265,358,292"/>
-<area shape="rect" id="node13" href="group__l4__msgtag__api.html#gafc73bad60b56767f6eb04cf4b71838ee" title="Test for system&#45;exception protocol. " alt="" coords="177,316,380,342"/>
-<area shape="rect" id="node3" href="namespaceL4.html#aba0849c4b92afdccbe110489e18dadbd" title="Throw an L4 IPC error as exception. " alt="" coords="643,88,817,114"/>
-<area shape="rect" id="node5" href="namespaceL4Re.html#ae0dd5d25abdc1d195edd8ab6b744334c" title="Generate C++ exception on error. " alt="" coords="677,138,783,165"/>
-<area shape="rect" id="node6" href="classL4_1_1Server.html#a4333dc750dee494087ee92ab058718a1" title="Internal implementation for reply and wait. " alt="" coords="644,189,816,216"/>
-<area shape="rect" id="node7" href="classL4_1_1Server.html#ac0965dc536f1df5dfe0be1b224feab89" title="The server loop. " alt="" coords="643,240,817,266"/>
-<area shape="rect" id="node4" href="namespaceL4.html#a54f8da0e02ff2496f1ad935e38ab17c4" title="Throw an L4 IPC error as exception. " alt="" coords="865,88,1040,114"/>
-</map>
+<div id="dynsection-17-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="group__l4__msgtag__api_gab0c4422a230cf5ef5793dbab1faeb3af_icgraph.svg" width="1046" height="348"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 
 </div>
@@ -1107,25 +1012,18 @@ Functions</h2></td></tr>
 <dl class="section return"><dt>Returns</dt><dd>Number of words </dd></dl>
 <dl><dt><b>Examples: </b></dt><dd><a class="el" href="examples_2sys_2utcb-ipc_2main_8c-example.html#a11">examples/sys/utcb-ipc/main.c</a>.</dd>
 </dl>
-<p class="definition">Definition at line <a class="el" href="l4_2sys_2types_8h_source.html#l00422">422</a> of file <a class="el" href="l4_2sys_2types_8h_source.html">types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="l4_2sys_2types_8h_source.html#l00424">424</a> of file <a class="el" href="l4_2sys_2types_8h_source.html">types.h</a>.</p>
 
-<p class="reference">References <a class="el" href="l4_2sys_2types_8h_source.html#l00160">l4_msgtag_t::raw</a>.</p>
+<p class="reference">References <a class="el" href="l4_2sys_2types_8h_source.html#l00161">l4_msgtag_t::raw</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="l4_2sys_2types_8h_source.html#l00190">l4_msgtag_t::has_error()</a>.</p>
-<div id="dynsection-17" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
-  <img id="dynsection-17-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
-<div id="dynsection-17-summary" class="dynsummary" style="display:block;">
+<p class="reference">Referenced by <a class="el" href="l4_2sys_2types_8h_source.html#l00191">l4_msgtag_t::has_error()</a>.</p>
+<div id="dynsection-18" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-18-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
+<div id="dynsection-18-summary" class="dynsummary" style="display:block;">
 </div>
-<div id="dynsection-17-content" class="dyncontent" style="display:none;">
-<div class="center"><img src="group__l4__msgtag__api_ga6d29d688c50ece7ec55f3c6ed749d375_icgraph.png" border="0" usemap="#group__l4__msgtag__api_ga6d29d688c50ece7ec55f3c6ed749d375_icgraph" alt=""/></div>
-<map name="group__l4__msgtag__api_ga6d29d688c50ece7ec55f3c6ed749d375_icgraph" id="group__l4__msgtag__api_ga6d29d688c50ece7ec55f3c6ed749d375_icgraph">
-<area shape="rect" id="node2" href="structl4__msgtag__t.html#a26b13889368ed62ec4c85682e29c0dd4" title="Test if flags indicate an error. " alt="" coords="187,81,353,108"/>
-<area shape="rect" id="node3" href="namespaceL4.html#aba0849c4b92afdccbe110489e18dadbd" title="Throw an L4 IPC error as exception. " alt="" coords="401,5,576,32"/>
-<area shape="rect" id="node5" href="namespaceL4Re.html#ae0dd5d25abdc1d195edd8ab6b744334c" title="Generate C++ exception on error. " alt="" coords="436,56,541,83"/>
-<area shape="rect" id="node6" href="classL4_1_1Server.html#a4333dc750dee494087ee92ab058718a1" title="Internal implementation for reply and wait. " alt="" coords="403,107,575,133"/>
-<area shape="rect" id="node7" href="classL4_1_1Server.html#ac0965dc536f1df5dfe0be1b224feab89" title="The server loop. " alt="" coords="401,157,576,184"/>
-<area shape="rect" id="node4" href="namespaceL4.html#a54f8da0e02ff2496f1ad935e38ab17c4" title="Throw an L4 IPC error as exception. " alt="" coords="624,5,799,32"/>
-</map>
+<div id="dynsection-18-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="group__l4__msgtag__api_ga6d29d688c50ece7ec55f3c6ed749d375_icgraph.svg" width="804" height="240"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 
 </div>
@@ -1136,7 +1034,7 @@ Functions</h2></td></tr>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated on Sun Sep 24 2017 23:15:12 for L4Re - L4 Runtime Environment by
+    <li class="footer">Generated on Tue Aug 11 2020 13:28:15 for L4Re - L4 Runtime Environment by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.13 </li>
   </ul>

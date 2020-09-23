@@ -1,8 +1,8 @@
 var searchData=
 [
   ['h_5flist',['H_list',['../classcxx_1_1H__list.html',1,'cxx']]],
+  ['h_5flist_3c_20cxx_3a_3abase_5fslab_3a_3aslab_5fi_20_3e',['H_list&lt; cxx::Base_slab::Slab_i &gt;',['../classcxx_1_1H__list.html',1,'cxx']]],
   ['h_5flist_3c_20observer_20_3e',['H_list&lt; Observer &gt;',['../classcxx_1_1H__list.html',1,'cxx']]],
-  ['h_5flist_3c_20slab_5fi_20_3e',['H_list&lt; Slab_i &gt;',['../classcxx_1_1H__list.html',1,'cxx']]],
   ['h_5flist_3c_20t_20_3e',['H_list&lt; T &gt;',['../classcxx_1_1H__list.html',1,'cxx']]],
   ['h_5flist_3c_20t_2c_20bits_3a_3abasic_5flist_5fpolicy_3c_20t_2c_20h_5flist_5fitem_5ft_3c_20t_20_3e_20_3e_20_3e',['H_list&lt; T, Bits::Basic_list_policy&lt; T, H_list_item_t&lt; T &gt; &gt; &gt;',['../classcxx_1_1H__list.html',1,'cxx']]],
   ['h_5flist_3c_20timeout_20_3e',['H_list&lt; Timeout &gt;',['../classcxx_1_1H__list.html',1,'cxx']]],

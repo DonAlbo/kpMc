@@ -15,11 +15,13 @@
 #include <cstring>
 #include <cstdlib>
 #include <l4/cxx/exceptions>
-#include <l4/io/pciids.h>
 #include <l4/sys/err.h>
 
 #include "debug.h"
 #include "pci.h"
+#ifdef CONFIG_L4IO_PCIID_DB
+# include "pciids.h"
+#endif
 #include "vpci.h"
 #include "virt/vbus_factory.h"
 
@@ -28,11 +30,6 @@ namespace Vi {
 // -----------------------------------------------------------------------
 // Pci_virtual_dev
 // -----------------------------------------------------------------------
-
-Pci_virtual_dev::Pci_virtual_dev()
-{
-  memset(&_h, 0, sizeof(_h));
-}
 
 int
 Pci_virtual_dev::cfg_read(int reg, l4_uint32_t *v, Cfg_width order)
@@ -163,20 +160,49 @@ void
 Pci_proxy_dev::scan_pcie_caps()
 {
   l4_uint16_t offset = 0x100;
-  l4_uint32_t c;
   for (;;)
     {
-      _hwf->cfg_read(offset, &c);
-      if (offset == 0x100 && ((c & 0xffff) == 0xffff))
+      Hw::Pci::Extended_cap cap(_hwf, offset);
+
+      // the device doesn't have extended capabilities
+      if (offset == 0x100 && !cap.is_valid())
         return;
 
-      add_pcie_cap(new Pcie_proxy_cap(_hwf, c, offset, offset));
+      // hide the ACS capability
+      if (cap.id() == Hw::Pci::Extended_cap::Acs)
+        {
+          // if this is the first capability there are two possibilities
+          // 1. it's the only extended capability
+          // 2. other extended capabilities follow
+          if (offset == 0x100)
+            {
+              // the only extended capability, just return
+              if (cap.next() == 0)
+                return;
 
-      offset = c >> 20;
+              // create "fake" capability with a reserved ID, according to
+              // PCI-SIG IDs >0x2c are reserved
+              l4_uint32_t hdr = cap.header();
+              hdr = (hdr & 0xffffff00) | 0xfe;
+              add_pcie_cap(new Pcie_proxy_cap(_hwf, hdr, offset, offset));
+            }
+
+          // skip extended capability
+          offset = cap.next();
+          if (!offset)
+            break;
+
+          continue;
+        }
+
+      add_pcie_cap(new Pcie_proxy_cap(_hwf, cap.header(), offset, offset));
+
+      offset = cap.next();
       if (!offset)
         break;
     }
 
+  // if the device has extended capabilities there must be one at offset 0x100
   assert (!_pcie_caps || _pcie_caps->offset() == 0x100);
 #if 0
   if (_pcie_caps && _pcie_caps->offset() != 0x100)
@@ -216,7 +242,8 @@ Pci_proxy_dev::Pci_proxy_dev(Hw::Pci::If *hwf)
 
 	}
 
-      //printf("  bar: %d = %08x\n", i, _vbars[i]);
+      if (0)
+        printf("  bar: %d = %08x\n", i, _vbars[i]);
     }
 
   if (_hwf->rom())
@@ -250,7 +277,12 @@ Pci_proxy_dev::irq_enable(Irq_info *irq)
 }
 
 
-
+/**
+ * Read the nth BAR of a PCI device.
+ *
+ * The IO client must not be able to change the BAR of a physical PCI device.
+ * Thus we emulate read/write accesses to BARs.
+ */
 l4_uint32_t
 Pci_proxy_dev::read_bar(int bar)
 {
@@ -258,6 +290,12 @@ Pci_proxy_dev::read_bar(int bar)
   return _vbars[bar];
 }
 
+/**
+ * Write the nth BAR of a PCI device.
+ *
+ * The IO client must not be able to change the BAR of a physical PCI device.
+ * Thus we emulate read/write accesses to BARs.
+ */
 void
 Pci_proxy_dev::write_bar(int bar, l4_uint32_t v)
 {
@@ -267,7 +305,8 @@ Pci_proxy_dev::write_bar(int bar, l4_uint32_t v)
   if (!r)
     return;
 
-  // printf("  write bar[%x]: %llx-%llx...\n", bar, r->abs_start(), r->abs_end());
+  if (0)
+    printf("  write bar[%x]: %llx-%llx...\n", bar, r->start(), r->end());
   l4_uint64_t size_mask = r->alignment();
 
   if (r->type() == Resource::Io_res)
@@ -278,7 +317,8 @@ Pci_proxy_dev::write_bar(int bar, l4_uint32_t v)
 
   _vbars[bar] = (_vbars[bar] & size_mask) | (v & ~size_mask);
 
-  // printf("    bar=%lx\n", _vbars[bar]);
+  if (0)
+    printf("    bar=%x\n", _vbars[bar]);
 }
 
 void
@@ -286,7 +326,8 @@ Pci_proxy_dev::write_rom(l4_uint32_t v)
 {
   Hw::Pci::If *p = _hwf;
 
-  // printf("write rom bar %x %p\n", v, _dev->rom());
+  if (0)
+    printf("write ROM bar %x %p\n", v, p->rom());
   Resource *r = p->rom();
   if (!r)
     return;
@@ -395,7 +436,7 @@ Pci_proxy_dev::cfg_read(int reg, l4_uint32_t *v, Cfg_width order)
                /* fall through */
     case 0x28:
     case 0x3c:
-               /* pass trough the rest ... */
+               /* pass through the rest ... */
                p->cfg_read(dw_reg, &buf);
                break;
     }
@@ -523,7 +564,7 @@ private:
   unsigned char _cfg_space[4*4];
 
 public:
-  int irq_enable(Irq_info *irq)
+  int irq_enable(Irq_info *irq) override
   {
     irq->irq = -1;
     return -1;
@@ -532,8 +573,11 @@ public:
   Pci_dummy()
   {
     add_feature(this);
+    memset(_cfg_space, 0, sizeof(_cfg_space));
+
     _h = &_cfg_space[0];
     _h_len = sizeof(_cfg_space);
+
     cfg_hdr()->hdr_type = 0x80;
     cfg_hdr()->vendor_device = 0x02000400;
     cfg_hdr()->status = 0;
@@ -541,9 +585,9 @@ public:
     cfg_hdr()->cmd = 0x0;
   }
 
-  bool match_hw_feature(const Hw::Dev_feature*) const { return false; }
-  void set_host(Device *d) { _host = d; }
-  Device *host() const { return _host; }
+  bool match_hw_feature(const Hw::Dev_feature*) const override { return false; }
+  void set_host(Device *d) override { _host = d; }
+  Device *host() const override { return _host; }
 
 private:
   Device *_host;
@@ -656,7 +700,9 @@ Pci_bridge::add_child_fixed(Device *d, Pci_dev *vp, unsigned dn, unsigned fn)
 Pci_bridge *
 Pci_bridge::find_bridge(unsigned bus)
 {
-  // printf("PCI[%p]: look for bridge for bus %x %02x %02x\n", this, bus, _subordinate, _secondary);
+  if (0)
+    printf("PCI[%p]: look for bridge for bus %x %02x %02x\n",
+           this, bus, _subordinate, _secondary);
   if (bus == _secondary)
     return this;
 

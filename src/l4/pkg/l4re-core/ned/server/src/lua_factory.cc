@@ -11,6 +11,7 @@
 #include <lualib.h>
 
 #include <l4/re/util/cap_alloc>
+#include <l4/re/util/unique_cap>
 #include <l4/re/env>
 #include <l4/sys/factory>
 
@@ -23,6 +24,23 @@
 
 namespace Lua { namespace {
 
+static void __error(lua_State *l, int r)
+{
+  // start table
+  lua_createtable(l, 0, 2);
+
+  // push current position in the script
+  luaL_where(l, 1);
+  lua_pushfstring(l, "runtime error %s (%d)", l4sys_errtostr(r), r);
+  // combine the last two strings
+  lua_concat(l, 2);
+  lua_setfield(l, -2, "msg");
+
+  // add error code
+  lua_pushinteger(l, r);
+  lua_setfield(l, -2, "code");
+}
+
 static int
 __alloc(lua_State *l)
 {
@@ -30,8 +48,7 @@ __alloc(lua_State *l)
   Lua::Cap *n = check_cap(l, 1);
   int objt = luaL_checkinteger(l, 2);
 
-  L4Re::Util::Auto_cap<L4::Kobject>::Cap obj
-    = L4Re::Util::cap_alloc.alloc<L4::Kobject>();
+  auto obj = L4Re::Util::make_unique_cap<L4::Kobject>();
 
   if (!obj.is_valid())
     luaL_error(l, "out of caps");
@@ -53,7 +70,10 @@ __alloc(lua_State *l)
   int r = l4_error(t);
 
   if (r < 0)
-    luaL_error(l, "runtime error %s (%d)", l4sys_errtostr(r), r);
+    {
+      __error(l, r);
+      lua_error(l);
+    }
 
   lua_pushinteger(l, objt);
   Cap *nc = Lua::push_new_cap(l, true);

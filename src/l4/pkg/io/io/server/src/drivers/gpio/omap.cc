@@ -541,6 +541,7 @@ public:
     case REGS::Clr_data_out:
     case REGS::Set_data_out:
       _regs[reg].modify(_pin_bit(pin), value ? _pin_bit(pin) : 0);
+      break;
 
     default:
       // cannot allow the following registers, they have security implications
@@ -622,6 +623,9 @@ public:
   {
     if (pin >= _nr_pins)
       throw -L4_EINVAL;
+
+    if (!_irq_svr)
+      return nullptr;
 
     return _irq_svr->template get_pin<Gpio_irq_pin_t<REGS>>(pin, _regs);
   }

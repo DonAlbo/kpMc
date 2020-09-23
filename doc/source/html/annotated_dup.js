@@ -3,7 +3,16 @@ var annotated_dup =
     [ "cxx", "namespacecxx.html", "namespacecxx" ],
     [ "L4", "namespaceL4.html", "namespaceL4" ],
     [ "L4Re", "namespaceL4Re.html", "namespaceL4Re" ],
-    [ "L4vbus", "namespaceL4vbus.html", "namespaceL4vbus" ],
+    [ "L4vbus", null, [
+      [ "Device", "classL4vbus_1_1Device.html", "classL4vbus_1_1Device" ],
+      [ "Gpio_module", "classL4vbus_1_1Gpio__module.html", "classL4vbus_1_1Gpio__module" ],
+      [ "Gpio_pin", "classL4vbus_1_1Gpio__pin.html", "classL4vbus_1_1Gpio__pin" ],
+      [ "Icu", "classL4vbus_1_1Icu.html", "classL4vbus_1_1Icu" ],
+      [ "Pci_dev", "classL4vbus_1_1Pci__dev.html", "classL4vbus_1_1Pci__dev" ],
+      [ "Pci_host_bridge", "classL4vbus_1_1Pci__host__bridge.html", "classL4vbus_1_1Pci__host__bridge" ],
+      [ "Pm", "classL4vbus_1_1Pm.html", "classL4vbus_1_1Pm" ],
+      [ "Vbus", "classL4vbus_1_1Vbus.html", "classL4vbus_1_1Vbus" ]
+    ] ],
     [ "L4vcpu", null, [
       [ "State", "classL4vcpu_1_1State.html", "classL4vcpu_1_1State" ],
       [ "Vcpu", "classL4vcpu_1_1Vcpu.html", "classL4vcpu_1_1Vcpu" ]
@@ -25,6 +34,7 @@ var annotated_dup =
     [ "l4_icu_info_t", "structl4__icu__info__t.html", "structl4__icu__info__t" ],
     [ "l4_icu_msi_info_t", "structl4__icu__msi__info__t.html", "structl4__icu__msi__info__t" ],
     [ "l4_kernel_info_mem_desc_t", "structl4__kernel__info__mem__desc__t.html", null ],
+    [ "l4_kernel_info_t", "structl4__kernel__info__t.html", "structl4__kernel__info__t" ],
     [ "l4_msg_regs_t", "unionl4__msg__regs__t.html", "unionl4__msg__regs__t" ],
     [ "l4_msgtag_t", "structl4__msgtag__t.html", "structl4__msgtag__t" ],
     [ "l4_sched_cpu_set_t", "structl4__sched__cpu__set__t.html", "structl4__sched__cpu__set__t" ],
@@ -71,7 +81,12 @@ var annotated_dup =
     [ "l4vbus_device_t", "structl4vbus__device__t.html", "structl4vbus__device__t" ],
     [ "l4vbus_resource_t", "structl4vbus__resource__t.html", "structl4vbus__resource__t" ],
     [ "l4virtio_block_config_t", "structl4virtio__block__config__t.html", "structl4virtio__block__config__t" ],
+    [ "l4virtio_block_discard_t", "structl4virtio__block__discard__t.html", null ],
     [ "l4virtio_block_header_t", "structl4virtio__block__header__t.html", "structl4virtio__block__header__t" ],
     [ "l4virtio_config_hdr_t", "structl4virtio__config__hdr__t.html", "structl4virtio__config__hdr__t" ],
-    [ "l4virtio_config_queue_t", "structl4virtio__config__queue__t.html", "structl4virtio__config__queue__t" ]
+    [ "l4virtio_config_queue_t", "structl4virtio__config__queue__t.html", "structl4virtio__config__queue__t" ],
+    [ "l4virtio_input_absinfo_t", "structl4virtio__input__absinfo__t.html", null ],
+    [ "l4virtio_input_config_t", "structl4virtio__input__config__t.html", null ],
+    [ "l4virtio_input_devids_t", "structl4virtio__input__devids__t.html", null ],
+    [ "l4virtio_input_event_t", "structl4virtio__input__event__t.html", null ]
 ];

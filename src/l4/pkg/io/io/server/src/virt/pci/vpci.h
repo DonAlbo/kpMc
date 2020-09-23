@@ -143,7 +143,7 @@ class Pcie_capability
 public:
   typedef Hw::Pci::Cfg_width Cfg_width;
 
-  /// Make e extended PCI capability at given offset.
+  /// Make an extended PCI capability at given offset.
   explicit Pcie_capability(l4_uint16_t offset)
   : _offset(offset), _size(4) {}
 
@@ -333,11 +333,12 @@ Pci_dev::~Pci_dev()
 /**
  * \brief General PCI device providing PCI device functions.
  */
-class Pci_dev_feature : public Pci_dev, public Dev_feature
+class Pci_dev_feature : public Pci_dev, public Msi_src_feature
 {
 public:
-  l4_uint32_t interface_type() const { return 1 << L4VBUS_INTERFACE_PCIDEV; }
-  int dispatch(l4_umword_t, l4_uint32_t, L4::Ipc::Iostream&);
+  l4_uint32_t interface_type() const override
+  { return 1 << L4VBUS_INTERFACE_PCIDEV; }
+  int dispatch(l4_umword_t, l4_uint32_t, L4::Ipc::Iostream&) override;
 };
 
 
@@ -368,12 +369,10 @@ public:
   bool is_same_device(Pci_dev const *o) const override
   { return o == this; }
 
-  Msi_src *msi_src() const override
+  Io_irq_pin::Msi_src *msi_src() const override
   { return 0; }
 
   ~Pci_virtual_dev() = 0;
-
-  Pci_virtual_dev();
 
   void set_host(Device *d) override
   { _host = d; }
@@ -389,9 +388,7 @@ protected:
 };
 
 inline
-Pci_virtual_dev::~Pci_virtual_dev()
-{}
-
+Pci_virtual_dev::~Pci_virtual_dev() = default;
 
 
 /**
@@ -465,7 +462,7 @@ private:
  * \brief a basic virtual PCI bridge.
  * This class is the base for virtual Host-to-PCI bridges,
  * for virtual PCI-to-PCI bridges, and also for this such as
- * virtual PCI-to-Cardbus brdiges.
+ * virtual PCI-to-Cardbus bridges.
  */
 class Pci_bridge : public Device
 {
@@ -534,12 +531,12 @@ public:
   void secondary(unsigned char v) { _secondary = v; }
   void subordinate(unsigned char v) { _subordinate = v; }
   Pci_dev *child_dev(unsigned bus, unsigned char dev, unsigned char fn);
-  void add_child(Device *d);
+  void add_child(Device *d) override;
   void add_child_fixed(Device *d, Pci_dev *vp, unsigned dn, unsigned fn);
 
   Pci_bridge *find_bridge(unsigned bus);
   void setup_bus();
-  void finalize_setup();
+  void finalize_setup() override;
 
 };
 

@@ -1,0 +1,12 @@
+<map id="L4::Epiface" name="L4::Epiface">
+<area shape="rect" id="node2" href="$structL4_1_1Epiface__t0.html" title="{L4::Epiface_t0\&lt; L4\l::Kobject, L4::Epiface \&gt;\n||+ get_buffer_demand()\l+ obj_cap()\l}" alt="" coords="11,263,178,369"/>
+<area shape="rect" id="node4" href="$structL4_1_1Epiface__t0.html" title="{L4::Epiface_t0\&lt; L4virtio\l::Device, L4::Epiface \&gt;\n||+ get_buffer_demand()\l+ obj_cap()\l}" alt="" coords="205,263,374,369"/>
+<area shape="rect" id="node6" href="$structL4_1_1Epiface__t0.html" title="{L4::Epiface_t0\&lt; void,\l Epiface \&gt;\n||+ get_buffer_demand()\l+ obj_cap()\l}" alt="" coords="401,263,567,369"/>
+<area shape="rect" id="node8" href="$classL4_1_1Server__object.html" title="Abstract server object to be used with L4::Server and L4::Basic_registry. " alt="" coords="628,263,759,369"/>
+<area shape="rect" id="node3" href="$structL4_1_1Epiface__t.html" title="{L4::Epiface_t\&lt; Null\l_handler, L4::Kobject \&gt;\n||+ dispatch()\l}" alt="" coords="5,432,171,524"/>
+<area shape="rect" id="node5" href="$structL4_1_1Epiface__t.html" title="{L4::Epiface_t\&lt; Block\l_dev\&lt; Ds_data \&gt;, L4virtio\l::Device \&gt;\n||+ dispatch()\l}" alt="" coords="195,425,378,531"/>
+<area shape="rect" id="node7" href="$structL4_1_1Irqep__t.html" title="{L4::Irqep_t\&lt; Irq_object \&gt;\n||+ dispatch()\l+ obj_cap()\l}" alt="" coords="402,432,577,524"/>
+<area shape="rect" id="node9" href="$structL4_1_1Server__object__x.html" title="Helper class to implement p_dispatch based server objects. " alt="" coords="601,432,786,524"/>
+<area shape="rect" id="node10" href="$structL4_1_1Server__object__t.html" title="{L4::Server_object_t\l\&lt; Kobject \&gt;\n||+ get_buffer_demand()\l+ dispatch_meta_request()\l+ proto_dispatch()\l}" alt="" coords="811,417,1003,539"/>
+<area shape="rect" id="node11" href="$structL4_1_1Irq__handler__object.html" title="Server object base class for handling IRQ messages. " alt="" coords="825,587,988,664"/>
+</map>

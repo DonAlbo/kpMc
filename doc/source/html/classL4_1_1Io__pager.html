@@ -95,22 +95,16 @@ $(document).ready(function(){initNavTree('classL4_1_1Io__pager.html','');});
 <div id="dynsection-0-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-0-content" class="dyncontent" style="display:none;">
-<div class="center"><img src="classL4_1_1Io__pager__inherit__graph.png" border="0" usemap="#L4_1_1Io__pager_inherit__map" alt="Inheritance graph"/></div>
-<map name="L4_1_1Io__pager_inherit__map" id="L4_1_1Io__pager_inherit__map">
-<area shape="rect" id="node2" href="classL4_1_1Kobject__t.html" title="{L4::Kobject_t\&lt; Pager,\l Io_pager, L4_PROTO_PAGE\l_FAULT \&gt;\n||# c()\l# __check_protocols__()\l}" alt="" coords="5,131,216,252"/>
-<area shape="rect" id="node3" href="classL4_1_1Pager.html" title="Pager interface including the Io_pager interface. " alt="" coords="55,300,166,377"/>
-<area shape="rect" id="node4" href="classL4_1_1Kobject__t.html" title="{L4::Kobject_t\&lt; Rm,\l L4::Pager, L4RE_PROTO\l_RM, L4::Type_info::Demand\l_t\&lt; 1 \&gt; \&gt;\n||# c()\l# __check_protocols__()\l}" alt="" coords="9,425,212,561"/>
-<area shape="rect" id="node5" href="classL4Re_1_1Rm.html" title="Region map. " alt="" coords="45,609,176,863"/>
-</map>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classL4_1_1Io__pager__inherit__graph.svg" width="222" height="868"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 <div id="dynsection-1" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-1-trigger" src="closed.png" alt="+"/> Collaboration diagram for L4::Io_pager:</div>
 <div id="dynsection-1-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-1-content" class="dyncontent" style="display:none;">
-<div class="center"><img src="classL4_1_1Io__pager__coll__graph.png" border="0" usemap="#L4_1_1Io__pager_coll__map" alt="Collaboration graph"/></div>
-<map name="L4_1_1Io__pager_coll__map" id="L4_1_1Io__pager_coll__map">
-</map>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classL4_1_1Io__pager__coll__graph.svg" width="142" height="88"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
@@ -121,8 +115,16 @@ Public Member Functions</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p><a class="el" href="classL4_1_1Io__pager.html" title="Io_pager interface. ">Io_pager</a> interface. </p>
+<dl class="section note"><dt>Note</dt><dd>This interface is IA32 specific.</dd></dl>
+<p>This class defines the interface for handling IO page faults. IO page faults happen when a thread tries to access an IO port that it does not currently have access to.</p>
+<p>Depending on the microkernel's implementation, IO page faults can be handled in two ways.</p>
+<p>If the microkernel does not support IO page faults, this IO pagefault interface is not used. Instead, the microkernel sends an exception IPC to the thread's exception handler (<a class="el" href="classL4_1_1Exception.html" title="Exception interface. ">L4::Exception</a>), indicating a #GP (exception number 13). The exception handler must consult the faulting instruction to determine the cause of the exception. This is the default in Fiasco.OC.</p>
+<p>In contrast, if the microkernel supports IO page faults, the microkernel will generate an IO page fault message and send it to the thread's page fault handler (pager). The page fault handler can implement this interface to handle the IO page faults.</p>
+<dl class="section note"><dt>Note</dt><dd>A program may use this mechanism to implement a lazy IO port access scheme.</dd>
+<dd>
+The page fault and exception handlers are set with the <a class="el" href="classL4_1_1Thread.html#a4252cd0ad4bdfa00cdc61b5fd2317aef" title="Commit the given thread-attributes object. ">L4::Thread::control</a> interface. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="pager_source.html#l00035">35</a> of file <a class="el" href="pager_source.html">pager</a>.</p>
+<p class="definition">Definition at line <a class="el" href="pager_source.html#l00061">61</a> of file <a class="el" href="pager_source.html">pager</a>.</p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
 <a id="a6af2ccaaf9a218065fefd4e92bea6723"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a6af2ccaaf9a218065fefd4e92bea6723">&#9670;&nbsp;</a></span>io_page_fault()</h2>
@@ -179,7 +181,7 @@ Public Member Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>System call message tag; use <a class="el" href="group__l4__ipc__err__api.html#ga05c11e3e10b6c2aa941396ac2018899f" title="Return error code of a system call return message tag. ">l4_error()</a> to check for errors.</dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>System call message tag; use <a class="el" href="group__l4__ipc__err__api.html#ga05c11e3e10b6c2aa941396ac2018899f" title="Return error code of a system call return message tag or the tag label. ">l4_error()</a> to check for errors.</dd></dl>
 <p>IO-port fault messages are usually generated by the kernel and an IO-page-fault handler needs to be in place to handle such faults and generate a reply by filling in <code>result</code> and / or <code>fp</code>. </p>
 
 </div>
@@ -194,7 +196,7 @@ Public Member Functions</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="namespaceL4.html">L4</a></li><li class="navelem"><a class="el" href="classL4_1_1Io__pager.html">Io_pager</a></li>
-    <li class="footer">Generated on Sun Sep 24 2017 23:15:12 for L4Re - L4 Runtime Environment by
+    <li class="footer">Generated on Tue Aug 11 2020 13:28:16 for L4Re - L4 Runtime Environment by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.13 </li>
   </ul>

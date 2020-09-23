@@ -9,8 +9,10 @@
 #include <stdlib.h>
 #include <stdio.h>
 
+extern "C" {
 #include <efi.h>
 #include <efilib.h>
+}
 #include <l4/util/irq.h> // l4util_cli
 
 namespace {
@@ -57,7 +59,7 @@ public:
         exit_status = LibGetSystemConfigurationTable(&AcpiTableGuid, &table);
 
     if (exit_status != EFI_SUCCESS)
-      printf("No RDSP found in EFI system table\n");
+      printf("No RSDP found in EFI system table\n");
 
     exit_status = (EFI_STATUS)uefi_call_wrapper((void*)(BS->ExitBootServices), 2, efi_image, key);
     if (exit_status != EFI_SUCCESS)
@@ -71,7 +73,6 @@ public:
 
     enum
     {
-      Acpi_rdsp = 0,
       Acpi      = 3,
       Nvs       = 4,
     };
@@ -106,7 +107,8 @@ public:
     // add region for ACPI tables
     regions->add(Region::n(l4_trunc_page((l4_addr_t)table),
                            l4_trunc_page((l4_addr_t)table) + L4_PAGESIZE,
-                           ".ACPI", Region::Info, Acpi_rdsp), true);
+                           ".ACPI", Region::Info, Region::Info_acpi_rsdp),
+                 true);
 
     // merge adjacent regions
     ram->optimize();
@@ -127,8 +129,10 @@ EFI_STATUS efi_main(EFI_HANDLE image, EFI_SYSTEM_TABLE *systab)
   ctor_init();
   Platform_base::platform = &_x86_pc_platform;
   _x86_pc_platform.init();
-  _x86_pc_platform.setup_uart(_mbi_cmdline);
-  startup(_mbi_cmdline);
+  _x86_pc_platform.setup_uart(mod_info_mbi_cmdline(mod_header));
+
+  init_modules_infos();
+  startup(mod_info_mbi_cmdline(mod_header));
 
   return EFI_SUCCESS;
 }

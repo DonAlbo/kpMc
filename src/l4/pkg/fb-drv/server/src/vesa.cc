@@ -90,7 +90,7 @@ Vesa_fb::setup_drv(Prog_args *pa, L4Re::Util::Object_registry *r)
   l4util_mb_vbe_mode_t vbi;
   _vbus = L4Re::chkcap(L4Re::Env::env()->get_cap<L4vbus::Vbus>("vbus"), "request V-BUS cap");
   _vbus_event.init<L4::Irq>(_vbus);
-  r->register_irq_obj(&_vbus_irq, L4::cap_cast<L4::Irq>(_vbus_event.irq()));
+  r->register_obj(&_vbus_irq, L4::cap_cast<L4::Irq>(_vbus_event.irq()));
 
   _vbus->acquire(L4VBUS_INHIBITOR_SUSPEND, "GFX running");
 
@@ -105,7 +105,8 @@ Vesa_fb::setup_drv(Prog_args *pa, L4Re::Util::Object_registry *r)
   _vidmem_start = 0;
   int error;
   error = L4Re::Env::env()->rm()->attach(&_vidmem_start, _vidmem_size,
-                                         L4Re::Rm::Search_addr | L4Re::Rm::Eager_map,
+                                         L4Re::Rm::F::Search_addr | L4Re::Rm::F::Eager_map
+                                         | L4Re::Rm::F::RW,
                                          _vbus, vbi.phys_base, 20);
 
   if (error)

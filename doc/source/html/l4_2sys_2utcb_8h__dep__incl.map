@@ -1,101 +1,101 @@
 <map id="l4/sys/utcb.h" name="l4/sys/utcb.h">
-<area shape="rect" id="node2" href="$kernel__object_8h.html" title="Kernel object system calls. " alt="" coords="4064,244,4221,271"/>
-<area shape="rect" id="node31" href="$ipc__helper.html" title="IPC helper. " alt="" coords="3876,803,4004,830"/>
-<area shape="rect" id="node56" href="$ipc__epiface_source.html" title="l4/sys/cxx/ipc_epiface" alt="" coords="635,632,794,659"/>
-<area shape="rect" id="node65" href="$debugger_8h.html" title="Debugger related definitions. " alt="" coords="4065,319,4197,345"/>
-<area shape="rect" id="node66" href="$l4_2sys_2ipc_8h.html" title="Common IPC interface. " alt="" coords="4213,80,4304,107"/>
-<area shape="rect" id="node68" href="$task_8h.html" title="Common task related definitions. " alt="" coords="3400,162,3499,189"/>
-<area shape="rect" id="node80" href="$factory_8h.html" title="Common factory related definitions. " alt="" coords="4795,162,4911,189"/>
-<area shape="rect" id="node83" href="$vcpu_2vcpu_8h_source.html" title="l4/vcpu/vcpu.h" alt="" coords="5134,162,5245,189"/>
-<area shape="rect" id="node85" href="$virtio_8h_source.html" title="l4/l4virtio/virtio.h" alt="" coords="3159,475,3281,502"/>
-<area shape="rect" id="node86" href="$l4_2sys_2thread_8h.html" title="Common thread related definitions. " alt="" coords="3624,162,3739,189"/>
-<area shape="rect" id="node88" href="$x86_2l4f_2l4_2util_2port__io_8h.html" title="port I/O functions " alt="" coords="5269,162,5427,189"/>
-<area shape="rect" id="node95" href="$ipc__gate_8h.html" title="The C IPC gate interface. " alt="" coords="3133,162,3259,189"/>
-<area shape="rect" id="node96" href="$platform__control_8h.html" title="Platform control object. " alt="" coords="4935,162,5110,189"/>
-<area shape="rect" id="node97" href="$ipc__basics_source.html" title="l4/sys/cxx/ipc_basics" alt="" coords="1301,244,1453,271"/>
-<area shape="rect" id="node100" href="$llulc_8h_source.html" title="l4/util/llulc.h" alt="" coords="5506,80,5598,107"/>
-<area shape="rect" id="node3" href="$l4_2sys_2irq_8h.html" title="C Irq interface. " alt="" coords="4431,319,4521,345"/>
-<area shape="rect" id="node9" href="$kobject_source.html" title="l4/sys/kobject" alt="" coords="3356,475,3463,502"/>
-<area shape="rect" id="node62" href="$icu_8h.html" title="Interrupt controller. " alt="" coords="3305,319,3396,345"/>
-<area shape="rect" id="node63" href="$scheduler_8h.html" title="Scheduler object functions. " alt="" coords="4273,319,4407,345"/>
-<area shape="rect" id="node4" href="$internal_8h_source.html" title="l4/shmc/internal.h" alt="" coords="4375,393,4507,420"/>
-<area shape="rect" id="node5" href="$irq.html" title="C++ Irq interface. " alt="" coords="3089,714,3167,741"/>
-<area shape="rect" id="node8" href="$semaphore_8h_source.html" title="l4/sys/semaphore.h" alt="" coords="4532,393,4676,420"/>
-<area shape="rect" id="node6" href="$l4virtio_source.html" title="l4/l4virtio/l4virtio" alt="" coords="3248,803,3371,830"/>
-<area shape="rect" id="node7" href="$event_source.html" title="l4/re/event" alt="" coords="2777,803,2866,830"/>
-<area shape="rect" id="node10" href="$capability.html" title="L4::Cap related definitions. " alt="" coords="3260,632,3380,659"/>
-<area shape="rect" id="node54" href="$sys_2meta.html" title="Meta interface for getting dynamic type information about objects behind capabilities. " alt="" coords="1080,557,1173,584"/>
-<area shape="rect" id="node61" href="$debugger.html" title="The debugger interface specifies common debugging related definitions. " alt="" coords="3375,557,3497,584"/>
-<area shape="rect" id="node11" href="$rm.html" title="Region mapper interface. " alt="" coords="2255,803,2326,830"/>
-<area shape="rect" id="node13" href="$pager.html" title="Pager and Io_pager C++ interface. " alt="" coords="1531,714,1629,741"/>
-<area shape="rect" id="node14" href="$consts.html" title="Constants. " alt="" coords="4211,714,4306,741"/>
-<area shape="rect" id="node18" href="$vfs_8h_source.html" title="l4/l4re_vfs/vfs.h" alt="" coords="4216,885,4336,912"/>
-<area shape="rect" id="node19" href="$dataspace.html" title="Dataspace interface. " alt="" coords="2792,714,2912,741"/>
-<area shape="rect" id="node20" href="$ds__util_8h_source.html" title="l4/l4re_vfs/impl/ds\l_util.h" alt="" coords="2942,796,3077,837"/>
-<area shape="rect" id="node21" href="$goos_source.html" title="l4/re/video/goos" alt="" coords="3101,803,3224,830"/>
-<area shape="rect" id="node22" href="$goos__svr_source.html" title="l4/re/util/video/goos_svr" alt="" coords="2865,885,3036,912"/>
-<area shape="rect" id="node23" href="$dma__space.html" title="l4/re/dma_space" alt="" coords="2350,803,2477,830"/>
-<area shape="rect" id="node25" href="$parent.html" title="Parent interface. " alt="" coords="1755,714,1850,741"/>
-<area shape="rect" id="node26" href="$mem__alloc.html" title="Memory allocator interface. " alt="" coords="3714,803,3835,830"/>
-<area shape="rect" id="node27" href="$factory.html" title="Common factory related definitions. " alt="" coords="3929,714,4034,741"/>
-<area shape="rect" id="node28" href="$vcon.html" title="Virtual console interface. " alt="" coords="5202,714,5294,741"/>
-<area shape="rect" id="node29" href="$vcon__stream_8h_source.html" title="l4/l4re_vfs/impl/vcon\l_stream.h" alt="" coords="4043,796,4194,837"/>
-<area shape="rect" id="node30" href="$exceptions.html" title="Base exceptions. " alt="" coords="3496,714,3627,741"/>
-<area shape="rect" id="node32" href="$cxx_2ipc__server.html" title="IPC server loop. " alt="" coords="1381,803,1509,830"/>
-<area shape="rect" id="node33" href="$task.html" title="Common task related definitions. " alt="" coords="5505,714,5593,741"/>
-<area shape="rect" id="node36" href="$smart__capability.html" title="L4::Capability class. " alt="" coords="4331,714,4493,741"/>
-<area shape="rect" id="node37" href="$inhibitor_source.html" title="l4/re/inhibitor" alt="" coords="995,714,1098,741"/>
-<area shape="rect" id="node38" href="$ipc__stream.html" title="IPC stream. " alt="" coords="1325,714,1456,741"/>
-<area shape="rect" id="node40" href="$exception_source.html" title="l4/sys/exception" alt="" coords="2200,714,2323,741"/>
-<area shape="rect" id="node41" href="$ipc__gate.html" title="The C++ IPC gate interface. " alt="" coords="2398,714,2514,741"/>
-<area shape="rect" id="node42" href="$platform__control.html" title="Platform control object. " alt="" coords="5014,714,5178,741"/>
-<area shape="rect" id="node43" href="$scheduler.html" title="Scheduler object functions. " alt="" coords="4867,714,4989,741"/>
-<area shape="rect" id="node44" href="$sys_2thread.html" title="Common thread related definitions. " alt="" coords="4739,714,4842,741"/>
-<area shape="rect" id="node45" href="$ns__fs_8h_source.html" title="l4/l4re_vfs/impl/ns_fs.h" alt="" coords="1533,803,1699,830"/>
-<area shape="rect" id="node46" href="$namespace.html" title="Namespace interface. " alt="" coords="1174,714,1301,741"/>
-<area shape="rect" id="node48" href="$name__space__svr_source.html" title="l4/re/util/name_space_svr" alt="" coords="1174,803,1357,830"/>
-<area shape="rect" id="node49" href="$debug.html" title="Debug interface. " alt="" coords="1926,714,2018,741"/>
-<area shape="rect" id="node50" href="$mmio__space_source.html" title="l4/re/mmio_space" alt="" coords="2043,714,2176,741"/>
-<area shape="rect" id="node51" href="$bitmap__cap__alloc.html" title="Bitmap capability allocator. " alt="" coords="4568,707,4715,748"/>
-<area shape="rect" id="node52" href="$l4iostream.html" title="L4 IO stream. " alt="" coords="3651,714,3778,741"/>
-<area shape="rect" id="node53" href="$cxx_2thread.html" title="Thread implementation. " alt="" coords="3802,714,3905,741"/>
-<area shape="rect" id="node12" href="$rm__impl_8h.html" title="Region map client stub implementation. " alt="" coords="2418,885,2561,912"/>
-<area shape="rect" id="node15" href="$counting__cap__alloc.html" title="Reference&#45;counting capability allocator. " alt="" coords="5307,796,5435,837"/>
-<area shape="rect" id="node16" href="$util_2cap__alloc.html" title="Capability allocator. " alt="" coords="4358,803,4493,830"/>
-<area shape="rect" id="node17" href="$cap__alloc.html" title="Abstract capability&#45;allocator interface. " alt="" coords="4219,803,4333,830"/>
-<area shape="rect" id="node24" href="$dataspace__impl_8h.html" title="Dataspace client stub implementation. " alt="" coords="2501,796,2651,837"/>
-<area shape="rect" id="node34" href="$vm.html" title="Virtualization interface. " alt="" coords="5509,803,5589,830"/>
-<area shape="rect" id="node35" href="$cap.html" title="Capability utility functions. " alt="" coords="5613,803,5712,830"/>
-<area shape="rect" id="node39" href="$vbus__generic_source.html" title="l4/vbus/vbus_generic" alt="" coords="1723,803,1875,830"/>
-<area shape="rect" id="node47" href="$namespace__impl_8h.html" title="Namespace client stub implementation. " alt="" coords="3505,796,3661,837"/>
-<area shape="rect" id="node55" href="$typeinfo__svr.html" title="Type information server template. " alt="" coords="635,714,773,741"/>
-<area shape="rect" id="node57" href="$ipc__legacy_source.html" title="l4/sys/cxx/ipc_legacy" alt="" coords="575,803,729,830"/>
-<area shape="rect" id="node58" href="$virtio-block_source.html" title="l4/l4virtio/server\l/virtio&#45;block" alt="" coords="797,707,920,748"/>
-<area shape="rect" id="node59" href="$cmd__control_source.html" title="pkg/l4re&#45;core/ned/lib\l/include/cmd_control" alt="" coords="94,707,245,748"/>
-<area shape="rect" id="node60" href="$ipc__server__loop_source.html" title="l4/sys/cxx/ipc_server_loop" alt="" coords="371,714,559,741"/>
-<area shape="rect" id="node64" href="$l4_2util_2thread_8h.html" title="Low&#45;level Thread Functions. " alt="" coords="4138,393,4249,420"/>
-<area shape="rect" id="node67" href="$____kernel__object__impl_8h.html" title="Low&#45;level kernel debugger functions. " alt="" coords="3763,155,3925,196"/>
-<area shape="rect" id="node78" href="$amd64_2l4_2sys_2segment_8h.html" title="Segment handling. " alt="" coords="3695,244,3870,271"/>
-<area shape="rect" id="node79" href="$x86_2l4_2sys_2segment_8h.html" title="Segment handling. " alt="" coords="3516,244,3671,271"/>
-<area shape="rect" id="node81" href="$vcon_8h.html" title="Virtual console interface. " alt="" coords="5197,632,5299,659"/>
-<area shape="rect" id="node90" href="$amd64_2l4_2util_2util_8h.html" title="Utilities, amd64 version. " alt="" coords="3949,162,4083,189"/>
-<area shape="rect" id="node91" href="$l4_2util_2util_8h_source.html" title="l4/util/util.h" alt="" coords="4006,557,4093,584"/>
-<area shape="rect" id="node92" href="$x86_2l4_2util_2util_8h.html" title="Utilities for x86. " alt="" coords="4107,162,4221,189"/>
-<area shape="rect" id="node93" href="$kdebug_8h_source.html" title="l4/sys/kdebug.h" alt="" coords="4398,162,4517,189"/>
-<area shape="rect" id="node69" href="$capability_8h_source.html" title="l4/sys/cxx/capability.h" alt="" coords="1595,244,1751,271"/>
-<area shape="rect" id="node70" href="$____typeinfo_8h.html" title="Type information handling. " alt="" coords="1389,393,1528,420"/>
-<area shape="rect" id="node75" href="$ipc__types.html" title="l4/sys/cxx/ipc_types" alt="" coords="1699,319,1845,345"/>
-<area shape="rect" id="node71" href="$ipc__iface.html" title="Interface Definition Language. " alt="" coords="1842,475,1985,502"/>
-<area shape="rect" id="node72" href="$ipc__client.html" title="l4/sys/cxx/ipc_client" alt="" coords="2436,632,2583,659"/>
-<area shape="rect" id="node73" href="$sys_2cxx_2ipc__server_source.html" title="l4/sys/cxx/ipc_server" alt="" coords="649,557,802,584"/>
-<area shape="rect" id="node74" href="$iommu_source.html" title="l4/sys/iommu" alt="" coords="1907,557,2010,584"/>
-<area shape="rect" id="node76" href="$ipc__array_source.html" title="l4/sys/cxx/ipc_array" alt="" coords="1168,393,1315,420"/>
-<area shape="rect" id="node77" href="$ipc__string_source.html" title="l4/sys/cxx/ipc_string" alt="" coords="911,475,1059,502"/>
-<area shape="rect" id="node82" href="$sys_2assert_8h.html" title="Low&#45;level assert implementation. " alt="" coords="5319,714,5431,741"/>
-<area shape="rect" id="node84" href="$vcpu_source.html" title="l4/vcpu/vcpu" alt="" coords="5129,244,5228,271"/>
-<area shape="rect" id="node87" href="$lock_8h.html" title="Simple lock implementation. " alt="" coords="3894,244,3989,271"/>
-<area shape="rect" id="node89" href="$amd64_2l4f_2l4_2util_2port__io_8h.html" title="Port I/O functions. " alt="" coords="5252,244,5431,271"/>
-<area shape="rect" id="node94" href="$____ktrace-impl_8h.html" title="L4 kernel event tracing. " alt="" coords="4448,244,4605,271"/>
-<area shape="rect" id="node98" href="$ipc__ret__array_source.html" title="l4/sys/cxx/ipc_ret\l_array" alt="" coords="303,468,433,509"/>
-<area shape="rect" id="node99" href="$ipc__varg_source.html" title="l4/sys/cxx/ipc_varg" alt="" coords="2943,632,3084,659"/>
+<area shape="rect" id="node2" href="$kernel__object_8h.html" title="Kernel object system calls. " alt="" coords="3657,244,3815,271"/>
+<area shape="rect" id="node29" href="$ipc__helper.html" title="IPC helper. " alt="" coords="595,803,723,830"/>
+<area shape="rect" id="node52" href="$ipc__epiface_source.html" title="l4/sys/cxx/ipc_epiface" alt="" coords="1665,632,1823,659"/>
+<area shape="rect" id="node61" href="$debugger_8h.html" title="Debugger related definitions. " alt="" coords="3949,319,4081,345"/>
+<area shape="rect" id="node62" href="$l4_2sys_2ipc_8h.html" title="Common IPC interface. " alt="" coords="3667,80,3757,107"/>
+<area shape="rect" id="node64" href="$rcv__endpoint_8h.html" title="Receive endpoint C interface. " alt="" coords="1149,162,1304,189"/>
+<area shape="rect" id="node65" href="$ipc__gate_8h.html" title="The C IPC gate interface. " alt="" coords="661,244,787,271"/>
+<area shape="rect" id="node66" href="$l4_2sys_2task_8h.html" title="Common task related definitions. " alt="" coords="4465,162,4564,189"/>
+<area shape="rect" id="node78" href="$factory_8h.html" title="Common factory related definitions. " alt="" coords="2901,162,3017,189"/>
+<area shape="rect" id="node81" href="$vcpu_2vcpu_8h_source.html" title="l4/vcpu/vcpu.h" alt="" coords="4997,162,5107,189"/>
+<area shape="rect" id="node83" href="$virtio_8h_source.html" title="l4/l4virtio/virtio.h" alt="" coords="43,557,165,584"/>
+<area shape="rect" id="node84" href="$l4_2sys_2thread_8h.html" title="Common thread related definitions. " alt="" coords="4857,162,4972,189"/>
+<area shape="rect" id="node86" href="$x86_2l4f_2l4_2util_2port__io_8h.html" title="port I/O functions " alt="" coords="5131,162,5290,189"/>
+<area shape="rect" id="node95" href="$arm__smccc_8h_source.html" title="l4/sys/arm_smccc.h" alt="" coords="4689,162,4833,189"/>
+<area shape="rect" id="node96" href="$platform__control_8h.html" title="Platform control object. " alt="" coords="4266,162,4441,189"/>
+<area shape="rect" id="node97" href="$ipc__basics_source.html" title="l4/sys/cxx/ipc_basics" alt="" coords="2007,244,2159,271"/>
+<area shape="rect" id="node100" href="$llulc_8h_source.html" title="l4/util/llulc.h" alt="" coords="4570,80,4662,107"/>
+<area shape="rect" id="node3" href="$l4_2sys_2irq_8h.html" title="C Irq interface. " alt="" coords="1457,319,1546,345"/>
+<area shape="rect" id="node9" href="$kobject_source.html" title="l4/sys/kobject" alt="" coords="3664,475,3771,502"/>
+<area shape="rect" id="node58" href="$icu_8h.html" title="Interrupt controller. " alt="" coords="379,319,469,345"/>
+<area shape="rect" id="node59" href="$scheduler_8h.html" title="Scheduler object functions. " alt="" coords="4151,319,4286,345"/>
+<area shape="rect" id="node4" href="$internal_8h_source.html" title="l4/shmc/internal.h" alt="" coords="1379,393,1511,420"/>
+<area shape="rect" id="node5" href="$irq.html" title="C++ Irq interface. " alt="" coords="747,803,826,830"/>
+<area shape="rect" id="node8" href="$semaphore_8h_source.html" title="l4/sys/semaphore.h" alt="" coords="1536,393,1680,420"/>
+<area shape="rect" id="node6" href="$l4virtio_source.html" title="l4/l4virtio/l4virtio" alt="" coords="725,885,848,912"/>
+<area shape="rect" id="node7" href="$event_source.html" title="l4/re/event" alt="" coords="2741,885,2830,912"/>
+<area shape="rect" id="node10" href="$capability.html" title="L4::Cap related definitions. " alt="" coords="3501,632,3621,659"/>
+<area shape="rect" id="node50" href="$sys_2meta.html" title="Meta interface for getting dynamic type information about objects behind capabilities. " alt="" coords="2291,557,2384,584"/>
+<area shape="rect" id="node57" href="$debugger.html" title="The debugger interface specifies common debugging related definitions. " alt="" coords="4153,557,4274,584"/>
+<area shape="rect" id="node11" href="$rm.html" title="Region mapper interface. " alt="" coords="4683,803,4754,830"/>
+<area shape="rect" id="node13" href="$pager.html" title="Pager and Io_pager C++ interface. " alt="" coords="4908,714,5007,741"/>
+<area shape="rect" id="node14" href="$re_2consts.html" title="Constants. " alt="" coords="4586,714,4681,741"/>
+<area shape="rect" id="node15" href="$dataspace.html" title="Dataspace interface. " alt="" coords="4441,714,4561,741"/>
+<area shape="rect" id="node16" href="$vfs_8h_source.html" title="l4/l4re_vfs/vfs.h" alt="" coords="4145,803,4265,830"/>
+<area shape="rect" id="node17" href="$goos_source.html" title="l4/re/video/goos" alt="" coords="3999,803,4121,830"/>
+<area shape="rect" id="node18" href="$goos__svr_source.html" title="l4/re/util/video/goos_svr" alt="" coords="4213,885,4384,912"/>
+<area shape="rect" id="node19" href="$dma__space.html" title="l4/re/dma_space" alt="" coords="5373,803,5499,830"/>
+<area shape="rect" id="node21" href="$parent.html" title="Parent interface. " alt="" coords="2367,714,2462,741"/>
+<area shape="rect" id="node22" href="$mem__alloc.html" title="Memory allocator interface. " alt="" coords="3431,803,3553,830"/>
+<area shape="rect" id="node23" href="$factory.html" title="Common factory related definitions. " alt="" coords="3282,714,3387,741"/>
+<area shape="rect" id="node24" href="$rcv__endpoint.html" title="The C++ Receive endpoint interface. " alt="" coords="1477,714,1621,741"/>
+<area shape="rect" id="node25" href="$ipc__gate.html" title="The C++ IPC gate interface. " alt="" coords="1667,803,1783,830"/>
+<area shape="rect" id="node26" href="$vcon.html" title="Virtual console interface. " alt="" coords="5082,714,5174,741"/>
+<area shape="rect" id="node27" href="$vcon__stream_8h_source.html" title="l4/l4re_vfs/impl/vcon\l_stream.h" alt="" coords="4915,796,5066,837"/>
+<area shape="rect" id="node28" href="$exceptions.html" title="Base exceptions. " alt="" coords="1045,714,1176,741"/>
+<area shape="rect" id="node30" href="$cxx_2ipc__server.html" title="IPC server loop. " alt="" coords="2080,803,2208,830"/>
+<area shape="rect" id="node31" href="$task.html" title="Common task related definitions. " alt="" coords="5807,714,5895,741"/>
+<area shape="rect" id="node32" href="$smart__capability.html" title="L4::Capability class. " alt="" coords="3919,714,4081,741"/>
+<area shape="rect" id="node33" href="$smart__capability__1x.html" title="l4/sys/cxx/smart_capability_1x" alt="" coords="4105,714,4316,741"/>
+<area shape="rect" id="node34" href="$arm__smccc_source.html" title="l4/sys/arm_smccc" alt="" coords="2487,714,2620,741"/>
+<area shape="rect" id="node35" href="$exception.html" title="Exception C++ interface. " alt="" coords="2823,714,2945,741"/>
+<area shape="rect" id="node36" href="$platform__control.html" title="Platform control object. " alt="" coords="5346,714,5510,741"/>
+<area shape="rect" id="node37" href="$scheduler.html" title="Scheduler object functions. " alt="" coords="5199,714,5321,741"/>
+<area shape="rect" id="node38" href="$sys_2thread.html" title="Common thread related definitions. " alt="" coords="5919,714,6022,741"/>
+<area shape="rect" id="node39" href="$ns__fs_8h_source.html" title="l4/l4re_vfs/impl/ns_fs.h" alt="" coords="1863,803,2028,830"/>
+<area shape="rect" id="node40" href="$namespace.html" title="Namespace interface. " alt="" coords="793,714,919,741"/>
+<area shape="rect" id="node42" href="$name__space__svr_source.html" title="l4/re/util/name_space_svr" alt="" coords="917,803,1099,830"/>
+<area shape="rect" id="node43" href="$debug.html" title="Debug interface. " alt="" coords="2251,714,2343,741"/>
+<area shape="rect" id="node44" href="$inhibitor_source.html" title="l4/re/inhibitor" alt="" coords="1910,714,2013,741"/>
+<area shape="rect" id="node45" href="$mmio__space_source.html" title="l4/re/mmio_space" alt="" coords="2969,714,3103,741"/>
+<area shape="rect" id="node46" href="$random_source.html" title="l4/re/random" alt="" coords="2645,714,2747,741"/>
+<area shape="rect" id="node47" href="$bitmap__cap__alloc.html" title="Bitmap capability allocator. " alt="" coords="5535,707,5681,748"/>
+<area shape="rect" id="node48" href="$ipc__stream.html" title="IPC stream. " alt="" coords="3127,714,3257,741"/>
+<area shape="rect" id="node12" href="$rm__impl_8h.html" title="Region map client stub implementation. " alt="" coords="4566,885,4709,912"/>
+<area shape="rect" id="node20" href="$dataspace__impl_8h.html" title="Dataspace client stub implementation. " alt="" coords="2423,796,2572,837"/>
+<area shape="rect" id="node41" href="$namespace__impl_8h.html" title="Namespace client stub implementation. " alt="" coords="259,796,415,837"/>
+<area shape="rect" id="node49" href="$vbus__generic_source.html" title="l4/vbus/vbus_generic" alt="" coords="3116,803,3268,830"/>
+<area shape="rect" id="node51" href="$typeinfo__svr.html" title="Type information server template. " alt="" coords="2088,714,2227,741"/>
+<area shape="rect" id="node53" href="$ipc__legacy_source.html" title="l4/sys/cxx/ipc_legacy" alt="" coords="1377,803,1532,830"/>
+<area shape="rect" id="node54" href="$virtio-block_source.html" title="l4/l4virtio/server\l/virtio&#45;block" alt="" coords="595,707,717,748"/>
+<area shape="rect" id="node55" href="$cmd__control_source.html" title="pkg/l4re&#45;core/ned/lib\l/include/cmd_control" alt="" coords="1251,707,1402,748"/>
+<area shape="rect" id="node56" href="$ipc__server__loop_source.html" title="l4/sys/cxx/ipc_server_loop" alt="" coords="1646,714,1834,741"/>
+<area shape="rect" id="node60" href="$l4_2util_2thread_8h.html" title="Low&#45;level Thread Functions. " alt="" coords="4203,393,4314,420"/>
+<area shape="rect" id="node63" href="$____kernel__object__impl_8h.html" title="Low&#45;level kernel debugger functions. " alt="" coords="3631,155,3793,196"/>
+<area shape="rect" id="node76" href="$amd64_2l4_2sys_2segment_8h.html" title="Segment handling. " alt="" coords="4603,244,4778,271"/>
+<area shape="rect" id="node77" href="$x86_2l4_2sys_2segment_8h.html" title="Segment handling. " alt="" coords="4803,244,4957,271"/>
+<area shape="rect" id="node79" href="$vcon_8h.html" title="Virtual console interface. " alt="" coords="3183,162,3286,189"/>
+<area shape="rect" id="node88" href="$amd64_2l4_2util_2util_8h.html" title="Utilities, amd64 version. " alt="" coords="4007,162,4140,189"/>
+<area shape="rect" id="node89" href="$l4_2util_2util_8h_source.html" title="l4/util/util.h" alt="" coords="179,475,266,502"/>
+<area shape="rect" id="node90" href="$x86_2l4_2util_2util_8h.html" title="Utilities for x86. " alt="" coords="3818,162,3931,189"/>
+<area shape="rect" id="node91" href="$kdebug_8h_source.html" title="l4/sys/kdebug.h" alt="" coords="3041,162,3159,189"/>
+<area shape="rect" id="node93" href="$____task-arm_8h_source.html" title="l4/sys/__task&#45;arm.h" alt="" coords="3362,162,3505,189"/>
+<area shape="rect" id="node67" href="$capability_8h_source.html" title="l4/sys/cxx/capability.h" alt="" coords="3217,244,3373,271"/>
+<area shape="rect" id="node68" href="$____typeinfo_8h.html" title="Type information handling. " alt="" coords="1907,393,2045,420"/>
+<area shape="rect" id="node73" href="$ipc__types.html" title="l4/sys/cxx/ipc_types" alt="" coords="3115,319,3261,345"/>
+<area shape="rect" id="node69" href="$ipc__iface.html" title="Interface Definition Language. " alt="" coords="2533,475,2675,502"/>
+<area shape="rect" id="node70" href="$ipc__client.html" title="l4/sys/cxx/ipc_client" alt="" coords="1137,632,1284,659"/>
+<area shape="rect" id="node71" href="$sys_2cxx_2ipc__server_source.html" title="l4/sys/cxx/ipc_server" alt="" coords="1670,557,1823,584"/>
+<area shape="rect" id="node72" href="$iommu_source.html" title="l4/sys/iommu" alt="" coords="2642,557,2745,584"/>
+<area shape="rect" id="node74" href="$ipc__array_source.html" title="l4/sys/cxx/ipc_array" alt="" coords="1157,393,1304,420"/>
+<area shape="rect" id="node75" href="$ipc__string_source.html" title="l4/sys/cxx/ipc_string" alt="" coords="1446,475,1594,502"/>
+<area shape="rect" id="node80" href="$sys_2assert_8h.html" title="Low&#45;level assert implementation. " alt="" coords="1871,244,1983,271"/>
+<area shape="rect" id="node82" href="$vcpu_source.html" title="l4/vcpu/vcpu" alt="" coords="5152,244,5251,271"/>
+<area shape="rect" id="node85" href="$lock_8h.html" title="Simple lock implementation. " alt="" coords="5033,244,5127,271"/>
+<area shape="rect" id="node87" href="$amd64_2l4f_2l4_2util_2port__io_8h.html" title="Port I/O functions. " alt="" coords="5275,244,5453,271"/>
+<area shape="rect" id="node92" href="$____ktrace-impl_8h.html" title="L4 kernel event tracing. " alt="" coords="2884,244,3041,271"/>
+<area shape="rect" id="node94" href="$arm_2l4_2sys_2task_8h_source.html" title="arm/l4/sys/task.h" alt="" coords="3066,244,3193,271"/>
+<area shape="rect" id="node98" href="$ipc__ret__array_source.html" title="l4/sys/cxx/ipc_ret\l_array" alt="" coords="3896,468,4027,509"/>
+<area shape="rect" id="node99" href="$ipc__varg_source.html" title="l4/sys/cxx/ipc_varg" alt="" coords="3285,632,3427,659"/>
 </map>

@@ -109,6 +109,55 @@ s0_request_ram(l4_addr_t s, l4_addr_t, int order)
   return 0;
 }
 
+class Dirinfo
+{
+public:
+  void add(cxx::String const &name)
+  {
+    do
+      {
+        unsigned left = _space - _size;
+        unsigned written = snprintf(_buf + _size, left, "%d:%.*s\n",
+                                    name.len(), name.len(), name.start());
+        if (written > left)
+          {
+            char *n = (char *)Single_page_alloc_base::_alloc(_space + L4_PAGESIZE,
+                                                             L4_PAGESHIFT);
+            memcpy(n, _buf, _space);
+            Single_page_alloc_base::_free(_buf, _space, true);
+            _buf = n;
+            _space += L4_PAGESIZE;
+          }
+        else
+          {
+            _size += written;
+            break;
+          }
+      }
+    while (1);
+  }
+
+  bool empty() const
+  { return _size == 0; }
+
+  void create_ds_and_register(Moe::Name_space *ns)
+  {
+    if (empty())
+      return;
+
+    Moe::Dataspace_static *ds;
+    ds = new Moe::Dataspace_static((void *)_buf, _size, L4Re::Dataspace::F::R);
+
+    object_pool.cap_alloc()->alloc(ds);
+    ns->register_obj(".dirinfo", 0, ds);
+  }
+
+private:
+  unsigned _space = L4_PAGESIZE;
+  unsigned _size = 0;
+  char *_buf = (char *)Single_page_alloc_base::_alloc(_space, L4_PAGESHIFT);
+};
+
 void
 Moe::Boot_fs::init_stage2()
 {
@@ -128,15 +177,13 @@ Moe::Boot_fs::init_stage2()
 
   //dump_mbi(mbi);
 
-  unsigned dirinfo_space = L4_PAGESIZE;
-  char *dirinfo = (char *)Single_page_alloc_base::_alloc(dirinfo_space, L4_PAGESHIFT);
-  unsigned dirinfo_size = 0;
+  Dirinfo dirinfo_ro, dirinfo_rw;
 
   l4util_mb_mod_t const *modules = (l4util_mb_mod_t const *)(unsigned long)mbi->mods_addr;
   unsigned num_modules = mbi->mods_count;
 
   l4_addr_t m_low = -1;
-  l4_addr_t m_high = 0;
+  l4_addr_t m_high = 0; // inclusive!
   for (unsigned mod = 3; mod < num_modules; ++mod)
     {
       l4_addr_t s = modules[mod].mod_start;
@@ -153,46 +200,29 @@ Moe::Boot_fs::init_stage2()
       //l4_addr_t end = l4_round_page(modules[mod].mod_end);
       l4_addr_t end = modules[mod].mod_end;
 
-      if (m_high < l4_round_page(end))
-        m_high = l4_round_page(end);
+      if (m_high < l4_round_page(end) - 1)
+        m_high = l4_round_page(end) - 1;
 
       cxx::String opts;
       cxx::String name = cmdline_to_name((char const *)(unsigned long)modules[mod].cmdline, &opts);
-      unsigned flags = Dataspace::Cow_enabled;
+      Dataspace::Flags flags = Dataspace::Flags(Dataspace::Cow_enabled) | L4Re::Dataspace::F::RX;
       if (options_contains(opts, cxx::String(":rw")))
-        flags = Dataspace::Writable;
+        flags = L4Re::Dataspace::F::RWX;
 
       Moe::Dataspace_static *rf;
       rf = new Moe::Dataspace_static((void*)(unsigned long)modules[mod].mod_start,
                                      end - modules[mod].mod_start, flags);
       object = object_pool.cap_alloc()->alloc(rf);
-      if (flags & Dataspace::Writable)
-        rwfs_ns->register_obj(name, Entry::F_rw, rf);
-      else
-        rom_ns->register_obj(name, 0, rf);
-
-      do
+      if (flags.w())
         {
-          unsigned left = dirinfo_space - dirinfo_size;
-          unsigned written = snprintf(dirinfo + dirinfo_size, left, "%d:%.*s\n",
-                                      name.len(), name.len(), name.start());
-          if (written > left)
-            {
-              char *n = (char *)Single_page_alloc_base::_alloc(dirinfo_space + L4_PAGESIZE,
-                                                               L4_PAGESHIFT);
-              memcpy(n, dirinfo, dirinfo_space);
-              Single_page_alloc_base::_free(dirinfo, dirinfo_space, true);
-              dirinfo = n;
-              dirinfo_space += L4_PAGESIZE;
-            }
-          else
-            {
-              dirinfo_size += written;
-              break;
-            }
+          rwfs_ns->register_obj(name, Entry::F_rw, rf);
+          dirinfo_rw.add(name);
         }
-      while (1);
-
+      else
+        {
+          rom_ns->register_obj(name, 0, rf);
+          dirinfo_ro.add(name);
+        }
 
       L4::cout << "  BOOTFS: [" << (void*)(unsigned long)modules[mod].mod_start << "-"
                << (void*)end << "] " << object << " "
@@ -202,13 +232,8 @@ Moe::Boot_fs::init_stage2()
   if (m_low != (l4_addr_t)-1)
     l4util_splitlog2_hdl(m_low, m_high, s0_request_ram);
 
-  Moe::Dataspace_static *dirinfods;
-  dirinfods = new Moe::Dataspace_static((void *)dirinfo,
-                                        dirinfo_size,
-                                        Dataspace::Read_only);
-
-  object_pool.cap_alloc()->alloc(dirinfods);
-  rom_ns->register_obj(".dirinfo", 0, dirinfods);
+  dirinfo_ro.create_ds_and_register(rom_ns);
+  dirinfo_rw.create_ds_and_register(rwfs_ns);
 }
 
 

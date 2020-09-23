@@ -25,14 +25,17 @@
 #include <l4/crtn/initpriorities.h>
 #include <l4/re/env>
 #include <l4/re/util/cap_alloc>
+#include <l4/re/cap_alloc>
 
 //#define L4RE_STATIC_CAP_ALLOC
 #if defined(L4RE_STATIC_CAP_ALLOC)
 
-namespace
-{
-  L4Re::Util::Cap_alloc<4096> __attribute__((init_priority(INIT_PRIO_L4RE_UTIL_CAP_ALLOC))) __cap_alloc(L4Re::Env::env()->first_free_cap());
-};
+namespace {
+L4Re::Cap_alloc_t<L4Re::Util::Cap_alloc<4096> >
+  __attribute__((init_priority(INIT_PRIO_L4RE_UTIL_CAP_ALLOC)))
+  __cap_alloc(L4Re::Env::env()->first_free_cap());
+}
+
 #else
 
 #include <l4/re/dataspace>
@@ -40,7 +43,7 @@ namespace
 
 namespace
 {
-  struct Ca : public L4Re::Util::_Cap_alloc
+  struct Ca : L4Re::Cap_alloc_t<L4Re::Util::_Cap_alloc>
   {
     enum { Caps = 4096 };
     typedef L4Re::Util::_Cap_alloc::Counter_storage<Caps> Storage;
@@ -52,19 +55,35 @@ namespace
       _ds = L4::Cap<L4Re::Dataspace>(e->first_free_cap() << L4_CAP_SHIFT);
       l4_check(e->mem_alloc()->alloc(sizeof(Storage), _ds) >= 0);
       void *a = 0;
-      l4_check(e->rm()->attach(&a, sizeof(Storage), L4Re::Rm::Search_addr,
+      l4_check(e->rm()->attach(&a, sizeof(Storage),
+                               L4Re::Rm::F::Search_addr | L4Re::Rm::F::RW,
                                L4::Ipc::make_cap_rw(_ds)) >= 0);
       setup(a, Caps, e->first_free_cap() + 1);
     }
   };
 
   Ca __attribute__((init_priority(INIT_PRIO_L4RE_UTIL_CAP_ALLOC))) __cap_alloc;
-};
+}
+
 #endif
 
+namespace L4Re {
+  namespace Util {
+    _Cap_alloc &cap_alloc = __cap_alloc;
+  }
+#ifndef SHARED
+  Cap_alloc *virt_cap_alloc = &__cap_alloc;
+#else
+  // defined in ldso in the case of shared libs
+  extern Cap_alloc *virt_cap_alloc __attribute__((weak));
 
-namespace L4Re { namespace Util {
-
-_Cap_alloc &cap_alloc = __cap_alloc;
-
-}}
+  // however, we have to set it to our cap allocator now
+  // to enable the VFS to use the application cap allocator
+  static void __attribute__((constructor))
+  setup()
+  {
+    if (&virt_cap_alloc)
+      virt_cap_alloc = &__cap_alloc;
+  }
+#endif
+}

@@ -1,3 +1,4 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="node1" href="$structl4__timeout__s.html" title="Basic timeout specification. " alt="" coords="5,5,107,32"/>
+<area shape="rect" id="node1" href="$structL4_1_1Types_1_1Flags__ops__t.html" title="L4::Types::Flags_ops\l_t\&lt; Flags_t\&lt; DT, T \&gt; \&gt;" alt="" coords="5,5,168,47"/>
+<area shape="rect" id="node2" href="$structL4_1_1Types_1_1Flags__t.html" title="Template type to define a flags type with bitwise operations. " alt="" coords="216,5,351,47"/>
 </map>

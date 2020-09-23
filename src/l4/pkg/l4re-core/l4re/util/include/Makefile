@@ -19,13 +19,14 @@ EXTRA_TARGET +=      \
   object_registry    \
   poll_timeout_kipclock \
   region_mapping     \
-  region_mapping_svr \
   region_mapping_svr_2 \
   vcon_svr           \
   video/goos_svr     \
   video/goos_fb      \
   event              \
-  kumem_alloc
+  kumem_alloc        \
+  unique_cap         \
+  shared_cap         \
 
 
 include $(L4DIR)/mk/include.mk

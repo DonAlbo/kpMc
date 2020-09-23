@@ -20,21 +20,6 @@
 
 struct Moe_app_model : public Ldr::Base_app_model<Moe::Stack>
 {
-  enum
-  {
-    Task_cap               = 1,
-    Factory_cap            = 2,
-    Rm_thread_cap          = 3,
-    Log_cap                = 5,
-    External_rm_cap        = 6,
-    Allocator_cap          = 7,
-    Names_cap,
-    Parent_cap,
-    Kip_cap,
-    Scheduler_cap,
-    First_free,
-  };
-
   enum Prios
   {
     Default_base_prio = 0x00,
@@ -57,7 +42,7 @@ struct Moe_app_model : public Ldr::Base_app_model<Moe::Stack>
 
   void prog_attach_ds(l4_addr_t addr, unsigned long size,
                       Const_dataspace ds, unsigned long offset,
-                      unsigned flags, char const *what);
+                      L4Re::Rm::Flags flags, char const *what);
 
   l4_cap_idx_t push_initial_caps(l4_cap_idx_t s);
   void map_initial_caps(L4::Cap<L4::Task>, l4_cap_idx_t);
@@ -73,7 +58,8 @@ struct Moe_app_model : public Ldr::Base_app_model<Moe::Stack>
 
   void local_detach_ds(l4_addr_t addr, unsigned long size) const;
 
-  int prog_reserve_area(l4_addr_t *start, unsigned long size, unsigned flags, unsigned char align);
+  int prog_reserve_area(l4_addr_t *start, unsigned long size,
+                        L4Re::Rm::Flags flags, unsigned char align);
 
   Dataspace alloc_app_stack();
 
@@ -89,9 +75,6 @@ struct Moe_app_model : public Ldr::Base_app_model<Moe::Stack>
 
   static L4::Cap<void> local_kip_cap()
   { return kip_ds->obj_cap(); }
-
-  static L4::Cap<void> prog_kip_ds()
-  { return L4::Cap<void>(Kip_cap << L4_CAP_SHIFT); }
 
   L4Re::Env *add_env();
   void get_task_caps(L4::Cap<L4::Factory> *factory,

@@ -1,3 +1,4 @@
 <map id="L4virtio::Virtqueue::ready" name="L4virtio::Virtqueue::ready">
-<area shape="rect" id="node2" href="$classL4virtio_1_1Svr_1_1Block__dev.html#a9a96e928470518780132b45397e8ad35" title="Attach device to an object registry. " alt="" coords="187,5,321,47"/>
+<area shape="rect" id="node2" href="$classL4virtio_1_1Svr_1_1Block__dev__base.html#afd81130f9e38af771d43aabafa05e043" title="Releases resources related to a request and notifies the client. " alt="" coords="187,5,383,47"/>
+<area shape="rect" id="node3" href="$classL4virtio_1_1Svr_1_1Block__dev__base.html#aa0d0377a069419b77e4ff9c6ae08b092" title="reset callback, called for doing a device reset " alt="" coords="217,71,352,112"/>
 </map>

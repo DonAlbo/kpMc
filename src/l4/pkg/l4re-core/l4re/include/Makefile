@@ -17,7 +17,10 @@ EXTRA_TARGET += \
   mmio_space \
   namespace \
   parent    \
+  random    \
   rm        \
+  shared_cap \
+  unique_cap \
   video/colors \
   video/goos \
   video/view

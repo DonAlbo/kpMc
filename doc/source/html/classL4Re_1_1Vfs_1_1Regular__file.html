@@ -97,20 +97,16 @@ $(document).ready(function(){initNavTree('classL4Re_1_1Vfs_1_1Regular__file.html
 <div id="dynsection-0-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-0-content" class="dyncontent" style="display:none;">
-<div class="center"><img src="classL4Re_1_1Vfs_1_1Regular__file__inherit__graph.png" border="0" usemap="#L4Re_1_1Vfs_1_1Regular__file_inherit__map" alt="Inheritance graph"/></div>
-<map name="L4Re_1_1Vfs_1_1Regular__file_inherit__map" id="L4Re_1_1Vfs_1_1Regular__file_inherit__map">
-<area shape="rect" id="node2" href="classL4Re_1_1Vfs_1_1File.html" title="The basic interface for an open POSIX file. " alt="" coords="28,292,145,472"/>
-<area shape="rect" id="node3" href="classL4Re_1_1Vfs_1_1Be__file.html" title="Boiler plate class for implementing an open file for L4Re::Vfs. " alt="" coords="13,520,160,759"/>
-</map>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classL4Re_1_1Vfs_1_1Regular__file__inherit__graph.svg" width="174" height="764"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 <div id="dynsection-1" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-1-trigger" src="closed.png" alt="+"/> Collaboration diagram for L4Re::Vfs::Regular_file:</div>
 <div id="dynsection-1-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-1-content" class="dyncontent" style="display:none;">
-<div class="center"><img src="classL4Re_1_1Vfs_1_1Regular__file__coll__graph.png" border="0" usemap="#L4Re_1_1Vfs_1_1Regular__file_coll__map" alt="Collaboration graph"/></div>
-<map name="L4Re_1_1Vfs_1_1Regular__file_coll__map" id="L4Re_1_1Vfs_1_1Regular__file_coll__map">
-</map>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classL4Re_1_1Vfs_1_1Regular__file__coll__graph.svg" width="174" height="250"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
@@ -147,7 +143,7 @@ Public Member Functions</h2></td></tr>
 <div class="textblock"><p>Interface for a POSIX file that provides regular file semantics. </p>
 <p>Real objects use always the combined <a class="el" href="classL4Re_1_1Vfs_1_1File.html" title="The basic interface for an open POSIX file. ">L4Re::Vfs::File</a> interface. </p>
 
-<p class="definition">Definition at line <a class="el" href="vfs_8h_source.html#l00262">262</a> of file <a class="el" href="vfs_8h_source.html">vfs.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="vfs_8h_source.html#l00266">266</a> of file <a class="el" href="vfs_8h_source.html">vfs.h</a>.</p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
 <a id="a3ea4ea2627480102cf5b4de61e9c024a"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a3ea4ea2627480102cf5b4de61e9c024a">&#9670;&nbsp;</a></span>data_space()</h2>
@@ -179,8 +175,8 @@ Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Get an <a class="el" href="classL4Re_1_1Dataspace.html" title="Interface for memory-like objects. ">L4Re::Dataspace</a> object for the file. </p>
-<p>This is used as a backend for POSIX mmap and mmap2 functions. </p><dl class="section note"><dt>Note</dt><dd>mmap is not possible if the functions returns an invalid capability.</dd></dl>
-<dl class="section return"><dt>Returns</dt><dd>A capability to an <a class="el" href="classL4Re_1_1Dataspace.html" title="Interface for memory-like objects. ">L4Re::Dataspace</a>, that represents the files contents in an <a class="el" href="namespaceL4Re.html" title="L4Re C++ Interfaces. ">L4Re</a> way. </dd></dl>
+<p>This is used as a backend for POSIX mmap and mmap2 functions. </p><dl class="section note"><dt>Note</dt><dd>mmap is not possible if the function returns an invalid capability.</dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>A capability to an <a class="el" href="classL4Re_1_1Dataspace.html" title="Interface for memory-like objects. ">L4Re::Dataspace</a>, that represents the file contents in an <a class="el" href="namespaceL4Re.html" title="L4Re C++ Interfaces. ">L4Re</a> way. </dd></dl>
 
 <p>Implemented in <a class="el" href="classL4Re_1_1Vfs_1_1Be__file.html#ad59d2fac4751f39463ae1c5fa0878904">L4Re::Vfs::Be_file</a>.</p>
 
@@ -552,7 +548,7 @@ Public Member Functions</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="namespaceL4Re.html">L4Re</a></li><li class="navelem"><a class="el" href="namespaceL4Re_1_1Vfs.html">Vfs</a></li><li class="navelem"><a class="el" href="classL4Re_1_1Vfs_1_1Regular__file.html">Regular_file</a></li>
-    <li class="footer">Generated on Sun Sep 24 2017 23:15:13 for L4Re - L4 Runtime Environment by
+    <li class="footer">Generated on Tue Aug 11 2020 13:28:17 for L4Re - L4 Runtime Environment by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.13 </li>
   </ul>

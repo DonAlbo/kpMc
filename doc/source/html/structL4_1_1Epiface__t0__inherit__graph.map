@@ -1,0 +1,12 @@
+<map id="L4::Epiface_t0&lt; RPC_IFACE, BASE &gt;" name="L4::Epiface_t0&lt; RPC_IFACE, BASE &gt;">
+<area shape="rect" id="node2" href="$structL4_1_1Epiface__t0.html" title="{L4::Epiface_t0\&lt; void,\l BASE \&gt;\n||+ get_buffer_demand()\l+ obj_cap()\l}" alt="" coords="133,189,300,296"/>
+<area shape="rect" id="node5" href="$structL4_1_1Epiface__t0.html" title="{L4::Epiface_t0\&lt; L4\l::Kobject, L4::Epiface \&gt;\n||+ get_buffer_demand()\l+ obj_cap()\l}" alt="" coords="261,320,428,427"/>
+<area shape="rect" id="node7" href="$structL4_1_1Epiface__t0.html" title="{L4::Epiface_t0\&lt; void,\l Epiface \&gt;\n||+ get_buffer_demand()\l+ obj_cap()\l}" alt="" coords="5,320,172,427"/>
+<area shape="rect" id="node8" href="$structL4_1_1Epiface__t0.html" title="{L4::Epiface_t0\&lt; L4virtio\l::Device, L4::Epiface \&gt;\n||+ get_buffer_demand()\l+ obj_cap()\l}" alt="" coords="592,320,761,427"/>
+<area shape="rect" id="node10" href="$structL4_1_1Epiface__t0.html" title="{L4::Epiface_t0\&lt; IFACE,\l BASE \&gt;\n||+ get_buffer_demand()\l+ obj_cap()\l}" alt="" coords="415,189,581,296"/>
+<area shape="rect" id="node3" href="$structL4_1_1Irqep__t.html" title="Epiface implementation for interrupt handlers. " alt="" coords="129,451,283,557"/>
+<area shape="rect" id="node4" href="$structL4_1_1Irqep__t.html" title="{L4::Irqep_t\&lt; Irq_object \&gt;\n||+ dispatch()\l+ obj_cap()\l}" alt="" coords="48,642,223,734"/>
+<area shape="rect" id="node6" href="$structL4_1_1Epiface__t.html" title="{L4::Epiface_t\&lt; Null\l_handler, L4::Kobject \&gt;\n||+ dispatch()\l}" alt="" coords="275,642,441,734"/>
+<area shape="rect" id="node9" href="$structL4_1_1Epiface__t.html" title="{L4::Epiface_t\&lt; Block\l_dev\&lt; Ds_data \&gt;, L4virtio\l::Device \&gt;\n||+ dispatch()\l}" alt="" coords="535,635,717,741"/>
+<area shape="rect" id="node11" href="$structL4_1_1Epiface__t.html" title="Epiface implementation for Kobject&#45;based interface implementations. " alt="" coords="415,458,581,550"/>
+</map>

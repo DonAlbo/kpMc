@@ -30,8 +30,8 @@ __do_real_copy(Dataspace *dst, unsigned long &dst_offs,
 {
   while (sz)
     {
-      Dataspace::Address src_a = src->address(src_offs, Dataspace::Read_only);
-      Dataspace::Address dst_a = dst->address(dst_offs, Dataspace::Writable);
+      Dataspace::Address src_a = src->address(src_offs, L4Re::Dataspace::F::R);
+      Dataspace::Address dst_a = dst->address(dst_offs, L4Re::Dataspace::F::W);
 
       unsigned long b_sz = min(min(src_a.sz() - src_a.of(),
             dst_a.sz() - dst_a.of()), sz);
@@ -41,8 +41,8 @@ __do_real_copy(Dataspace *dst, unsigned long &dst_offs,
       // and do the I cache coherence only in this case.
       // And we should change the cache API to allow for a single call to handle
       // I-cache coherency and D-cache writeback.
-      l4_cache_coherent((l4_addr_t)dst_a.adr(), (l4_addr_t)dst_a.adr() + b_sz - 1);
-      l4_cache_clean_data((l4_addr_t)dst_a.adr(), (l4_addr_t)dst_a.adr() + b_sz - 1);
+      l4_cache_coherent((l4_addr_t)dst_a.adr(), (l4_addr_t)dst_a.adr() + b_sz);
+      l4_cache_clean_data((l4_addr_t)dst_a.adr(), (l4_addr_t)dst_a.adr() + b_sz);
 
       src_offs += b_sz;
       dst_offs += b_sz;
@@ -56,7 +56,7 @@ __do_cow_copy(Dataspace_noncont *dst, unsigned long &dst_offs, unsigned dst_pg_s
 {
   while (sz)
     {
-      Dataspace::Address src_a = src->address(src_offs, Dataspace::Read_only);
+      Dataspace::Address src_a = src->address(src_offs, L4Re::Dataspace::F::R);
       Dataspace_noncont::Page &dst_p = dst->alloc_page(dst_offs);
       dst->free_page(dst_p);
       void *src_p = (void*)trunc_page(dst_pg_sz,src_a.adr<unsigned long>());
@@ -245,7 +245,7 @@ Dataspace_util::copy(Dataspace *dst, unsigned long dst_offs,
 {
   if (src->can_cow() && dst->can_cow())
     {
-      if (!src->is_writable() && src->is_static())
+      if (!src->map_flags().w() && src->is_static())
         {
           Dataspace_noncont *nc = dynamic_cast<Dataspace_noncont*>(dst);
           if (nc && __do_lazy_copy(nc, dst_offs, src, src_offs, size))

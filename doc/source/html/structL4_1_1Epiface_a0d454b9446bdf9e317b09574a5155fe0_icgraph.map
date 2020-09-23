@@ -1,0 +1,4 @@
+<map id="L4::Epiface::obj_cap" name="L4::Epiface::obj_cap">
+<area shape="rect" id="node2" href="$classL4_1_1Server__object.html#a0908b0084f251057024850611e6a8763" title="The abstract handler for client requests to the object. " alt="" coords="217,5,355,47"/>
+<area shape="rect" id="node3" href="$classL4Re_1_1Util_1_1Object__registry.html#aeeea59583ffddfef4e7c1c3e6eed41b6" title="Remove a server object from the handler list. " alt="" coords="200,71,372,112"/>
+</map>

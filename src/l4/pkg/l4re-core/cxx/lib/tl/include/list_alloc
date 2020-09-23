@@ -1,4 +1,4 @@
-// vim:ft=cpp
+// vim:set ft=cpp: -*- Mode: C++ -*-
 /*
  * (c) 2008-2009 Alexander Warg <warg@os.inf.tu-dresden.de>,
  *               Torsten Frenzel <frenzel@os.inf.tu-dresden.de>
@@ -26,7 +26,7 @@
 namespace cxx {
 
 /**
- * \brief Standard list-based allocator.
+ * Standard list-based allocator.
  */
 class List_alloc
 {
@@ -48,7 +48,7 @@ private:
 public:
 
   /**
-   * \brief Initializes an empty list allocator.
+   * Initializes an empty list allocator.
    *
    * \note To initialize the allocator with available memory
    *       use the #free() function.
@@ -56,42 +56,62 @@ public:
   List_alloc() : _first(0) {}
 
   /**
-   * \brief Return a free memory block to the allocator.
+   * Return a free memory block to the allocator.
    *
-   * \param block pointer to memory block
-   * \param size  size of memory block
+   * \param block        Pointer to memory block.
+   * \param size         Size of memory block.
    * \param initial_free Set to true for putting fresh memory
    *                     to the allocator. This will enforce alignment on that
    *                     memory.
+   *
+   * \pre `block` must not be NULL.
+   * \pre `2 * sizeof(void *)` <= `size` <= `~0UL - 32`.
    */
   inline void free(void *block, unsigned long size, bool initial_free = false);
 
   /**
-   * \brief Alloc a memory block.
+   * Allocate a memory block.
    *
-   * \param size  Size of the memory block
-   * \param align Alignment constraint
+   * \param size  Size of the memory block.
+   * \param align Alignment constraint.
+   * \param lower Lower bound of the physical region the memory block should be
+   *              allocated from.
+   * \param upper Upper bound of the physical region the memory block should be
+   *              allocated from, value is inclusive.
    *
    * \return      Pointer to memory block
+   *
+   * \pre 0 < `size` <= `~0UL - 32`.
    */
-  inline void *alloc(unsigned long size, unsigned align);
+  inline void *alloc(unsigned long size, unsigned long align,
+                     unsigned long lower = 0, unsigned long upper = ~0UL);
 
   /**
-   * \brief Allocate a memory block of `min` <= size <=`max`.
+   * Allocate a memory block of `min` <= size <= `max`.
    *
-   * \param         min          Minimal size to allocate.
-   * \param[in,out] max          Maximum size to allocate. The actual allocated
-   *                             size is returned here.
+   * \param         min          Minimal size to allocate (in bytes).
+   * \param[in,out] max          Maximum size to allocate (in bytes). The actual
+   *                             allocated size is returned here.
    * \param         align        Alignment constraint.
-   * \param         granularity  Granularity to use for the allocation.
+   * \param         granularity  Granularity to use for the allocation (power
+   *                             of 2).
+   * \param         lower        Lower bound of the physical region the memory
+   *                             block should be allocated from.
+   * \param         upper        Upper bound of the physical region the memory
+   *                             block should be allocated from, value is
+   *                             inclusive.
    *
    * \return  Pointer to memory block
+   *
+   * \pre 0 < `min` <= `~0UL - 32`.
+   * \pre 0 < `max`.
    */
   inline void *alloc_max(unsigned long min, unsigned long *max,
-                         unsigned align, unsigned granularity);
+                         unsigned long align, unsigned granularity,
+                         unsigned long lower = 0, unsigned long upper = ~0UL);
 
   /**
-   * \brief Get the amount of available memory.
+   * Get the amount of available memory.
    *
    * \return Available memory in bytes
    */
@@ -111,11 +131,11 @@ public:
 };
 
 
-void 
+void
 List_alloc::check_overlap(void *, unsigned long )
 {}
 
-void 
+void
 List_alloc::sanity_check_list(char const *, char const *)
 {}
 
@@ -126,24 +146,24 @@ class List_alloc_sanity_guard
 private:
   List_alloc *a;
   char const *func;
-  
+
 public:
   List_alloc_sanity_guard(List_alloc *a, char const *func)
     : a(a), func(func)
   { a->sanity_check_list(func, "entry"); }
-  
+
   ~List_alloc_sanity_guard()
   { a->sanity_check_list(func, "exit"); }
 };
 
-void 
+void
 List_alloc::check_overlap(void *b, unsigned long s)
 {
   unsigned long const mb_align = (1UL << arith::Ld<sizeof(Mem_block)>::value) - 1;
   if ((unsigned long)b & mb_align)
     {
       L4::cerr << "List_alloc(FATAL): trying to free unaligned memory: "
-	       << b << " align=" << arith::Ld<sizeof(Mem_block)>::value << "\n";
+               << b << " align=" << arith::Ld<sizeof(Mem_block)>::value << "\n";
     }
 
   Mem_block *c = _first;
@@ -154,39 +174,39 @@ List_alloc::check_overlap(void *b, unsigned long s)
       unsigned long b_s = (unsigned long)c;
       unsigned long b_e = b_s + c->size;
 
-      if (   (x_s >= b_s && x_s < b_e)
-	  || (x_e > b_s && x_e <= b_e)
-	  || (b_s >= x_s && b_s < x_e)
-	  || (b_e > x_s && b_e <= x_e))
-	{
-	  L4::cerr << "List_alloc(FATAL): trying to free memory that "
-					  "is already free: \n  ["
-	    << (void*)x_s << '-' << (void*)x_e << ") overlaps ["
-	    << (void*)b_s << '-' << (void*)b_e << ")\n";
-	}
+      if ((x_s >= b_s && x_s < b_e)
+          || (x_e > b_s && x_e <= b_e)
+          || (b_s >= x_s && b_s < x_e)
+          || (b_e > x_s && b_e <= x_e))
+      {
+        L4::cerr << "List_alloc(FATAL): trying to free memory that "
+                    "is already free: \n  ["
+                 << (void*)x_s << '-' << (void*)x_e << ") overlaps ["
+                 << (void*)b_s << '-' << (void*)b_e << ")\n";
+      }
     }
 }
 
-void 
+void
 List_alloc::sanity_check_list(char const *func, char const *info)
 {
   Mem_block *c = _first;
   for (;c ; c = c->next)
     {
       if (c->next)
-	{
-	  if (c >= c->next)
-	    {
-	      L4::cerr << "List_alloc(FATAL): " << func << '(' << info 
-		<< "): list order violation\n";
-	    }
+        {
+          if (c >= c->next)
+            {
+              L4::cerr << "List_alloc(FATAL): " << func << '(' << info
+                       << "): list order violation\n";
+            }
 
-	  if (((unsigned long)c) + c->size > (unsigned long)c->next)
-	    {
-	      L4::cerr << "List_alloc(FATAL): " << func << '(' << info 
-		<< "): list order violation\n";
-	    }
-	}
+          if (((unsigned long)c) + c->size > (unsigned long)c->next)
+            {
+              L4::cerr << "List_alloc(FATAL): " << func << '(' << info
+                       << "): list order violation\n";
+            }
+        }
     }
 }
 
@@ -202,19 +222,19 @@ List_alloc::merge()
       unsigned long f_start = (unsigned long)c;
       unsigned long f_end   = f_start + c->size;
       unsigned long n_start = (unsigned long)c->next;
-      
+
       if (f_end == n_start)
-	{
-	  c->size += c->next->size;
-	  c->next = c->next->next;
-	  continue;
-	}
+        {
+          c->size += c->next->size;
+          c->next = c->next->next;
+          continue;
+        }
 
       c = c->next;
     }
 }
 
-void 
+void
 List_alloc::free(void *block, unsigned long size, bool initial_free)
 {
   List_alloc_sanity_guard __attribute__((unused)) guard(this, __func__);
@@ -233,20 +253,20 @@ List_alloc::free(void *block, unsigned long size, bool initial_free)
     size = (size + mb_align) & ~mb_align;
 
   check_overlap(block, size);
-  
+
   Mem_block **c = &_first;
   Mem_block *next = 0;
-  
+
   if (*c)
     {
       while (*c && *c < block)
-	c = &(*c)->next;
+        c = &(*c)->next;
 
       next = *c;
     }
-  
+
   *c = (Mem_block*)block;
-  
+
   (*c)->next = next;
   (*c)->size = size;
 
@@ -254,8 +274,9 @@ List_alloc::free(void *block, unsigned long size, bool initial_free)
 }
 
 void *
-List_alloc::alloc_max(unsigned long min, unsigned long *max, unsigned align,
-                      unsigned granularity)
+List_alloc::alloc_max(unsigned long min, unsigned long *max, unsigned long align,
+                      unsigned granularity, unsigned long lower,
+                      unsigned long upper)
 {
   List_alloc_sanity_guard __attribute__((unused)) guard(this, __func__);
 
@@ -272,7 +293,7 @@ List_alloc::alloc_max(unsigned long min, unsigned long *max, unsigned align,
   if (min > *max)
     return 0;
 
-  unsigned long almask = align ? (align - 1) : 0;
+  unsigned long almask = align ? (align - 1UL) : 0;
 
   // minimum alignment is given by the size of a Mem_block
   if (almask < mb_align)
@@ -281,6 +302,7 @@ List_alloc::alloc_max(unsigned long min, unsigned long *max, unsigned align,
   Mem_block **c = &_first;
   Mem_block **fit = 0;
   unsigned long max_fit = 0;
+  unsigned long a_lower = (lower + almask) & ~almask;
 
   for (; *c; c = &(*c)->next)
     {
@@ -292,6 +314,10 @@ List_alloc::alloc_max(unsigned long min, unsigned long *max, unsigned align,
       if ((*c)->size < min)
         continue;
 
+      // block outside region, next
+      if (upper < n_start || a_lower > n_start + (*c)->size)
+        continue;
+
       // aligned start address within the free block
       unsigned long a_start = (n_start + almask) & ~almask;
 
@@ -299,8 +325,23 @@ List_alloc::alloc_max(unsigned long min, unsigned long *max, unsigned align,
       if (a_start - n_start >= (*c)->size)
         continue;
 
+      a_start = a_start < a_lower ? a_lower : a_start;
+
+      // end address would overflow, next
+      if (min > ~0UL - a_start)
+        continue;
+
+      // block outside region, next
+      if (a_start + min - 1UL > upper)
+        continue;
+
       // remaining size after subtracting the padding for the alignment
       unsigned long r_size = (*c)->size - a_start + n_start;
+
+      // upper limit can limit maximum size
+      if (a_start + r_size - 1UL > upper)
+        r_size = upper - a_start + 1UL;
+
       // round down according to granularity
       r_size &= ~(granularity - 1UL);
 
@@ -308,7 +349,7 @@ List_alloc::alloc_max(unsigned long min, unsigned long *max, unsigned align,
       if (r_size < min)
         continue;
 
-      if (r_size > *max)
+      if (r_size >= *max)
         {
           fit = c;
           max_fit = *max;
@@ -325,7 +366,9 @@ List_alloc::alloc_max(unsigned long min, unsigned long *max, unsigned align,
   if (fit)
     {
       unsigned long n_start = (unsigned long)(*fit);
+      unsigned long a_lower = (lower + almask) & ~almask;
       unsigned long a_start = (n_start + almask) & ~almask;
+      a_start = a_start < a_lower ? a_lower : a_start;
       unsigned long r_size = (*fit)->size - a_start + n_start;
 
       if (a_start > n_start)
@@ -344,14 +387,15 @@ List_alloc::alloc_max(unsigned long min, unsigned long *max, unsigned align,
       m->next = *fit;
       m->size = r_size - max_fit;
       *fit = m;
-      return (void*)a_start;
+      return (void *)a_start;
     }
 
   return 0;
 }
 
 void *
-List_alloc::alloc(unsigned long size, unsigned align)
+List_alloc::alloc(unsigned long size, unsigned long align, unsigned long lower,
+                  unsigned long upper)
 {
   List_alloc_sanity_guard __attribute__((unused)) guard(this, __func__);
 
@@ -360,13 +404,14 @@ List_alloc::alloc(unsigned long size, unsigned align)
   // blow up size to the minimum aligned size
   size = (size + mb_align) & ~mb_align;
 
-  unsigned long almask = align ? (align -1) : 0;
+  unsigned long almask = align ? (align - 1UL) : 0;
 
   // minimum alignment is given by the size of a Mem_block
   if (almask < mb_align)
     almask = mb_align;
 
   Mem_block **c = &_first;
+  unsigned long a_lower = (lower + almask) & ~almask;
 
   for (; *c; c=&(*c)->next)
     {
@@ -378,11 +423,25 @@ List_alloc::alloc(unsigned long size, unsigned align)
       if ((*c)->size < size)
         continue;
 
+      // block outside region, next
+      if (upper < n_start || a_lower > n_start + (*c)->size)
+        continue;
+
       // aligned start address within the free block
       unsigned long a_start = (n_start + almask) & ~almask;
 
-      // hm, block too small after alignment, next
+      // block too small after alignment, next
       if (a_start - n_start >= (*c)->size)
+        continue;
+
+      a_start = a_start < a_lower ? a_lower : a_start;
+
+      // end address would overflow, next
+      if (size > ~0UL - a_start)
+        continue;
+
+      // block outside region, next
+      if (a_start + size - 1UL > upper)
         continue;
 
       // remaining size after subtracting the padding
@@ -391,31 +450,31 @@ List_alloc::alloc(unsigned long size, unsigned align)
 
       // block too small
       if (r_size < size)
-	continue;
+        continue;
 
       if (a_start > n_start)
-	{
-	  // have free space before the allocated block
-	  // shrink the block and set c to the next pointer of that
-	  // block
-	  (*c)->size -= r_size;
-	  c = &(*c)->next;
-	}
+        {
+          // have free space before the allocated block
+          // shrink the block and set c to the next pointer of that
+          // block
+          (*c)->size -= r_size;
+          c = &(*c)->next;
+        }
       else
-	// drop the block, c remains the next pointer of the
-	// previous block
-	*c = (*c)->next;
+        // drop the block, c remains the next pointer of the
+        // previous block
+        *c = (*c)->next;
 
       // allocated the whole remaining space
       if (r_size == size)
-	return (void*)a_start;
+        return (void*)a_start;
 
       // add a new free block behind the allocated block
       Mem_block *m = (Mem_block*)(a_start + size);
       m->next = *c;
       m->size = r_size - size;
       *c = m;
-      return (void*)a_start;
+      return (void *)a_start;
     }
 
   return 0;
@@ -462,12 +521,10 @@ List_alloc::dump_free_list(DBG &out)
           unit = "MB";
         }
 
-      out.printf("%10p - %10p (%u %s)\n", c, (char *) c + c->size - 1, sz, unit);
+      out.printf("%12p - %12p (%u %s)\n", c, (char *) c + c->size - 1, sz, unit);
 
       c = c->next;
     }
 }
 
 }
-
-

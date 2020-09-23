@@ -4,7 +4,7 @@ var group__l4__timeout__api =
       [ "t", "structl4__timeout__s.html#a21ffd90db09f5ce67eaabe0cf616de5e", null ]
     ] ],
     [ "l4_timeout_t", "unionl4__timeout__t.html", [
-      [ "p", "unionl4__timeout__t.html#a81d56b227c52087d5482c3d12249a229", null ],
+      [ "p", "unionl4__timeout__t.html#abc7b54a88787c670609473ec7cfcd67f", null ],
       [ "raw", "unionl4__timeout__t.html#a725392ca39e3c206b5732521ff423e76", null ],
       [ "rcv", "unionl4__timeout__t.html#ad701def0cd596dd740df297e89298ea6", null ],
       [ "snd", "unionl4__timeout__t.html#a9e20b6f3f5669761952fe8c0d93662fd", null ]
@@ -18,7 +18,6 @@ var group__l4__timeout__api =
     [ "L4_IPC_TIMEOUT_NEVER", "group__l4__timeout__api.html#ga10233285bd94a308b93087f765c83218", null ],
     [ "l4_timeout_s", "group__l4__timeout__api.html#ga509d80437f3358a921aa357a66ba104d", null ],
     [ "l4_timeout_t", "group__l4__timeout__api.html#ga8977a687ee4a7cab356702714524d812", null ],
-    [ "l4_timeout_abs_validity", "group__l4__timeout__api.html#gabbcc869bde1d5487ea1cd00230784a4d", null ],
     [ "l4_ipc_timeout", "group__l4__timeout__api.html#ga18fef9d8b27a0ef816b5bb7e72c1b9be", null ],
     [ "l4_rcv_timeout", "group__l4__timeout__api.html#ga70495cedeb907f542f501b37f4207e69", null ],
     [ "l4_snd_timeout", "group__l4__timeout__api.html#ga4492e42855fecb47130272f0d3420a5f", null ],

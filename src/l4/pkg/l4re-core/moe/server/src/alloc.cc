@@ -10,6 +10,7 @@
 #include <l4/cxx/exceptions>
 #include <l4/cxx/unique_ptr>
 #include <l4/cxx/l4iostream>
+#include <l4/cxx/string>
 
 #include <l4/re/util/meta>
 #include <l4/sys/factory>
@@ -33,10 +34,14 @@
 static Dbg dbg(Dbg::Warn | Dbg::Server);
 
 Moe::Dataspace *
-Allocator::alloc(long size, unsigned long flags, unsigned long align)
+Allocator::alloc(long size, unsigned long flags, unsigned long align,
+                 Single_page_alloc_base::Config cfg)
 {
   if (size == 0)
     throw L4::Bounds_error("stack too small");
+
+  if (cfg.physmin >= cfg.physmax)
+    throw L4::Runtime_error(-L4_EINVAL, "malformed memory range");
 
   //L4::cout << "A: \n";
   Moe::Dataspace *mo;
@@ -48,14 +53,15 @@ Allocator::alloc(long size, unsigned long flags, unsigned long align)
       else
         align = cxx::max<unsigned long>(align, L4_PAGESHIFT);
 
-      mo = make_obj<Moe::Dataspace_anon>(size, true, align);
+      mo = make_obj<Moe::Dataspace_anon>(size, L4Re::Dataspace::F::RWX, align,
+                                         cfg);
     }
   else
     {
       if (size < 0)
         throw L4::Bounds_error("invalid size");
 
-      mo = Moe::Dataspace_noncont::create(qalloc(), size);
+      mo = Moe::Dataspace_noncont::create(qalloc(), size, cfg);
       Obj_list::insert_after(mo, Obj_list::iter(this));
     }
 
@@ -136,7 +142,7 @@ Allocator::op_create(L4::Factory::Rights, L4::Ipc::Cap<void> &res,
 
     case L4::Factory::Protocol:
         {
-          L4::Ipc::Varg tag = args.next();
+          L4::Ipc::Varg tag = args.pop_front();
 
           if (!tag.is_of_int() || tag.value<long>() == 0) // ignore sign
             return -L4_EINVAL;
@@ -153,12 +159,12 @@ Allocator::op_create(L4::Factory::Rights, L4::Ipc::Cap<void> &res,
 
     case L4_PROTO_LOG:
         {
-          L4::Ipc::Varg tag = args.next();
+          L4::Ipc::Varg tag = args.pop_front();
 
           if (!tag.is_of<char const *>())
             return -L4_EINVAL;
 
-          L4::Ipc::Varg col = args.next();
+          L4::Ipc::Varg col = args.pop_front();
 
           int color;
           if (col.is_of<char const *>())
@@ -183,7 +189,9 @@ Allocator::op_create(L4::Factory::Rights, L4::Ipc::Cap<void> &res,
           if (!_sched_prio_limit)
             return -L4_ENODEV;
 
-          L4::Ipc::Varg p_max = args.next(), p_base = args.next(), cpus = args.next();
+          L4::Ipc::Varg p_max  = args.pop_front(),
+                        p_base = args.pop_front(),
+                        cpus   = args.pop_front();
 
           if (!p_max.is_of_int() || !p_base.is_of_int())
             return -L4_EINVAL;
@@ -212,15 +220,34 @@ Allocator::op_create(L4::Factory::Rights, L4::Ipc::Cap<void> &res,
 
     case L4Re::Dataspace::Protocol:
         {
-          L4::Ipc::Varg size = args.next(), flags = args.next(), align = args.next();
+          L4::Ipc::Varg size  = args.pop_front(),
+                        flags = args.pop_front(),
+                        align = args.pop_front();
 
           if (!size.is_of_int())
             return -L4_EINVAL;
 
+          Single_page_alloc_base::Config mem_cfg;
+
+          for (L4::Ipc::Varg opts: args)
+            {
+              if (opts.is_of<char const *>())
+                {
+                  cxx::String cs = cxx::String(opts.value<char const *>(),
+                                               opts.length() - 1);
+
+                  if (cxx::String::Index v = cs.starts_with("physmin="))
+                    cs.substr(v).from_hex(&mem_cfg.physmin);
+                  else if (cxx::String::Index v = cs.starts_with("physmax="))
+                    cs.substr(v).from_hex(&mem_cfg.physmax);
+                }
+            }
+
           // L4::cout << "MEM: alloc ... " << size.value<l4_mword_t>() << "; " << flags.value<l4_umword_t>() << "\n";
           cxx::unique_ptr<Moe::Dataspace> mo(alloc(size.value<l4_mword_t>(),
                 flags.is_of_int() ? flags.value<l4_umword_t>() : 0,
-                align.is_of_int() ? align.value<l4_umword_t>() : 0));
+                align.is_of_int() ? align.value<l4_umword_t>() : 0,
+                mem_cfg));
 
           // L4::cout << "MO=" << mo.get() << "\n";
           ko = object_pool.cap_alloc()->alloc(mo.get());
@@ -251,11 +278,18 @@ long
 Allocator::op_debug(L4Re::Debug_obj::Rights, unsigned long)
 {
   Dbg out(Dbg::Info, "mem_alloc");
-  out.printf("quota (bytes): limit=%zd, used=%zd avail=%zd\n",
-             _qalloc.quota()->limit(), _qalloc.quota()->used(),
-             _qalloc.quota()->limit() == ~0u
-             ? -1 : _qalloc.quota()->limit() - _qalloc.quota()->used());
-  out.printf("global: avail=%lu bytes\n", Single_page_alloc_base::_avail());
+  if (_qalloc.quota()->limit() == (size_t)~0)
+    out.printf("quota: no limit, used: %zu bytes (%zu MB)\n",
+               _qalloc.quota()->used(), _qalloc.quota()->used() / (1<<20));
+  else
+    out.printf("quota: limit: %zu bytes (%zu MB), used: %zu bytes (%zu MB), avail: %zu bytes (%zu MB)\n",
+               _qalloc.quota()->limit(), _qalloc.quota()->limit() / (1<<20),
+               _qalloc.quota()->used(),  _qalloc.quota()->used()  / (1<<20),
+               _qalloc.quota()->limit() - _qalloc.quota()->used(),
+               (_qalloc.quota()->limit() - _qalloc.quota()->used()) / (1<<20));
+  out.printf("global: avail: %lu bytes (%lu MB)\n",
+             Single_page_alloc_base::_avail(),
+             Single_page_alloc_base::_avail() / (1<<20));
   out.printf("global physical free list:\n");
   Single_page_alloc_base::_dump_free(out);
   return L4_EOK;

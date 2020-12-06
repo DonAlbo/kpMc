@@ -1,0 +1,13 @@
+modaddr 0x01100000
+
+default-kernel fiasco -serial_esc
+default-bootstrap bootstrap
+
+entry asgn00
+roottask moe rom/asgn00.cfg
+module l4re
+module ned
+module asgn00.cfg
+module ex_task_client
+module ex_task_server
+
